@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 110" fill="none">
+  <title>Petty — Utility Knife</title>
+  <!-- Blade — small, slim, pointed -->
+  <path d="M30 66 L220 58 L248 54 L264 48 L270 46 L264 50 L250 57 L222 62 L30 72 Z" fill="#BDC8CE" stroke="#6B7C8A" stroke-width="0.7"/>
+  <!-- Spine highlight -->
+  <path d="M30 66 L220 58 L264 48" stroke="#D8E2E8" stroke-width="1.1" fill="none"/>
+  <!-- Tip -->
+  <path d="M264 48 L270 46 L264 50 Z" fill="#9AAAB5"/>
+  <!-- Bolster -->
+  <rect x="23" y="60" width="8" height="16" rx="1" fill="#5A6B78"/>
+  <!-- Handle — compact wa octagonal -->
+  <path d="M5 62 L23 60 L31 60 L31 76 L23 76 L5 74 Z" fill="#6E5540"/>
+  <path d="M0 63 L5 62 L5 74 L0 73 Z" fill="#8A6E55"/>
+  <!-- Label -->
+  <text x="80" y="96" font-family="Georgia, serif" font-size="11" fill="#2C3E50" letter-spacing="3">P E T T Y</text>
+  <text x="80" y="108" font-family="Georgia, serif" font-size="8" fill="#7F8C8D" letter-spacing="2">ペティ  ·  UTILITY KNIFE</text>
+</svg>

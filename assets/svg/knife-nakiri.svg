@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 420 130" fill="none">
+  <title>Nakiri — Vegetable Knife</title>
+  <!-- Blade — rectangular -->
+  <rect x="30" y="38" width="320" height="60" rx="1" fill="#B8C4CC" stroke="#6B7C8A" stroke-width="0.8"/>
+  <!-- Spine highlight -->
+  <line x1="30" y1="39" x2="350" y2="39" stroke="#D8E2E8" stroke-width="1.5"/>
+  <!-- Edge highlight -->
+  <line x1="30" y1="98" x2="350" y2="98" stroke="#8A9BA8" stroke-width="0.8"/>
+  <!-- Blade face line -->
+  <line x1="50" y1="68" x2="340" y2="68" stroke="#CBD5DB" stroke-width="0.4" stroke-dasharray="4 8"/>
+  <!-- Rounded top-right corner of blade -->
+  <path d="M350 38 Q358 38 358 46 L358 98 L350 98 Z" fill="#A8B6BE"/>
+  <!-- Bolster -->
+  <rect x="22" y="34" width="10" height="68" rx="1" fill="#6B7C8A"/>
+  <!-- Handle -->
+  <path d="M4 40 L22 36 L32 36 L32 102 L22 102 L4 98 Z" fill="#5C4A38"/>
+  <path d="M0 42 L4 40 L4 98 L0 96 Z" fill="#7A6248"/>
+  <!-- Label -->
+  <text x="120" y="118" font-family="Georgia, serif" font-size="11" fill="#2C3E50" letter-spacing="3">N A K I R I</text>
+  <text x="120" y="128" font-family="Georgia, serif" font-size="8" fill="#7F8C8D" letter-spacing="2">菜切り  ·  VEGETABLE KNIFE</text>
+</svg>

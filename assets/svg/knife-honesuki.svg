@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 340 120" fill="none">
+  <title>Honesuki — Boning Knife</title>
+  <!-- Blade — stiff triangular profile, acute tip -->
+  <path d="M30 56 L240 56 L270 60 L290 70 L290 80 L30 82 Z" fill="#B8C0C8" stroke="#6B7C8A" stroke-width="0.8"/>
+  <!-- Spine — straight and stiff -->
+  <line x1="30" y1="56" x2="292" y2="56" stroke="#D8E2E8" stroke-width="1.4"/>
+  <!-- Triangular taper to tip -->
+  <path d="M240 56 L290 70 L290 78 L270 62 Z" fill="#A0ACBA"/>
+  <!-- Acute tip point -->
+  <path d="M288 72 L296 68 L290 78 Z" fill="#8A9BA8"/>
+  <!-- Thick bolster (stiff blade needs solid bolster) -->
+  <rect x="20" y="50" width="12" height="36" rx="2" fill="#5A6B78"/>
+  <!-- Handle — compact western -->
+  <path d="M4 52 L20 50 L32 50 L32 86 L20 86 L4 84 Z" fill="#2C3E50"/>
+  <circle cx="10" cy="68" r="2.5" fill="#C4A882"/>
+  <circle cx="18" cy="68" r="2.5" fill="#C4A882"/>
+  <circle cx="26" cy="68" r="2.5" fill="#C4A882"/>
+  <!-- Label -->
+  <text x="95" y="104" font-family="Georgia, serif" font-size="11" fill="#2C3E50" letter-spacing="3">H O N E S U K I</text>
+  <text x="95" y="116" font-family="Georgia, serif" font-size="8" fill="#7F8C8D" letter-spacing="2">骨透き  ·  BONING KNIFE</text>
+</svg>

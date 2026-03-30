@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 420 130" fill="none">
+  <title>Deba — Fish Butchery Knife</title>
+  <!-- Blade body — thick spine, heavy triangular profile -->
+  <path d="M32 48 L340 52 L370 60 L380 80 L30 88 Z" fill="#B0BCCA" stroke="#5A6B78" stroke-width="0.9"/>
+  <!-- Thick spine -->
+  <path d="M32 44 L32 50 L340 52 L340 48 Z" fill="#7A8E9A"/>
+  <!-- Spine highlight -->
+  <line x1="34" y1="46" x2="342" y2="46" stroke="#D0D8DC" stroke-width="1.5"/>
+  <!-- Convex face highlight (single bevel) -->
+  <path d="M32 88 Q150 86 320 74 Q355 68 380 80" stroke="#CBD5DB" stroke-width="1.2" fill="none"/>
+  <!-- Tip -->
+  <path d="M370 60 L380 80 L378 66 Z" fill="#8A9BA8"/>
+  <!-- Bolster — thick -->
+  <rect x="22" y="42" width="12" height="50" rx="1" fill="#5A6B78"/>
+  <!-- Handle -->
+  <path d="M5 46 L22 42 L34 42 L34 92 L22 92 L5 88 Z" fill="#5C4A38"/>
+  <path d="M0 48 L5 46 L5 88 L0 86 Z" fill="#7A6248"/>
+  <!-- Label -->
+  <text x="140" y="110" font-family="Georgia, serif" font-size="11" fill="#2C3E50" letter-spacing="3">D E B A</text>
+  <text x="140" y="122" font-family="Georgia, serif" font-size="8" fill="#7F8C8D" letter-spacing="2">出刃  ·  FISH BUTCHERY KNIFE</text>
+</svg>
