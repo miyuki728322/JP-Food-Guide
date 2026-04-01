@@ -1383,7 +1383,7 @@ body {
 
 .warning-box__icon {
   font-family: var(--font-display);
-  font-size: 32px;
+  font-size: 31px;
   color: var(--accent-soft);
   line-height: 1;
   flex-shrink: 0;
