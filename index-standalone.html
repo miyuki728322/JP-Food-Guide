@@ -1,0 +1,2441 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Japanese Knife — A Professional Chef's Complete Reference</title>
+  <style>
+/* ============================================================
+   THE JAPANESE KNIFE — Professional Chef's Reference
+   Typography and Layout
+   ============================================================ */
+
+
+
+/* === RESET & BASE === */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --ink:         #1A1A1A;
+  --ink-mid:     #3A3A3A;
+  --ink-light:   #6B6B6B;
+  --rule:        #C8C0B4;
+  --rule-light:  #E8E2DA;
+  --cream:       #FAF8F4;
+  --warm-white:  #FFFEF9;
+  --accent:      #8B1A1A;   /* deep red — lacquerware */
+  --accent-soft: #C4A882;   /* aged gold  */
+  --blade-grey:  #B8C4CC;
+  --blade-dark:  #6B7C8A;
+  --handle:      #5C4A38;
+  --steel-blue:  #2C3E50;
+
+  --font-serif:   'EB Garamond', 'Garamond', Georgia, serif;
+  --font-display: 'Cormorant Garamond', 'EB Garamond', serif;
+  --font-jp:      'Noto Serif JP', serif;
+  --font-sans:    'Inter', system-ui, sans-serif;
+
+  --page-width: 1080px;
+  --col-wide:   680px;
+  --col-narrow: 320px;
+}
+
+html { font-size: 16px; scroll-behavior: smooth; }
+
+body {
+  background: #EFEFEB;
+  color: var(--ink);
+  font-family: var(--font-serif);
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* === LAYOUT === */
+.page-wrapper { max-width: var(--page-width); margin: 0 auto; background: var(--warm-white); }
+
+/* === COVER PAGE === */
+.cover {
+  height: 100vh;
+  min-height: 700px;
+  background: var(--steel-blue);
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  position: relative;
+  overflow: hidden;
+}
+
+.cover__left {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 80px 60px;
+  z-index: 2;
+}
+
+.cover__right {
+  background: var(--ink);
+  position: relative;
+  overflow: hidden;
+}
+
+.cover__knife-bg {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0.15;
+}
+
+.cover__knife-bg svg {
+  width: 120%;
+  transform: rotate(-35deg) translateX(20px);
+  filter: brightness(2);
+}
+
+.cover__rule {
+  width: 48px;
+  height: 2px;
+  background: var(--accent-soft);
+  margin-bottom: 32px;
+}
+
+.cover__eyebrow {
+  font-family: var(--font-sans);
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--accent-soft);
+  margin-bottom: 20px;
+}
+
+.cover__title {
+  font-family: var(--font-display);
+  font-size: clamp(48px, 6vw, 82px);
+  font-weight: 300;
+  line-height: 1.0;
+  color: #FFFFFF;
+  margin-bottom: 8px;
+}
+
+.cover__title em {
+  font-style: italic;
+  color: var(--accent-soft);
+}
+
+.cover__jp-title {
+  font-family: var(--font-jp);
+  font-size: 22px;
+  font-weight: 300;
+  color: rgba(255,255,255,0.45);
+  letter-spacing: 0.2em;
+  margin-bottom: 40px;
+}
+
+.cover__subtitle {
+  font-family: var(--font-serif);
+  font-size: 15px;
+  font-style: italic;
+  color: rgba(255,255,255,0.65);
+  line-height: 1.6;
+  max-width: 320px;
+  margin-bottom: 60px;
+}
+
+.cover__edition {
+  font-family: var(--font-sans);
+  font-size: 10px;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.3);
+}
+
+/* vertical text on right panel */
+.cover__vertical-text {
+  position: absolute;
+  right: 32px;
+  top: 50%;
+  transform: translateY(-50%) rotate(90deg);
+  font-family: var(--font-jp);
+  font-size: 11px;
+  letter-spacing: 0.4em;
+  color: rgba(255,255,255,0.2);
+  white-space: nowrap;
+}
+
+/* decorative corner marks */
+.cover::before, .cover::after {
+  content: '';
+  position: absolute;
+  width: 60px;
+  height: 60px;
+  border-color: var(--accent-soft);
+  border-style: solid;
+  opacity: 0.4;
+  z-index: 3;
+}
+.cover::before { top: 24px; left: 24px; border-width: 1px 0 0 1px; }
+.cover::after  { bottom: 24px; right: 24px; border-width: 0 1px 1px 0; }
+
+/* === CHAPTER HEADERS === */
+.chapter-header {
+  padding: 80px 80px 48px;
+  border-bottom: 1px solid var(--rule);
+  position: relative;
+}
+
+.chapter-header::before {
+  content: attr(data-number);
+  position: absolute;
+  top: 60px;
+  right: 80px;
+  font-family: var(--font-display);
+  font-size: 120px;
+  font-weight: 300;
+  color: var(--rule-light);
+  line-height: 1;
+  pointer-events: none;
+}
+
+.chapter-header__label {
+  font-family: var(--font-sans);
+  font-size: 9px;
+  font-weight: 500;
+  letter-spacing: 0.4em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 16px;
+}
+
+.chapter-header__title {
+  font-family: var(--font-display);
+  font-size: clamp(36px, 4vw, 56px);
+  font-weight: 300;
+  line-height: 1.1;
+  color: var(--ink);
+}
+
+.chapter-header__jp {
+  font-family: var(--font-jp);
+  font-size: 14px;
+  color: var(--ink-light);
+  letter-spacing: 0.2em;
+  margin-top: 12px;
+}
+
+/* === SECTIONS & CONTENT === */
+.section { padding: 64px 80px; }
+.section + .section { border-top: 1px solid var(--rule-light); }
+
+.section--dark {
+  background: var(--steel-blue);
+  color: #fff;
+}
+.section--dark .section__title { color: var(--accent-soft); }
+.section--dark p, .section--dark li { color: rgba(255,255,255,0.85); }
+.section--dark .label { color: rgba(255,255,255,0.45); }
+
+.section--cream { background: var(--cream); }
+
+.section__eyebrow {
+  font-family: var(--font-sans);
+  font-size: 9px;
+  font-weight: 500;
+  letter-spacing: 0.4em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 12px;
+}
+
+.section__title {
+  font-family: var(--font-display);
+  font-size: clamp(28px, 3vw, 42px);
+  font-weight: 400;
+  line-height: 1.15;
+  color: var(--ink);
+  margin-bottom: 24px;
+}
+
+.section__intro {
+  font-size: 17px;
+  line-height: 1.75;
+  color: var(--ink-mid);
+  max-width: 660px;
+  margin-bottom: 48px;
+}
+
+/* === KNIFE CARDS === */
+.knife-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2px;
+  background: var(--rule);
+  border: 1px solid var(--rule);
+}
+
+.knife-card {
+  background: var(--warm-white);
+  padding: 40px 40px 32px;
+  position: relative;
+  transition: background 0.2s;
+}
+
+.knife-card:hover { background: #F5F1EB; }
+
+.knife-card__kanji {
+  font-family: var(--font-jp);
+  font-size: 42px;
+  font-weight: 300;
+  color: var(--rule);
+  position: absolute;
+  top: 24px;
+  right: 32px;
+  line-height: 1;
+}
+
+.knife-card__category {
+  font-family: var(--font-sans);
+  font-size: 9px;
+  font-weight: 500;
+  letter-spacing: 0.35em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 8px;
+}
+
+.knife-card__name {
+  font-family: var(--font-display);
+  font-size: 32px;
+  font-weight: 400;
+  color: var(--ink);
+  line-height: 1;
+  margin-bottom: 4px;
+}
+
+.knife-card__literal {
+  font-family: var(--font-serif);
+  font-size: 13px;
+  font-style: italic;
+  color: var(--ink-light);
+  margin-bottom: 16px;
+}
+
+.knife-card__illustration {
+  margin: 16px 0;
+  overflow: hidden;
+}
+
+.knife-card__illustration svg,
+.knife-card__illustration img {
+  width: 100%;
+  height: auto;
+  max-height: 80px;
+}
+
+.knife-card__desc {
+  font-size: 14px;
+  line-height: 1.7;
+  color: var(--ink-mid);
+  margin-bottom: 20px;
+}
+
+.knife-card__specs {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  border-top: 1px solid var(--rule-light);
+  padding-top: 20px;
+}
+
+.spec-item {}
+
+.spec-item__label {
+  font-family: var(--font-sans);
+  font-size: 8.5px;
+  font-weight: 500;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--ink-light);
+  margin-bottom: 3px;
+}
+
+.spec-item__value {
+  font-family: var(--font-serif);
+  font-size: 13px;
+  color: var(--ink);
+}
+
+.knife-card__tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 16px;
+}
+
+.tag {
+  display: inline-block;
+  font-family: var(--font-sans);
+  font-size: 9px;
+  font-weight: 500;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  padding: 4px 10px;
+  border: 1px solid var(--rule);
+  color: var(--ink-light);
+}
+
+.tag--accent { border-color: var(--accent); color: var(--accent); }
+
+/* === STEEL COMPARISON TABLE === */
+.steel-table-wrapper { overflow-x: auto; }
+
+.steel-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-family: var(--font-serif);
+  font-size: 14px;
+}
+
+.steel-table thead tr {
+  border-bottom: 2px solid var(--ink);
+}
+
+.steel-table th {
+  font-family: var(--font-sans);
+  font-size: 9px;
+  font-weight: 500;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--ink-light);
+  padding: 12px 16px;
+  text-align: left;
+}
+
+.steel-table th:first-child { padding-left: 0; }
+
+.steel-table td {
+  padding: 16px 16px;
+  border-bottom: 1px solid var(--rule-light);
+  vertical-align: top;
+}
+
+.steel-table td:first-child { padding-left: 0; font-weight: 500; }
+
+.steel-table tr:last-child td { border-bottom: none; }
+
+.steel-table tr:hover td { background: var(--cream); }
+
+/* Rating dots */
+.rating {
+  display: flex;
+  gap: 3px;
+  align-items: center;
+}
+
+.rating__dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--rule);
+}
+
+.rating__dot--filled { background: var(--ink); }
+.rating__dot--accent { background: var(--accent); }
+
+/* === FOOD PAIRING SECTION === */
+.food-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1px;
+  background: var(--rule);
+  border: 1px solid var(--rule);
+}
+
+.food-card {
+  background: var(--warm-white);
+  padding: 28px 28px 24px;
+}
+
+.food-card__icon {
+  font-size: 28px;
+  margin-bottom: 12px;
+  line-height: 1;
+}
+
+.food-card__food {
+  font-family: var(--font-sans);
+  font-size: 9px;
+  font-weight: 500;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 8px;
+}
+
+.food-card__knife {
+  font-family: var(--font-display);
+  font-size: 20px;
+  color: var(--ink);
+  margin-bottom: 8px;
+}
+
+.food-card__note {
+  font-size: 12px;
+  line-height: 1.6;
+  color: var(--ink-light);
+}
+
+/* === TECHNIQUE PANELS === */
+.technique-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+  background: var(--rule);
+  border: 1px solid var(--rule);
+}
+
+.technique-item {
+  background: var(--warm-white);
+  display: grid;
+  grid-template-columns: 200px 1fr;
+  gap: 0;
+}
+
+.technique-item__label {
+  padding: 28px 28px;
+  border-right: 1px solid var(--rule);
+  background: var(--cream);
+}
+
+.technique-item__name {
+  font-family: var(--font-display);
+  font-size: 20px;
+  color: var(--ink);
+  margin-bottom: 4px;
+}
+
+.technique-item__jp {
+  font-family: var(--font-jp);
+  font-size: 11px;
+  color: var(--ink-light);
+  letter-spacing: 0.15em;
+}
+
+.technique-item__content {
+  padding: 28px 32px;
+}
+
+.technique-item__desc {
+  font-size: 14px;
+  line-height: 1.7;
+  color: var(--ink-mid);
+  margin-bottom: 10px;
+}
+
+.technique-item__knives {
+  font-family: var(--font-sans);
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+
+/* === HANDLE COMPARISON === */
+.handle-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+}
+
+.handle-card {
+  border: 1px solid var(--rule);
+  padding: 40px;
+}
+
+.handle-card__type {
+  font-family: var(--font-sans);
+  font-size: 9px;
+  font-weight: 500;
+  letter-spacing: 0.4em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 12px;
+}
+
+.handle-card__name {
+  font-family: var(--font-display);
+  font-size: 30px;
+  font-weight: 400;
+  color: var(--ink);
+  margin-bottom: 16px;
+}
+
+.handle-card__desc {
+  font-size: 14px;
+  line-height: 1.75;
+  color: var(--ink-mid);
+  margin-bottom: 24px;
+}
+
+.pros-cons {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+.pros-cons__list h4 {
+  font-family: var(--font-sans);
+  font-size: 9px;
+  font-weight: 500;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--ink-light);
+  margin-bottom: 8px;
+}
+
+.pros-cons__list ul {
+  list-style: none;
+  padding: 0;
+}
+
+.pros-cons__list ul li {
+  font-size: 13px;
+  color: var(--ink-mid);
+  padding: 4px 0;
+  border-bottom: 1px solid var(--rule-light);
+  display: flex;
+  align-items: flex-start;
+  gap: 6px;
+}
+
+.pros-cons__list ul li::before {
+  content: '→';
+  color: var(--accent-soft);
+  font-size: 11px;
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+
+/* === SHARPENING SECTION === */
+.stone-progression {
+  display: flex;
+  gap: 1px;
+  background: var(--rule);
+  border: 1px solid var(--rule);
+  align-items: stretch;
+}
+
+.stone-step {
+  flex: 1;
+  background: var(--warm-white);
+  padding: 24px 20px;
+  text-align: center;
+}
+
+.stone-step__grit {
+  font-family: var(--font-display);
+  font-size: 22px;
+  font-weight: 400;
+  color: var(--ink);
+  margin-bottom: 8px;
+}
+
+.stone-step__bar {
+  height: 6px;
+  border-radius: 3px;
+  margin: 12px auto;
+  max-width: 60px;
+}
+
+.stone-step:nth-child(1) .stone-step__bar { background: #5C4A38; }
+.stone-step:nth-child(2) .stone-step__bar { background: #8A7060; }
+.stone-step:nth-child(3) .stone-step__bar { background: #A89080; }
+.stone-step:nth-child(4) .stone-step__bar { background: #C0A898; }
+.stone-step:nth-child(5) .stone-step__bar { background: #D8C8B8; }
+
+.stone-step__purpose {
+  font-size: 12px;
+  line-height: 1.5;
+  color: var(--ink-mid);
+}
+
+.stone-step__freq {
+  font-family: var(--font-sans);
+  font-size: 9px;
+  font-weight: 500;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--ink-light);
+  margin-top: 8px;
+}
+
+/* === PULL QUOTES === */
+.pull-quote {
+  border-left: 3px solid var(--accent);
+  padding: 24px 40px;
+  margin: 48px 0;
+  background: var(--cream);
+}
+
+.pull-quote__text {
+  font-family: var(--font-display);
+  font-size: clamp(20px, 2.5vw, 28px);
+  font-weight: 400;
+  font-style: italic;
+  line-height: 1.4;
+  color: var(--ink);
+  margin-bottom: 16px;
+}
+
+.pull-quote__attribution {
+  font-family: var(--font-sans);
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--ink-light);
+}
+
+/* === ANGLE DIAGRAM === */
+.angle-diagram {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 32px;
+  padding: 40px 0;
+}
+
+.angle-item {
+  text-align: center;
+}
+
+.angle-item__visual {
+  width: 80px;
+  height: 80px;
+  margin: 0 auto 12px;
+  position: relative;
+}
+
+.angle-item__label {
+  font-family: var(--font-display);
+  font-size: 22px;
+  color: var(--ink);
+  margin-bottom: 4px;
+}
+
+.angle-item__desc {
+  font-size: 12px;
+  color: var(--ink-light);
+  line-height: 1.5;
+}
+
+/* === MAINTENANCE CHECKLIST === */
+.maintenance-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+
+.maint-card {
+  padding: 28px 24px;
+  border: 1px solid var(--rule);
+}
+
+.maint-card__timing {
+  font-family: var(--font-sans);
+  font-size: 9px;
+  font-weight: 500;
+  letter-spacing: 0.35em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 12px;
+}
+
+.maint-card__title {
+  font-family: var(--font-display);
+  font-size: 22px;
+  color: var(--ink);
+  margin-bottom: 16px;
+}
+
+.maint-card ul {
+  list-style: none;
+  padding: 0;
+}
+
+.maint-card ul li {
+  font-size: 13px;
+  color: var(--ink-mid);
+  padding: 5px 0;
+  border-bottom: 1px solid var(--rule-light);
+  display: flex;
+  gap: 8px;
+}
+
+.maint-card ul li::before {
+  content: '·';
+  color: var(--accent-soft);
+  font-size: 16px;
+  line-height: 1;
+  flex-shrink: 0;
+}
+
+/* === FOOTER / COLOPHON === */
+.colophon {
+  background: var(--ink);
+  color: rgba(255,255,255,0.5);
+  padding: 60px 80px;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 48px;
+}
+
+.colophon__title {
+  font-family: var(--font-display);
+  font-size: 24px;
+  color: rgba(255,255,255,0.9);
+  margin-bottom: 16px;
+}
+
+.colophon__text {
+  font-size: 13px;
+  line-height: 1.7;
+}
+
+.colophon__label {
+  font-family: var(--font-sans);
+  font-size: 9px;
+  font-weight: 500;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--accent-soft);
+  margin-bottom: 8px;
+}
+
+/* === INTRO PAGE === */
+.intro-spread {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  min-height: 80vh;
+}
+
+.intro-spread__text {
+  padding: 80px 60px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.intro-spread__image-panel {
+  background: var(--cream);
+  padding: 60px 50px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 20px;
+}
+
+.stat-block {
+  border-left: 2px solid var(--accent-soft);
+  padding: 12px 20px;
+}
+
+.stat-block__number {
+  font-family: var(--font-display);
+  font-size: 48px;
+  font-weight: 300;
+  line-height: 1;
+  color: var(--ink);
+}
+
+.stat-block__label {
+  font-family: var(--font-sans);
+  font-size: 9px;
+  font-weight: 500;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--ink-light);
+  margin-top: 4px;
+}
+
+/* === PRINT STYLES === */
+@media print {
+  body { background: white; font-size: 11pt; }
+  .page-wrapper { max-width: none; }
+  .cover { page-break-after: always; height: 100vh; print-color-adjust: exact; -webkit-print-color-adjust: exact; }
+  .chapter-header { page-break-before: always; }
+  .knife-card { page-break-inside: avoid; }
+  .stone-progression { print-color-adjust: exact; -webkit-print-color-adjust: exact; }
+  @page { size: A4; margin: 0; }
+}
+
+/* === RESPONSIVE === */
+@media (max-width: 900px) {
+  .cover { grid-template-columns: 1fr; }
+  .cover__right { display: none; }
+  .knife-grid { grid-template-columns: 1fr; }
+  .food-grid { grid-template-columns: 1fr 1fr; }
+  .colophon { grid-template-columns: 1fr; }
+  .section { padding: 48px 32px; }
+  .chapter-header { padding: 60px 32px 36px; }
+  .intro-spread { grid-template-columns: 1fr; }
+  .maintenance-grid { grid-template-columns: 1fr; }
+  .handle-grid { grid-template-columns: 1fr; }
+  .stone-progression { flex-wrap: wrap; }
+  .stone-step { flex: 1 1 30%; }
+}
+
+@media (max-width: 600px) {
+  .food-grid { grid-template-columns: 1fr; }
+  .angle-diagram { grid-template-columns: 1fr; }
+  .technique-item { grid-template-columns: 1fr; }
+  .cover__title { font-size: 38px; }
+  .history-timeline { gap: 0; }
+  .stone-detail-grid { grid-template-columns: 1fr; }
+  .stone-types-grid { grid-template-columns: 1fr; }
+  .honyaki-grid { grid-template-columns: 1fr; }
+}
+
+/* ============================================================
+   HISTORY CHAPTER
+   ============================================================ */
+
+.history-timeline {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+  background: var(--rule);
+  border: 1px solid var(--rule);
+  margin-bottom: 48px;
+}
+
+.timeline-entry {
+  background: var(--warm-white);
+  display: grid;
+  grid-template-columns: 180px 1fr;
+  align-items: stretch;
+}
+
+.timeline-entry:nth-child(even) { background: var(--cream); }
+
+.timeline-entry__date {
+  padding: 32px 24px;
+  border-right: 1px solid var(--rule);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  gap: 6px;
+  background: inherit;
+}
+
+.timeline-entry__period {
+  font-family: var(--font-display);
+  font-size: 17px;
+  font-weight: 400;
+  color: var(--ink);
+  line-height: 1.2;
+}
+
+.timeline-entry__years {
+  font-family: var(--font-sans);
+  font-size: 9px;
+  font-weight: 500;
+  letter-spacing: 0.2em;
+  color: var(--ink-light);
+}
+
+.timeline-entry__dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--accent-soft);
+  margin-top: 8px;
+}
+
+.timeline-entry__content {
+  padding: 32px 40px;
+}
+
+.timeline-entry__title {
+  font-family: var(--font-display);
+  font-size: 22px;
+  font-weight: 400;
+  color: var(--ink);
+  margin-bottom: 12px;
+  line-height: 1.2;
+}
+
+.timeline-entry__desc {
+  font-size: 14px;
+  line-height: 1.75;
+  color: var(--ink-mid);
+  margin-bottom: 12px;
+}
+
+.timeline-entry__significance {
+  font-family: var(--font-sans);
+  font-size: 9px;
+  font-weight: 500;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--accent);
+  padding-top: 12px;
+  border-top: 1px solid var(--rule-light);
+}
+
+/* Honyaki vs Kasumi comparison */
+.honyaki-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1px;
+  background: var(--rule);
+  border: 1px solid var(--rule);
+  margin-bottom: 40px;
+}
+
+.honyaki-card {
+  padding: 36px 36px;
+  background: var(--warm-white);
+}
+
+.honyaki-card--dark {
+  background: var(--steel-blue);
+}
+
+.honyaki-card__label {
+  font-family: var(--font-sans);
+  font-size: 9px;
+  font-weight: 500;
+  letter-spacing: 0.4em;
+  text-transform: uppercase;
+  color: var(--accent-soft);
+  margin-bottom: 12px;
+}
+
+.honyaki-card__name {
+  font-family: var(--font-display);
+  font-size: 30px;
+  font-weight: 400;
+  margin-bottom: 6px;
+}
+
+.honyaki-card--dark .honyaki-card__name { color: #fff; }
+.honyaki-card:not(.honyaki-card--dark) .honyaki-card__name { color: var(--ink); }
+
+.honyaki-card__jp {
+  font-family: var(--font-jp);
+  font-size: 13px;
+  letter-spacing: 0.15em;
+  margin-bottom: 16px;
+}
+.honyaki-card--dark .honyaki-card__jp { color: rgba(255,255,255,0.4); }
+.honyaki-card:not(.honyaki-card--dark) .honyaki-card__jp { color: var(--ink-light); }
+
+.honyaki-card__desc {
+  font-size: 14px;
+  line-height: 1.75;
+}
+.honyaki-card--dark .honyaki-card__desc { color: rgba(255,255,255,0.8); }
+.honyaki-card:not(.honyaki-card--dark) .honyaki-card__desc { color: var(--ink-mid); }
+
+.honyaki-card__difficulty {
+  display: inline-block;
+  font-family: var(--font-sans);
+  font-size: 9px;
+  font-weight: 500;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  padding: 4px 12px;
+  border: 1px solid var(--accent-soft);
+  color: var(--accent-soft);
+  margin-top: 16px;
+}
+
+/* Tamahagane panel */
+.tamahagane-panel {
+  background: var(--ink);
+  color: rgba(255,255,255,0.85);
+  padding: 48px 60px;
+  position: relative;
+  overflow: hidden;
+  margin-bottom: 0;
+}
+
+.tamahagane-panel::before {
+  content: '玉鋼';
+  position: absolute;
+  right: 40px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-family: var(--font-jp);
+  font-size: 120px;
+  font-weight: 300;
+  color: rgba(255,255,255,0.04);
+  line-height: 1;
+  pointer-events: none;
+}
+
+.tamahagane-panel__label {
+  font-family: var(--font-sans);
+  font-size: 9px;
+  font-weight: 500;
+  letter-spacing: 0.4em;
+  text-transform: uppercase;
+  color: var(--accent-soft);
+  margin-bottom: 16px;
+}
+
+.tamahagane-panel__title {
+  font-family: var(--font-display);
+  font-size: 36px;
+  font-weight: 300;
+  color: #fff;
+  margin-bottom: 20px;
+  line-height: 1.1;
+}
+
+.tamahagane-panel__text {
+  font-size: 15px;
+  line-height: 1.8;
+  max-width: 620px;
+  color: rgba(255,255,255,0.75);
+  margin-bottom: 16px;
+}
+
+.tamahagane-panel__note {
+  font-family: var(--font-serif);
+  font-size: 13px;
+  font-style: italic;
+  color: var(--accent-soft);
+  border-top: 1px solid rgba(255,255,255,0.1);
+  padding-top: 16px;
+  max-width: 500px;
+}
+
+/* Key regions grid */
+.regions-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 1px;
+  background: var(--rule);
+  border: 1px solid var(--rule);
+}
+
+.region-card {
+  background: var(--cream);
+  padding: 20px 18px;
+}
+
+.region-card__name {
+  font-family: var(--font-display);
+  font-size: 16px;
+  color: var(--ink);
+  margin-bottom: 8px;
+  line-height: 1.2;
+}
+
+.region-card__desc {
+  font-size: 12px;
+  line-height: 1.6;
+  color: var(--ink-light);
+}
+
+@media (max-width: 900px) {
+  .regions-grid { grid-template-columns: repeat(2, 1fr); }
+  .timeline-entry { grid-template-columns: 140px 1fr; }
+  .tamahagane-panel { padding: 40px 32px; }
+}
+
+/* ============================================================
+   SHARPENING STONES CHAPTER
+   ============================================================ */
+
+.stone-detail-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+  background: var(--rule);
+  border: 1px solid var(--rule);
+  margin-bottom: 48px;
+}
+
+.stone-detail-card {
+  background: var(--warm-white);
+  display: grid;
+  grid-template-columns: 220px 1fr;
+  align-items: stretch;
+}
+
+.stone-detail-card:nth-child(even) { background: var(--cream); }
+
+.stone-detail-card__stage {
+  padding: 28px 24px;
+  border-right: 1px solid var(--rule);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  gap: 6px;
+  background: inherit;
+}
+
+.stone-detail-card__grit {
+  font-family: var(--font-display);
+  font-size: 26px;
+  font-weight: 400;
+  color: var(--ink);
+  line-height: 1;
+}
+
+.stone-detail-card__stage-name {
+  font-family: var(--font-sans);
+  font-size: 9px;
+  font-weight: 500;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-top: 4px;
+}
+
+.stone-detail-card__bar {
+  height: 4px;
+  border-radius: 2px;
+  margin-top: 12px;
+  width: 80%;
+}
+
+.stone-detail-card__freq {
+  font-family: var(--font-sans);
+  font-size: 9px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--ink-light);
+  margin-top: 8px;
+}
+
+.stone-detail-card__body {
+  padding: 28px 36px;
+}
+
+.stone-detail-card__purpose {
+  font-size: 15px;
+  font-weight: 500;
+  color: var(--ink);
+  margin-bottom: 8px;
+  line-height: 1.4;
+}
+
+.stone-detail-card__notes {
+  font-size: 13px;
+  line-height: 1.7;
+  color: var(--ink-mid);
+  margin-bottom: 12px;
+}
+
+.stone-detail-card__stones {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 10px;
+}
+
+.stone-pill {
+  font-family: var(--font-sans);
+  font-size: 9px;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  padding: 3px 10px;
+  background: var(--rule-light);
+  color: var(--ink-mid);
+  border-radius: 2px;
+}
+
+/* Stone types grid */
+.stone-types-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1px;
+  background: var(--rule);
+  border: 1px solid var(--rule);
+  margin-bottom: 48px;
+}
+
+.stone-type-card {
+  background: var(--warm-white);
+  padding: 32px 32px;
+}
+
+.stone-type-card:nth-child(5) {
+  grid-column: span 2;
+  background: var(--cream);
+}
+
+.stone-type-card__name {
+  font-family: var(--font-display);
+  font-size: 22px;
+  font-weight: 400;
+  color: var(--ink);
+  margin-bottom: 12px;
+}
+
+.stone-type-card__desc {
+  font-size: 13px;
+  line-height: 1.75;
+  color: var(--ink-mid);
+  margin-bottom: 12px;
+}
+
+.stone-type-card__maint {
+  font-family: var(--font-sans);
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  color: var(--ink-light);
+  border-top: 1px solid var(--rule-light);
+  padding-top: 10px;
+  font-style: italic;
+}
+
+/* Angle reference diagram */
+.angle-ref {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  padding: 36px 0;
+  margin-bottom: 40px;
+}
+
+.angle-ref__item {
+  text-align: center;
+  padding: 28px 20px;
+  border: 1px solid var(--rule);
+  background: var(--cream);
+}
+
+.angle-ref__svg {
+  display: block;
+  margin: 0 auto 16px;
+}
+
+.angle-ref__degrees {
+  font-family: var(--font-display);
+  font-size: 28px;
+  font-weight: 400;
+  color: var(--ink);
+  margin-bottom: 4px;
+}
+
+.angle-ref__label {
+  font-family: var(--font-sans);
+  font-size: 9px;
+  font-weight: 500;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--ink-light);
+  margin-bottom: 8px;
+}
+
+.angle-ref__desc {
+  font-size: 12px;
+  line-height: 1.6;
+  color: var(--ink-mid);
+}
+
+/* Technique tips list */
+.tips-list {
+  counter-reset: tip-counter;
+  list-style: none;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+  background: var(--rule);
+  border: 1px solid var(--rule);
+  margin-bottom: 40px;
+}
+
+.tips-list li {
+  counter-increment: tip-counter;
+  background: var(--warm-white);
+  padding: 20px 28px 20px 72px;
+  position: relative;
+  font-size: 14px;
+  line-height: 1.7;
+  color: var(--ink-mid);
+}
+
+.tips-list li:nth-child(even) { background: var(--cream); }
+
+.tips-list li::before {
+  content: counter(tip-counter, decimal-leading-zero);
+  position: absolute;
+  left: 24px;
+  top: 20px;
+  font-family: var(--font-display);
+  font-size: 22px;
+  font-weight: 400;
+  color: var(--rule);
+  line-height: 1;
+}
+
+/* Flattening warning box */
+.warning-box {
+  border: 1px solid var(--accent-soft);
+  background: #FDF8F0;
+  padding: 24px 32px;
+  margin-top: 40px;
+  display: flex;
+  gap: 20px;
+  align-items: flex-start;
+}
+
+.warning-box__icon {
+  font-family: var(--font-display);
+  font-size: 31px;
+  color: var(--accent-soft);
+  line-height: 1;
+  flex-shrink: 0;
+}
+
+.warning-box__label {
+  font-family: var(--font-sans);
+  font-size: 9px;
+  font-weight: 500;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 6px;
+}
+
+.warning-box__text {
+  font-size: 14px;
+  line-height: 1.7;
+  color: var(--ink-mid);
+}
+
+</style>
+</head>
+<body>
+<div class="page-wrapper">
+
+<!-- ═══════════════════════════════════════════════════════════
+     COVER
+═══════════════════════════════════════════════════════════ -->
+<header class="cover">
+  <div class="cover__left">
+    <div class="cover__rule"></div>
+    <p class="cover__eyebrow">Professional Chef's Reference</p>
+    <h1 class="cover__title">The<br><em>Japanese</em><br>Knife</h1>
+    <p class="cover__jp-title">包丁の道</p>
+    <p class="cover__subtitle">A complete field guide to selecting, using, and mastering the knives of Japan — from the sushi counter to the kaiseki kitchen.</p>
+    <p class="cover__edition">2026 Edition</p>
+  </div>
+  <div class="cover__right">
+    <div class="cover__knife-bg">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 580 110" fill="none">
+        <path d="M30 70 L480 56 L520 52 L550 46 L560 44 L552 49 L522 56 L482 62 L30 76 Z" fill="#C2CBCE" stroke="#6B7C8A" stroke-width="0.7"/>
+        <line x1="32" y1="70" x2="545" y2="47" stroke="#E0E8EC" stroke-width="1.8"/>
+        <path d="M550 46 L560 44 L552 49 Z" fill="#8A9BA8"/>
+        <rect x="24" y="62" width="8" height="18" rx="1" fill="#5A6B78"/>
+        <path d="M5 65 L24 62 L32 62 L32 80 L24 80 L5 77 Z" fill="#6E5540"/>
+        <rect x="22" y="60" width="5" height="22" fill="#2C1A0E"/>
+      </svg>
+    </div>
+    <span class="cover__vertical-text">包丁 · 日本料理 · 伝統と技術</span>
+  </div>
+</header>
+
+<!-- ═══════════════════════════════════════════════════════════
+     INTRODUCTION
+═══════════════════════════════════════════════════════════ -->
+<section class="intro-spread">
+  <div class="intro-spread__text">
+    <p class="section__eyebrow">Introduction</p>
+    <h2 class="section__title">A Philosophy<br>of the Edge</h2>
+    <p style="font-size:16px;line-height:1.8;color:var(--ink-mid);margin-bottom:24px;">The Japanese kitchen knife is not simply a tool. It is the physical expression of a philosophy: that precision, restraint, and respect for ingredients are the foundations of great cooking. Where the Western tradition prizes weight and force, the Japanese tradition prizes thinness, acuity, and control.</p>
+    <p style="font-size:16px;line-height:1.8;color:var(--ink-mid);margin-bottom:24px;">To understand Japanese knives is to understand washoku itself — a cuisine built on the integrity of the ingredient, on cuts so clean the cell walls barely rupture, on fish so freshly sliced it glistens on the plate rather than weeping moisture.</p>
+    <p style="font-size:16px;line-height:1.8;color:var(--ink-mid);">This guide is written for professional chefs who are ready to move beyond the familiar and engage with one of the world's most sophisticated blade traditions. Whether you are outfitting a new kitchen, deepening your craft, or simply curious — the knowledge here has been shaped by over twelve centuries of unbroken practice.</p>
+  </div>
+  <div class="intro-spread__image-panel">
+    <div class="stat-block">
+      <div class="stat-block__number">9</div>
+      <div class="stat-block__label">Knife Types Covered</div>
+    </div>
+    <div class="stat-block">
+      <div class="stat-block__number">1,200<span style="font-size:24px">+</span></div>
+      <div class="stat-block__label">Years of Tradition</div>
+    </div>
+    <div class="stat-block">
+      <div class="stat-block__number">6</div>
+      <div class="stat-block__label">Steel Types Compared</div>
+    </div>
+    <div class="stat-block">
+      <div class="stat-block__number">7</div>
+      <div class="stat-block__label">Whetstone Stages</div>
+    </div>
+    <div class="stat-block">
+      <div class="stat-block__number">5</div>
+      <div class="stat-block__label">Core Cutting Techniques</div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════════════════════
+     CHAPTER I — HISTORY
+═══════════════════════════════════════════════════════════ -->
+<article>
+  <div class="chapter-header" data-number="I">
+    <p class="chapter-header__label">Chapter One</p>
+    <h2 class="chapter-header__title">A Thousand Years<br>of the Blade</h2>
+    <p class="chapter-header__jp">日本の包丁の歴史</p>
+  </div>
+
+  <section class="section">
+    <p class="section__intro">The Japanese kitchen knife evolved over more than a thousand years from the same sword-making tradition that produced the katana — a lineage of metallurgical obsession, regional pride, and an unbroken transmission of craft from master to apprentice.</p>
+
+    <div class="history-timeline">
+
+      <div class="timeline-entry">
+        <div class="timeline-entry__date">
+          <div class="timeline-entry__period">Nara Period</div>
+          <div class="timeline-entry__years">710 – 794 AD</div>
+          <div class="timeline-entry__dot"></div>
+        </div>
+        <div class="timeline-entry__content">
+          <h3 class="timeline-entry__title">Ritual Blades and Imported Craft</h3>
+          <p class="timeline-entry__desc">The earliest Japanese knives were ritual instruments — used in court ceremonies and Shinto rites rather than culinary practice. Blade-making techniques arrived from Tang Dynasty China and the Korean peninsula, establishing the foundational iron-working traditions that would define Japanese metallurgy. The 'Mikoshi' kitchen knives of the imperial court were as much symbolic objects as functional tools.</p>
+          <p class="timeline-entry__significance">Establishment of blade-forging traditions in Japan</p>
+        </div>
+      </div>
+
+      <div class="timeline-entry">
+        <div class="timeline-entry__date">
+          <div class="timeline-entry__period">Heian Period</div>
+          <div class="timeline-entry__years">794 – 1185 AD</div>
+          <div class="timeline-entry__dot"></div>
+        </div>
+        <div class="timeline-entry__content">
+          <h3 class="timeline-entry__title">The Birth of Washoku Knife Culture</h3>
+          <p class="timeline-entry__desc">As Japanese court cuisine formalised, dedicated culinary knives emerged. The most significant was the Shiki-bocho ceremony — a ritual fish-cutting performance using long blades, performed before the emperor. Crucially, the chef never touched the fish with their hands, using only the knife and chopsticks. This ceremony elevated the knife to an object of profound reverence. It is still performed today at certain Shinto shrines.</p>
+          <p class="timeline-entry__significance">First formalised culinary knife tradition; knife as ceremonial object</p>
+        </div>
+      </div>
+
+      <div class="timeline-entry">
+        <div class="timeline-entry__date">
+          <div class="timeline-entry__period">Kamakura Period</div>
+          <div class="timeline-entry__years">1185 – 1333 AD</div>
+          <div class="timeline-entry__dot"></div>
+        </div>
+        <div class="timeline-entry__content">
+          <h3 class="timeline-entry__title">The Sword-Smith Connection</h3>
+          <p class="timeline-entry__desc">The rise of the samurai class drove explosive development in sword-making technology. Bladesmiths in Bizen, Sagami, and Yamashiro perfected the differential hardening technique (clay tempering) that created the legendary hard cutting edge with a tough spine — the same principle applied to culinary knives to this day. The Deba's thick spine and hard edge are direct descendants of sword metallurgy.</p>
+          <p class="timeline-entry__significance">Differential hardening, tamahagane steel, honyaki forging established</p>
+        </div>
+      </div>
+
+      <div class="timeline-entry">
+        <div class="timeline-entry__date">
+          <div class="timeline-entry__period">Muromachi Period</div>
+          <div class="timeline-entry__years">1336 – 1573 AD</div>
+          <div class="timeline-entry__dot"></div>
+        </div>
+        <div class="timeline-entry__content">
+          <h3 class="timeline-entry__title">Three Great Schools of Knife-Making</h3>
+          <p class="timeline-entry__desc">Dedicated culinary knife-making schools coalesced in three regions: Kyoto (for the imperial court), Sakai (near Osaka), and Seki (Gifu Prefecture). The Sakai lineages began producing dedicated kitchen knives — notably the Deba and Yanagiba — for the fish markets of Osaka. Sakai's reputation was cemented by its use of Namban-tetsu (southern barbarian iron) imported via Portuguese traders.</p>
+          <p class="timeline-entry__significance">Regional specialisation; Sakai and Seki emerge as knife capitals</p>
+        </div>
+      </div>
+
+      <div class="timeline-entry">
+        <div class="timeline-entry__date">
+          <div class="timeline-entry__period">Edo Period</div>
+          <div class="timeline-entry__years">1603 – 1868 AD</div>
+          <div class="timeline-entry__dot"></div>
+        </div>
+        <div class="timeline-entry__content">
+          <h3 class="timeline-entry__title">The Golden Age of Japanese Kitchen Knives</h3>
+          <p class="timeline-entry__desc">Two and a half centuries of peace under the Tokugawa shogunate redirected sword-smiths' skills into domestic tools. Sword-carrying was restricted to samurai, so bladesmiths pivoted to kitchen knives. The Yanagiba was refined for Osaka's booming sushi culture; the Usuba evolved for the vegetable-centric kaiseki cuisine of Kyoto. By the late Edo period, a clear typology of Japanese kitchen knives — Yanagiba, Deba, Usuba — was established and virtually unchanged to this day.</p>
+          <p class="timeline-entry__significance">Full typology of Japanese culinary knives established; Sakai dominates production</p>
+        </div>
+      </div>
+
+      <div class="timeline-entry">
+        <div class="timeline-entry__date">
+          <div class="timeline-entry__period">Meiji Period</div>
+          <div class="timeline-entry__years">1868 – 1912 AD</div>
+          <div class="timeline-entry__dot"></div>
+        </div>
+        <div class="timeline-entry__content">
+          <h3 class="timeline-entry__title">Western Influence and the Gyuto</h3>
+          <p class="timeline-entry__desc">The Meiji Restoration opened Japan to Western culinary traditions. French cuisine arrived in Tokyo's new Western-style hotels, and with it, the demand for a knife that could handle large cuts of beef — previously absent from Japanese cooking due to Buddhist dietary restrictions. The Gyuto ('beef sword') was the Japanese smith's answer: a thinner, more refined interpretation of the French chef's knife, ground to Japanese angles and balanced for the pinch grip.</p>
+          <p class="timeline-entry__significance">Birth of the Gyuto and Sujihiki; Japan absorbs Western knife typology</p>
+        </div>
+      </div>
+
+      <div class="timeline-entry">
+        <div class="timeline-entry__date">
+          <div class="timeline-entry__period">Post-War Period</div>
+          <div class="timeline-entry__years">1945 – 1970s</div>
+          <div class="timeline-entry__dot"></div>
+        </div>
+        <div class="timeline-entry__content">
+          <h3 class="timeline-entry__title">Stainless Steel and Mass Production</h3>
+          <p class="timeline-entry__desc">Post-war steel shortages pushed bladesmiths toward stainless alloys. Companies like Global (Yoshikin), MAC, and later Shun brought Japanese knife design to Western markets for the first time, beginning a transformation in how Western professional kitchens thought about their tools. VG-10 stainless steel became the backbone of the export market.</p>
+          <p class="timeline-entry__significance">Stainless steel mass-market knives; first wave of global export</p>
+        </div>
+      </div>
+
+      <div class="timeline-entry">
+        <div class="timeline-entry__date">
+          <div class="timeline-entry__period">Modern Era</div>
+          <div class="timeline-entry__years">1990s – Present</div>
+          <div class="timeline-entry__dot"></div>
+        </div>
+        <div class="timeline-entry__content">
+          <h3 class="timeline-entry__title">The Artisan Renaissance</h3>
+          <p class="timeline-entry__desc">The internet connected Western chefs directly with makers in Sakai, Seki, Takefu Village, Tsubame-Sanjo, and Tosa. Powder-metallurgy steels like R2/SG-2 and HAP40 gave artisans new materials. Today, a single Gyuto from a master bladesmith commands ¥80,000–¥500,000+ with waiting lists of years. The craft has never been more globally celebrated — nor more at risk from an ageing generation of masters with few apprentices.</p>
+          <p class="timeline-entry__significance">Artisan renaissance; global knife culture; endangered craft transmission</p>
+        </div>
+      </div>
+
+    </div><!-- /history-timeline -->
+
+    <div class="pull-quote">
+      <p class="pull-quote__text">"The knife is not separate from the cook. It is an extension of intent — of how precisely you wish to meet the ingredient."</p>
+      <p class="pull-quote__attribution">Traditional Japanese culinary teaching</p>
+    </div>
+
+    <!-- Honyaki vs Kasumi -->
+    <p class="section__eyebrow" style="margin-bottom:16px;">Forging Methods</p>
+    <h3 class="section__title" style="font-size:28px;margin-bottom:24px;">Honyaki vs. Kasumi</h3>
+    <div class="honyaki-grid">
+      <div class="honyaki-card honyaki-card--dark">
+        <p class="honyaki-card__label">Supreme Construction</p>
+        <h3 class="honyaki-card__name">Honyaki</h3>
+        <p class="honyaki-card__jp">本焼き</p>
+        <p class="honyaki-card__desc">Forged from a single piece of high-carbon steel and differentially hardened with clay, exactly as a katana. The spine is left soft and tough; the edge is hardened to HRC65+. The honyaki is the most prestigious form of Japanese kitchen knife — harder, thinner, and more beautiful than any other, with a visible hamon (temper line) where hard meets soft. They are the most unforgiving: a hard impact can chip the edge irreparably.</p>
+        <span class="honyaki-card__difficulty">Master-level use only</span>
+      </div>
+      <div class="honyaki-card">
+        <p class="honyaki-card__label">Professional Standard</p>
+        <h3 class="honyaki-card__name">Kasumi</h3>
+        <p class="honyaki-card__jp">霞</p>
+        <p class="honyaki-card__desc">The far more common construction: a hard steel edge plate (hagane) forge-welded to a softer iron or steel body (jigane). The contrast between the hard, polished edge face and the softer, misty body gives 'kasumi' its name — the mist pattern on the blade flat. Easier to sharpen and more forgiving than honyaki, making it the choice for most professional kitchens.</p>
+        <span class="honyaki-card__difficulty">Professional level</span>
+      </div>
+    </div>
+
+    <!-- Tamahagane -->
+    <div class="tamahagane-panel">
+      <p class="tamahagane-panel__label">The Legendary Steel</p>
+      <h3 class="tamahagane-panel__title">Tamahagane — 玉鋼</h3>
+      <p class="tamahagane-panel__text">The legendary steel of Japanese swords and the finest kitchen knives. Smelted in a tatara — a traditional clay furnace — from iron sand (satetsu) and charcoal over 72 hours. A single tatara smelt produces approximately 2 tonnes of steel, of which only the finest pieces are classified as tamahagane. The carbon content varies throughout the bloom, and the smith selects and combines pieces to achieve the desired cutting characteristics.</p>
+      <p class="tamahagane-panel__text">Almost no longer produced commercially; the Nittoho Tatara in Shimane Prefecture is one of the last operating furnaces, producing tamahagane exclusively for registered swordsmiths. Some elite knife makers receive small allocations.</p>
+      <p class="tamahagane-panel__note">A kitchen knife in tamahagane is extraordinarily rare and commands museum-piece prices.</p>
+    </div>
+
+    <!-- Key Regions -->
+    <p class="section__eyebrow" style="margin:40px 0 16px;">Key Production Regions</p>
+    <div class="regions-grid">
+      <div class="region-card">
+        <div class="region-card__name">Sakai, Osaka</div>
+        <div class="region-card__desc">Traditional single-bevel specialists. Deba, Yanagiba, Usuba. Accounts for ~90% of Japanese professional knives.</div>
+      </div>
+      <div class="region-card">
+        <div class="region-card__name">Seki, Gifu</div>
+        <div class="region-card__desc">Double-bevel and production knives. Global, Kyocera, and Kanetsugu are based here.</div>
+      </div>
+      <div class="region-card">
+        <div class="region-card__name">Takefu, Fukui</div>
+        <div class="region-card__desc">Artisan village. Home to Yoshimi Kato, Hiroshi Kato, and Tsukasa Hinoura.</div>
+      </div>
+      <div class="region-card">
+        <div class="region-card__name">Tsubame-Sanjo, Niigata</div>
+        <div class="region-card__desc">Engineering-grade steel tradition. Konosuke and Masamoto apprentice network.</div>
+      </div>
+      <div class="region-card">
+        <div class="region-card__name">Tosa, Kochi</div>
+        <div class="region-card__desc">Working knives. Deba and fishing knives. Rougher finish, excellent value.</div>
+      </div>
+    </div>
+
+  </section>
+</article>
+
+
+<!-- ═══════════════════════════════════════════════════════════
+     CHAPTER II — THE KNIVES
+═══════════════════════════════════════════════════════════ -->
+<article>
+  <div class="chapter-header" data-number="II">
+    <p class="chapter-header__label">Chapter Two</p>
+    <h2 class="chapter-header__title">The Knives</h2>
+    <p class="chapter-header__jp">包丁の種類</p>
+  </div>
+
+  <section class="section">
+    <p class="section__intro">Nine knives cover the full range of professional Japanese cooking. Each is purpose-built — not a compromise but a precision instrument. Understanding which knife belongs in which hand is the first step toward mastery.</p>
+
+    <div class="knife-grid">
+
+      <!-- GYUTO -->
+      <div class="knife-card">
+        <div class="knife-card__kanji">牛刀</div>
+        <p class="knife-card__category">Multipurpose</p>
+        <h3 class="knife-card__name">Gyuto</h3>
+        <p class="knife-card__literal">"Beef Sword"</p>
+        <div class="knife-card__illustration">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 120" fill="none"><path d="M30 72 L420 58 L460 54 L490 46 L500 44 L492 48 L462 58 L422 65 L30 80 Z" fill="#B8C4CC" stroke="#6B7C8A" stroke-width="0.8"/><path d="M30 80 Q200 82 380 65 Q440 58 492 48" stroke="#8A9BA8" stroke-width="0.6" fill="none"/><path d="M30 72 L420 58 L490 46" stroke="#D8E2E8" stroke-width="1.2" fill="none"/><path d="M490 46 L500 44 L492 48 Z" fill="#9AAAB5"/><line x1="50" y1="75" x2="430" y2="61" stroke="#CBD5DB" stroke-width="0.4" stroke-dasharray="4 6"/><rect x="22" y="58" width="12" height="26" rx="2" fill="#6B7C8A"/><path d="M10 60 L22 58 L34 58 L34 84 L22 84 L10 82 Z" fill="#5C4A38"/><path d="M0 62 L10 60 L10 82 L0 80 Z" fill="#7A6248"/></svg>
+        </div>
+        <p class="knife-card__desc">The workhorse of the professional kitchen. Japan's answer to the French chef's knife — thinner, lighter, and ground to a keener edge. Its gentle belly curve allows rocking cuts while still being flat enough for the push-cut technique favoured in Japanese cooking.</p>
+        <div class="knife-card__specs">
+          <div class="spec-item"><div class="spec-item__label">Blade Length</div><div class="spec-item__value">18 – 30 cm (24 cm recommended)</div></div>
+          <div class="spec-item"><div class="spec-item__label">Grind</div><div class="spec-item__value">Double-bevel</div></div>
+          <div class="spec-item"><div class="spec-item__label">Skill Level</div><div class="spec-item__value">All levels</div></div>
+          <div class="spec-item"><div class="spec-item__label">Technique</div><div class="spec-item__value">Rock chop, push cut, slicing</div></div>
+        </div>
+        <div class="knife-card__tags">
+          <span class="tag tag--accent">Meat</span><span class="tag tag--accent">Fish</span><span class="tag tag--accent">Vegetables</span>
+          <span class="tag">Masamoto</span><span class="tag">Konosuke</span><span class="tag">Takamura</span>
+        </div>
+      </div>
+
+      <!-- SANTOKU -->
+      <div class="knife-card">
+        <div class="knife-card__kanji">三徳</div>
+        <p class="knife-card__category">Multipurpose</p>
+        <h3 class="knife-card__name">Santoku</h3>
+        <p class="knife-card__literal">"Three Virtues"</p>
+        <div class="knife-card__illustration">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 380 120" fill="none"><path d="M30 64 L300 54 L320 56 L328 62 L328 80 L30 82 Z" fill="#B8C4CC" stroke="#6B7C8A" stroke-width="0.8"/><path d="M300 54 L320 56 L328 62 L318 55 Z" fill="#9AAAB5"/><line x1="30" y1="64" x2="302" y2="54" stroke="#D8E2E8" stroke-width="1.2"/><ellipse cx="130" cy="68" rx="12" ry="4" fill="none" stroke="#CBD5DB" stroke-width="0.6"/><ellipse cx="180" cy="68" rx="12" ry="4" fill="none" stroke="#CBD5DB" stroke-width="0.6"/><ellipse cx="230" cy="67" rx="12" ry="4" fill="none" stroke="#CBD5DB" stroke-width="0.6"/><rect x="22" y="56" width="10" height="30" rx="2" fill="#6B7C8A"/><path d="M4 58 L22 56 L32 56 L32 86 L22 86 L4 84 Z" fill="#2C3E50"/><circle cx="8" cy="72" r="2" fill="#C4A882"/><circle cx="16" cy="72" r="2" fill="#C4A882"/><circle cx="24" cy="71" r="2" fill="#C4A882"/></svg>
+        </div>
+        <p class="knife-card__desc">Named for its three virtues — meat, fish, vegetables. Shorter and more agile than the Gyuto, its flat profile makes it ideal for straight up-and-down chopping. Often seen with a Granton (hollow) edge to reduce food sticking.</p>
+        <div class="knife-card__specs">
+          <div class="spec-item"><div class="spec-item__label">Blade Length</div><div class="spec-item__value">16 – 20 cm (18 cm recommended)</div></div>
+          <div class="spec-item"><div class="spec-item__label">Grind</div><div class="spec-item__value">Double-bevel</div></div>
+          <div class="spec-item"><div class="spec-item__label">Skill Level</div><div class="spec-item__value">Beginner to intermediate</div></div>
+          <div class="spec-item"><div class="spec-item__label">Technique</div><div class="spec-item__value">Push cut, tap chop</div></div>
+        </div>
+        <div class="knife-card__tags">
+          <span class="tag tag--accent">Meat</span><span class="tag tag--accent">Fish</span><span class="tag tag--accent">Vegetables</span>
+          <span class="tag">Global</span><span class="tag">Shun</span><span class="tag">MAC</span>
+        </div>
+      </div>
+
+      <!-- NAKIRI -->
+      <div class="knife-card">
+        <div class="knife-card__kanji">菜切り</div>
+        <p class="knife-card__category">Vegetable</p>
+        <h3 class="knife-card__name">Nakiri</h3>
+        <p class="knife-card__literal">"Vegetable Cutter"</p>
+        <div class="knife-card__illustration">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 420 130" fill="none"><rect x="30" y="38" width="320" height="60" rx="1" fill="#B8C4CC" stroke="#6B7C8A" stroke-width="0.8"/><line x1="30" y1="39" x2="350" y2="39" stroke="#D8E2E8" stroke-width="1.5"/><line x1="30" y1="98" x2="350" y2="98" stroke="#8A9BA8" stroke-width="0.8"/><line x1="50" y1="68" x2="340" y2="68" stroke="#CBD5DB" stroke-width="0.4" stroke-dasharray="4 8"/><path d="M350 38 Q358 38 358 46 L358 98 L350 98 Z" fill="#A8B6BE"/><rect x="22" y="34" width="10" height="68" rx="1" fill="#6B7C8A"/><path d="M4 40 L22 36 L32 36 L32 102 L22 102 L4 98 Z" fill="#5C4A38"/><path d="M0 42 L4 40 L4 98 L0 96 Z" fill="#7A6248"/></svg>
+        </div>
+        <p class="knife-card__desc">The Nakiri's perfectly flat blade makes full contact with the cutting board on every stroke — zero food escape. The thin, laser-like grind slips through dense roots and leafy greens alike. A staple in kaiseki kitchens where vegetable precision is paramount.</p>
+        <div class="knife-card__specs">
+          <div class="spec-item"><div class="spec-item__label">Blade Length</div><div class="spec-item__value">16 – 18 cm</div></div>
+          <div class="spec-item"><div class="spec-item__label">Grind</div><div class="spec-item__value">Double-bevel</div></div>
+          <div class="spec-item"><div class="spec-item__label">Skill Level</div><div class="spec-item__value">Intermediate</div></div>
+          <div class="spec-item"><div class="spec-item__label">Technique</div><div class="spec-item__value">Push cut, tap chop, pull cut</div></div>
+        </div>
+        <div class="knife-card__tags">
+          <span class="tag tag--accent">Vegetables Only</span>
+          <span class="tag">Yoshimi Kato</span><span class="tag">Hinoura</span><span class="tag">Sukenari</span>
+        </div>
+      </div>
+
+      <!-- YANAGIBA -->
+      <div class="knife-card">
+        <div class="knife-card__kanji">柳刃</div>
+        <p class="knife-card__category">Sashimi</p>
+        <h3 class="knife-card__name">Yanagiba</h3>
+        <p class="knife-card__literal">"Willow Blade"</p>
+        <div class="knife-card__illustration">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 580 110" fill="none"><path d="M30 70 L480 56 L520 52 L550 46 L560 44 L552 49 L522 56 L482 62 L30 76 Z" fill="#C2CBCE" stroke="#6B7C8A" stroke-width="0.7"/><line x1="32" y1="70" x2="545" y2="47" stroke="#E0E8EC" stroke-width="1.8"/><path d="M550 46 L560 44 L552 49 Z" fill="#8A9BA8"/><rect x="24" y="62" width="8" height="18" rx="1" fill="#5A6B78"/><path d="M5 65 L24 62 L32 62 L32 80 L24 80 L5 77 Z" fill="#6E5540"/><path d="M0 66 L5 65 L5 77 L0 76 Z" fill="#8A6E55"/><rect x="22" y="60" width="5" height="22" fill="#2C1A0E"/></svg>
+        </div>
+        <p class="knife-card__desc">The signature knife of the sushi chef. A single-bevel edge creates a mirror-flat face that minimises cellular damage to fish. Always draw the knife in a single long pull; never saw. Length matters: a 30 cm blade can slice maguro in one stroke.</p>
+        <div class="knife-card__specs">
+          <div class="spec-item"><div class="spec-item__label">Blade Length</div><div class="spec-item__value">24 – 36 cm (30 cm recommended)</div></div>
+          <div class="spec-item"><div class="spec-item__label">Grind</div><div class="spec-item__value">Single-bevel</div></div>
+          <div class="spec-item"><div class="spec-item__label">Skill Level</div><div class="spec-item__value">Advanced</div></div>
+          <div class="spec-item"><div class="spec-item__label">Technique</div><div class="spec-item__value">Single pull stroke (hikigiri)</div></div>
+        </div>
+        <div class="knife-card__tags">
+          <span class="tag tag--accent">Raw Fish</span><span class="tag tag--accent">Sashimi</span>
+          <span class="tag">Masamoto</span><span class="tag">Mizuno Tanrenjo</span><span class="tag">Konosuke</span>
+        </div>
+      </div>
+
+      <!-- DEBA -->
+      <div class="knife-card">
+        <div class="knife-card__kanji">出刃</div>
+        <p class="knife-card__category">Fish Butchery</p>
+        <h3 class="knife-card__name">Deba</h3>
+        <p class="knife-card__literal">"Pointed Carving"</p>
+        <div class="knife-card__illustration">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 420 130" fill="none"><path d="M32 48 L340 52 L370 60 L380 80 L30 88 Z" fill="#B0BCCA" stroke="#5A6B78" stroke-width="0.9"/><path d="M32 44 L32 50 L340 52 L340 48 Z" fill="#7A8E9A"/><line x1="34" y1="46" x2="342" y2="46" stroke="#D0D8DC" stroke-width="1.5"/><path d="M32 88 Q150 86 320 74 Q355 68 380 80" stroke="#CBD5DB" stroke-width="1.2" fill="none"/><path d="M370 60 L380 80 L378 66 Z" fill="#8A9BA8"/><rect x="22" y="42" width="12" height="50" rx="1" fill="#5A6B78"/><path d="M5 46 L22 42 L34 42 L34 92 L22 92 L5 88 Z" fill="#5C4A38"/><path d="M0 48 L5 46 L5 88 L0 86 Z" fill="#7A6248"/></svg>
+        </div>
+        <p class="knife-card__desc">A specialist tool for fish butchery. Its thick spine and heavy single-bevel edge withstand the force of severing fish heads and spines. The convex face guides the blade along bones cleanly. A skilled itamae can break down a whole snapper in under two minutes.</p>
+        <div class="knife-card__specs">
+          <div class="spec-item"><div class="spec-item__label">Blade Length</div><div class="spec-item__value">15 – 21 cm (18 cm recommended)</div></div>
+          <div class="spec-item"><div class="spec-item__label">Grind</div><div class="spec-item__value">Single-bevel</div></div>
+          <div class="spec-item"><div class="spec-item__label">Skill Level</div><div class="spec-item__value">Advanced</div></div>
+          <div class="spec-item"><div class="spec-item__label">Technique</div><div class="spec-item__value">Chopping, filleting pull stroke</div></div>
+        </div>
+        <div class="knife-card__tags">
+          <span class="tag tag--accent">Whole Fish</span><span class="tag tag--accent">Fish Breakdown</span>
+          <span class="tag">Masamoto</span><span class="tag">Sakai Kikumori</span><span class="tag">Watanabe</span>
+        </div>
+      </div>
+
+      <!-- USUBA -->
+      <div class="knife-card">
+        <div class="knife-card__kanji">薄刃</div>
+        <p class="knife-card__category">Vegetable — Expert</p>
+        <h3 class="knife-card__name">Usuba</h3>
+        <p class="knife-card__literal">"Thin Blade"</p>
+        <div class="knife-card__illustration">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 420 130" fill="none"><rect x="30" y="36" width="325" height="64" rx="1" fill="#C0CBCE" stroke="#6B7C8A" stroke-width="0.8"/><line x1="30" y1="37" x2="355" y2="37" stroke="#D8E2E8" stroke-width="1.5"/><rect x="30" y="36" width="325" height="10" fill="rgba(224,232,236,0.6)"/><path d="M355 36 Q362 36 362 43 L362 100 L355 100 Z" fill="#A8B5BC"/><rect x="22" y="32" width="10" height="72" rx="1" fill="#5A6B78"/><path d="M5 38 L22 34 L32 34 L32 104 L22 104 L5 100 Z" fill="#6E5540"/><path d="M0 40 L5 38 L5 100 L0 98 Z" fill="#8A6E55"/><rect x="21" y="32" width="4" height="72" fill="#2C1A0E"/></svg>
+        </div>
+        <p class="knife-card__desc">The vegetable knife for washoku specialists. Unlike the Nakiri it is single-bevel, allowing the blade to be laid flat for katsuramuki: peeling a daikon into a continuous translucent sheet as thin as tissue paper. Mastery takes years.</p>
+        <div class="knife-card__specs">
+          <div class="spec-item"><div class="spec-item__label">Blade Length</div><div class="spec-item__value">18 – 24 cm (21 cm recommended)</div></div>
+          <div class="spec-item"><div class="spec-item__label">Grind</div><div class="spec-item__value">Single-bevel</div></div>
+          <div class="spec-item"><div class="spec-item__label">Skill Level</div><div class="spec-item__value">Expert</div></div>
+          <div class="spec-item"><div class="spec-item__label">Technique</div><div class="spec-item__value">Katsuramuki, diagonal slicing</div></div>
+        </div>
+        <div class="knife-card__tags">
+          <span class="tag tag--accent">Vegetables Only</span><span class="tag tag--accent">Kaiseki</span>
+          <span class="tag">Masamoto</span><span class="tag">Aritsugu</span><span class="tag">Konosuke</span>
+        </div>
+      </div>
+
+      <!-- SUJIHIKI -->
+      <div class="knife-card">
+        <div class="knife-card__kanji">筋引き</div>
+        <p class="knife-card__category">Slicing</p>
+        <h3 class="knife-card__name">Sujihiki</h3>
+        <p class="knife-card__literal">"Sinew Puller"</p>
+        <div class="knife-card__illustration">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 560 110" fill="none"><path d="M30 66 L470 56 L510 52 L540 46 L548 44 L540 49 L512 56 L472 63 L30 73 Z" fill="#BDC8CE" stroke="#6B7C8A" stroke-width="0.7"/><path d="M30 66 L470 56 L540 46" stroke="#D8E2E8" stroke-width="1.2" fill="none"/><path d="M540 46 L548 44 L540 49 Z" fill="#9AAAB5"/><rect x="23" y="59" width="8" height="18" rx="1" fill="#5A6B78"/><path d="M4 61 L23 59 L31 59 L31 77 L23 77 L4 75 Z" fill="#3A2E26"/><circle cx="10" cy="68" r="2" fill="#8A7060"/><circle cx="18" cy="68" r="2" fill="#8A7060"/><circle cx="26" cy="68" r="2" fill="#8A7060"/></svg>
+        </div>
+        <p class="knife-card__desc">A double-bevel counterpart to the Yanagiba. The Sujihiki is the modern Japanese slicer, suited to both Western brigade work and Japanese preparation. Its narrow profile reduces drag through protein, producing beautifully clean, glossy slices.</p>
+        <div class="knife-card__specs">
+          <div class="spec-item"><div class="spec-item__label">Blade Length</div><div class="spec-item__value">24 – 30 cm (27 cm recommended)</div></div>
+          <div class="spec-item"><div class="spec-item__label">Grind</div><div class="spec-item__value">Double-bevel</div></div>
+          <div class="spec-item"><div class="spec-item__label">Skill Level</div><div class="spec-item__value">Intermediate to advanced</div></div>
+          <div class="spec-item"><div class="spec-item__label">Technique</div><div class="spec-item__value">Long pull strokes</div></div>
+        </div>
+        <div class="knife-card__tags">
+          <span class="tag tag--accent">Cooked Meat</span><span class="tag tag--accent">Cured Fish</span>
+          <span class="tag">Konosuke</span><span class="tag">Takamura</span><span class="tag">Mazaki</span>
+        </div>
+      </div>
+
+      <!-- PETTY -->
+      <div class="knife-card">
+        <div class="knife-card__kanji">ペティ</div>
+        <p class="knife-card__category">Utility</p>
+        <h3 class="knife-card__name">Petty</h3>
+        <p class="knife-card__literal">"From French: petit"</p>
+        <div class="knife-card__illustration">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 110" fill="none"><path d="M30 66 L220 58 L248 54 L264 48 L270 46 L264 50 L250 57 L222 62 L30 72 Z" fill="#BDC8CE" stroke="#6B7C8A" stroke-width="0.7"/><path d="M30 66 L220 58 L264 48" stroke="#D8E2E8" stroke-width="1.1" fill="none"/><path d="M264 48 L270 46 L264 50 Z" fill="#9AAAB5"/><rect x="23" y="60" width="8" height="16" rx="1" fill="#5A6B78"/><path d="M5 62 L23 60 L31 60 L31 76 L23 76 L5 74 Z" fill="#6E5540"/><path d="M0 63 L5 62 L5 74 L0 73 Z" fill="#8A6E55"/></svg>
+        </div>
+        <p class="knife-card__desc">Indispensable for detail work where larger knives are unwieldy. Japanese Petty knives are noticeably thinner than Western paring knives — the tip precision rivals a scalpel, allowing intricate garnish work and paper-thin lemon zest spirals.</p>
+        <div class="knife-card__specs">
+          <div class="spec-item"><div class="spec-item__label">Blade Length</div><div class="spec-item__value">10 – 18 cm (15 cm recommended)</div></div>
+          <div class="spec-item"><div class="spec-item__label">Grind</div><div class="spec-item__value">Double-bevel</div></div>
+          <div class="spec-item"><div class="spec-item__label">Skill Level</div><div class="spec-item__value">All levels</div></div>
+          <div class="spec-item"><div class="spec-item__label">Technique</div><div class="spec-item__value">In-hand peel, tip work</div></div>
+        </div>
+        <div class="knife-card__tags">
+          <span class="tag tag--accent">Garnish</span><span class="tag tag--accent">Detail</span>
+          <span class="tag">Takamura R2</span><span class="tag">Konosuke GS+</span>
+        </div>
+      </div>
+
+      <!-- HONESUKI -->
+      <div class="knife-card">
+        <div class="knife-card__kanji">骨スキ</div>
+        <p class="knife-card__category">Boning</p>
+        <h3 class="knife-card__name">Honesuki</h3>
+        <p class="knife-card__literal">"Bone Piercer"</p>
+        <div class="knife-card__illustration">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 340 120" fill="none"><path d="M30 56 L240 56 L270 60 L290 70 L290 80 L30 82 Z" fill="#B8C0C8" stroke="#6B7C8A" stroke-width="0.8"/><line x1="30" y1="56" x2="292" y2="56" stroke="#D8E2E8" stroke-width="1.4"/><path d="M240 56 L290 70 L290 78 L270 62 Z" fill="#A0ACBA"/><path d="M288 72 L296 68 L290 78 Z" fill="#8A9BA8"/><rect x="20" y="50" width="12" height="36" rx="2" fill="#5A6B78"/><path d="M4 52 L20 50 L32 50 L32 86 L20 86 L4 84 Z" fill="#2C3E50"/><circle cx="10" cy="68" r="2.5" fill="#C4A882"/><circle cx="18" cy="68" r="2.5" fill="#C4A882"/><circle cx="26" cy="68" r="2.5" fill="#C4A882"/></svg>
+        </div>
+        <p class="knife-card__desc">Engineered for poultry with a rigid triangular blade that navigates joints precisely. Its acute tip pierces membranes and sockets cleanly. The Garasuki (larger form) is used to break down chicken into the eight-piece yakitori cut.</p>
+        <div class="knife-card__specs">
+          <div class="spec-item"><div class="spec-item__label">Blade Length</div><div class="spec-item__value">15 – 18 cm</div></div>
+          <div class="spec-item"><div class="spec-item__label">Grind</div><div class="spec-item__value">Single or double-bevel</div></div>
+          <div class="spec-item"><div class="spec-item__label">Skill Level</div><div class="spec-item__value">Intermediate</div></div>
+          <div class="spec-item"><div class="spec-item__label">Technique</div><div class="spec-item__value">Scraping along bone, joint piercing</div></div>
+        </div>
+        <div class="knife-card__tags">
+          <span class="tag tag--accent">Poultry</span><span class="tag tag--accent">Boning</span>
+          <span class="tag">Masamoto</span><span class="tag">Tojiro</span><span class="tag">Fujiwara Teruyasu</span>
+        </div>
+      </div>
+
+    </div><!-- /knife-grid -->
+  </section>
+</article>
+
+
+<!-- ═══════════════════════════════════════════════════════════
+     CHAPTER III — STEEL
+═══════════════════════════════════════════════════════════ -->
+<article>
+  <div class="chapter-header" data-number="III">
+    <p class="chapter-header__label">Chapter Three</p>
+    <h2 class="chapter-header__title">Steel</h2>
+    <p class="chapter-header__jp">鋼材の種類</p>
+  </div>
+  <section class="section section--cream">
+    <p class="section__intro">The steel is the soul of the knife. Japanese bladesmiths work with a range of alloys that achieve hardness levels impossible in Western kitchen knives — but each steel demands a different relationship from its owner.</p>
+    <div class="steel-table-wrapper">
+      <table class="steel-table">
+        <thead>
+          <tr>
+            <th>Steel</th>
+            <th>HRC</th>
+            <th>Edge Retention</th>
+            <th>Sharpenability</th>
+            <th>Rust Resistance</th>
+            <th>Best For</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Shirogami (White #1/#2)</strong><br><small style="color:var(--ink-light);font-size:12px;">Pure carbon steel — the traditionalist's choice</small></td>
+            <td>62–65</td>
+            <td><div class="rating"><span class="rating__dot rating__dot--filled"></span><span class="rating__dot rating__dot--filled"></span><span class="rating__dot rating__dot--filled"></span><span class="rating__dot rating__dot--filled"></span><span class="rating__dot"></span></div></td>
+            <td><div class="rating"><span class="rating__dot rating__dot--filled"></span><span class="rating__dot rating__dot--filled"></span><span class="rating__dot rating__dot--filled"></span><span class="rating__dot rating__dot--filled"></span><span class="rating__dot rating__dot--filled"></span></div></td>
+            <td><div class="rating"><span class="rating__dot rating__dot--accent"></span><span class="rating__dot"></span><span class="rating__dot"></span><span class="rating__dot"></span><span class="rating__dot"></span></div></td>
+            <td>Sashimi knives, traditional washoku</td>
+          </tr>
+          <tr>
+            <td><strong>Aogami (Blue #2 / Super)</strong><br><small style="color:var(--ink-light);font-size:12px;">Shirogami + Cr + W — the professional standard</small></td>
+            <td>63–65</td>
+            <td><div class="rating"><span class="rating__dot rating__dot--filled"></span><span class="rating__dot rating__dot--filled"></span><span class="rating__dot rating__dot--filled"></span><span class="rating__dot rating__dot--filled"></span><span class="rating__dot rating__dot--filled"></span></div></td>
+            <td><div class="rating"><span class="rating__dot rating__dot--filled"></span><span class="rating__dot rating__dot--filled"></span><span class="rating__dot rating__dot--filled"></span><span class="rating__dot rating__dot--filled"></span><span class="rating__dot"></span></div></td>
+            <td><div class="rating"><span class="rating__dot rating__dot--accent"></span><span class="rating__dot rating__dot--accent"></span><span class="rating__dot"></span><span class="rating__dot"></span><span class="rating__dot"></span></div></td>
+            <td>Professional all-round, Gyuto, Yanagiba</td>
+          </tr>
+          <tr>
+            <td><strong>R2 / SG-2 Powder Steel</strong><br><small style="color:var(--ink-light);font-size:12px;">Semi-stainless PM steel — best of both worlds</small></td>
+            <td>63–64</td>
+            <td><div class="rating"><span class="rating__dot rating__dot--filled"></span><span class="rating__dot rating__dot--filled"></span><span class="rating__dot rating__dot--filled"></span><span class="rating__dot rating__dot--filled"></span><span class="rating__dot rating__dot--filled"></span></div></td>
+            <td><div class="rating"><span class="rating__dot rating__dot--filled"></span><span class="rating__dot rating__dot--filled"></span><span class="rating__dot rating__dot--filled"></span><span class="rating__dot"></span><span class="rating__dot"></span></div></td>
+            <td><div class="rating"><span class="rating__dot rating__dot--accent"></span><span class="rating__dot rating__dot--accent"></span><span class="rating__dot rating__dot--accent"></span><span class="rating__dot rating__dot--accent"></span><span class="rating__dot"></span></div></td>
+            <td>Busy professional kitchens</td>
+          </tr>
+          <tr>
+            <td><strong>VG-10 Stainless</strong><br><small style="color:var(--ink-light);font-size:12px;">The export standard — reliable and forgiving</small></td>
+            <td>60–62</td>
+            <td><div class="rating"><span class="rating__dot rating__dot--filled"></span><span class="rating__dot rating__dot--filled"></span><span class="rating__dot rating__dot--filled"></span><span class="rating__dot"></span><span class="rating__dot"></span></div></td>
+            <td><div class="rating"><span class="rating__dot rating__dot--filled"></span><span class="rating__dot rating__dot--filled"></span><span class="rating__dot rating__dot--filled"></span><span class="rating__dot"></span><span class="rating__dot"></span></div></td>
+            <td><div class="rating"><span class="rating__dot rating__dot--accent"></span><span class="rating__dot rating__dot--accent"></span><span class="rating__dot rating__dot--accent"></span><span class="rating__dot rating__dot--accent"></span><span class="rating__dot rating__dot--accent"></span></div></td>
+            <td>Entry to mid-level, high-humidity kitchens</td>
+          </tr>
+          <tr>
+            <td><strong>HAP40 High Speed Steel</strong><br><small style="color:var(--ink-light);font-size:12px;">Semi-stainless HSS — extreme edge retention</small></td>
+            <td>66–68</td>
+            <td><div class="rating"><span class="rating__dot rating__dot--filled"></span><span class="rating__dot rating__dot--filled"></span><span class="rating__dot rating__dot--filled"></span><span class="rating__dot rating__dot--filled"></span><span class="rating__dot rating__dot--filled"></span></div></td>
+            <td><div class="rating"><span class="rating__dot rating__dot--filled"></span><span class="rating__dot rating__dot--filled"></span><span class="rating__dot"></span><span class="rating__dot"></span><span class="rating__dot"></span></div></td>
+            <td><div class="rating"><span class="rating__dot rating__dot--accent"></span><span class="rating__dot rating__dot--accent"></span><span class="rating__dot rating__dot--accent"></span><span class="rating__dot"></span><span class="rating__dot"></span></div></td>
+            <td>Chefs who sharpen rarely but demand longevity</td>
+          </tr>
+          <tr>
+            <td><strong>Damascus / Stainless-Clad</strong><br><small style="color:var(--ink-light);font-size:12px;">Performance = core steel. Pattern = cladding only.</small></td>
+            <td>60–65</td>
+            <td><div class="rating"><span class="rating__dot rating__dot--filled"></span><span class="rating__dot rating__dot--filled"></span><span class="rating__dot rating__dot--filled"></span><span class="rating__dot rating__dot--filled"></span><span class="rating__dot"></span></div></td>
+            <td><div class="rating"><span class="rating__dot rating__dot--filled"></span><span class="rating__dot rating__dot--filled"></span><span class="rating__dot rating__dot--filled"></span><span class="rating__dot"></span><span class="rating__dot"></span></div></td>
+            <td><div class="rating"><span class="rating__dot rating__dot--accent"></span><span class="rating__dot rating__dot--accent"></span><span class="rating__dot rating__dot--accent"></span><span class="rating__dot rating__dot--accent"></span><span class="rating__dot rating__dot--accent"></span></div></td>
+            <td>Aesthetic preference + performance</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="pull-quote" style="margin-top:40px;">
+      <p class="pull-quote__text">"Do not buy Damascus for the pattern. Buy it for the core steel. The watered surface is cladding — the edge is where the truth lives."</p>
+      <p class="pull-quote__attribution">Sakai bladesmith tradition</p>
+    </div>
+  </section>
+</article>
+
+<!-- ═══════════════════════════════════════════════════════════
+     CHAPTER IV — HANDLES
+═══════════════════════════════════════════════════════════ -->
+<article>
+  <div class="chapter-header" data-number="IV">
+    <p class="chapter-header__label">Chapter Four</p>
+    <h2 class="chapter-header__title">Handles</h2>
+    <p class="chapter-header__jp">柄の選び方</p>
+  </div>
+  <section class="section">
+    <p class="section__intro">The handle determines how the knife lives in your hand. Japanese tradition offers two schools — the featherlight Wa handle that puts balance forward into the blade, and the Western (Yo) handle familiar to chefs trained in European kitchens.</p>
+    <div class="handle-grid">
+      <div class="handle-card">
+        <p class="handle-card__type">Traditional Japanese</p>
+        <h3 class="handle-card__name">Wa Handle</h3>
+        <p class="handle-card__desc">The traditional Japanese handle sits the knife's balance point further forward, near the blade. Lighter in hand, it reduces wrist fatigue during long prep sessions. The octagonal shape subtly registers the blade angle in the palm — feedback prized by experienced cooks. Available in Ho wood (magnolia), ebony, stabilised wood, and buffalo horn-collared variants. <strong>Octagonal</strong> is the professional standard; D-shaped for those new to Wa.</p>
+        <div class="pros-cons">
+          <div class="pros-cons__list">
+            <h4>Advantages</h4>
+            <ul>
+              <li>Lighter overall weight</li>
+              <li>Blade-forward balance</li>
+              <li>Excellent tactile feedback</li>
+              <li>Handle can be re-fitted</li>
+            </ul>
+          </div>
+          <div class="pros-cons__list">
+            <h4>Considerations</h4>
+            <ul>
+              <li>Not dishwasher safe</li>
+              <li>Some woods absorb moisture</li>
+              <li>Adjustment period needed</li>
+              <li>Avoid prolonged soaking</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="handle-card">
+        <p class="handle-card__type">Western Style (Yo)</p>
+        <h3 class="handle-card__name">Western Handle</h3>
+        <p class="handle-card__desc">Full-tang construction with three rivets is the Western standard. Japanese makers produce excellent Western-handled knives (the 'Yo' style) for chefs transitioning from European knives. The heavier, bolstered feel is familiar, though it sacrifices some of the blade-forward balance that makes Wa handles so efficient for extended prep. Materials: Pakkawood, Micarta, G10 composite, or stainless.</p>
+        <div class="pros-cons">
+          <div class="pros-cons__list">
+            <h4>Advantages</h4>
+            <ul>
+              <li>Familiar to Western-trained chefs</li>
+              <li>More robust in heavy use</li>
+              <li>Neutral to handle-forward balance</li>
+              <li>Wide material choice</li>
+            </ul>
+          </div>
+          <div class="pros-cons__list">
+            <h4>Considerations</h4>
+            <ul>
+              <li>Heavier than Wa</li>
+              <li>Less blade feedback</li>
+              <li>Handle not replaceable</li>
+              <li>Bolster can hinder sharpening</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</article>
+
+<!-- ═══════════════════════════════════════════════════════════
+     CHAPTER V — TECHNIQUE
+═══════════════════════════════════════════════════════════ -->
+<article>
+  <div class="chapter-header" data-number="V">
+    <p class="chapter-header__label">Chapter Five</p>
+    <h2 class="chapter-header__title">Technique</h2>
+    <p class="chapter-header__jp">包丁の使い方</p>
+  </div>
+  <section class="section section--cream">
+    <p class="section__intro">A sharp knife in the wrong grip is no better than a dull one. Japanese knife technique is defined by economy of motion, full blade utilisation, and cuts calibrated to the ingredient — not forced through it.</p>
+    <div class="technique-list">
+      <div class="technique-item">
+        <div class="technique-item__label">
+          <div class="technique-item__name">Pinch Grip</div>
+          <div class="technique-item__jp">つまみ持ち</div>
+        </div>
+        <div class="technique-item__content">
+          <p class="technique-item__desc">The standard grip for professional knife work. Pinch the blade between the thumb and bent index finger, just ahead of the bolster. The remaining three fingers wrap the handle. This keeps the blade stable and dramatically reduces wrist strain over long sessions. 95% of professional Japanese chefs use this grip — and for good reason.</p>
+          <p class="technique-item__knives">All knives above 15 cm</p>
+        </div>
+      </div>
+      <div class="technique-item">
+        <div class="technique-item__label">
+          <div class="technique-item__name">Push Cut</div>
+          <div class="technique-item__jp">送り切り</div>
+        </div>
+        <div class="technique-item__content">
+          <p class="technique-item__desc">The blade moves forward and slightly down simultaneously. The entire length of the blade is used in each stroke. Ideal for vegetables and boneless proteins. The default motion for Nakiri and Gyuto in Japanese cooking — more efficient than rocking and produces cleaner cuts with less cellular damage.</p>
+          <p class="technique-item__knives">Gyuto · Nakiri · Santoku · Petty</p>
+        </div>
+      </div>
+      <div class="technique-item">
+        <div class="technique-item__label">
+          <div class="technique-item__name">Pull Cut</div>
+          <div class="technique-item__jp">引き切り</div>
+        </div>
+        <div class="technique-item__content">
+          <p class="technique-item__desc">The blade is drawn toward the body in a single, fluid motion. Used for sashimi slicing, where cellular integrity of fish flesh is paramount. One stroke per slice — no back-and-forth. The long blade of the Yanagiba is designed specifically so that the full draw covers the entire slice in one pass without needing to saw.</p>
+          <p class="technique-item__knives">Yanagiba · Sujihiki</p>
+        </div>
+      </div>
+      <div class="technique-item">
+        <div class="technique-item__label">
+          <div class="technique-item__name">Katsuramuki</div>
+          <div class="technique-item__jp">桂剥き</div>
+        </div>
+        <div class="technique-item__content">
+          <p class="technique-item__desc">Rotary peeling: the vegetable (typically daikon or cucumber) is held in the left hand and rotated, while the Usuba blade peels a continuous, paper-thin sheet. The sheet can be 20–30 cm long from a single daikon. Considered one of the most difficult Japanese knife skills — apprentices in kaiseki restaurants may spend six months on this technique alone before being permitted to cook.</p>
+          <p class="technique-item__knives">Usuba only · Expert level</p>
+        </div>
+      </div>
+      <div class="technique-item">
+        <div class="technique-item__label">
+          <div class="technique-item__name">Sogi-giri</div>
+          <div class="technique-item__jp">そぎ切り</div>
+        </div>
+        <div class="technique-item__content">
+          <p class="technique-item__desc">Diagonal bias-cutting: the blade is angled at 45° to the food to create wider slices from narrow ingredients (spring onion, chicken breast, fish fillet). Increases surface area, improves sauce adhesion, ensures even cooking. A key technique in both yakitori and kaiseki preparation — the angle is precise, not approximate.</p>
+          <p class="technique-item__knives">Gyuto · Sujihiki · Yanagiba</p>
+        </div>
+      </div>
+    </div>
+  </section>
+</article>
+
+
+<!-- ═══════════════════════════════════════════════════════════
+     CHAPTER VI — FOOD PAIRING
+═══════════════════════════════════════════════════════════ -->
+<article>
+  <div class="chapter-header" data-number="VI">
+    <p class="chapter-header__label">Chapter Six</p>
+    <h2 class="chapter-header__title">Knife & Food Pairing</h2>
+    <p class="chapter-header__jp">食材と包丁の組み合わせ</p>
+  </div>
+  <section class="section">
+    <p class="section__intro">The right knife for the right ingredient is not pedantry — it is the difference between food that is cut and food that is prepared. Each pairing below reflects the purpose each knife was designed for.</p>
+    <div class="food-grid">
+      <div class="food-card">
+        <div class="food-card__icon">🐟</div>
+        <p class="food-card__food">Raw Fish — Sashimi &amp; Sushi</p>
+        <p class="food-card__knife">Yanagiba (30 cm) + Deba</p>
+        <p class="food-card__note">Single-bevel essential for gloss. Cut against the grain of muscle fibres. Use Deba to break down the whole fish first.</p>
+      </div>
+      <div class="food-card">
+        <div class="food-card__icon">🐠</div>
+        <p class="food-card__food">Whole Round Fish</p>
+        <p class="food-card__knife">Deba → Yanagiba</p>
+        <p class="food-card__note">Match Deba size to fish size. Ko-Deba (10 cm) for seabream; large Deba (18 cm+) for tuna loins.</p>
+      </div>
+      <div class="food-card">
+        <div class="food-card__icon">🥕</div>
+        <p class="food-card__food">Root Vegetables</p>
+        <p class="food-card__knife">Nakiri or Usuba + Petty</p>
+        <p class="food-card__note">Full blade contact on every stroke. For katsuramuki (rotary peeling) use Usuba exclusively.</p>
+      </div>
+      <div class="food-card">
+        <div class="food-card__icon">🌿</div>
+        <p class="food-card__food">Leafy Greens &amp; Herbs</p>
+        <p class="food-card__knife">Nakiri or Gyuto</p>
+        <p class="food-card__note">Slice, do not tear. A sharp Nakiri prevents bruising and oxidation at the cut edge.</p>
+      </div>
+      <div class="food-card">
+        <div class="food-card__icon">🥩</div>
+        <p class="food-card__food">Boneless Meat &amp; Poultry</p>
+        <p class="food-card__knife">Gyuto (24 cm) + Sujihiki</p>
+        <p class="food-card__note">Rock chop or push cut for dicing; draw cut for portioning. Always slice against the grain.</p>
+      </div>
+      <div class="food-card">
+        <div class="food-card__icon">🍗</div>
+        <p class="food-card__food">Whole Poultry</p>
+        <p class="food-card__knife">Honesuki → Gyuto</p>
+        <p class="food-card__note">A sharp Honesuki tip navigates the oyster socket in one clean arc. Use Gyuto to finish portioning.</p>
+      </div>
+      <div class="food-card">
+        <div class="food-card__icon">🥩</div>
+        <p class="food-card__food">Cooked Roasts</p>
+        <p class="food-card__knife">Sujihiki (27–30 cm)</p>
+        <p class="food-card__note">Long, clean draw strokes — never saw. Let the knife do the work. Pressure equals torn fibres.</p>
+      </div>
+      <div class="food-card">
+        <div class="food-card__icon">🍱</div>
+        <p class="food-card__food">Tofu &amp; Delicate Proteins</p>
+        <p class="food-card__knife">Yanagiba or thin Gyuto</p>
+        <p class="food-card__note">Gravity-only pressure, single pass. Silken tofu requires a blade thin enough to displace without crushing.</p>
+      </div>
+    </div>
+  </section>
+</article>
+
+<!-- ═══════════════════════════════════════════════════════════
+     CHAPTER VII — SHARPENING STONES
+═══════════════════════════════════════════════════════════ -->
+<article>
+  <div class="chapter-header" data-number="VII">
+    <p class="chapter-header__label">Chapter Seven</p>
+    <h2 class="chapter-header__title">Sharpening Stones</h2>
+    <p class="chapter-header__jp">砥石の知識と使い方</p>
+  </div>
+  <section class="section section--cream">
+    <p class="section__intro">Sharpening is not maintenance — it is craft. Japanese knives are ground to angles far more acute than their Western counterparts (10–15° vs 20–25°), which means they achieve extraordinary sharpness but demand appropriate whetstones and technique. A ceramic honing rod preserves an edge between sessions; a whetstone restores it.</p>
+
+    <!-- The 7-stage progression -->
+    <p class="section__eyebrow" style="margin-bottom:16px;">The Whetstone Progression</p>
+    <h3 class="section__title" style="font-size:26px;margin-bottom:24px;">Seven Stages from Repair to Mirror</h3>
+
+    <div class="stone-detail-grid">
+
+      <div class="stone-detail-card">
+        <div class="stone-detail-card__stage">
+          <div class="stone-detail-card__grit">120–220</div>
+          <div class="stone-detail-card__stage-name">Coarse Repair</div>
+          <div class="stone-detail-card__bar" style="background:#5C4A38;"></div>
+          <div class="stone-detail-card__freq">Use: Rarely</div>
+        </div>
+        <div class="stone-detail-card__body">
+          <p class="stone-detail-card__purpose">Heavy reprofiling, grinding out chips, re-establishing a completely lost edge bevel</p>
+          <p class="stone-detail-card__notes">Cuts very aggressively. Use as little time as needed — coarse stones leave deep scratches that must be worked out at subsequent grits. Silicon carbide or alumina abrasive. Soak 10 minutes.</p>
+          <div class="stone-detail-card__stones">
+            <span class="stone-pill">Naniwa Chocera 150</span>
+            <span class="stone-pill">King KW-65 120</span>
+            <span class="stone-pill">Shapton Kuromaku 120</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="stone-detail-card">
+        <div class="stone-detail-card__stage">
+          <div class="stone-detail-card__grit">400–600</div>
+          <div class="stone-detail-card__stage-name">Medium Coarse</div>
+          <div class="stone-detail-card__bar" style="background:#7A5C42;"></div>
+          <div class="stone-detail-card__freq">Use: Occasionally</div>
+        </div>
+        <div class="stone-detail-card__body">
+          <p class="stone-detail-card__purpose">Raising a burr on neglected edges, thinning blade geometry, intermediate repair</p>
+          <p class="stone-detail-card__notes">The 'forgotten grit' — skipping from 220 to 1000 leaves deep scratches that take far too long to refine. A 400 bridges the gap efficiently. Aluminium oxide or silicon carbide abrasive. Soak 5–10 minutes.</p>
+          <div class="stone-detail-card__stones">
+            <span class="stone-pill">Naniwa Chocera 400</span>
+            <span class="stone-pill">Shapton Kuromaku 320</span>
+            <span class="stone-pill">King 400</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="stone-detail-card">
+        <div class="stone-detail-card__stage">
+          <div class="stone-detail-card__grit">800–1200</div>
+          <div class="stone-detail-card__stage-name">Primary Sharpening</div>
+          <div class="stone-detail-card__bar" style="background:#9A7A5A;"></div>
+          <div class="stone-detail-card__freq">Use: Every 2–4 weeks</div>
+        </div>
+        <div class="stone-detail-card__body">
+          <p class="stone-detail-card__purpose">Main edge setting — the grit most chefs reach for in routine sharpening. Raises a clean burr and begins edge refinement.</p>
+          <p class="stone-detail-card__notes">The 1000-grit Shapton Kuromaku is the industry standard for good reason — it cuts quickly, maintains flatness, and is forgiving for all steel types. Soak 5 minutes.</p>
+          <div class="stone-detail-card__stones">
+            <span class="stone-pill">Shapton Kuromaku 1000</span>
+            <span class="stone-pill">Naniwa Chocera 1000</span>
+            <span class="stone-pill">King KW-65 1000</span>
+            <span class="stone-pill">Bester 1200</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="stone-detail-card">
+        <div class="stone-detail-card__stage">
+          <div class="stone-detail-card__grit">2000–3000</div>
+          <div class="stone-detail-card__stage-name">Edge Refinement</div>
+          <div class="stone-detail-card__bar" style="background:#B89878;"></div>
+          <div class="stone-detail-card__freq">Use: Each session</div>
+        </div>
+        <div class="stone-detail-card__body">
+          <p class="stone-detail-card__purpose">Refining the 1000-grit scratch pattern, reducing tooth on the edge, improving push-cut performance</p>
+          <p class="stone-detail-card__notes">At this grit the edge begins to feel refined under a fingernail. The Suehiro Rika 3000 is beloved for its feedback and the creamy slurry it produces. Soak 3–5 minutes.</p>
+          <div class="stone-detail-card__stones">
+            <span class="stone-pill">Naniwa Chocera 2000</span>
+            <span class="stone-pill">Shapton Kuromaku 2000</span>
+            <span class="stone-pill">Suehiro Rika 3000</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="stone-detail-card">
+        <div class="stone-detail-card__stage">
+          <div class="stone-detail-card__grit">5000–6000</div>
+          <div class="stone-detail-card__stage-name">Polishing</div>
+          <div class="stone-detail-card__bar" style="background:#CDB89A;"></div>
+          <div class="stone-detail-card__freq">Use: Each session</div>
+        </div>
+        <div class="stone-detail-card__body">
+          <p class="stone-detail-card__purpose">Polishing the edge and blade face; transition stone between sharpening and finishing</p>
+          <p class="stone-detail-card__notes">At this stage the edge can cut arm hair and slice newspaper cleanly. Many professional chefs stop here for double-bevel knives used in brigade kitchens. Splash-and-go or soak 2–3 minutes.</p>
+          <div class="stone-detail-card__stones">
+            <span class="stone-pill">Naniwa Chocera 5000</span>
+            <span class="stone-pill">Shapton Kuromaku 5000</span>
+            <span class="stone-pill">King Deluxe 6000</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="stone-detail-card">
+        <div class="stone-detail-card__stage">
+          <div class="stone-detail-card__grit">8000–10000</div>
+          <div class="stone-detail-card__stage-name">Ultra Fine Finishing</div>
+          <div class="stone-detail-card__bar" style="background:#DED0BA;"></div>
+          <div class="stone-detail-card__freq">Use: Single-bevel knives each session</div>
+        </div>
+        <div class="stone-detail-card__body">
+          <p class="stone-detail-card__purpose">Final edge refinement, toothless edge for push-cutting and sashimi knives</p>
+          <p class="stone-detail-card__notes">Required for Yanagiba and Usuba — the single-bevel mirror finish reduces friction against fish flesh. The difference between a 6000 and a 10000 finish is visible to the naked eye on the cut face of fresh tuna. Splash-and-go.</p>
+          <div class="stone-detail-card__stones">
+            <span class="stone-pill">Naniwa Chocera 10000</span>
+            <span class="stone-pill">Shapton Kuromaku 8000</span>
+            <span class="stone-pill">King 8000</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="stone-detail-card">
+        <div class="stone-detail-card__stage">
+          <div class="stone-detail-card__grit">12000–30000</div>
+          <div class="stone-detail-card__stage-name">Mirror / Natural</div>
+          <div class="stone-detail-card__bar" style="background:#EDE4D4;"></div>
+          <div class="stone-detail-card__freq">Use: Occasional — sashimi specialists</div>
+        </div>
+        <div class="stone-detail-card__body">
+          <p class="stone-detail-card__purpose">Mirror-polishing single-bevel knives; maximum gloss on the ura face of Yanagiba</p>
+          <p class="stone-detail-card__notes">Natural finishing stones from Kyoto (Hon-Suita, Nakayama, Ozuku) are prized by sushi chefs for a quality of edge impossible to replicate synthetically. Their irregular abrasive particles produce a 'toothy-yet-polished' edge that grips fish without tearing. Prices: ¥50,000–¥500,000+.</p>
+          <div class="stone-detail-card__stones">
+            <span class="stone-pill">Naniwa Chocera 12000</span>
+            <span class="stone-pill">Suehiro Gokumyo 20000</span>
+            <span class="stone-pill">Nakayama Maruichi (natural)</span>
+            <span class="stone-pill">Ohira Tomae (natural)</span>
+          </div>
+        </div>
+      </div>
+
+    </div><!-- /stone-detail-grid -->
+
+    <!-- Angle Reference -->
+    <p class="section__eyebrow" style="margin-bottom:16px;">Sharpening Angles</p>
+    <div class="angle-ref">
+      <div class="angle-ref__item">
+        <svg class="angle-ref__svg" width="80" height="60" viewBox="0 0 80 60" fill="none">
+          <line x1="4" y1="56" x2="76" y2="56" stroke="#C8C0B4" stroke-width="1"/>
+          <path d="M4 56 L60 8" stroke="#2C3E50" stroke-width="1.5"/>
+          <path d="M4 56 Q22 56 18 42" stroke="#8B1A1A" stroke-width="1" fill="none"/>
+          <text x="22" y="50" font-family="serif" font-size="9" fill="#8B1A1A">≈12°</text>
+        </svg>
+        <div class="angle-ref__degrees">10–15°</div>
+        <div class="angle-ref__label">Per Side</div>
+        <div class="angle-ref__desc">Double-bevel Japanese knives<br>(Gyuto, Santoku, Nakiri)</div>
+      </div>
+      <div class="angle-ref__item">
+        <svg class="angle-ref__svg" width="80" height="60" viewBox="0 0 80 60" fill="none">
+          <line x1="4" y1="56" x2="76" y2="56" stroke="#C8C0B4" stroke-width="1"/>
+          <path d="M4 56 L52 10" stroke="#2C3E50" stroke-width="1.5"/>
+          <path d="M4 56 Q24 56 20 40" stroke="#8B1A1A" stroke-width="1" fill="none"/>
+          <text x="22" y="50" font-family="serif" font-size="9" fill="#8B1A1A">≈18°</text>
+        </svg>
+        <div class="angle-ref__degrees">15–20°</div>
+        <div class="angle-ref__label">Per Side</div>
+        <div class="angle-ref__desc">Western-style Japanese knives<br>(Gyuto Yo-handle, Honesuki)</div>
+      </div>
+      <div class="angle-ref__item">
+        <svg class="angle-ref__svg" width="80" height="60" viewBox="0 0 80 60" fill="none">
+          <line x1="4" y1="56" x2="76" y2="56" stroke="#C8C0B4" stroke-width="1"/>
+          <rect x="4" y="14" width="50" height="42" fill="rgba(180,196,204,0.3)" stroke="#6B7C8A" stroke-width="0.8"/>
+          <line x1="4" y1="14" x2="4" y2="56" stroke="#2C3E50" stroke-width="1.5"/>
+          <text x="12" y="38" font-family="serif" font-size="9" fill="#8B1A1A">Ura flat</text>
+        </svg>
+        <div class="angle-ref__degrees">Single-Bevel</div>
+        <div class="angle-ref__label">Ura + Face</div>
+        <div class="angle-ref__desc">Yanagiba, Deba, Usuba<br>Flat ura back + convex face</div>
+      </div>
+    </div>
+
+    <!-- Stone Types -->
+    <p class="section__eyebrow" style="margin-bottom:16px;">Stone Types</p>
+    <h3 class="section__title" style="font-size:26px;margin-bottom:24px;">Know Your Stone</h3>
+    <div class="stone-types-grid">
+      <div class="stone-type-card">
+        <h4 class="stone-type-card__name">Water Stones (Mizutogi)</h4>
+        <p class="stone-type-card__desc">The standard for Japanese knife sharpening. Soaked in water before use, the slurry of released abrasive particles does much of the cutting work. They dish (wear unevenly) over time and require periodic flattening. Available as soak stones or splash-and-go.</p>
+        <p class="stone-type-card__maint">Flatten regularly with a lapping plate. Store dry to prevent cracking in cold temperatures.</p>
+      </div>
+      <div class="stone-type-card">
+        <h4 class="stone-type-card__name">Diamond Plates</h4>
+        <p class="stone-type-card__desc">Electroplated or sintered diamond abrasives. Cut the fastest of all stones and never dish. Essential for sharpening very hard steels (HAP40, ZDP-189) and for routine stone flattening. Not suitable for final finishing — the scratches are too coarse and irregular.</p>
+        <p class="stone-type-card__maint">Rinse clean, store dry. Electroplated plates wear out over time; sintered diamond lasts much longer.</p>
+      </div>
+      <div class="stone-type-card">
+        <h4 class="stone-type-card__name">Ceramic Stones</h4>
+        <p class="stone-type-card__desc">Vitrified aluminium oxide — the modern professional standard. Consistent, long-lasting, and available across all grits. Premium ceramic stones (Naniwa Chocera, Shapton Kuromaku) are used by top itamae worldwide for their cutting speed, feedback, and edge quality.</p>
+        <p class="stone-type-card__maint">Flatten when dishing appears. Store dry. Splash-and-go variants are convenient for kitchen use.</p>
+      </div>
+      <div class="stone-type-card">
+        <h4 class="stone-type-card__name">Oil Stones</h4>
+        <p class="stone-type-card__desc">Western tradition (Arkansas, Crystolon). Not recommended for Japanese knives — oil clogs the steel's fine grain structure and degrades the edge quality over time. Should be avoided entirely when working with high-carbon and powder-metallurgy steels.</p>
+        <p class="stone-type-card__maint">Do not use on Japanese knives.</p>
+      </div>
+      <div class="stone-type-card">
+        <h4 class="stone-type-card__name">Natural Stones — Tennen-to (天然砥)</h4>
+        <p class="stone-type-card__desc">Quarried in the mountains of Kyoto Prefecture, particularly around Narutaki and Umegahata. Each stone is unique — grit, hardness, and mineral composition vary stone by stone. The finest natural finishing stones (Hon-Suita, Nakayama, Ozuku) command prices from ¥50,000 to ¥500,000+. A skilled sharpener reads the feedback of each stone like a musical instrument. Natural stones work best with Shirogami and Aogami steels only — their irregular particles produce a 'toothy-yet-polished' edge that grips fish beautifully without tearing.</p>
+        <p class="stone-type-card__maint">Store dry, handle carefully — many are irreplaceable. Some types crack if wetted too quickly. Use with minimal water.</p>
+      </div>
+    </div>
+
+    <!-- Technique Tips -->
+    <p class="section__eyebrow" style="margin-bottom:16px;">Sharpening Technique</p>
+    <h3 class="section__title" style="font-size:26px;margin-bottom:24px;">Seven Rules</h3>
+    <ol class="tips-list">
+      <li>Soak water stones for 5–10 minutes before use; splash-and-go stones need only a wet surface.</li>
+      <li>Use consistent, moderate pressure on forward strokes; reduce pressure on return strokes.</li>
+      <li>Work the full length of the blade in each pass — heel to tip in one smooth arc.</li>
+      <li>Raise a fine burr (wire edge) on one side before flipping — this confirms metal is actually being removed.</li>
+      <li>Remove the burr on the finishing stone with alternating very light strokes, reducing pressure each time.</li>
+      <li>For single-bevel knives: 70–80% of time on the front (convex) face, 20–30% on the flat ura back.</li>
+      <li>Strop on bare leather or a 12,000-grit stone to align the final edge apex before service.</li>
+    </ol>
+
+    <!-- Flattening Warning -->
+    <div class="warning-box">
+      <div class="warning-box__icon">◈</div>
+      <div>
+        <p class="warning-box__label">Critical — Stone Flatness</p>
+        <p class="warning-box__text">All water stones dish with use. A dished stone rounds the blade's edge rather than sharpening it — you will work for twenty minutes and make the knife <em>duller</em>. Flatten every 2–3 sharpening sessions using a DMT D8C diamond lapping plate or an Atoma 140. A flat stone is the prerequisite for every sharp knife. This single rule separates chefs who can sharpen from those who think they can.</p>
+      </div>
+    </div>
+
+    <div class="pull-quote" style="margin-top:48px;">
+      <p class="pull-quote__text">"The stone is as important as the knife. A poor stone produces a poor edge regardless of the steel. A great stone can sharpen anything."</p>
+      <p class="pull-quote__attribution">Masamoto Sohonten, Tokyo — training notes</p>
+    </div>
+
+  </section>
+</article>
+
+<!-- ═══════════════════════════════════════════════════════════
+     COLOPHON
+═══════════════════════════════════════════════════════════ -->
+<footer class="colophon">
+  <div>
+    <p class="colophon__label">This Guide</p>
+    <h3 class="colophon__title">The Japanese Knife</h3>
+    <p class="colophon__text">A Professional Chef's Complete Reference. 2026 Edition. Covering nine knife types, six steel alloys, seven whetstone stages, five core techniques, and twelve centuries of unbroken craft tradition.</p>
+  </div>
+  <div>
+    <p class="colophon__label">Key Production Regions</p>
+    <p class="colophon__text" style="margin-bottom:8px;"><strong style="color:rgba(255,255,255,0.7);">Sakai, Osaka</strong> — Single-bevel specialists; ~90% of Japanese professional knives</p>
+    <p class="colophon__text" style="margin-bottom:8px;"><strong style="color:rgba(255,255,255,0.7);">Seki, Gifu</strong> — Double-bevel, production; Global, MAC</p>
+    <p class="colophon__text" style="margin-bottom:8px;"><strong style="color:rgba(255,255,255,0.7);">Takefu, Fukui</strong> — Artisan village; Yoshimi Kato, Hinoura</p>
+    <p class="colophon__text" style="margin-bottom:8px;"><strong style="color:rgba(255,255,255,0.7);">Tsubame-Sanjo, Niigata</strong> — Engineering-grade steel tradition</p>
+    <p class="colophon__text"><strong style="color:rgba(255,255,255,0.7);">Tosa, Kochi</strong> — Working knives; excellent value</p>
+  </div>
+  <div>
+    <p class="colophon__label">Daily Care Reminder</p>
+    <p class="colophon__text" style="margin-bottom:8px;">→ Hand-wash only — never dishwasher</p>
+    <p class="colophon__text" style="margin-bottom:8px;">→ Dry immediately after washing</p>
+    <p class="colophon__text" style="margin-bottom:8px;">→ Store on a magnetic rack or in a saya (sheath)</p>
+    <p class="colophon__text" style="margin-bottom:8px;">→ Hone on a ceramic rod before each service</p>
+    <p class="colophon__text" style="margin-bottom:8px;">→ Sharpen on whetstones every 2–4 weeks under professional use</p>
+    <p class="colophon__text">→ Oil carbon steel blades with camellia oil for storage</p>
+  </div>
+</footer>
+
+</div><!-- /page-wrapper -->
+</body>
+</html>
