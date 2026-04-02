@@ -1,0 +1,402 @@
+<ASCII-WIN>
+<Version:8><FeatureSet:InDesign-Roman>
+
+<ParaStyle:Cover Title>The Japanese Knife
+<ParaStyle:Cover Subtitle>A Professional Chef's Complete Reference
+<ParaStyle:Cover JP>包丁の道
+<ParaStyle:Cover Edition>2026 Edition
+
+<ParaStyle:Chapter Number>Chapter One
+<ParaStyle:Chapter Title>A Thousand Years of the Blade
+<ParaStyle:Chapter JP>日本の包丁の歴史
+
+<ParaStyle:Body>The Japanese kitchen knife evolved over more than a thousand years from the same sword-making tradition that produced the katana — a lineage of metallurgical obsession, regional pride, and an unbroken transmission of craft from master to apprentice.
+
+<ParaStyle:Section Eyebrow>710 – 794 AD · Nara Period
+<ParaStyle:Timeline Title>Ritual Blades and Imported Craft
+<ParaStyle:Body>The earliest Japanese knives were ritual instruments — used in court ceremonies and Shinto rites rather than culinary practice. Blade-making techniques arrived from Tang Dynasty China and the Korean peninsula, establishing the foundational iron-working traditions that would define Japanese metallurgy.
+<ParaStyle:Timeline Significance>Establishment of blade-forging traditions in Japan
+
+<ParaStyle:Section Eyebrow>794 – 1185 AD · Heian Period
+<ParaStyle:Timeline Title>The Birth of Washoku Knife Culture
+<ParaStyle:Body>As Japanese court cuisine formalised, dedicated culinary knives emerged. The most significant was the Shiki-bocho ceremony — a ritual fish-cutting performance using long blades, performed before the emperor. The chef never touched the fish with their hands, using only the knife and chopsticks. This ceremony elevated the knife to an object of profound reverence. It is still performed today at certain Shinto shrines.
+<ParaStyle:Timeline Significance>First formalised culinary knife tradition; knife as ceremonial object
+
+<ParaStyle:Section Eyebrow>1185 – 1333 AD · Kamakura Period
+<ParaStyle:Timeline Title>The Sword-Smith Connection
+<ParaStyle:Body>The rise of the samurai class drove explosive development in sword-making technology. Bladesmiths in Bizen, Sagami, and Yamashiro perfected the differential hardening technique — clay tempering — that created the legendary hard cutting edge with a tough spine. The same principle is applied to culinary knives to this day. The Deba's thick spine and hard edge are direct descendants of sword metallurgy.
+<ParaStyle:Timeline Significance>Differential hardening, tamahagane steel, honyaki forging established
+
+<ParaStyle:Section Eyebrow>1336 – 1573 AD · Muromachi Period
+<ParaStyle:Timeline Title>Three Great Schools of Knife-Making
+<ParaStyle:Body>Dedicated culinary knife-making schools coalesced in three regions: Kyoto for the imperial court, Sakai near Osaka, and Seki in Gifu Prefecture. The Sakai lineages began producing dedicated kitchen knives — notably the Deba and Yanagiba — for the fish markets of Osaka. Sakai's reputation was cemented by its use of Namban-tetsu, southern barbarian iron imported via Portuguese traders.
+<ParaStyle:Timeline Significance>Regional specialisation; Sakai and Seki emerge as knife capitals
+
+<ParaStyle:Section Eyebrow>1603 – 1868 AD · Edo Period
+<ParaStyle:Timeline Title>The Golden Age of Japanese Kitchen Knives
+<ParaStyle:Body>Two and a half centuries of peace under the Tokugawa shogunate redirected sword-smiths' skills into domestic tools. The Yanagiba was refined for Osaka's booming sushi culture; the Usuba evolved for the vegetable-centric kaiseki cuisine of Kyoto. By the late Edo period, the full typology of Japanese kitchen knives — Yanagiba, Deba, Usuba — was established and virtually unchanged to this day.
+<ParaStyle:Timeline Significance>Full typology of Japanese culinary knives established; Sakai dominates production
+
+<ParaStyle:Section Eyebrow>1868 – 1912 AD · Meiji Period
+<ParaStyle:Timeline Title>Western Influence and the Gyuto
+<ParaStyle:Body>The Meiji Restoration opened Japan to Western culinary traditions. French cuisine arrived in Tokyo's new Western-style hotels, and with it the demand for a knife that could handle large cuts of beef — previously absent due to Buddhist dietary restrictions. The Gyuto, or 'beef sword,' was Japan's answer: a thinner, more refined interpretation of the French chef's knife, ground to Japanese angles and balanced for the pinch grip.
+<ParaStyle:Timeline Significance>Birth of the Gyuto and Sujihiki; Japan absorbs Western knife typology
+
+<ParaStyle:Section Eyebrow>1945 – 1970s · Post-War Period
+<ParaStyle:Timeline Title>Stainless Steel and Mass Production
+<ParaStyle:Body>Post-war steel shortages pushed bladesmiths toward stainless alloys. Companies like Global (Yoshikin), MAC, and later Shun brought Japanese knife design to Western markets for the first time, transforming how professional kitchens worldwide thought about their tools. VG-10 stainless steel became the backbone of the export market.
+<ParaStyle:Timeline Significance>Stainless steel mass-market knives; first wave of global export
+
+<ParaStyle:Section Eyebrow>1990s – Present · Modern Era
+<ParaStyle:Timeline Title>The Artisan Renaissance
+<ParaStyle:Body>The internet connected Western chefs directly with makers in Sakai, Seki, Takefu Village, Tsubame-Sanjo, and Tosa. Powder-metallurgy steels like R2/SG-2 and HAP40 gave artisans new materials. Today a single Gyuto from a master bladesmith commands ¥80,000–¥500,000+ with waiting lists of years. The craft has never been more globally celebrated — nor more at risk from an ageing generation of masters with few apprentices.
+<ParaStyle:Timeline Significance>Artisan renaissance; global knife culture; endangered craft transmission
+
+<ParaStyle:Pull Quote>"The knife is not separate from the cook. It is an extension of intent — of how precisely you wish to meet the ingredient."
+<ParaStyle:Attribution>Traditional Japanese culinary teaching
+
+<ParaStyle:Section Eyebrow>Forging Methods
+<ParaStyle:Section Title>Honyaki vs. Kasumi
+
+<ParaStyle:Knife Name>Honyaki — 本焼き
+<ParaStyle:Body>Forged from a single piece of high-carbon steel and differentially hardened with clay, exactly as a katana. The spine is left soft and tough; the edge hardened to HRC65+. The honyaki is the most prestigious form of Japanese kitchen knife — harder, thinner, and more beautiful than any other, with a visible hamon (temper line) where hard meets soft. They are the most unforgiving: a hard impact can chip the edge irreparably. Reserved for itamae of the highest level.
+
+<ParaStyle:Knife Name>Kasumi — 霞
+<ParaStyle:Body>The far more common construction: a hard steel edge plate (hagane) forge-welded to a softer iron or steel body (jigane). The contrast between the hard, polished edge face and the softer, misty body gives 'kasumi' its name — the mist pattern on the blade flat. Easier to sharpen and more forgiving than honyaki, making it the choice for most professional kitchens.
+
+<ParaStyle:Section Eyebrow>The Legendary Steel
+<ParaStyle:Knife Name>Tamahagane — 玉鋼
+<ParaStyle:Body>The legendary steel of Japanese swords and the finest kitchen knives. Smelted in a tatara — a traditional clay furnace — from iron sand and charcoal over 72 hours. A single smelt produces approximately 2 tonnes of steel, of which only the finest pieces are classified as tamahagane. The Nittoho Tatara in Shimane Prefecture is one of the last operating furnaces, producing tamahagane exclusively for registered swordsmiths. Some elite knife makers receive small allocations. A kitchen knife in tamahagane is extraordinarily rare and commands museum-piece prices.
+
+
+<ParaStyle:Chapter Number>Chapter Two
+<ParaStyle:Chapter Title>The Knives
+<ParaStyle:Chapter JP>包丁の種類
+
+<ParaStyle:Body>Nine knives cover the full range of professional Japanese cooking. Each is purpose-built — not a compromise but a precision instrument. Understanding which knife belongs in which hand is the first step toward mastery.
+
+<ParaStyle:Knife Category>Multipurpose
+<ParaStyle:Knife Name>Gyuto — 牛刀
+<ParaStyle:Knife Literal>"Beef Sword"  ·  18–30 cm  ·  Double-bevel  ·  All levels
+<ParaStyle:Body>The workhorse of the professional kitchen. Japan's answer to the French chef's knife — thinner, lighter, and ground to a keener edge. Its gentle belly curve allows rocking cuts while still being flat enough for the push-cut technique favoured in Japanese cooking.
+<ParaStyle:Spec Label>Best for:
+<ParaStyle:Spec Value>Butchering and portioning meat · Breaking down whole fish · Rough-chopping vegetables · Slicing roasts and poultry
+<ParaStyle:Spec Label>Technique:
+<ParaStyle:Spec Value>Rock chop · Push cut · Slicing
+<ParaStyle:Spec Label>Notable makers:
+<ParaStyle:Spec Value>Masamoto · Konosuke · Takamura · Sakai Takayuki
+
+<ParaStyle:Knife Category>Multipurpose
+<ParaStyle:Knife Name>Santoku — 三徳
+<ParaStyle:Knife Literal>"Three Virtues"  ·  16–20 cm  ·  Double-bevel  ·  Beginner to intermediate
+<ParaStyle:Body>Named for its three virtues — meat, fish, vegetables. Shorter and more agile than the Gyuto, its flat profile makes it ideal for straight up-and-down chopping. Often seen with a Granton (hollow) edge to reduce food sticking.
+<ParaStyle:Spec Label>Best for:
+<ParaStyle:Spec Value>Home-style vegetable prep · Slicing boneless proteins · Chiffonade and fine herbs · Quick mise en place
+<ParaStyle:Spec Label>Technique:
+<ParaStyle:Spec Value>Push cut · Tap chop
+<ParaStyle:Spec Label>Notable makers:
+<ParaStyle:Spec Value>Global · Shun · MAC · Miyabi
+
+<ParaStyle:Knife Category>Vegetable
+<ParaStyle:Knife Name>Nakiri — 菜切り
+<ParaStyle:Knife Literal>"Vegetable Cutter"  ·  16–18 cm  ·  Double-bevel  ·  Intermediate
+<ParaStyle:Body>The Nakiri's perfectly flat blade makes full contact with the cutting board on every stroke — zero food escape. The thin, laser-like grind slips through dense roots and leafy greens alike. A staple in kaiseki kitchens where vegetable precision is paramount.
+<ParaStyle:Spec Label>Best for:
+<ParaStyle:Spec Value>Julienne and brunoise · Paper-thin cucumber ribbons · Chopping herbs · Processing large quantities of vegetables
+<ParaStyle:Spec Label>Technique:
+<ParaStyle:Spec Value>Push cut · Tap chop · Pull cut
+<ParaStyle:Spec Label>Notable makers:
+<ParaStyle:Spec Value>Yoshimi Kato · Tsukasa Hinoura · Sukenari
+
+<ParaStyle:Knife Category>Sashimi
+<ParaStyle:Knife Name>Yanagiba — 柳刃
+<ParaStyle:Knife Literal>"Willow Blade"  ·  24–36 cm  ·  Single-bevel  ·  Advanced
+<ParaStyle:Body>The signature knife of the sushi chef. A single-bevel edge creates a mirror-flat face that minimises cellular damage to fish — the flesh gleams rather than tears. Always draw the knife in a single long pull; never saw. Length matters: a 30 cm blade can slice maguro in one stroke.
+<ParaStyle:Spec Label>Best for:
+<ParaStyle:Spec Value>Sashimi slicing (hiki-zukuri) · Sushi tane preparation · Filleting large flat fish · Carpaccio and tataki slicing
+<ParaStyle:Spec Label>Technique:
+<ParaStyle:Spec Value>Single pull stroke (hikigiri) — never push or rock
+<ParaStyle:Spec Label>Notable makers:
+<ParaStyle:Spec Value>Masamoto · Mizuno Tanrenjo · Konosuke · Sakai Takayuki Kasumitogi
+
+<ParaStyle:Knife Category>Fish Butchery
+<ParaStyle:Knife Name>Deba — 出刃
+<ParaStyle:Knife Literal>"Pointed Carving"  ·  15–21 cm  ·  Single-bevel  ·  Advanced
+<ParaStyle:Body>A specialist tool built for fish butchery. Its thick spine and heavy single-bevel edge withstand the force of severing fish heads and spines. The convex face guides the blade along bones cleanly. A skilled itamae can break down a whole snapper in under two minutes.
+<ParaStyle:Spec Label>Best for:
+<ParaStyle:Spec Value>Decapitating whole fish · Filleting fish off the bone · Breaking down poultry (Ko-Deba) · Trimming small bones
+<ParaStyle:Spec Label>Technique:
+<ParaStyle:Spec Value>Chopping · Filleting pull stroke
+<ParaStyle:Spec Label>Notable makers:
+<ParaStyle:Spec Value>Masamoto · Sakai Kikumori · Watanabe Blade
+
+<ParaStyle:Knife Category>Vegetable — Expert
+<ParaStyle:Knife Name>Usuba — 薄刃
+<ParaStyle:Knife Literal>"Thin Blade"  ·  18–24 cm  ·  Single-bevel  ·  Expert
+<ParaStyle:Body>The vegetable knife for washoku specialists. Unlike the Nakiri it is single-bevel — allowing the blade to be laid flat for katsuramuki: peeling a daikon into a continuous translucent sheet as thin as tissue paper. Apprentices in kaiseki restaurants may spend six months on this technique alone before being permitted to cook.
+<ParaStyle:Spec Label>Best for:
+<ParaStyle:Spec Value>Katsuramuki (paper-thin rotating cuts) · Diagonal decorative cuts · Chrysanthemum-cut daikon
+<ParaStyle:Spec Label>Technique:
+<ParaStyle:Spec Value>Katsuramuki · Diagonal slicing · Decorative cuts
+<ParaStyle:Spec Label>Notable makers:
+<ParaStyle:Spec Value>Masamoto · Aritsugu · Konosuke HD
+
+<ParaStyle:Knife Category>Slicing
+<ParaStyle:Knife Name>Sujihiki — 筋引き
+<ParaStyle:Knife Literal>"Sinew Puller"  ·  24–30 cm  ·  Double-bevel  ·  Intermediate to advanced
+<ParaStyle:Body>A double-bevel counterpart to the Yanagiba. The Sujihiki is the modern Japanese slicer, suited to both Western brigade work and Japanese preparation. Its narrow profile reduces drag through protein, producing beautifully clean, glossy slices of roast meat, cured salmon, or carpaccio.
+<ParaStyle:Spec Label>Best for:
+<ParaStyle:Spec Value>Slicing roast beef and duck breast · Portioning cured salmon and gravlax · Trimming silver skin · Carpaccio
+<ParaStyle:Spec Label>Technique:
+<ParaStyle:Spec Value>Long pull strokes — no rocking
+<ParaStyle:Spec Label>Notable makers:
+<ParaStyle:Spec Value>Konosuke · Takamura · Mazaki
+
+<ParaStyle:Knife Category>Utility
+<ParaStyle:Knife Name>Petty — ペティ
+<ParaStyle:Knife Literal>"From French: petit"  ·  10–18 cm  ·  Double-bevel  ·  All levels
+<ParaStyle:Body>Indispensable for detail work where larger knives are unwieldy. Japanese Petty knives are noticeably thinner than Western paring knives — the tip precision rivals a scalpel, allowing intricate garnish work and paper-thin lemon zest spirals.
+<ParaStyle:Spec Label>Best for:
+<ParaStyle:Spec Value>Peeling and trimming vegetables · Fabricating garnishes · Mincing shallots and garlic · In-hand cutting
+<ParaStyle:Spec Label>Technique:
+<ParaStyle:Spec Value>In-hand peel · Tip work · Fine dice
+<ParaStyle:Spec Label>Notable makers:
+<ParaStyle:Spec Value>Takamura R2 · Konosuke GS+ · Hinoura
+
+<ParaStyle:Knife Category>Boning
+<ParaStyle:Knife Name>Honesuki — 骨スキ
+<ParaStyle:Knife Literal>"Bone Piercer"  ·  15–18 cm  ·  Single or double-bevel  ·  Intermediate
+<ParaStyle:Body>Engineered for poultry with a rigid triangular blade that navigates joints precisely. Its acute tip pierces membranes and sockets cleanly. The Garasuki (larger form) is used to break down chicken into the eight-piece yakitori cut.
+<ParaStyle:Spec Label>Best for:
+<ParaStyle:Spec Value>Breaking down whole chickens · Removing duck and quail breasts · Oyster trimming · Socket joints in rabbit
+<ParaStyle:Spec Label>Technique:
+<ParaStyle:Spec Value>Scraping along bone · Piercing joints
+<ParaStyle:Spec Label>Notable makers:
+<ParaStyle:Spec Value>Masamoto · Tojiro · Fujiwara Teruyasu
+
+
+<ParaStyle:Chapter Number>Chapter Three
+<ParaStyle:Chapter Title>Steel
+<ParaStyle:Chapter JP>鋼材の種類
+
+<ParaStyle:Body>The steel is the soul of the knife. Japanese bladesmiths work with alloys that achieve hardness levels impossible in Western kitchen knives — but each steel demands a different relationship from its owner.
+
+<ParaStyle:Knife Name>Shirogami — White Steel #1 / #2
+<ParaStyle:Spec Label>HRC: <ParaStyle:Spec Value>62–65  <ParaStyle:Spec Label>Edge Retention: <ParaStyle:Spec Value>★★★★☆  <ParaStyle:Spec Label>Sharpenability: <ParaStyle:Spec Value>★★★★★  <ParaStyle:Spec Label>Rust Resistance: <ParaStyle:Spec Value>★☆☆☆☆
+<ParaStyle:Body>The purest carbon steel. Shirogami reaches exceptional sharpness with minimal effort on the whetstone. The trade-off is significant reactivity — it will patinate and rust if not dried immediately. Revered by traditionalists for its effortless ability to achieve a mirror-polished edge.
+<ParaStyle:Spec Label>Maintenance: <ParaStyle:Spec Value>Dry immediately after use. Apply camellia oil for storage. Develop a protective patina with food acids.
+<ParaStyle:Spec Label>Best for: <ParaStyle:Spec Value>Sashimi knives, traditional washoku work
+
+<ParaStyle:Knife Name>Aogami — Blue Steel #2 / Super
+<ParaStyle:Spec Label>HRC: <ParaStyle:Spec Value>63–65  <ParaStyle:Spec Label>Edge Retention: <ParaStyle:Spec Value>★★★★★  <ParaStyle:Spec Label>Sharpenability: <ParaStyle:Spec Value>★★★★☆  <ParaStyle:Spec Label>Rust Resistance: <ParaStyle:Spec Value>★★☆☆☆
+<ParaStyle:Body>Shirogami with added chromium and tungsten, which refine the grain and improve wear resistance. Aogami #2 is the professional standard — sharper-holding than most stainless, easy to sharpen, with a touch more toughness. Aogami Super pushes hardness toward HRC65+ for outstanding edge retention.
+<ParaStyle:Spec Label>Maintenance: <ParaStyle:Spec Value>Same as Shirogami, but slightly more forgiving. Still needs prompt drying.
+<ParaStyle:Spec Label>Best for: <ParaStyle:Spec Value>Professional all-round use, Gyuto, Yanagiba
+
+<ParaStyle:Knife Name>R2 / SG-2 — Powder Metallurgy Steel
+<ParaStyle:Spec Label>HRC: <ParaStyle:Spec Value>63–64  <ParaStyle:Spec Label>Edge Retention: <ParaStyle:Spec Value>★★★★★  <ParaStyle:Spec Label>Sharpenability: <ParaStyle:Spec Value>★★★☆☆  <ParaStyle:Spec Label>Rust Resistance: <ParaStyle:Spec Value>★★★★☆
+<ParaStyle:Body>A semi-stainless powder metallurgy steel offering near-carbon-steel sharpness with dramatically improved corrosion resistance. The powder process creates an extremely uniform microstructure, allowing a very fine and consistent edge. Popular in high-end production knives.
+<ParaStyle:Spec Label>Maintenance: <ParaStyle:Spec Value>Wash and dry after use. No oiling required for normal use.
+<ParaStyle:Spec Label>Best for: <ParaStyle:Spec Value>Busy professional kitchens where carbon maintenance is impractical
+
+<ParaStyle:Knife Name>VG-10 — Stainless
+<ParaStyle:Spec Label>HRC: <ParaStyle:Spec Value>60–62  <ParaStyle:Spec Label>Edge Retention: <ParaStyle:Spec Value>★★★☆☆  <ParaStyle:Spec Label>Sharpenability: <ParaStyle:Spec Value>★★★☆☆  <ParaStyle:Spec Label>Rust Resistance: <ParaStyle:Spec Value>★★★★★
+<ParaStyle:Body>The backbone of the Japanese premium stainless market. Hard enough to hold a keen edge, resistant enough for harsh kitchen environments, tough enough to resist chipping. The core steel in many Damascus-clad knives. A great entry point into Japanese knives.
+<ParaStyle:Spec Label>Maintenance: <ParaStyle:Spec Value>Hand-wash always recommended. Technically dishwasher-safe, but avoid.
+<ParaStyle:Spec Label>Best for: <ParaStyle:Spec Value>Entry to mid-level professional use, high-humidity kitchens
+
+<ParaStyle:Knife Name>HAP40 — High Speed Steel
+<ParaStyle:Spec Label>HRC: <ParaStyle:Spec Value>66–68  <ParaStyle:Spec Label>Edge Retention: <ParaStyle:Spec Value>★★★★★  <ParaStyle:Spec Label>Sharpenability: <ParaStyle:Spec Value>★★☆☆☆  <ParaStyle:Spec Label>Rust Resistance: <ParaStyle:Spec Value>★★★☆☆
+<ParaStyle:Body>A semi-stainless high-speed tool steel reaching HRC67+. Edge retention that borders on extraordinary — a properly sharpened HAP40 blade can last through an entire service without touching a honing rod. The compromise: it takes significant effort and skill to sharpen on whetstones. Diamond stones recommended.
+<ParaStyle:Spec Label>Maintenance: <ParaStyle:Spec Value>Requires dedicated sharpening sessions; diamond stones recommended.
+<ParaStyle:Spec Label>Best for: <ParaStyle:Spec Value>Chefs who sharpen rarely but demand maximum longevity
+
+<ParaStyle:Knife Name>Damascus / Stainless-Clad
+<ParaStyle:Spec Label>HRC: <ParaStyle:Spec Value>60–65 (depends on core)  <ParaStyle:Spec Label>Edge Retention: <ParaStyle:Spec Value>★★★★☆  <ParaStyle:Spec Label>Sharpenability: <ParaStyle:Spec Value>★★★☆☆  <ParaStyle:Spec Label>Rust Resistance: <ParaStyle:Spec Value>★★★★★
+<ParaStyle:Body>Damascus cladding is a soft stainless steel layered around a harder core (often VG-10, R2, or Aogami). The layering creates a beautiful watered pattern and protects the core. Performance depends entirely on the core steel — do not buy Damascus for the pattern alone.
+<ParaStyle:Spec Label>Maintenance: <ParaStyle:Spec Value>Treat based on the core steel type.
+<ParaStyle:Spec Label>Best for: <ParaStyle:Spec Value>Aesthetic preference combined with performance
+
+<ParaStyle:Pull Quote>"Do not buy Damascus for the pattern. Buy it for the core steel. The watered surface is cladding — the edge is where the truth lives."
+<ParaStyle:Attribution>Sakai bladesmith tradition
+
+<ParaStyle:Chapter Number>Chapter Four
+<ParaStyle:Chapter Title>Handles
+<ParaStyle:Chapter JP>柄の選び方
+
+<ParaStyle:Knife Name>Wa Handle — Traditional Japanese
+<ParaStyle:Spec Label>Weight: <ParaStyle:Spec Value>Very light  <ParaStyle:Spec Label>Balance: <ParaStyle:Spec Value>Blade-forward  <ParaStyle:Spec Label>Shapes: <ParaStyle:Spec Value>Octagonal · D-shaped · Round
+<ParaStyle:Body>The traditional Japanese handle sits the knife's balance point further forward, near the blade. Lighter in hand, it reduces wrist fatigue during long prep sessions. The octagonal shape subtly registers the blade angle in the palm — feedback prized by experienced cooks. Available in Ho wood (magnolia), ebony, stabilised wood, and buffalo horn-collared variants.
+<ParaStyle:Spec Label>Advantages: <ParaStyle:Spec Value>Lighter · Better blade feedback · Handle can be re-fitted · Ideal for pinch grip
+<ParaStyle:Spec Label>Considerations: <ParaStyle:Spec Value>Not dishwasher safe · Some woods absorb moisture · Takes getting used to
+
+<ParaStyle:Knife Name>Western Handle (Yo) — European via Japan
+<ParaStyle:Spec Label>Weight: <ParaStyle:Spec Value>Heavier  <ParaStyle:Spec Label>Balance: <ParaStyle:Spec Value>Handle-forward or neutral  <ParaStyle:Spec Label>Construction: <ParaStyle:Spec Value>Full tang, three rivets
+<ParaStyle:Body>Full-tang construction with three rivets is the Western standard. Japanese makers produce excellent Western-handled knives (the 'Yo' style) for chefs transitioning from European knives. The heavier, bolstered feel is familiar, though it sacrifices some blade-forward balance. Materials: Pakkawood, Micarta, G10 composite, stainless.
+<ParaStyle:Spec Label>Advantages: <ParaStyle:Spec Value>Familiar to Western-trained chefs · More robust · Wide material choice
+<ParaStyle:Spec Label>Considerations: <ParaStyle:Spec Value>Heavier · Less blade feedback · Handle not replaceable · Bolster can hinder sharpening
+
+<ParaStyle:Chapter Number>Chapter Five
+<ParaStyle:Chapter Title>Technique
+<ParaStyle:Chapter JP>包丁の使い方
+
+<ParaStyle:Body>A sharp knife in the wrong grip is no better than a dull one. Japanese knife technique is defined by economy of motion, full blade utilisation, and cuts calibrated to the ingredient — not forced through it.
+
+<ParaStyle:Knife Name>Pinch Grip — つまみ持ち
+<ParaStyle:Body>The standard grip for professional knife work. Pinch the blade between the thumb and bent index finger, just ahead of the bolster. The remaining three fingers wrap the handle. This keeps the blade stable and dramatically reduces wrist strain. 95% of professional Japanese chefs use this grip.
+<ParaStyle:Spec Label>Suitable for: <ParaStyle:Spec Value>All knives above 15 cm
+
+<ParaStyle:Knife Name>Push Cut — 送り切り
+<ParaStyle:Body>The blade moves forward and slightly down simultaneously. The entire length of the blade is used in each stroke. Ideal for vegetables and boneless proteins. The default motion for Nakiri and Gyuto — more efficient than rocking and produces cleaner cuts with less cellular damage.
+<ParaStyle:Spec Label>Suitable for: <ParaStyle:Spec Value>Gyuto · Nakiri · Santoku · Petty
+
+<ParaStyle:Knife Name>Pull Cut — 引き切り
+<ParaStyle:Body>The blade is drawn toward the body in a single, fluid motion. Used for sashimi slicing, where cellular integrity of fish flesh is paramount. One stroke per slice — no back-and-forth. The long blade of the Yanagiba is designed specifically so the full draw covers the entire slice in one pass.
+<ParaStyle:Spec Label>Suitable for: <ParaStyle:Spec Value>Yanagiba · Sujihiki
+
+<ParaStyle:Knife Name>Katsuramuki — 桂剥き
+<ParaStyle:Body>Rotary peeling: the vegetable is held in the left hand and rotated, while the Usuba blade peels a continuous, paper-thin sheet. The sheet can be 20–30 cm long from a single daikon. Considered one of the most difficult Japanese knife skills — apprentices may spend six months on this technique alone before being permitted to cook.
+<ParaStyle:Spec Label>Suitable for: <ParaStyle:Spec Value>Usuba only · Expert level
+
+<ParaStyle:Knife Name>Sogi-giri — そぎ切り
+<ParaStyle:Body>Diagonal bias-cutting: the blade is angled at 45° to the food to create wider slices from narrow ingredients (spring onion, chicken breast, fish fillet). Increases surface area, improves sauce adhesion, and ensures even cooking. A key technique in both yakitori and kaiseki preparation.
+<ParaStyle:Spec Label>Suitable for: <ParaStyle:Spec Value>Gyuto · Sujihiki · Yanagiba
+
+<ParaStyle:Chapter Number>Chapter Six
+<ParaStyle:Chapter Title>Knife & Food Pairing
+<ParaStyle:Chapter JP>食材と包丁の組み合わせ
+
+<ParaStyle:Knife Name>Raw Fish — Sashimi & Sushi
+<ParaStyle:Spec Label>Primary knife: <ParaStyle:Spec Value>Yanagiba (30 cm)  <ParaStyle:Spec Label>Secondary: <ParaStyle:Spec Value>Deba (for breakdown)
+<ParaStyle:Body>Single-bevel essential for gloss. Cut against the grain of muscle fibres. Use Deba to break down the whole fish first, then Yanagiba for all slicing.
+
+<ParaStyle:Knife Name>Whole Round Fish
+<ParaStyle:Spec Label>Primary knife: <ParaStyle:Spec Value>Deba  <ParaStyle:Spec Label>Secondary: <ParaStyle:Spec Value>Yanagiba (after filleting)
+<ParaStyle:Body>Match Deba size to fish size. Ko-Deba (10 cm) for seabream; large Deba (18 cm+) for tuna loins. Technique: decapitate → score spine → fillet along rib cage.
+
+<ParaStyle:Knife Name>Root Vegetables
+<ParaStyle:Spec Label>Primary knife: <ParaStyle:Spec Value>Nakiri or Usuba  <ParaStyle:Spec Label>Secondary: <ParaStyle:Spec Value>Petty (for detail)
+<ParaStyle:Body>Full blade contact on every stroke. For katsuramuki (rotary peeling) use Usuba exclusively. Minimise the number of cuts to reduce oxidation.
+
+<ParaStyle:Knife Name>Leafy Greens & Herbs
+<ParaStyle:Spec Label>Primary knife: <ParaStyle:Spec Value>Nakiri or Gyuto  <ParaStyle:Spec Label>Secondary: <ParaStyle:Spec Value>Petty
+<ParaStyle:Body>Slice, do not tear. A sharp Nakiri prevents bruising and oxidation at the cut edge. Minimise contact time between blade and herbs.
+
+<ParaStyle:Knife Name>Boneless Meat & Poultry
+<ParaStyle:Spec Label>Primary knife: <ParaStyle:Spec Value>Gyuto (24 cm)  <ParaStyle:Spec Label>Secondary: <ParaStyle:Spec Value>Sujihiki (for portioning)
+<ParaStyle:Body>Rock chop or push cut for dicing; draw cut for portioning. Always slice against the grain for tenderness.
+
+<ParaStyle:Knife Name>Whole Poultry
+<ParaStyle:Spec Label>Primary knife: <ParaStyle:Spec Value>Honesuki  <ParaStyle:Spec Label>Secondary: <ParaStyle:Spec Value>Gyuto (to finish)
+<ParaStyle:Body>A sharp Honesuki tip navigates the oyster socket in one clean arc. Use Gyuto to finish portioning into service-ready pieces.
+
+<ParaStyle:Knife Name>Cooked Roasts
+<ParaStyle:Spec Label>Primary knife: <ParaStyle:Spec Value>Sujihiki (27–30 cm)
+<ParaStyle:Body>Long, clean draw strokes — never saw. Let the knife do the work. Pressure equals torn fibres and compressed texture.
+
+<ParaStyle:Knife Name>Tofu & Delicate Proteins
+<ParaStyle:Spec Label>Primary knife: <ParaStyle:Spec Value>Yanagiba or thin Gyuto
+<ParaStyle:Body>Gravity-only pressure, single pass. Silken tofu requires a blade thin enough to displace without crushing. No sawing, no rocking.
+
+
+<ParaStyle:Chapter Number>Chapter Seven
+<ParaStyle:Chapter Title>Sharpening Stones
+<ParaStyle:Chapter JP>砥石の知識と使い方
+
+<ParaStyle:Body>Sharpening is not maintenance — it is craft. Japanese knives are ground to angles far more acute than their Western counterparts (10–15° vs 20–25°), which means they achieve extraordinary sharpness but demand appropriate whetstones and technique. A ceramic honing rod preserves an edge between sessions; a whetstone restores it.
+
+<ParaStyle:Section Eyebrow>Stage 1 of 7
+<ParaStyle:Knife Name>120–220 Grit — Coarse Repair
+<ParaStyle:Spec Label>Use: <ParaStyle:Spec Value>Rarely — only after damage  <ParaStyle:Spec Label>Abrasive: <ParaStyle:Spec Value>Silicon carbide (SiC)  <ParaStyle:Spec Label>Soak: <ParaStyle:Spec Value>10 minutes
+<ParaStyle:Body>Heavy reprofiling, grinding out chips, re-establishing a completely lost edge bevel. Cuts very aggressively — use as little time as needed and move to the next stage quickly. Coarse stones leave deep scratches that must be worked out at subsequent grits.
+<ParaStyle:Spec Label>Notable stones: <ParaStyle:Spec Value>Naniwa Chocera 150 · King KW-65 120 · Shapton Kuromaku 120
+
+<ParaStyle:Section Eyebrow>Stage 2 of 7
+<ParaStyle:Knife Name>400–600 Grit — Medium Coarse
+<ParaStyle:Spec Label>Use: <ParaStyle:Spec Value>Occasionally  <ParaStyle:Spec Label>Abrasive: <ParaStyle:Spec Value>Aluminium oxide  <ParaStyle:Spec Label>Soak: <ParaStyle:Spec Value>5–10 minutes
+<ParaStyle:Body>Raising a burr on neglected edges, thinning blade geometry, intermediate repair. The 'forgotten grit' — skipping from 220 to 1000 leaves deep scratches that take far too long to refine. A 400 bridges the gap efficiently.
+<ParaStyle:Spec Label>Notable stones: <ParaStyle:Spec Value>Naniwa Chocera 400 · Shapton Kuromaku 320 · King 400
+
+<ParaStyle:Section Eyebrow>Stage 3 of 7
+<ParaStyle:Knife Name>800–1200 Grit — Primary Sharpening
+<ParaStyle:Spec Label>Use: <ParaStyle:Spec Value>Every 2–4 weeks under professional use  <ParaStyle:Spec Label>Abrasive: <ParaStyle:Spec Value>Aluminium oxide  <ParaStyle:Spec Label>Soak: <ParaStyle:Spec Value>5 minutes
+<ParaStyle:Body>Main edge setting — the grit most chefs reach for in routine sharpening. Raises a clean burr and begins edge refinement. The 1000-grit Shapton Kuromaku is the industry standard for good reason — it cuts quickly, maintains flatness, and is forgiving for all steel types.
+<ParaStyle:Spec Label>Notable stones: <ParaStyle:Spec Value>Shapton Kuromaku 1000 · Naniwa Chocera 1000 · King KW-65 1000 · Bester 1200
+
+<ParaStyle:Section Eyebrow>Stage 4 of 7
+<ParaStyle:Knife Name>2000–3000 Grit — Edge Refinement
+<ParaStyle:Spec Label>Use: <ParaStyle:Spec Value>Each sharpening session  <ParaStyle:Spec Label>Abrasive: <ParaStyle:Spec Value>Aluminium oxide  <ParaStyle:Spec Label>Soak: <ParaStyle:Spec Value>3–5 minutes
+<ParaStyle:Body>Refining the 1000-grit scratch pattern, reducing tooth on the edge, improving push-cut performance. At this grit the edge begins to feel refined under a fingernail. The Suehiro Rika 3000 is beloved for its feedback and the creamy slurry it produces.
+<ParaStyle:Spec Label>Notable stones: <ParaStyle:Spec Value>Naniwa Chocera 2000 · Shapton Kuromaku 2000 · Suehiro Rika 3000
+
+<ParaStyle:Section Eyebrow>Stage 5 of 7
+<ParaStyle:Knife Name>5000–6000 Grit — Polishing
+<ParaStyle:Spec Label>Use: <ParaStyle:Spec Value>Each session  <ParaStyle:Spec Label>Abrasive: <ParaStyle:Spec Value>Aluminium oxide  <ParaStyle:Spec Label>Soak: <ParaStyle:Spec Value>Splash-and-go or 2–3 minutes
+<ParaStyle:Body>Polishing the edge and blade face; transition stone between sharpening and finishing. At this stage the edge can cut arm hair and slice newspaper cleanly. Many professional chefs stop here for double-bevel knives used in brigade kitchens.
+<ParaStyle:Spec Label>Notable stones: <ParaStyle:Spec Value>Naniwa Chocera 5000 · Shapton Kuromaku 5000 · King Deluxe 6000
+
+<ParaStyle:Section Eyebrow>Stage 6 of 7
+<ParaStyle:Knife Name>8000–10000 Grit — Ultra Fine Finishing
+<ParaStyle:Spec Label>Use: <ParaStyle:Spec Value>Each session for single-bevel knives  <ParaStyle:Spec Label>Abrasive: <ParaStyle:Spec Value>Aluminium oxide  <ParaStyle:Spec Label>Soak: <ParaStyle:Spec Value>Splash-and-go
+<ParaStyle:Body>Final edge refinement, toothless edge for push-cutting and sashimi knives. Required for Yanagiba and Usuba — the single-bevel mirror finish reduces friction against fish flesh. The difference between a 6000 and a 10000 finish is visible to the naked eye on the cut face of fresh tuna.
+<ParaStyle:Spec Label>Notable stones: <ParaStyle:Spec Value>Naniwa Chocera 10000 · Shapton Kuromaku 8000 · King 8000
+
+<ParaStyle:Section Eyebrow>Stage 7 of 7
+<ParaStyle:Knife Name>12000–30000 Grit — Mirror Polish & Natural Stones
+<ParaStyle:Spec Label>Use: <ParaStyle:Spec Value>Occasional — sashimi specialists  <ParaStyle:Spec Label>Abrasive: <ParaStyle:Spec Value>Fine aluminium oxide / natural silicate  <ParaStyle:Spec Label>Soak: <ParaStyle:Spec Value>Splash-and-go
+<ParaStyle:Body>Mirror-polishing single-bevel knives; maximum gloss on the ura face of the Yanagiba. Natural finishing stones from Kyoto (Hon-Suita, Nakayama, Ozuku) are prized by sushi chefs for a quality of edge impossible to replicate synthetically. Their irregular abrasive particles produce a 'toothy-yet-polished' edge that grips fish beautifully without tearing. Prices range from ¥50,000 to ¥500,000+.
+<ParaStyle:Spec Label>Notable stones: <ParaStyle:Spec Value>Naniwa Chocera 12000 · Suehiro Gokumyo 20000 · Nakayama Maruichi (natural) · Ohira Tomae (natural)
+
+<ParaStyle:Section Eyebrow>Sharpening Angles
+<ParaStyle:Knife Name>Angle Reference Guide
+<ParaStyle:Spec Label>Double-bevel Japanese (Gyuto, Santoku, Nakiri): <ParaStyle:Spec Value>10–15° per side — hold spine 2–3 finger-widths above the stone
+<ParaStyle:Spec Label>Western-style Japanese (Honesuki, Yo-handle Gyuto): <ParaStyle:Spec Value>15–20° per side
+<ParaStyle:Spec Label>Single-bevel (Yanagiba, Deba, Usuba): <ParaStyle:Spec Value>Ura (flat back) + convex face — maintain hollow grind. 70–80% time on the front face, 20–30% on the flat ura back.
+
+<ParaStyle:Section Eyebrow>Stone Types
+<ParaStyle:Knife Name>Water Stones (Mizutogi)
+<ParaStyle:Body>The standard for Japanese knife sharpening. Soaked in water before use, the slurry of released abrasive particles does much of the cutting work. They dish (wear unevenly) over time and require periodic flattening with a lapping plate or diamond plate.
+<ParaStyle:Spec Label>Maintenance: <ParaStyle:Spec Value>Flatten regularly with a lapping plate. Store dry to prevent cracking in freezing temperatures.
+
+<ParaStyle:Knife Name>Diamond Plates
+<ParaStyle:Body>Cut the fastest of all stones and never dish. Essential for sharpening very hard steels (HAP40, ZDP-189) and for routine stone flattening. Not suitable for final finishing — the scratches are too coarse and irregular.
+<ParaStyle:Spec Label>Maintenance: <ParaStyle:Spec Value>Rinse clean, store dry. Electroplated plates wear out; sintered diamond lasts much longer.
+
+<ParaStyle:Knife Name>Ceramic Stones
+<ParaStyle:Body>Vitrified aluminium oxide — the modern professional standard. Consistent, long-lasting, and available across all grits. Premium ceramic stones (Naniwa Chocera, Shapton Kuromaku) are used by top itamae worldwide for their cutting speed, feedback, and edge quality.
+<ParaStyle:Spec Label>Maintenance: <ParaStyle:Spec Value>Flatten when dishing appears. Store dry.
+
+<ParaStyle:Knife Name>Oil Stones
+<ParaStyle:Body>Western tradition (Arkansas, Crystolon). Not recommended for Japanese knives — oil clogs the steel's fine grain structure and degrades the edge. Avoid entirely when working with high-carbon and powder-metallurgy steels.
+
+<ParaStyle:Knife Name>Natural Stones — Tennen-to (天然砥)
+<ParaStyle:Body>Quarried in the mountains of Kyoto Prefecture, particularly around Narutaki and Umegahata. Each stone is unique — grit, hardness, and mineral composition vary stone by stone. The finest natural finishing stones (Hon-Suita, Nakayama, Ozuku) command prices from ¥50,000 to ¥500,000+. A skilled sharpener reads the feedback of each stone like a musical instrument. Natural stones work best with Shirogami and Aogami steels only.
+<ParaStyle:Spec Label>Maintenance: <ParaStyle:Spec Value>Store dry, handle carefully — many are irreplaceable. Some types crack if wetted too quickly.
+
+<ParaStyle:Section Eyebrow>Seven Rules of Sharpening
+<ParaStyle:Tip Item>01  Soak water stones for 5–10 minutes before use; splash-and-go stones need only a wet surface.
+<ParaStyle:Tip Item>02  Use consistent, moderate pressure on forward strokes; reduce pressure on return strokes.
+<ParaStyle:Tip Item>03  Work the full length of the blade in each pass — heel to tip in one smooth arc.
+<ParaStyle:Tip Item>04  Raise a fine burr (wire edge) on one side before flipping — this confirms metal is actually being removed.
+<ParaStyle:Tip Item>05  Remove the burr on the finishing stone with alternating very light strokes, reducing pressure each time.
+<ParaStyle:Tip Item>06  For single-bevel knives: 70–80% of time on the front (convex) face, 20–30% on the flat ura back.
+<ParaStyle:Tip Item>07  Strop on bare leather or a 12,000-grit stone to align the final edge apex before service.
+
+<ParaStyle:Pull Quote>"The stone is as important as the knife. A poor stone produces a poor edge regardless of the steel. A great stone can sharpen anything."
+<ParaStyle:Attribution>Masamoto Sohonten, Tokyo — training notes
+
+<ParaStyle:Section Eyebrow>Critical Note
+<ParaStyle:Timeline Title>Stone Flatness — The Non-Negotiable Rule
+<ParaStyle:Body>All water stones dish with use. A dished stone rounds the blade's edge rather than sharpening it — you will work for twenty minutes and make the knife duller. Flatten every 2–3 sharpening sessions using a DMT D8C diamond lapping plate or an Atoma 140. A flat stone is the prerequisite for every sharp knife. This single rule separates chefs who can sharpen from those who think they can.
+
+<ParaStyle:Section Eyebrow>Daily Care
+<ParaStyle:Knife Name>Looking After Your Japanese Knives
+<ParaStyle:Tip Item>→  Hand-wash only — never dishwasher
+<ParaStyle:Tip Item>→  Dry immediately after washing — never leave wet
+<ParaStyle:Tip Item>→  Store on a magnetic rack or in a saya (wooden sheath)
+<ParaStyle:Tip Item>→  Hone on a smooth ceramic rod before each service
+<ParaStyle:Tip Item>→  Sharpen on whetstones every 2–4 weeks under professional use
+<ParaStyle:Tip Item>→  Oil carbon steel blades with camellia oil for storage
+<ParaStyle:Tip Item>→  Never cut frozen food, hard cheese, or bone with a Japanese knife
+<ParaStyle:Tip Item>→  Use a wooden or plastic cutting board — never glass, ceramic, or marble
+
