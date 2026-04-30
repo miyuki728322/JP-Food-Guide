@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<idPkg:Fonts xmlns:idPkg="http://ns.adobe.com/AdobeInDesign/idml/1.0/packaging" DOMVersion="14.0">
+  <FontFamily Self="FontFamily/Cormorant Garamond" Name="Cormorant Garamond">
+    <Font Self="Font/Cormorant Garamond%Light" FontFamily="Cormorant Garamond" Name="Cormorant Garamond Light" PostScriptName="CormorantGaramond-Light" Status="Installed" FontStyleName="Light" FontType="OpenTypeTT" WritingScript="0"/>
+    <Font Self="Font/Cormorant Garamond%Regular" FontFamily="Cormorant Garamond" Name="Cormorant Garamond Regular" PostScriptName="CormorantGaramond-Regular" Status="Installed" FontStyleName="Regular" FontType="OpenTypeTT" WritingScript="0"/>
+    <Font Self="Font/Cormorant Garamond%Italic" FontFamily="Cormorant Garamond" Name="Cormorant Garamond Italic" PostScriptName="CormorantGaramond-Italic" Status="Installed" FontStyleName="Italic" FontType="OpenTypeTT" WritingScript="0"/>
+  </FontFamily>
+  <FontFamily Self="FontFamily/EB Garamond" Name="EB Garamond">
+    <Font Self="Font/EB Garamond%Regular" FontFamily="EB Garamond" Name="EB Garamond Regular" PostScriptName="EBGaramond-Regular" Status="Installed" FontStyleName="Regular" FontType="OpenTypeTT" WritingScript="0"/>
+    <Font Self="Font/EB Garamond%Italic" FontFamily="EB Garamond" Name="EB Garamond Italic" PostScriptName="EBGaramond-Italic" Status="Installed" FontStyleName="Italic" FontType="OpenTypeTT" WritingScript="0"/>
+    <Font Self="Font/EB Garamond%Medium" FontFamily="EB Garamond" Name="EB Garamond Medium" PostScriptName="EBGaramond-Medium" Status="Installed" FontStyleName="Medium" FontType="OpenTypeTT" WritingScript="0"/>
+  </FontFamily>
+  <FontFamily Self="FontFamily/Inter" Name="Inter">
+    <Font Self="Font/Inter%Regular" FontFamily="Inter" Name="Inter Regular" PostScriptName="Inter-Regular" Status="Installed" FontStyleName="Regular" FontType="OpenTypeTT" WritingScript="0"/>
+    <Font Self="Font/Inter%Medium" FontFamily="Inter" Name="Inter Medium" PostScriptName="Inter-Medium" Status="Installed" FontStyleName="Medium" FontType="OpenTypeTT" WritingScript="0"/>
+  </FontFamily>
+  <FontFamily Self="FontFamily/Noto Serif JP" Name="Noto Serif JP">
+    <Font Self="Font/Noto Serif JP%Light" FontFamily="Noto Serif JP" Name="Noto Serif JP Light" PostScriptName="NotoSerifJP-Light" Status="Installed" FontStyleName="Light" FontType="OpenTypeTT" WritingScript="0"/>
+    <Font Self="Font/Noto Serif JP%Regular" FontFamily="Noto Serif JP" Name="Noto Serif JP Regular" PostScriptName="NotoSerifJP-Regular" Status="Installed" FontStyleName="Regular" FontType="OpenTypeTT" WritingScript="0"/>
+  </FontFamily>
+</idPkg:Fonts>

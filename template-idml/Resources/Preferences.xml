@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<idPkg:Preferences xmlns:idPkg="http://ns.adobe.com/AdobeInDesign/idml/1.0/packaging" DOMVersion="14.0">
+  <DocumentPreference Self="dDocumentPreference" PageHeight="297" PageWidth="210" PagesPerDocument="2" FacingPages="true" AllowPageShuffle="true" DocumentBleedBottomOffset="3" DocumentBleedInsideOrLeftOffset="3" DocumentBleedOutsideOrRightOffset="3" DocumentBleedTopOffset="3" SlugBottomOffset="0" SlugInsideOrLeftOffset="0" SlugRightOrOutsideOffset="0" SlugTopOffset="0" PageBinding="LeftToRight" PreserveLayoutWhenShuffling="true" StartPageNumber="1" PageOrientation="Vertical"/>
+  <MarginPreference Self="dMarginPreference" ColumnCount="1" ColumnGutter="5" Top="20" Bottom="20" Left="20" Right="20" ColumnDirection="Horizontal"/>
+  <GuidePreference Self="dGuidePreference" RulerGuidesViewThreshold="5" GuidesShown="true" GuidesLocked="false" GuidesSnapto="true" GuidesInBack="true"/>
+  <GridPreference Self="dGridPreference" HorizontalGridlineDivision="14.4" HorizontalGridSubdivision="8" VerticalGridlineDivision="14.4" VerticalGridSubdivision="8" GridsInBack="true" DocumentGridShown="false" DocumentGridSnapto="false" BaselineDivision="14.4" BaselineStart="36" BaselineGridShown="false" BaselineGridRelativeOption="TopOfPage" BaselineViewThreshold="75" BaselineGridSnapto="false"/>
+  <ViewPreference Self="dViewPreference" HorizontalMeasurementUnits="Millimeters" VerticalMeasurementUnits="Millimeters" RulerOrigin="SpreadOrigin" PointsPerInch="72" CursorKeyDistance="0.353" StorySplitterPosition="50"/>
+  <TransparencyPreference Self="dTransparencyPreference" BlendingSpace="CMYK" IgnoreSpreadOverrides="false"/>
+</idPkg:Preferences>

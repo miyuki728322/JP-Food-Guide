@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<idPkg:Graphic xmlns:idPkg="http://ns.adobe.com/AdobeInDesign/idml/1.0/packaging" DOMVersion="14.0">
+  <Color Self="Color/Black" Model="Process" Space="CMYK" ColorValue="0 0 0 100" ColorOverride="Specialblack" AlternateSpace="NoAlternateColor" AlternateColorValue="" Name="Black" ColorEditable="false" ColorRemovable="false" Visible="true" SwatchCreatorID="7937" SpotInkAliasSpotColorReference="n"/>
+  <Color Self="Color/Paper" Model="Process" Space="CMYK" ColorValue="0 0 0 0" ColorOverride="Specialpaper" AlternateSpace="NoAlternateColor" AlternateColorValue="" Name="Paper" ColorEditable="false" ColorRemovable="false" Visible="true" SwatchCreatorID="7937" SpotInkAliasSpotColorReference="n"/>
+  <Color Self="Color/u_Ink" Model="Process" Space="RGB" ColorValue="26 26 26" ColorOverride="Normal" AlternateSpace="NoAlternateColor" AlternateColorValue="" Name="Ink" ColorEditable="true" ColorRemovable="true" Visible="true" SpotInkAliasSpotColorReference="n"/>
+  <Color Self="Color/u_AccentRed" Model="Process" Space="RGB" ColorValue="139 26 26" ColorOverride="Normal" AlternateSpace="NoAlternateColor" AlternateColorValue="" Name="Accent Red" ColorEditable="true" ColorRemovable="true" Visible="true" SpotInkAliasSpotColorReference="n"/>
+  <Color Self="Color/u_AccentGold" Model="Process" Space="RGB" ColorValue="196 168 130" ColorOverride="Normal" AlternateSpace="NoAlternateColor" AlternateColorValue="" Name="Accent Gold" ColorEditable="true" ColorRemovable="true" Visible="true" SpotInkAliasSpotColorReference="n"/>
+  <Color Self="Color/u_SteelBlue" Model="Process" Space="RGB" ColorValue="44 62 80" ColorOverride="Normal" AlternateSpace="NoAlternateColor" AlternateColorValue="" Name="Steel Blue" ColorEditable="true" ColorRemovable="true" Visible="true" SpotInkAliasSpotColorReference="n"/>
+  <Color Self="Color/u_Cream" Model="Process" Space="RGB" ColorValue="250 248 244" ColorOverride="Normal" AlternateSpace="NoAlternateColor" AlternateColorValue="" Name="Cream" ColorEditable="true" ColorRemovable="true" Visible="true" SpotInkAliasSpotColorReference="n"/>
+  <Color Self="Color/u_Rule" Model="Process" Space="RGB" ColorValue="200 192 180" ColorOverride="Normal" AlternateSpace="NoAlternateColor" AlternateColorValue="" Name="Rule" ColorEditable="true" ColorRemovable="true" Visible="true" SpotInkAliasSpotColorReference="n"/>
+  <Color Self="Color/u_InkLight" Model="Process" Space="RGB" ColorValue="107 107 107" ColorOverride="Normal" AlternateSpace="NoAlternateColor" AlternateColorValue="" Name="Ink Light" ColorEditable="true" ColorRemovable="true" Visible="true" SpotInkAliasSpotColorReference="n"/>
+  <Swatch Self="Swatch/None" Name="None"/>
+</idPkg:Graphic>

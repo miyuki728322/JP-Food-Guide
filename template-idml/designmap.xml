@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<?aid style="50" type="document" readerVersion="6.0" featureSet="257" product="14.0(148)" ?>
+<Document xmlns:idPkg="http://ns.adobe.com/AdobeInDesign/idml/1.0/packaging" Self="d" StoryList="u200 uCoverStory" Name="Japanese Knife Guide.indd" ZeroPoint="0 0" ActiveLayer="u300" CMYKProfile="U.S. Web Coated (SWOP) v2" RGBProfile="sRGB IEC61966-2.1" SolidColorIntent="UseColorSettings" AfterBlendingIntent="UseColorSettings" DefaultImageIntent="UseColorSettings" RGBPolicy="UseEmbeddedProfile" CMYKPolicy="UseEmbeddedProfile">
+  <Language Self="Language/$ID/English: USA" Name="$ID/English: USA" SingleQuotes="‘’" DoubleQuotes="“”" PrimaryLanguageName="$ID/English" SublanguageName="$ID/USA" Id="20" HyphenationVendor="Proximity" SpellingVendor="Proximity"/>
+  <idPkg:Graphic src="Resources/Graphic.xml"/>
+  <idPkg:Fonts src="Resources/Fonts.xml"/>
+  <idPkg:Styles src="Resources/Styles.xml"/>
+  <idPkg:Preferences src="Resources/Preferences.xml"/>
+  <Layer Self="u300" Name="Layer 1" Visible="true" Locked="false" IgnoreWrap="false" ShowGuides="true" LockGuides="false" UI="true" Expendable="true" Printable="true" LayerColor="LightBlue"/>
+  <Section Self="uSection1" Length="2" Name="" ContinueNumbering="false" IncludeSectionPrefix="false" SectionPrefix="" PageNumberStart="1" PageNumberStyle="Arabic" MarkerForSectionStart="ParagraphMarker/uSection1Marker" PageStart="ua"/>
+  <idPkg:MasterSpread src="MasterSpreads/MasterSpread_uMaster.xml"/>
+  <idPkg:Spread src="Spreads/Spread_u100.xml"/>
+  <idPkg:Spread src="Spreads/Spread_u101.xml"/>
+  <idPkg:Story src="Stories/Story_u200.xml"/>
+  <idPkg:Story src="Stories/Story_uCoverStory.xml"/>
+  <idPkg:BackingStory src="XML/BackingStory.xml"/>
+  <idPkg:Mapping src="XML/Mapping.xml"/>
+</Document>

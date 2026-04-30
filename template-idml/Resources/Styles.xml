@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<idPkg:Styles xmlns:idPkg="http://ns.adobe.com/AdobeInDesign/idml/1.0/packaging" DOMVersion="14.0">
+  <RootCharacterStyleGroup Self="u_RootCharacterStyleGroup">
+    <CharacterStyle Self="CharacterStyle/$ID/[No character style]" Imported="false" KeyboardShortcut="0 0" Name="$ID/[No character style]"/>
+    <CharacterStyle Self="CharacterStyle/u_AccentLabel" Name="Accent Label" FillColor="Color/u_AccentRed" PointSize="9" Tracking="350" Capitalization="AllCaps" AppliedFont="Inter" FontStyle="Medium"/>
+    <CharacterStyle Self="CharacterStyle/u_JapaneseText" Name="Japanese Text" AppliedFont="Noto Serif JP" FontStyle="Regular"/>
+  </RootCharacterStyleGroup>
+  <RootParagraphStyleGroup Self="u_RootParagraphStyleGroup">
+    <ParagraphStyle Self="ParagraphStyle/$ID/[No paragraph style]" Name="$ID/[No paragraph style]" Imported="false" NextStyle="ParagraphStyle/$ID/[No paragraph style]" KeyboardShortcut="0 0"/>
+    <ParagraphStyle Self="ParagraphStyle/u_CoverTitle" Name="00 Cover Title" PointSize="72" Leading="76" AppliedFont="Cormorant Garamond" FontStyle="Light" FillColor="Color/Paper" Justification="LeftAlign" SpaceBefore="0" SpaceAfter="8" KerningMethod="$ID/Optical" NextStyle="ParagraphStyle/u_CoverSubtitle"/>
+    <ParagraphStyle Self="ParagraphStyle/u_CoverSubtitle" Name="01 Cover Subtitle" PointSize="16" Leading="22" AppliedFont="EB Garamond" FontStyle="Italic" FillColor="Color/Paper" Justification="LeftAlign" SpaceBefore="20" SpaceAfter="0" NextStyle="ParagraphStyle/u_CoverEdition"/>
+    <ParagraphStyle Self="ParagraphStyle/u_CoverJP" Name="02 Cover Japanese" PointSize="22" Leading="28" AppliedFont="Noto Serif JP" FontStyle="Light" FillColor="Color/u_AccentGold" Justification="LeftAlign" Tracking="200" SpaceBefore="16" SpaceAfter="40" NextStyle="ParagraphStyle/u_CoverEdition"/>
+    <ParagraphStyle Self="ParagraphStyle/u_CoverEdition" Name="03 Cover Edition" PointSize="9" Leading="14" AppliedFont="Inter" FontStyle="Medium" FillColor="Color/u_AccentGold" Justification="LeftAlign" Capitalization="AllCaps" Tracking="350" SpaceBefore="0" SpaceAfter="0" NextStyle="ParagraphStyle/$ID/[Same style]"/>
+    <ParagraphStyle Self="ParagraphStyle/u_ChapterNumber" Name="10 Chapter Number" PointSize="9" Leading="14" AppliedFont="Inter" FontStyle="Medium" FillColor="Color/u_AccentRed" Justification="LeftAlign" Capitalization="AllCaps" Tracking="400" SpaceBefore="0" SpaceAfter="16" NextStyle="ParagraphStyle/u_ChapterTitle"/>
+    <ParagraphStyle Self="ParagraphStyle/u_ChapterTitle" Name="11 Chapter Title" PointSize="48" Leading="52" AppliedFont="Cormorant Garamond" FontStyle="Light" FillColor="Color/u_Ink" Justification="LeftAlign" KerningMethod="$ID/Optical" SpaceBefore="0" SpaceAfter="8" NextStyle="ParagraphStyle/u_ChapterJP"/>
+    <ParagraphStyle Self="ParagraphStyle/u_ChapterJP" Name="12 Chapter Japanese" PointSize="14" Leading="20" AppliedFont="Noto Serif JP" FontStyle="Light" FillColor="Color/u_InkLight" Justification="LeftAlign" Tracking="200" SpaceBefore="12" SpaceAfter="0" NextStyle="ParagraphStyle/u_Body"/>
+    <ParagraphStyle Self="ParagraphStyle/u_SectionEyebrow" Name="20 Section Eyebrow" PointSize="9" Leading="14" AppliedFont="Inter" FontStyle="Medium" FillColor="Color/u_AccentRed" Justification="LeftAlign" Capitalization="AllCaps" Tracking="400" SpaceBefore="24" SpaceAfter="12" NextStyle="ParagraphStyle/u_SectionTitle"/>
+    <ParagraphStyle Self="ParagraphStyle/u_SectionTitle" Name="21 Section Title" PointSize="32" Leading="36" AppliedFont="Cormorant Garamond" FontStyle="Regular" FillColor="Color/u_Ink" Justification="LeftAlign" KerningMethod="$ID/Optical" SpaceBefore="0" SpaceAfter="20" NextStyle="ParagraphStyle/u_Body"/>
+    <ParagraphStyle Self="ParagraphStyle/u_KnifeName" Name="30 Knife Name" PointSize="28" Leading="32" AppliedFont="Cormorant Garamond" FontStyle="Regular" FillColor="Color/u_Ink" Justification="LeftAlign" KerningMethod="$ID/Optical" SpaceBefore="0" SpaceAfter="4" NextStyle="ParagraphStyle/u_KnifeLiteral"/>
+    <ParagraphStyle Self="ParagraphStyle/u_KnifeLiteral" Name="31 Knife Literal" PointSize="13" Leading="18" AppliedFont="EB Garamond" FontStyle="Italic" FillColor="Color/u_InkLight" Justification="LeftAlign" SpaceBefore="0" SpaceAfter="14" NextStyle="ParagraphStyle/u_Body"/>
+    <ParagraphStyle Self="ParagraphStyle/u_Body" Name="40 Body" PointSize="11" Leading="17" AppliedFont="EB Garamond" FontStyle="Regular" FillColor="Color/u_Ink" Justification="LeftAlign" SpaceBefore="0" SpaceAfter="10" KerningMethod="$ID/Optical" NextStyle="ParagraphStyle/$ID/[Same style]"/>
+    <ParagraphStyle Self="ParagraphStyle/u_BodyIntro" Name="41 Body Intro" PointSize="14" Leading="22" AppliedFont="EB Garamond" FontStyle="Regular" FillColor="Color/u_Ink" Justification="LeftAlign" SpaceBefore="0" SpaceAfter="20" KerningMethod="$ID/Optical" NextStyle="ParagraphStyle/u_Body"/>
+    <ParagraphStyle Self="ParagraphStyle/u_PullQuote" Name="50 Pull Quote" PointSize="22" Leading="28" AppliedFont="Cormorant Garamond" FontStyle="Italic" FillColor="Color/u_Ink" Justification="LeftAlign" SpaceBefore="24" SpaceAfter="12" LeftIndent="20" KerningMethod="$ID/Optical" NextStyle="ParagraphStyle/u_Attribution"/>
+    <ParagraphStyle Self="ParagraphStyle/u_Attribution" Name="51 Attribution" PointSize="9" Leading="14" AppliedFont="Inter" FontStyle="Medium" FillColor="Color/u_InkLight" Justification="LeftAlign" Capitalization="AllCaps" Tracking="300" LeftIndent="20" SpaceBefore="0" SpaceAfter="24" NextStyle="ParagraphStyle/u_Body"/>
+    <ParagraphStyle Self="ParagraphStyle/u_SpecLabel" Name="60 Spec Label" PointSize="9" Leading="14" AppliedFont="Inter" FontStyle="Medium" FillColor="Color/u_InkLight" Justification="LeftAlign" Capitalization="AllCaps" Tracking="250" SpaceBefore="6" SpaceAfter="2" NextStyle="ParagraphStyle/u_SpecValue"/>
+    <ParagraphStyle Self="ParagraphStyle/u_SpecValue" Name="61 Spec Value" PointSize="11" Leading="16" AppliedFont="EB Garamond" FontStyle="Regular" FillColor="Color/u_Ink" Justification="LeftAlign" SpaceBefore="0" SpaceAfter="8" NextStyle="ParagraphStyle/u_SpecLabel"/>
+    <ParagraphStyle Self="ParagraphStyle/u_TipItem" Name="70 Tip Item" PointSize="11" Leading="17" AppliedFont="EB Garamond" FontStyle="Regular" FillColor="Color/u_Ink" Justification="LeftAlign" SpaceBefore="2" SpaceAfter="2" LeftIndent="24" FirstLineIndent="-24" NextStyle="ParagraphStyle/$ID/[Same style]"/>
+    <ParagraphStyle Self="ParagraphStyle/u_TimelinePeriod" Name="80 Timeline Period" PointSize="16" Leading="20" AppliedFont="Cormorant Garamond" FontStyle="Regular" FillColor="Color/u_Ink" Justification="LeftAlign" SpaceBefore="0" SpaceAfter="2" NextStyle="ParagraphStyle/u_TimelineYears"/>
+    <ParagraphStyle Self="ParagraphStyle/u_TimelineYears" Name="81 Timeline Years" PointSize="9" Leading="14" AppliedFont="Inter" FontStyle="Medium" FillColor="Color/u_InkLight" Justification="LeftAlign" Capitalization="AllCaps" Tracking="200" SpaceBefore="0" SpaceAfter="12" NextStyle="ParagraphStyle/u_TimelineTitle"/>
+    <ParagraphStyle Self="ParagraphStyle/u_TimelineTitle" Name="82 Timeline Title" PointSize="22" Leading="26" AppliedFont="Cormorant Garamond" FontStyle="Regular" FillColor="Color/u_Ink" Justification="LeftAlign" SpaceBefore="0" SpaceAfter="10" NextStyle="ParagraphStyle/u_Body"/>
+    <ParagraphStyle Self="ParagraphStyle/u_StoneGrit" Name="90 Stone Grit" PointSize="26" Leading="30" AppliedFont="Cormorant Garamond" FontStyle="Regular" FillColor="Color/u_Ink" Justification="LeftAlign" SpaceBefore="0" SpaceAfter="2" NextStyle="ParagraphStyle/u_StoneStage"/>
+    <ParagraphStyle Self="ParagraphStyle/u_StoneStage" Name="91 Stone Stage" PointSize="9" Leading="14" AppliedFont="Inter" FontStyle="Medium" FillColor="Color/u_AccentRed" Justification="LeftAlign" Capitalization="AllCaps" Tracking="250" SpaceBefore="0" SpaceAfter="12" NextStyle="ParagraphStyle/u_Body"/>
+  </RootParagraphStyleGroup>
+  <RootObjectStyleGroup Self="u_RootObjectStyleGroup">
+    <ObjectStyle Self="ObjectStyle/$ID/[None]" Name="$ID/[None]" AppliedParagraphStyle="n" StrokeWeight="1" StrokeAlignment="CenterAlignment"/>
+  </RootObjectStyleGroup>
+  <RootCellStyleGroup Self="u_RootCellStyleGroup">
+    <CellStyle Self="CellStyle/$ID/[None]" Name="$ID/[None]"/>
+  </RootCellStyleGroup>
+  <RootTableStyleGroup Self="u_RootTableStyleGroup">
+    <TableStyle Self="TableStyle/$ID/[No table style]" Name="$ID/[No table style]"/>
+    <TableStyle Self="TableStyle/$ID/[Basic Table]" Name="$ID/[Basic Table]" BasedOn="TableStyle/$ID/[No table style]" NextStyle="TableStyle/$ID/[Same style]"/>
+  </RootTableStyleGroup>
+</idPkg:Styles>

@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<idPkg:Spread xmlns:idPkg="http://ns.adobe.com/AdobeInDesign/idml/1.0/packaging" DOMVersion="14.0">
+  <Spread Self="u101" PageTransitionType="None" PageTransitionDirection="NotApplicable" PageTransitionDuration="Medium" ShowMasterItems="true" PageCount="1" BindingLocation="0" AllowPageShuffle="true" ItemTransform="1 0 0 1 0 148.5" FlattenerOverride="Default">
+    <FlattenerPreference LineArtAndTextResolution="300" GradientAndMeshResolution="150" ClipComplexRegions="false" ConvertAllStrokesToOutlines="false" ConvertAllTextToOutlines="false">
+      <Properties>
+        <RasterVectorBalance type="double">50</RasterVectorBalance>
+      </Properties>
+    </FlattenerPreference>
+    <Page Self="ub" AppliedAlternateLayout="uSection1" LayoutRule="UseMaster" SnapshotBlendingMode="IgnoreLayoutSnapshots" OptionalPage="false" GeometricBounds="0 0 297 210" ItemTransform="1 0 0 1 0 0" Name="2" AppliedTrapPreset="TrapPreset/$ID/kDefaultTrapStyleName" OverrideList="" MasterPageTransform="1 0 0 1 0 0" TabOrder="" GridStartingPoint="TopOutside" UseMasterGrid="true" AppliedMaster="uMaster">
+      <Properties>
+        <Descriptor type="list">
+          <ListItem type="string"/>
+          <ListItem type="enumeration">Arabic</ListItem>
+          <ListItem type="long">2</ListItem>
+          <ListItem type="boolean">false</ListItem>
+          <ListItem type="long">2</ListItem>
+          <ListItem type="string"/>
+          <ListItem type="string"/>
+          <ListItem type="boolean">false</ListItem>
+          <ListItem type="boolean">true</ListItem>
+          <ListItem type="string">A-Master</ListItem>
+          <ListItem type="boolean">true</ListItem>
+        </Descriptor>
+        <PageColor type="enumeration">UseMasterColor</PageColor>
+      </Properties>
+      <MarginPreference ColumnCount="1" ColumnGutter="5" Top="20" Bottom="20" Left="20" Right="20" ColumnDirection="Horizontal"/>
+      <GridDataInformation FontStyle="Regular" PointSize="12" CharacterAki="0" LineAki="9" HorizontalScale="100" VerticalScale="100" LineAlignment="LeftOrTopLineJustify" GridAlignment="AlignEmCenter" CharacterAlignment="AlignEmCenter">
+        <Properties>
+          <AppliedFont type="string">EB Garamond</AppliedFont>
+        </Properties>
+      </GridDataInformation>
+    </Page>
+    <TextFrame Self="uContentText" ParentStory="u200" PreviousTextFrame="n" NextTextFrame="n" ContentType="TextType" Visible="true" Name="$ID/" GradientFillStart="0 0" GradientFillLength="0" GradientFillAngle="0" GradientStrokeStart="0 0" GradientStrokeLength="0" GradientStrokeAngle="0" ItemLayer="u300" Locked="false" LocalDisplaySetting="Default" GradientFillHiliteLength="0" GradientFillHiliteAngle="0" GradientStrokeHiliteLength="0" GradientStrokeHiliteAngle="0" AppliedObjectStyle="ObjectStyle/$ID/[Normal Text Frame]" ItemTransform="1 0 0 1 20 20" FillColor="Swatch/None" StrokeColor="Swatch/None" StrokeWeight="0">
+      <Properties>
+        <PathGeometry>
+          <GeometryPathType PathOpen="false">
+            <PathPointArray>
+              <PathPointType Anchor="0 0" LeftDirection="0 0" RightDirection="0 0"/>
+              <PathPointType Anchor="0 257" LeftDirection="0 257" RightDirection="0 257"/>
+              <PathPointType Anchor="170 257" LeftDirection="170 257" RightDirection="170 257"/>
+              <PathPointType Anchor="170 0" LeftDirection="170 0" RightDirection="170 0"/>
+            </PathPointArray>
+          </GeometryPathType>
+        </PathGeometry>
+        <TextFramePreference TextColumnCount="1" TextColumnGutter="5"/>
+      </Properties>
+    </TextFrame>
+  </Spread>
+</idPkg:Spread>

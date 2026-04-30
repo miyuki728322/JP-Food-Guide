@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<idPkg:MasterSpread xmlns:idPkg="http://ns.adobe.com/AdobeInDesign/idml/1.0/packaging" DOMVersion="14.0">
+  <MasterSpread Self="uMaster" Name="A-Master" NamePrefix="A" BaseName="Master" ShowMasterItems="true" PageCount="2" OverriddenPageItemProps="">
+    <Properties>
+      <PageColor>Nothing</PageColor>
+    </Properties>
+    <Page Self="uMaster1" Name="A" AppliedTrapPreset="TrapPreset/$ID/kDefaultTrapStyleName" OverrideList="" TabOrder="" GridStartingPoint="TopOutside" UseMasterGrid="true">
+      <Properties>
+        <Descriptor type="list">
+          <ListItem type="string">A-Master</ListItem>
+          <ListItem type="enumeration">Arabic</ListItem>
+          <ListItem type="long">1</ListItem>
+          <ListItem type="boolean">false</ListItem>
+          <ListItem type="long">1</ListItem>
+          <ListItem type="string"/>
+          <ListItem type="string"/>
+          <ListItem type="boolean">false</ListItem>
+          <ListItem type="boolean">true</ListItem>
+          <ListItem type="string">A-Master</ListItem>
+          <ListItem type="boolean">true</ListItem>
+        </Descriptor>
+        <PageColor type="enumeration">UseMasterColor</PageColor>
+      </Properties>
+      <MarginPreference ColumnCount="1" ColumnGutter="5" Top="20" Bottom="20" Left="20" Right="20" ColumnDirection="Horizontal"/>
+      <GridDataInformation FontStyle="Regular" PointSize="12" CharacterAki="0" LineAki="9" HorizontalScale="100" VerticalScale="100" LineAlignment="LeftOrTopLineJustify" GridAlignment="AlignEmCenter" CharacterAlignment="AlignEmCenter">
+        <Properties>
+          <AppliedFont type="string">EB Garamond</AppliedFont>
+        </Properties>
+      </GridDataInformation>
+    </Page>
+    <Page Self="uMaster2" Name="A" AppliedTrapPreset="TrapPreset/$ID/kDefaultTrapStyleName" OverrideList="" TabOrder="" GridStartingPoint="TopOutside" UseMasterGrid="true">
+      <Properties>
+        <Descriptor type="list">
+          <ListItem type="string">A-Master</ListItem>
+          <ListItem type="enumeration">Arabic</ListItem>
+          <ListItem type="long">2</ListItem>
+          <ListItem type="boolean">false</ListItem>
+          <ListItem type="long">2</ListItem>
+          <ListItem type="string"/>
+          <ListItem type="string"/>
+          <ListItem type="boolean">false</ListItem>
+          <ListItem type="boolean">true</ListItem>
+          <ListItem type="string">A-Master</ListItem>
+          <ListItem type="boolean">true</ListItem>
+        </Descriptor>
+        <PageColor type="enumeration">UseMasterColor</PageColor>
+      </Properties>
+      <MarginPreference ColumnCount="1" ColumnGutter="5" Top="20" Bottom="20" Left="20" Right="20" ColumnDirection="Horizontal"/>
+      <GridDataInformation FontStyle="Regular" PointSize="12" CharacterAki="0" LineAki="9" HorizontalScale="100" VerticalScale="100" LineAlignment="LeftOrTopLineJustify" GridAlignment="AlignEmCenter" CharacterAlignment="AlignEmCenter">
+        <Properties>
+          <AppliedFont type="string">EB Garamond</AppliedFont>
+        </Properties>
+      </GridDataInformation>
+    </Page>
+  </MasterSpread>
+</idPkg:MasterSpread>
