@@ -32,7 +32,10 @@
     <ParagraphStyle Self="ParagraphStyle/u_StoneStage" Name="91 Stone Stage" PointSize="9" Leading="14" AppliedFont="Inter" FontStyle="Medium" FillColor="Color/u_AccentRed" Justification="LeftAlign" Capitalization="AllCaps" Tracking="250" SpaceBefore="0" SpaceAfter="12" NextStyle="ParagraphStyle/u_Body"/>
   </RootParagraphStyleGroup>
   <RootObjectStyleGroup Self="u_RootObjectStyleGroup">
-    <ObjectStyle Self="ObjectStyle/$ID/[None]" Name="$ID/[None]" AppliedParagraphStyle="n" StrokeWeight="1" StrokeAlignment="CenterAlignment"/>
+    <ObjectStyle Self="ObjectStyle/$ID/[None]" Name="$ID/[None]" Imported="false" AppliedParagraphStyle="n" StrokeWeight="1" StrokeAlignment="CenterAlignment" FillColor="Swatch/None" StrokeColor="Swatch/None"/>
+    <ObjectStyle Self="ObjectStyle/$ID/[Normal Text Frame]" Name="$ID/[Normal Text Frame]" Imported="false" AppliedParagraphStyle="n" StrokeWeight="0" StrokeAlignment="CenterAlignment" FillColor="Swatch/None" StrokeColor="Swatch/None" BasedOn="ObjectStyle/$ID/[None]"/>
+    <ObjectStyle Self="ObjectStyle/$ID/[Normal Graphics Frame]" Name="$ID/[Normal Graphics Frame]" Imported="false" AppliedParagraphStyle="n" StrokeWeight="0" StrokeAlignment="CenterAlignment" FillColor="Swatch/None" StrokeColor="Swatch/None" BasedOn="ObjectStyle/$ID/[None]"/>
+    <ObjectStyle Self="ObjectStyle/$ID/[Normal Grid]" Name="$ID/[Normal Grid]" Imported="false" AppliedParagraphStyle="n" StrokeWeight="0" StrokeAlignment="CenterAlignment" FillColor="Swatch/None" StrokeColor="Swatch/None" BasedOn="ObjectStyle/$ID/[None]"/>
   </RootObjectStyleGroup>
   <RootCellStyleGroup Self="u_RootCellStyleGroup">
     <CellStyle Self="CellStyle/$ID/[None]" Name="$ID/[None]"/>

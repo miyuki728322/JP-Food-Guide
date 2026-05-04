@@ -6,7 +6,7 @@
         <RasterVectorBalance type="double">50</RasterVectorBalance>
       </Properties>
     </FlattenerPreference>
-    <Page Self="ub" AppliedAlternateLayout="uSection1" LayoutRule="UseMaster" SnapshotBlendingMode="IgnoreLayoutSnapshots" OptionalPage="false" GeometricBounds="0 0 297 210" ItemTransform="1 0 0 1 0 0" Name="2" AppliedTrapPreset="TrapPreset/$ID/kDefaultTrapStyleName" OverrideList="" MasterPageTransform="1 0 0 1 0 0" TabOrder="" GridStartingPoint="TopOutside" UseMasterGrid="true" AppliedMaster="uMaster">
+    <Page Self="ub" LayoutRule="UseMaster" SnapshotBlendingMode="IgnoreLayoutSnapshots" OptionalPage="false" GeometricBounds="0 0 297 210" ItemTransform="1 0 0 1 0 0" Name="2" AppliedTrapPreset="TrapPreset/$ID/kDefaultTrapStyleName" OverrideList="" MasterPageTransform="1 0 0 1 0 0" TabOrder="" GridStartingPoint="TopOutside" UseMasterGrid="true" AppliedMaster="uMaster">
       <Properties>
         <Descriptor type="list">
           <ListItem type="string"/>

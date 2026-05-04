@@ -7,7 +7,7 @@
   <idPkg:Styles src="Resources/Styles.xml"/>
   <idPkg:Preferences src="Resources/Preferences.xml"/>
   <Layer Self="u300" Name="Layer 1" Visible="true" Locked="false" IgnoreWrap="false" ShowGuides="true" LockGuides="false" UI="true" Expendable="true" Printable="true" LayerColor="LightBlue"/>
-  <Section Self="uSection1" Length="2" Name="" ContinueNumbering="false" IncludeSectionPrefix="false" SectionPrefix="" PageNumberStart="1" PageNumberStyle="Arabic" MarkerForSectionStart="ParagraphMarker/uSection1Marker" PageStart="ua"/>
+  <Section Self="uSection1" Length="2" Name="" ContinueNumbering="false" IncludeSectionPrefix="false" SectionPrefix="" PageNumberStart="1" PageNumberStyle="Arabic" MarkerForSectionStart="n" PageStart="ua"/>
   <idPkg:MasterSpread src="MasterSpreads/MasterSpread_uMaster.xml"/>
   <idPkg:Spread src="Spreads/Spread_u100.xml"/>
   <idPkg:Spread src="Spreads/Spread_u101.xml"/>
