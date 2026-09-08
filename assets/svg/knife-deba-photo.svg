@@ -1,0 +1,108 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="500" height="155" viewBox="0 0 500 155">
+  <title>Deba knife — ho-wood handle, buffalo-horn ferrule, single-bevel blade</title>
+  <defs>
+    <!-- Ho (magnolia) wood handle: pale cream, cylindrical shading -->
+    <linearGradient id="wood" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0"    stop-color="#F3E9CF"/>
+      <stop offset="0.18" stop-color="#EBDDB8"/>
+      <stop offset="0.55" stop-color="#DCC79A"/>
+      <stop offset="1"    stop-color="#B89E6E"/>
+    </linearGradient>
+    <!-- Buffalo-horn ferrule: translucent amber -->
+    <linearGradient id="horn" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0"    stop-color="#D9AE7A"/>
+      <stop offset="0.25" stop-color="#C08E55"/>
+      <stop offset="0.6"  stop-color="#9A6B38"/>
+      <stop offset="1"    stop-color="#5E3F1F"/>
+    </linearGradient>
+    <!-- Polished flat face (hira) of the blade -->
+    <linearGradient id="hira" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0"    stop-color="#F4F6F8"/>
+      <stop offset="0.35" stop-color="#D6DBE0"/>
+      <stop offset="0.75" stop-color="#B7BEC6"/>
+      <stop offset="1"    stop-color="#A3ABB4"/>
+    </linearGradient>
+    <!-- Hazy single bevel (kireha) below the shinogi line -->
+    <linearGradient id="bevel" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0"    stop-color="#C9CFD5"/>
+      <stop offset="0.4"  stop-color="#E6EAED"/>
+      <stop offset="0.85" stop-color="#F7F8FA"/>
+      <stop offset="1"    stop-color="#DDE1E5"/>
+    </linearGradient>
+    <!-- Diagonal light streak across the steel -->
+    <linearGradient id="gleam" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0"   stop-color="#FFFFFF" stop-opacity="0"/>
+      <stop offset="0.5" stop-color="#FFFFFF" stop-opacity="0.55"/>
+      <stop offset="1"   stop-color="#FFFFFF" stop-opacity="0"/>
+    </linearGradient>
+    <clipPath id="bladeClip">
+      <path d="M206 40 H378 C430 40 468 48 492 62 C466 86 420 110 352 118 L226 120 C214 120 206 112 206 102 Z"/>
+    </clipPath>
+  </defs>
+
+  <!-- ===== Handle ===== -->
+  <!-- Wooden grip, rounded butt on the left -->
+  <path d="M28 59 H162 V95 H28 C16 95 8 87 8 77 C8 67 16 59 28 59 Z" fill="url(#wood)"/>
+  <!-- Faint wood grain -->
+  <g stroke="#B3986A" stroke-width="0.6" fill="none" opacity="0.45">
+    <path d="M22 65 C60 64 100 66 160 65"/>
+    <path d="M14 73 C60 72 110 74 160 73"/>
+    <path d="M14 83 C60 84 110 82 160 83"/>
+    <path d="M24 90 C60 89 100 91 160 90"/>
+  </g>
+  <!-- Top highlight on the rounded grip -->
+  <path d="M30 61.5 H160" stroke="#FBF6E8" stroke-width="1.4" stroke-linecap="round" opacity="0.9"/>
+  <!-- Bottom shadow edge -->
+  <path d="M26 94 H160" stroke="#8F7549" stroke-width="0.8" opacity="0.6"/>
+
+  <!-- Buffalo-horn ferrule, slightly wider than the grip -->
+  <path d="M162 57.5 H203 V96.5 H162 Z" fill="url(#horn)"/>
+  <path d="M164 60 H201" stroke="#EFC998" stroke-width="1.2" opacity="0.8"/>
+  <path d="M164 93.5 H201" stroke="#3E2812" stroke-width="1" opacity="0.7"/>
+  <!-- Horn translucency streaks -->
+  <path d="M170 62 L168 92 M183 62 L181 92 M195 62 L194 92" stroke="#F3D6A8" stroke-width="0.7" opacity="0.35"/>
+  <!-- Seam between wood and horn -->
+  <line x1="162" y1="57.5" x2="162" y2="96.5" stroke="#5A3D1C" stroke-width="0.8" opacity="0.7"/>
+
+  <!-- Machi (neck) — dark tang between ferrule and blade heel -->
+  <path d="M203 62 H208 V92 H203 Z" fill="#3A3D40"/>
+
+  <!-- ===== Blade ===== -->
+  <!-- Full blade outline: thick straight spine, deep heel, edge sweeping up to a drop-point tip on the right -->
+  <path d="M206 40 H378 C430 40 468 48 492 62 C466 86 420 110 352 118 L226 120 C214 120 206 112 206 102 Z"
+        fill="url(#hira)" stroke="#6E7780" stroke-width="0.9" stroke-linejoin="round"/>
+
+  <!-- Single bevel (kireha): from the shinogi line down to the cutting edge -->
+  <path d="M208 92 L360 90 C420 88 462 76 492 62 C466 86 420 110 352 118 L226 120 C214 120 206 112 206 102 Z"
+        fill="url(#bevel)"/>
+  <!-- Shinogi line -->
+  <path d="M208 92 L360 90 C420 88 462 76 492 62" fill="none" stroke="#8E979F" stroke-width="0.9"/>
+  <path d="M208 93.2 L360 91.2 C420 89.2 462 77.2 491 63.2" fill="none" stroke="#FFFFFF" stroke-width="0.7" opacity="0.7"/>
+
+  <!-- Thick spine: darker band with a bright top highlight -->
+  <path d="M206 40 H378 C430 40 468 48 492 62 C468 52 430 44.5 378 44.5 H206 Z" fill="#8F99A3"/>
+  <path d="M207 40.8 H378 C428 40.8 464 48 489 60.5" fill="none" stroke="#FAFBFC" stroke-width="1" opacity="0.9"/>
+
+  <!-- Light streaks on the hira -->
+  <g clip-path="url(#bladeClip)">
+    <path d="M250 40 L305 40 L275 92 L220 92 Z" fill="url(#gleam)"/>
+    <path d="M410 40 L465 46 L435 92 L380 92 Z" fill="url(#gleam)" opacity="0.6"/>
+  </g>
+
+  <!-- Cutting edge: thin bright line -->
+  <path d="M226 119.3 L352 117.3 C420 109.3 466 85.5 491 62.5" fill="none" stroke="#FFFFFF" stroke-width="0.8" opacity="0.85"/>
+
+  <!-- ===== Engraved maker's mark: 堺孝行 (reads from the tip toward the heel) ===== -->
+  <g font-family="'Yu Mincho', 'Hiragino Mincho ProN', 'Noto Serif JP', 'MS Mincho', serif"
+     font-size="14" fill="#2E3438" opacity="0.88" text-anchor="middle" dominant-baseline="central">
+    <text transform="translate(382 62) rotate(90)">堺</text>
+    <text transform="translate(364 62) rotate(90)">孝</text>
+    <text transform="translate(346 62) rotate(90)">行</text>
+  </g>
+  <!-- Secondary mark: 別誂 (bespoke), smaller, toward the heel and edge -->
+  <g font-family="'Yu Mincho', 'Hiragino Mincho ProN', 'Noto Serif JP', 'MS Mincho', serif"
+     font-size="8.5" fill="#3B4247" opacity="0.8" text-anchor="middle" dominant-baseline="central">
+    <text transform="translate(322 78) rotate(90)">別</text>
+    <text transform="translate(312 78) rotate(90)">誂</text>
+  </g>
+</svg>
