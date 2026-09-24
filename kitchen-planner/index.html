@@ -1,0 +1,724 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Miyuki Kitchen Planner</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans+Condensed:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@700&text=%E4%BB%95%E8%BE%BC&display=swap">
+<style>
+:root{
+  --bg:#EBEFF1;--surface:#FFFFFF;--surface-2:#F4F6F7;--sunk:#E2E7EA;
+  --ink:#152028;--ink-2:#4B5963;--ink-3:#77858E;--line:#D3DBDF;--line-2:#E5EAEC;
+  --accent:#27487A;--accent-ink:#FFFFFF;--accent-soft:#DDE5F1;--accent-line:#9DB2D3;
+  --warn:#8F5409;--warn-soft:#FAEBD3;--bad:#A8261D;--bad-soft:#F8DEDA;--good:#236B42;--good-soft:#D8EEDF;
+  --shadow:0 1px 2px rgba(21,32,40,.06),0 6px 18px rgba(21,32,40,.05);
+  --f-display:"IBM Plex Sans Condensed","Arial Narrow",system-ui,sans-serif;
+  --f-body:"IBM Plex Sans",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+  --f-mono:"IBM Plex Mono",ui-monospace,Menlo,Consolas,monospace;
+  --f-seal:"Shippori Mincho","Hiragino Mincho ProN","Yu Mincho",serif;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){color-scheme:dark;
+  --bg:#10161A;--surface:#172027;--surface-2:#1C262E;--sunk:#0C1115;
+  --ink:#E4EAEE;--ink-2:#A1AEB7;--ink-3:#77868F;--line:#2B3740;--line-2:#222D35;
+  --accent:#93B2E4;--accent-ink:#0D1522;--accent-soft:#1F2F47;--accent-line:#3F5B85;
+  --warn:#E8B464;--warn-soft:#382B15;--bad:#F2877D;--bad-soft:#3E1D1A;--good:#80CE9E;--good-soft:#16301F;
+  --shadow:0 1px 2px rgba(0,0,0,.3),0 6px 18px rgba(0,0,0,.25)}}
+:root[data-theme="dark"]{color-scheme:dark;
+  --bg:#10161A;--surface:#172027;--surface-2:#1C262E;--sunk:#0C1115;
+  --ink:#E4EAEE;--ink-2:#A1AEB7;--ink-3:#77868F;--line:#2B3740;--line-2:#222D35;
+  --accent:#93B2E4;--accent-ink:#0D1522;--accent-soft:#1F2F47;--accent-line:#3F5B85;
+  --warn:#E8B464;--warn-soft:#382B15;--bad:#F2877D;--bad-soft:#3E1D1A;--good:#80CE9E;--good-soft:#16301F;
+  --shadow:0 1px 2px rgba(0,0,0,.3),0 6px 18px rgba(0,0,0,.25)}
+
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font:15px/1.5 var(--f-body);-webkit-font-smoothing:antialiased}
+.app{max-width:1240px;margin:0 auto;padding-inline:20px;padding-block:20px 64px}
+h1,h2,h3{font-family:var(--f-display);margin:0;text-wrap:balance;letter-spacing:-.01em}
+h1{font-size:26px;font-weight:700;line-height:1.1}
+h2{font-size:20px;font-weight:600}
+h3{font-size:16px;font-weight:600}
+p{margin:0}
+.eyebrow{font:600 11px/1.3 var(--f-body);letter-spacing:.09em;text-transform:uppercase;color:var(--ink-3)}
+.muted{color:var(--ink-2)}
+.small{font-size:13px}
+.mono,.num{font-family:var(--f-mono);font-variant-numeric:tabular-nums}
+.num{text-align:right}
+a{color:var(--accent)}
+
+/* header */
+.top{display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap}
+.brand{display:flex;align-items:center;gap:14px}
+.seal{width:46px;height:46px;border-radius:8px;background:var(--accent);color:var(--accent-ink);display:grid;place-items:center;font:700 16px/1 var(--f-seal);letter-spacing:.02em;flex:none;white-space:nowrap}
+.sync{display:inline-flex;align-items:center;gap:8px;font-size:13px;color:var(--ink-2);background:var(--surface);border:1px solid var(--line);border-radius:999px;padding:6px 12px}
+.sync .dot{width:8px;height:8px;border-radius:50%;background:var(--ink-3)}
+.sync[data-s="synced"] .dot{background:var(--good)}
+.sync[data-s="local"] .dot{background:var(--warn)}
+.sync[data-s="error"] .dot{background:var(--bad)}
+
+/* tabs */
+.tabs{display:flex;gap:4px;margin-top:20px;border-bottom:1px solid var(--line);overflow-x:auto;scrollbar-width:none}
+.tabs button{appearance:none;border:0;background:none;color:var(--ink-2);font:500 15px var(--f-body);padding:10px 14px 12px;cursor:pointer;border-bottom:2px solid transparent;margin-bottom:-1px;white-space:nowrap;display:flex;gap:8px;align-items:center}
+.tabs button:hover{color:var(--ink)}
+.tabs button[aria-selected="true"]{color:var(--ink);border-bottom-color:var(--accent);font-weight:600}
+.count{font:500 11px/1 var(--f-mono);background:var(--sunk);color:var(--ink-2);padding:3px 6px;border-radius:999px}
+
+main{display:grid;gap:18px;margin-top:18px}
+.panel{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:18px}
+.panel-head{display:flex;justify-content:space-between;align-items:flex-end;gap:12px;flex-wrap:wrap;margin-bottom:14px}
+.panel-head .sub{margin-top:3px}
+.row{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.split{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);gap:18px;align-items:start}
+@media (max-width:880px){.split{grid-template-columns:1fr}}
+
+/* banner */
+.banner{display:flex;gap:14px;justify-content:space-between;align-items:center;flex-wrap:wrap;background:var(--warn-soft);color:var(--ink);border:1px solid color-mix(in srgb,var(--warn) 30%,transparent);border-radius:10px;padding:12px 16px;margin-top:16px}
+.banner strong{color:var(--warn)}
+
+/* controls */
+button,input,select{font:inherit;color:inherit}
+.btn{appearance:none;display:inline-flex;align-items:center;gap:6px;border:1px solid var(--line);background:var(--surface-2);color:var(--ink);border-radius:7px;padding:7px 12px;font-size:14px;font-weight:500;cursor:pointer;white-space:nowrap}
+.btn:hover{border-color:var(--accent-line)}
+.btn.primary{background:var(--accent);border-color:var(--accent);color:var(--accent-ink)}
+.btn.primary:hover{filter:brightness(1.08)}
+.btn.ghost{background:transparent;border-color:transparent;color:var(--ink-2)}
+.btn.ghost:hover{color:var(--ink);background:var(--surface-2)}
+.btn.danger{color:var(--bad)}
+.btn.sm{padding:4px 9px;font-size:13px}
+.btn:disabled{opacity:.45;cursor:not-allowed}
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.field{display:grid;gap:4px}
+.field label{font-size:12px;font-weight:500;color:var(--ink-2)}
+.input,.field input,.field select{border:1px solid var(--line);background:var(--surface);border-radius:7px;padding:7px 10px;min-width:0;width:100%}
+.input:focus,.field input:focus,.field select:focus{border-color:var(--accent);outline:none;box-shadow:0 0 0 3px var(--accent-soft)}
+.controls{display:flex;gap:14px;flex-wrap:wrap;align-items:flex-end}
+.controls .field{width:auto}
+.controls .field input,.controls .field select{width:auto}
+
+/* tiles */
+.tiles{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:12px}
+.tile{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:14px 16px;display:grid;gap:4px}
+.tile .v{font:600 30px/1.1 var(--f-display);font-variant-numeric:tabular-nums}
+.tile .d{font-size:13px;color:var(--ink-2)}
+.tile.bad{background:var(--bad-soft);border-color:transparent}.tile.bad .v{color:var(--bad)}
+.tile.warn{background:var(--warn-soft);border-color:transparent}.tile.warn .v{color:var(--warn)}
+
+/* day strip */
+.days{display:grid;grid-auto-flow:column;grid-auto-columns:minmax(84px,1fr);gap:8px;overflow-x:auto;padding-bottom:4px}
+.day{appearance:none;border:1px solid var(--line);background:var(--surface);border-radius:9px;padding:10px 10px 8px;text-align:left;cursor:pointer;display:grid;gap:6px;color:var(--ink)}
+.day:hover{border-color:var(--accent-line)}
+.day[aria-pressed="true"]{border-color:var(--accent);box-shadow:inset 0 0 0 1px var(--accent);background:var(--accent-soft)}
+.day .dn{font:600 12px var(--f-body);letter-spacing:.06em;text-transform:uppercase;color:var(--ink-3)}
+.day .dd{font:600 15px var(--f-display)}
+.day .bar{height:44px;display:flex;align-items:flex-end;background:var(--surface-2);border-radius:4px;overflow:hidden}
+.day .bar i{display:block;width:100%;background:var(--accent);opacity:.85;border-radius:3px 3px 0 0;min-height:2px}
+.day .cv{font:500 13px var(--f-mono);color:var(--ink-2)}
+.day.today .dn{color:var(--accent)}
+
+/* dockets */
+.dockets{display:grid;gap:12px}
+.docket{background:var(--surface-2);border:1px solid var(--line);border-radius:4px;box-shadow:var(--shadow);position:relative;padding:16px 16px 12px}
+.docket::before{content:"";position:absolute;left:10px;right:10px;top:-5px;height:10px;background:radial-gradient(circle at 5px 5px,var(--surface) 3.2px,transparent 3.6px) 0 0/12px 10px repeat-x}
+.docket header{display:flex;justify-content:space-between;align-items:flex-start;gap:10px}
+.docket .meta{font-size:13px;color:var(--ink-2);margin-top:2px}
+.lines{list-style:none;margin:12px 0 0;padding:0;display:grid;gap:5px}
+.lines li{display:flex;align-items:baseline;gap:8px;font-size:14px}
+.lines li .nm{flex:none;max-width:60%}
+.lines li .dots{flex:1;border-bottom:1px dotted var(--line);transform:translateY(-4px);min-width:12px}
+.lines li .q{font-family:var(--f-mono);font-variant-numeric:tabular-nums;white-space:nowrap}
+.docket footer{display:flex;justify-content:space-between;margin-top:12px;padding-top:10px;border-top:1px dashed var(--line);font-size:13px;color:var(--ink-2)}
+.docket footer .mono{color:var(--ink)}
+
+/* chips */
+.chip{display:inline-flex;align-items:center;gap:5px;font:600 11px/1 var(--f-body);letter-spacing:.04em;text-transform:uppercase;padding:4px 8px;border-radius:999px;background:var(--sunk);color:var(--ink-2);white-space:nowrap}
+.chip.bad{background:var(--bad-soft);color:var(--bad)}
+.chip.warn{background:var(--warn-soft);color:var(--warn)}
+.chip.good{background:var(--good-soft);color:var(--good)}
+.chip.info{background:var(--accent-soft);color:var(--accent)}
+
+/* tables */
+.tbl-wrap{overflow-x:auto;border:1px solid var(--line-2);border-radius:8px}
+table{width:100%;border-collapse:collapse;font-size:14px}
+th{font:600 11px/1.3 var(--f-body);letter-spacing:.07em;text-transform:uppercase;color:var(--ink-3);text-align:left;padding:9px 10px;background:var(--surface-2);border-bottom:1px solid var(--line-2);white-space:nowrap}
+th.num{text-align:right}
+td.mono{white-space:nowrap}
+td{padding:7px 10px;border-bottom:1px solid var(--line-2);vertical-align:middle}
+tr:last-child td{border-bottom:0}
+tr.past td{opacity:.55}
+td.edit{padding:3px 4px}
+td.edit input,td.edit select{width:100%;min-width:64px;border:1px solid transparent;background:transparent;border-radius:5px;padding:6px 7px}
+td.edit input[type=number]{text-align:right;font-family:var(--f-mono);font-variant-numeric:tabular-nums;min-width:80px}
+td.edit input:hover,td.edit select:hover{border-color:var(--line)}
+td.edit input:focus,td.edit select:focus{border-color:var(--accent);background:var(--surface);outline:none;box-shadow:0 0 0 3px var(--accent-soft)}
+td.w-name input{min-width:170px}
+.empty{padding:22px;text-align:center;color:var(--ink-2)}
+
+/* prep */
+.prep-item{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:4px 12px;padding:10px 0;border-bottom:1px solid var(--line-2)}
+.prep-item:last-child{border-bottom:0}
+.prep-item .make{font:600 15px var(--f-mono);text-align:right}
+.prep-item .how{grid-column:1/-1;font-size:13px;color:var(--ink-2)}
+.dishes{display:flex;flex-wrap:wrap;gap:6px;margin-top:6px}
+.dishes span{font-size:13px;background:var(--surface-2);border:1px solid var(--line-2);border-radius:6px;padding:3px 8px}
+.dishes b{font-family:var(--f-mono);font-weight:500}
+
+/* issues */
+.issues{list-style:none;margin:0;padding:0;display:grid;gap:8px}
+.issues li{display:flex;gap:10px;align-items:flex-start;font-size:14px}
+
+/* recipes */
+.rlayout{display:grid;grid-template-columns:290px minmax(0,1fr);gap:18px;align-items:start}
+@media (max-width:880px){.rlayout{grid-template-columns:1fr}}
+.rlist{display:grid;gap:14px}
+.rlist .grp{display:grid;gap:2px}
+.rlist button{appearance:none;border:0;background:none;text-align:left;padding:7px 10px;border-radius:6px;cursor:pointer;display:flex;justify-content:space-between;gap:8px;color:var(--ink);font-size:14px}
+.rlist button:hover{background:var(--surface-2)}
+.rlist button[aria-current="true"]{background:var(--accent-soft);color:var(--accent);font-weight:600}
+.rlist .sub{font-family:var(--f-mono);font-size:12px;color:var(--ink-3)}
+.form-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px}
+
+/* dialog */
+dialog{border:1px solid var(--line);border-radius:12px;padding:0;background:var(--surface);color:var(--ink);width:min(760px,calc(100vw - 32px));max-height:calc(100vh - 48px);box-shadow:0 20px 60px rgba(0,0,0,.25)}
+dialog::backdrop{background:rgba(12,18,22,.45)}
+.dlg{display:grid;gap:16px;padding:20px}
+.dlg-head{display:flex;justify-content:space-between;gap:12px;align-items:flex-start}
+.map-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:10px}
+.drop{border:1.5px dashed var(--accent-line);border-radius:10px;padding:22px;text-align:center;background:var(--surface-2);display:grid;gap:8px;justify-items:center}
+
+.toast{position:fixed;left:50%;bottom:calc(20px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);background:var(--ink);color:var(--bg);padding:10px 16px;border-radius:8px;font-size:14px;max-width:calc(100vw - 32px);box-shadow:var(--shadow);z-index:10}
+.copybox{width:100%;min-height:120px;font:13px var(--f-mono);border:1px solid var(--line);border-radius:7px;padding:8px;background:var(--surface-2);color:var(--ink)}
+.help{font-size:13px;color:var(--ink-2);max-width:68ch}
+.footer{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;align-items:center}
+@media (max-width:560px){h1{font-size:22px}.panel{padding:14px}.tile .v{font-size:26px}}
+@media (prefers-reduced-motion:no-preference){.day,.btn{transition:border-color .15s,background .15s}}
+</style>
+</head><body>
+
+<div class="app">
+  <header class="top">
+    <div class="brand">
+      <div class="seal" aria-hidden="true">仕込</div>
+      <div>
+        <div class="eyebrow">Miyuki · Kitchen operations</div>
+        <h1>Prep &amp; order planner</h1>
+      </div>
+    </div>
+    <div class="sync" id="sync" data-s="loading"><span class="dot"></span><span id="syncText">Connecting…</span></div>
+  </header>
+  <nav class="tabs" id="tabs" role="tablist" aria-label="Sections"></nav>
+  <div id="banner"></div>
+  <main id="main"></main>
+</div>
+<dialog id="dlg" aria-labelledby="dlgTitle"></dialog>
+<div class="toast" id="toast" role="status" aria-live="polite" hidden></div>
+
+<script>
+/* ---------- helpers ---------- */
+const $=s=>document.querySelector(s);
+const esc=v=>String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const key=s=>String(s??'').trim().toLowerCase().replace(/\s+/g,' ');
+const clone=o=>JSON.parse(JSON.stringify(o));
+const uid=()=>Math.random().toString(36).slice(2,10);
+const isoOf=dt=>dt.getFullYear()+'-'+String(dt.getMonth()+1).padStart(2,'0')+'-'+String(dt.getDate()).padStart(2,'0');
+const todayISO=()=>isoOf(new Date());
+const pd=iso=>{const [y,m,d]=iso.split('-').map(Number);return new Date(y,m-1,d)};
+const addDays=(iso,n)=>{const d=pd(iso);d.setDate(d.getDate()+n);return isoOf(d)};
+const dow=iso=>pd(iso).getDay();
+const DOW=['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
+const MON=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+const fmtDate=iso=>{if(!iso)return '';const d=pd(iso);return DOW[d.getDay()]+' '+d.getDate()+' '+MON[d.getMonth()]};
+const numf=(n,d=1)=>Number((+n||0).toFixed(d)).toLocaleString('en-GB',{maximumFractionDigits:d});
+const toNum=v=>{if(typeof v==='number')return v;const x=parseFloat(String(v??'').replace(/,/g,'').replace(/[^0-9.\-]/g,''));return isFinite(x)?x:0};
+
+/* units: every quantity is converted to g, ml, pc or portion */
+const UNITS={g:['mass',1],kg:['mass',1000],mg:['mass',.001],ml:['vol',1],l:['vol',1000],cl:['vol',10],dl:['vol',100],pc:['count',1],portion:['portion',1]};
+const ALIAS={gram:'g',grams:'g',gr:'g',grm:'g',kilo:'kg',kilos:'kg',kilogram:'kg',kilograms:'kg',kgs:'kg',litre:'l',liter:'l',litres:'l',liters:'l',ltr:'l',lt:'l',millilitre:'ml',milliliter:'ml',millilitres:'ml',milliliters:'ml',mls:'ml',pcs:'pc',piece:'pc',pieces:'pc',ea:'pc',each:'pc',unit:'pc',units:'pc',x:'pc',no:'pc',portions:'portion',ptn:'portion',ptns:'portion',serving:'portion',servings:'portion',cover:'portion',covers:'portion'};
+function normUnit(u){u=String(u??'').trim().toLowerCase().replace(/\.$/,'');u=ALIAS[u]||u;return UNITS[u]?u:(u?u:'pc')}
+function unitDim(u){return (UNITS[normUnit(u)]||['count',1])[0]}
+function toBase(q,u){const x=UNITS[normUnit(u)]||['count',1];return {q:(+q||0)*x[1],dim:x[0]}}
+const BASE={mass:'g',vol:'ml',count:'pc',portion:'portion'};
+function fmtQ(q,u){u=BASE[unitDim(u)];
+  if(u==='g')return Math.abs(q)>=1000?numf(q/1000,2)+' kg':numf(q,0)+' g';
+  if(u==='ml')return Math.abs(q)>=1000?numf(q/1000,2)+' l':numf(q,0)+' ml';
+  if(u==='portion')return numf(q,1)+(Math.abs(q-1)<1e-9?' portion':' portions');
+  return numf(q,1)+' pc'}
+function parseQtyUnit(s){s=String(s??'').toLowerCase().replace(/,/g,'').trim();let m=s.match(/(\d+(?:\.\d+)?)\s*[x×]\s*(\d+(?:\.\d+)?)\s*([a-z]+)?/);if(m)return {q:+m[1]*+m[2],u:m[3]?normUnit(m[3]):''};m=s.match(/(\d+(?:\.\d+)?)\s*([a-z]+)?/);return m?{q:+m[1],u:m[2]?normUnit(m[2]):''}:{q:0,u:''}}
+const money=n=>(S.data.settings.currency||'£')+(+n||0).toFixed(2);
+
+/* ---------- example data (relative to today, clearly marked) ---------- */
+function makeExample(){
+  const sup=(name,lead,days)=>({id:uid(),name,lead,days,contact:''});
+  const suppliers=[sup('Fishmonger',1,[2,3,4,5,6]),sup('Japanese dry goods',2,[1,3,5]),sup('Dairy',1,[1,2,3,4,5,6]),sup('Greengrocer',1,[1,2,3,4,5,6]),sup('Butcher',1,[2,4,6])];
+  const ing=(name,unit,yld,pack,price,supplier,stock,min=0)=>({id:uid(),name,unit,yield:yld,pack,price,supplier,stock,min});
+  const ingredients=[
+    ing('Sea bass fillet','g',92,1000,28,'Fishmonger',2600),ing('Tiger prawns','pc',100,20,16,'Fishmonger',80),
+    ing('Wagyu striploin','g',85,1000,95,'Butcher',1400),ing('Kombu','g',100,500,18.5,'Japanese dry goods',400,100),
+    ing('Katsuobushi','g',100,500,21,'Japanese dry goods',600,100),ing('Shiro miso','g',100,1000,9.8,'Japanese dry goods',1500,500),
+    ing('Usukuchi soy','ml',100,1000,6.5,'Japanese dry goods',1800,500),ing('Mirin','ml',100,1000,7.2,'Japanese dry goods',900,300),
+    ing('Sake kasu','g',100,500,6.9,'Japanese dry goods',500),ing('Caster sugar','g',100,2000,3.2,'Japanese dry goods',3000,1000),
+    ing('Tempura flour','g',100,1000,4.5,'Japanese dry goods',1200),ing('Yuzu kosho','g',100,80,5.6,'Japanese dry goods',90),
+    ing('Free-range eggs','pc',100,30,9,'Dairy',60,15),ing('Double cream','ml',100,2000,8.4,'Dairy',2000),ing('Whole milk','ml',100,2000,2.6,'Dairy',1500),
+    ing('Shiitake','g',90,1000,12,'Greengrocer',600),ing('Mitsuba','g',80,100,4.2,'Greengrocer',120),ing('Sweet potato','g',85,5000,7.5,'Greengrocer',2500)];
+  const L=(item,qty,unit)=>({item,qty,unit});
+  const rec=(name,kind,o,lines)=>Object.assign({id:uid(),name,kind,menu:'',share:100,yieldQty:1,yieldUnit:'portion',onHand:0,lines},o);
+  const recipes=[
+    rec('Ichiban dashi','prep',{yieldQty:2,yieldUnit:'l',onHand:1},[L('Kombu',20,'g'),L('Katsuobushi',40,'g')]),
+    rec('Chawanmushi custard','prep',{yieldQty:20,yieldUnit:'portion'},[L('Ichiban dashi',1.2,'l'),L('Free-range eggs',8,'pc'),L('Usukuchi soy',20,'ml'),L('Mirin',20,'ml')]),
+    rec('Sake kasu ice cream base','prep',{yieldQty:1.5,yieldUnit:'l',onHand:.6},[L('Double cream',800,'ml'),L('Whole milk',400,'ml'),L('Sake kasu',150,'g'),L('Caster sugar',180,'g'),L('Free-range eggs',6,'pc')]),
+    rec('Tempura batter','prep',{yieldQty:1,yieldUnit:'l'},[L('Tempura flour',400,'g'),L('Free-range eggs',1,'pc')]),
+    rec('Chawanmushi','dish',{menu:'Kaiseki'},[L('Chawanmushi custard',1,'portion'),L('Shiitake',10,'g'),L('Mitsuba',2,'g')]),
+    rec('Sea bass, yuzu kosho','dish',{menu:'Kaiseki'},[L('Sea bass fillet',90,'g'),L('Yuzu kosho',3,'g')]),
+    rec('Miso soup','dish',{menu:'Kaiseki'},[L('Ichiban dashi',160,'ml'),L('Shiro miso',18,'g')]),
+    rec('Sake kasu ice cream','dish',{menu:'Kaiseki'},[L('Sake kasu ice cream base',90,'ml')]),
+    rec('Wagyu tataki','dish',{menu:'À la carte',share:35},[L('Wagyu striploin',80,'g'),L('Usukuchi soy',10,'ml')]),
+    rec('Prawn & sweet potato tempura','dish',{menu:'À la carte',share:45},[L('Tiger prawns',3,'pc'),L('Sweet potato',60,'g'),L('Tempura batter',70,'ml')]),
+    rec('Miso soup (à la carte)','dish',{menu:'À la carte',share:60},[L('Ichiban dashi',160,'ml'),L('Shiro miso',18,'g')])];
+  const bookings=[];const t=todayISO();
+  for(let i=0;i<14;i++){const d=addDays(t,i);if(dow(d)===0)continue;const w=dow(d),busy=w>=4?1.35:1;
+    bookings.push({id:uid(),date:d,service:'Dinner',menu:'Kaiseki',covers:Math.round((18+((i*7)%11))*busy)});
+    bookings.push({id:uid(),date:d,service:'Dinner',menu:'À la carte',covers:Math.round((22+((i*13)%17))*busy)});
+    if(w===6)bookings.push({id:uid(),date:d,service:'Lunch',menu:'À la carte',covers:24});}
+  return {suppliers,ingredients,recipes,bookings,settings:{example:true,buffer:5,deliverBefore:0,currency:'£',restaurant:'Miyuki'}};
+}
+const EMPTY=()=>({suppliers:[],ingredients:[],recipes:[],bookings:[],settings:{example:false,buffer:5,deliverBefore:0,currency:'£',restaurant:'Miyuki'}});
+
+/* ---------- state ---------- */
+const TABS=[['plan','Today'],['bookings','Bookings'],['recipes','Recipes'],['ingredients','Ingredients & suppliers']];
+const S={data:makeExample(),tab:'plan',planStart:todayISO(),horizon:7,selDay:null,selRecipe:null,rq:'',iq:'',showPast:false,confirm:null};
+{const h=location.hash.slice(1);if(TABS.some(t=>t[0]===h))S.tab=h}
+
+/* ---------- storage: shared kitchen database, falling back to this browser ---------- */
+const KEYS=['suppliers','ingredients','recipes','bookings','settings'];
+const LS='miyuki-kitchen-planner-v2';
+let db=null,stored=false,dirty=new Set(),saveTimer=null,flushing=false,lastJSON={};
+function setSync(s,t){const el=$('#sync');el.dataset.s=s;$('#syncText').textContent=t}
+function loadLocal(){try{const raw=localStorage.getItem(LS);if(raw){const v=JSON.parse(raw);if(v&&v.recipes){S.data=Object.assign(EMPTY(),v);stored=true}}}catch(e){}}
+function saveLocal(){try{localStorage.setItem(LS,JSON.stringify(S.data))}catch(e){}}
+function markDirty(k){
+  if(!stored){KEYS.forEach(x=>dirty.add(x));stored=true}else dirty.add(k);
+  clearTimeout(saveTimer);saveTimer=setTimeout(flush,700);
+}
+async function flush(){
+  if(flushing){saveTimer=setTimeout(flush,400);return}
+  flushing=true;saveLocal();
+  try{
+    if(db){setSync('syncing','Saving…');
+      for(const k of [...dirty]){dirty.delete(k);const json=JSON.stringify(S.data[k]);lastJSON[k]=json;
+        try{await db.doc('kitchen/'+k).set({v:JSON.parse(json)})}
+        catch(e){if(e&&e.code==='unavailable'){await new Promise(r=>setTimeout(r,800+Math.random()*800));await db.doc('kitchen/'+k).set({v:JSON.parse(json)})}else throw e}}
+      setSync('synced','Saved · shared kitchen data')}
+    else{dirty.clear();setSync('local','Saved in this browser only')}
+  }catch(e){setSync('error','Not saved: '+(e&&e.code||'error'));if(e&&e.code==='quota_exceeded')toast('The kitchen database is full. Remove old bookings, then try again.')}
+  flushing=false;
+}
+async function initStore(){
+  loadLocal();render();
+  let api=null;try{if(window.claude&&window.claude.use)api=await window.claude.use('db')}catch(e){}
+  if(!api){setSync('local',stored?'Saved in this browser only':'Example data · not saved yet');return}
+  db=api;setSync('syncing','Loading kitchen data…');
+  const first={};let settled=false;
+  KEYS.forEach(k=>db.doc('kitchen/'+k).onSnapshot(snap=>{
+    if(snap.metadata&&snap.metadata.hasPendingWrites)return;
+    const body=snap.exists?snap.data():null;
+    if(!settled){first[k]=body;
+      if(Object.keys(first).length===KEYS.length){settled=true;
+        const any=KEYS.some(x=>first[x]);
+        if(any){const base=EMPTY();KEYS.forEach(x=>{S.data[x]=first[x]?clone(first[x].v):base[x];lastJSON[x]=JSON.stringify(S.data[x])});stored=true}
+        else if(stored){KEYS.forEach(x=>dirty.add(x));flush()}
+        setSync('synced',stored?'Saved · shared kitchen data':'Example data · not saved yet');render()}
+      return}
+    if(!body)return;const json=JSON.stringify(body.v);
+    if(json===lastJSON[k]||dirty.has(k))return;
+    lastJSON[k]=json;S.data[k]=clone(body.v);saveLocal();render();
+  },err=>setSync('error','Sync stopped · '+(err&&err.code||'error'))));
+}
+
+/* ---------- calculation ---------- */
+function maps(){const d=S.data,ingBy=new Map(),recBy=new Map(),supBy=new Map();
+  d.ingredients.forEach(i=>ingBy.set(key(i.name),i));d.recipes.forEach(r=>recBy.set(key(r.name),r));d.suppliers.forEach(s=>supBy.set(key(s.name),s));
+  return {ingBy,recBy,supBy}}
+function deliveryFor(sup,useDate){
+  const lead=sup?Math.max(0,Math.round(+sup.lead||0)):1;
+  const ok=sup&&sup.days&&sup.days.length?sup.days:[0,1,2,3,4,5,6];
+  let t=addDays(useDate,-Math.max(0,Math.round(+S.data.settings.deliverBefore||0)));
+  for(let i=0;i<7&&!ok.includes(dow(t));i++)t=addDays(t,-1);
+  return {delivery:t,orderDate:addDays(t,-lead)}}
+function compute(){
+  const d=S.data,set=d.settings,today=todayISO(),{ingBy,recBy,supBy}=maps();
+  const dates=[...Array(S.horizon)].map((_,i)=>addDays(S.planStart,i)),last=dates[dates.length-1];
+  const issues=[];const issue=(msg,tab)=>{if(!issues.some(x=>x.msg===msg))issues.push({msg,tab})};
+  const buffer=Math.max(0,+set.buffer||0);
+  const cov=new Map();
+  d.bookings.forEach(b=>{if(!b.date||b.date<S.planStart||b.date>last)return;const m=cov.get(b.date)||new Map();const mk=key(b.menu);m.set(mk,(m.get(mk)||0)+(+b.covers||0));cov.set(b.date,m)});
+  const dishes=d.recipes.filter(r=>r.kind==='dish');const menuKeys=new Set(dishes.map(r=>key(r.menu)));
+  for(const m of cov.values())for(const [mk,c] of m)if(c>0&&!menuKeys.has(mk))issue(`Bookings use the menu “${mk||'(blank)'}”, but no dishes belong to it, so those covers are not counted. Set the menu on the dishes in Recipes.`,'recipes');
+  const prepStock=new Map();d.recipes.filter(r=>r.kind==='prep').forEach(r=>prepStock.set(key(r.name),toBase(r.onHand,r.yieldUnit).q));
+  const ingStock=new Map();d.ingredients.forEach(i=>ingStock.set(key(i.name),+i.stock||0));
+  const forecast=new Map();d.ingredients.forEach(i=>forecast.set(key(i.name),{ing:i,start:+i.stock||0,need:0,order:0,close:+i.stock||0}));
+  const days=[],olines=[];
+  for(const date of dates){
+    const m=cov.get(date)||new Map();let booked=0;for(const c of m.values())booked+=c;
+    const need=new Map(),prepQ=new Map(),dishOut=[],prepOut=new Map();
+    const add=(item,qty,unit,from)=>{const k=key(item);if(!k)return;const b=toBase(qty,unit);const r=recBy.get(k);
+      if(r&&r.kind==='prep'){const y=unitDim(r.yieldUnit);if(y!==b.dim){issue(`“${from}” uses “${r.name}” in ${unit}, but that prep's batch yield is in ${r.yieldUnit}. Use matching units.`,'recipes');return}prepQ.set(k,(prepQ.get(k)||0)+b.q);return}
+      const ing=ingBy.get(k);if(!ing){issue(`“${item}” (used in “${from}”) is not listed in Ingredients or as a prep recipe.`,'ingredients');return}
+      if(unitDim(ing.unit)!==b.dim){issue(`“${from}” measures “${ing.name}” in ${unit}, but it is stocked in ${ing.unit}. Use matching units.`,'recipes');return}
+      need.set(k,(need.get(k)||0)+b.q)};
+    for(const r of dishes){const c=m.get(key(r.menu))||0;if(!c)continue;const share=r.share===''||r.share==null?100:+r.share;
+      const portions=Math.ceil(c*(1+buffer/100)*share/100-1e-9);if(portions<=0)continue;dishOut.push({name:r.name,portions});
+      const f=portions/(+r.yieldQty||1);(r.lines||[]).forEach(l=>add(l.item,(+l.qty||0)*f,l.unit,r.name))}
+    let guard=0;
+    while(prepQ.size&&guard++<300){const [k,q]=prepQ.entries().next().value;prepQ.delete(k);const r=recBy.get(k);
+      const yb=toBase(r.yieldQty,r.yieldUnit).q,have=Math.max(0,prepStock.get(k)||0),use=Math.min(have,q),net=q-use;let batches=0;
+      if(net>1e-9){if(yb<=0){issue(`Prep recipe “${r.name}” needs a batch yield.`,'recipes');continue}
+        batches=Math.ceil(net/yb-1e-9);(r.lines||[]).forEach(l=>add(l.item,(+l.qty||0)*batches,l.unit,r.name))}
+      prepStock.set(k,have-use+batches*yb-net);
+      const o=prepOut.get(k)||{name:r.name,unit:r.yieldUnit,yb,need:0,fromStock:0,batches:0,make:0,left:0};
+      o.need+=q;o.fromStock+=use;o.batches+=batches;o.make+=batches*yb;o.left=prepStock.get(k);prepOut.set(k,o)}
+    if(guard>=300)issue('A prep recipe seems to include itself. Check prep recipes for a loop.','recipes');
+    for(const [k,edible] of need){const ing=ingBy.get(k);const y=Math.min(100,Math.max(1,+ing.yield||100));const raw=edible/(y/100);
+      const before=ingStock.get(k);let after=before-raw;const min=+ing.min||0;
+      if(after<min-1e-9){const pack=+ing.pack>0?+ing.pack:1;const packs=Math.ceil((min-after)/pack-1e-9),order=packs*pack;after+=order;
+        const sup=supBy.get(key(ing.supplier));const dl=deliveryFor(sup,date);
+        olines.push({k,ing,useDate:date,packs,order,cost:packs*(+ing.price||0),supplier:ing.supplier||'No supplier set',sup,...dl});
+        forecast.get(k).order+=order}
+      ingStock.set(k,after);const f=forecast.get(k);f.need+=raw;f.close=after}
+    days.push({date,booked,menus:m,dishes:dishOut,preps:[...prepOut.values()].sort((a,b)=>b.batches-a.batches||a.name.localeCompare(b.name))});
+  }
+  const groups=new Map();
+  for(const l of olines){const gk=l.supplier+'|'+l.delivery;let g=groups.get(gk);
+    if(!g){g={supplier:l.supplier,sup:l.sup,delivery:l.delivery,orderDate:l.orderDate,lines:new Map(),cost:0,uses:new Set()};groups.set(gk,g)}
+    const x=g.lines.get(l.k)||{ing:l.ing,packs:0,order:0,cost:0};x.packs+=l.packs;x.order+=l.order;x.cost+=l.cost;g.lines.set(l.k,x);
+    g.cost+=l.cost;g.uses.add(l.useDate);if(l.orderDate<g.orderDate)g.orderDate=l.orderDate}
+  const orders=[...groups.values()].map(g=>({...g,lines:[...g.lines.values()].sort((a,b)=>a.ing.name.localeCompare(b.ing.name)),uses:[...g.uses].sort(),
+    status:g.orderDate<today?'late':g.orderDate===today?'today':'upcoming'})).sort((a,b)=>a.orderDate.localeCompare(b.orderDate)||a.supplier.localeCompare(b.supplier));
+  d.ingredients.forEach(i=>{if(!(+i.pack>0))issue(`Set a pack size for “${i.name}” so orders can be rounded to whole packs.`,'ingredients');
+    if(!i.supplier)issue(`Choose a supplier for “${i.name}”.`,'ingredients');else if(!supBy.has(key(i.supplier)))issue(`Supplier “${i.supplier}” (for “${i.name}”) is not in the supplier list, so default delivery rules are used.`,'ingredients')});
+  return {dates,days,orders,forecast:[...forecast.values()].filter(f=>f.need>0).sort((a,b)=>a.ing.name.localeCompare(b.ing.name)),issues};
+}
+function costPer(name,M,depth=0){const k=key(name),i=M.ingBy.get(k);
+  if(i)return +i.pack>0?(+i.price||0)/(+i.pack)/((Math.min(100,Math.max(1,+i.yield||100)))/100):0;
+  const r=M.recBy.get(k);if(!r||depth>8)return 0;
+  const tot=(r.lines||[]).reduce((s,l)=>s+toBase(l.qty,l.unit).q*costPer(l.item,M,depth+1),0);
+  const y=r.kind==='dish'?(+r.yieldQty||1):toBase(r.yieldQty,r.yieldUnit).q;return y>0?tot/y:0}
+
+/* ---------- rendering ---------- */
+function render(){
+  const focus=document.activeElement&&document.activeElement.id?{id:document.activeElement.id,s:document.activeElement.selectionStart,e:document.activeElement.selectionEnd}:null;
+  const d=S.data;const counts={bookings:d.bookings.filter(b=>b.date>=todayISO()).length,recipes:d.recipes.length,ingredients:d.ingredients.length};
+  $('#tabs').innerHTML=TABS.map(([k,l])=>`<button role="tab" id="tab-${k}" aria-selected="${S.tab===k}" data-tab="${k}">${l}${counts[k]!=null?`<span class="count">${counts[k]}</span>`:''}</button>`).join('');
+  $('#banner').innerHTML=d.settings.example?`<div class="banner"><p><strong>Example kitchen.</strong> These recipes, suppliers and bookings are sample data so you can see how it works. Import your Jelly and SevenRooms exports to replace them.</p><div class="row"><button class="btn primary" data-act="import" data-kind="bookings">Import SevenRooms</button><button class="btn" data-act="import" data-kind="recipes">Import Jelly recipes</button><button class="btn ghost" data-act="clearExample">Start empty</button></div></div>`:'';
+  const view={plan:renderPlan,bookings:renderBookings,recipes:renderRecipes,ingredients:renderIngredients}[S.tab];
+  $('#main').innerHTML=view()+renderFooter();
+  if(focus){const el=document.getElementById(focus.id);if(el){el.focus();try{if(focus.s!=null)el.setSelectionRange(focus.s,focus.e)}catch(e){}}}
+}
+let rT=null;function renderSoon(){clearTimeout(rT);rT=setTimeout(render,0)}
+
+function renderPlan(){
+  const r=compute(),today=todayISO();
+  if(!S.selDay||!r.dates.includes(S.selDay))S.selDay=r.dates[0];
+  const covers=r.days.reduce((s,x)=>s+x.booked,0),maxC=Math.max(1,...r.days.map(x=>x.booked));
+  const due=r.orders.filter(o=>o.status!=='upcoming'),late=r.orders.filter(o=>o.status==='late'),todayO=r.orders.filter(o=>o.status==='today');
+  const up=r.orders.filter(o=>o.status==='upcoming');
+  const dueCost=due.reduce((s,o)=>s+o.cost,0),allCost=r.orders.reduce((s,o)=>s+o.cost,0);
+  const sel=r.days.find(x=>x.date===S.selDay);
+  S._orders=r.orders;
+  const set=S.data.settings;
+  const tiles=`<section class="tiles" aria-label="Summary">
+    <div class="tile"><span class="eyebrow">Covers · next ${S.horizon} days</span><span class="v">${numf(covers,0)}</span><span class="d">Booked, before the ${numf(set.buffer,0)}% walk-in buffer</span></div>
+    <div class="tile ${todayO.length?'warn':''}"><span class="eyebrow">Order today</span><span class="v">${todayO.length}</span><span class="d">${todayO.length?`Supplier${todayO.length>1?'s':''} · ${money(todayO.reduce((s,o)=>s+o.cost,0))}`:'Nothing due today'}</span></div>
+    <div class="tile ${late.length?'bad':''}"><span class="eyebrow">Late or short</span><span class="v">${late.length}</span><span class="d">${late.length?'Past the order date · buy in or call now':'All orders on time'}</span></div>
+    <div class="tile"><span class="eyebrow">Planned spend</span><span class="v">${money(allCost)}</span><span class="d">All proposed orders in this window</span></div>
+  </section>`;
+  const controls=`<section class="panel"><div class="panel-head"><div><h2>Service window</h2><p class="sub small muted">Covers per day from your bookings. Choose a day to see its prep list.</p></div>
+    <div class="controls">
+      <div class="field"><label for="c-start">From</label><input id="c-start" type="date" value="${S.planStart}" data-ui="planStart"></div>
+      <div class="field"><label for="c-hz">Days</label><select id="c-hz" data-ui="horizon">${[3,5,7,10,14].map(n=>`<option value="${n}" ${n===S.horizon?'selected':''}>${n}</option>`).join('')}</select></div>
+      <div class="field"><label for="c-buf">Walk-in buffer %</label><input id="c-buf" type="number" min="0" step="1" style="width:90px" value="${esc(set.buffer)}" data-f="settings..buffer" data-rr="1"></div>
+      <div class="field"><label for="c-db">Deliver days before service</label><select id="c-db" data-f="settings..deliverBefore" data-rr="1">${[0,1,2].map(n=>`<option value="${n}" ${+set.deliverBefore===n?'selected':''}>${n===0?'Same day':n+' day'+(n>1?'s':'')}</option>`).join('')}</select></div>
+    </div></div>
+    <div class="days" role="group" aria-label="Days">${r.days.map(x=>`<button class="day ${x.date===today?'today':''}" aria-pressed="${x.date===S.selDay}" data-act="day" data-d="${x.date}">
+      <span class="dn">${x.date===today?'Today':DOW[dow(x.date)]}</span><span class="dd">${pd(x.date).getDate()} ${MON[pd(x.date).getMonth()]}</span>
+      <span class="bar"><i style="height:${Math.round(x.booked/maxC*100)}%"></i></span><span class="cv">${x.booked} cvr</span></button>`).join('')}</div>
+  </section>`;
+  const dueHtml=due.length?`<div class="dockets">${due.map(docket).join('')}</div>`:`<div class="empty">Nothing to order today.${up[0]?` Next order: <b>${esc(up[0].supplier)}</b> on ${fmtDate(up[0].orderDate)}.`:''}</div>`;
+  const prepHtml=sel?(sel.preps.length||sel.dishes.length?`
+      ${sel.preps.length?sel.preps.map(p=>`<div class="prep-item"><div><b>${esc(p.name)}</b></div>
+        <div class="make">${p.batches?`${p.batches} × batch`:'<span class="chip good">In stock</span>'}</div>
+        <div class="how">Need ${fmtQ(p.need,p.unit)}${p.fromStock>0?` · use ${fmtQ(p.fromStock,p.unit)} already made`:''}${p.batches?` · make ${fmtQ(p.make,p.unit)}`:''} · ${fmtQ(Math.max(0,p.left),p.unit)} left after service</div></div>`).join(''):'<p class="muted small">No prep recipes needed.</p>'}
+      <div style="margin-top:14px"><div class="eyebrow">Portions to plate · incl. buffer</div><div class="dishes">${sel.dishes.map(x=>`<span>${esc(x.name)} <b>${x.portions}</b></span>`).join('')||'<span>No covers</span>'}</div></div>`
+      :`<div class="empty">No bookings on this day.</div>`):'';
+  const upHtml=up.length?`<div class="tbl-wrap"><table><thead><tr><th>Order by</th><th>Supplier</th><th>Delivery</th><th>Items</th><th class="num">Est. cost</th><th></th></tr></thead><tbody>
+    ${up.map((o,i)=>`<tr><td class="mono">${fmtDate(o.orderDate)}</td><td><b>${esc(o.supplier)}</b></td><td class="mono">${fmtDate(o.delivery)}</td>
+    <td class="small">${o.lines.map(l=>`${esc(l.ing.name)} <span class="mono muted">${packStr(l)}</span>`).join(' · ')}</td><td class="num">${money(o.cost)}</td>
+    <td><button class="btn sm" data-act="copy" data-o="${r.orders.indexOf(o)}">Copy</button></td></tr>`).join('')}</tbody></table></div>`:'<div class="empty">No further orders in this window.</div>';
+  const fc=r.forecast.length?`<div class="tbl-wrap"><table><thead><tr><th>Ingredient</th><th class="num">On hand</th><th class="num">Needed</th><th class="num">To order</th><th class="num">Left at end</th><th class="num">Min</th></tr></thead><tbody>
+    ${r.forecast.map(f=>`<tr><td>${esc(f.ing.name)}</td><td class="num">${fmtQ(f.start,f.ing.unit)}</td><td class="num">${fmtQ(f.need,f.ing.unit)}</td><td class="num">${f.order?`<b>${fmtQ(f.order,f.ing.unit)}</b>`:'<span class="muted">—</span>'}</td><td class="num">${fmtQ(f.close,f.ing.unit)}</td><td class="num muted">${+f.ing.min?fmtQ(+f.ing.min,f.ing.unit):'—'}</td></tr>`).join('')}</tbody></table></div>`:'<div class="empty">No ingredients needed in this window.</div>';
+  const iss=r.issues.length?`<section class="panel"><div class="panel-head"><div><h2>Check these</h2><p class="sub small muted">These gaps make the numbers less reliable.</p></div></div>
+    <ul class="issues">${r.issues.slice(0,12).map(x=>`<li><span class="chip warn">Check</span><span>${esc(x.msg)} <button class="btn ghost sm" data-tab="${x.tab}">Open ${x.tab}</button></span></li>`).join('')}</ul>${r.issues.length>12?`<p class="small muted" style="margin-top:8px">${r.issues.length-12} more.</p>`:''}</section>`:'';
+  return tiles+controls+`<div class="split">
+    <section class="panel"><div class="panel-head"><div><h2>Place these orders</h2><p class="sub small muted">Due today or overdue. Quantities are rounded up to whole packs.</p></div>${r.orders.length?`<button class="btn" data-act="ordersCsv">Download orders CSV</button>`:''}</div>${dueHtml}</section>
+    <section class="panel"><div class="panel-head"><div><h2>Prep list</h2><p class="sub small muted">${sel?fmtDate(sel.date)+' · '+sel.booked+' covers booked':''}</p></div></div>${prepHtml}</section>
+  </div>
+  <section class="panel"><div class="panel-head"><div><h2>Coming up</h2><p class="sub small muted">Orders with a later order-by date, grouped by supplier and delivery.</p></div></div>${upHtml}</section>
+  <section class="panel"><div class="panel-head"><div><h2>Stock forecast</h2><p class="sub small muted">As purchased, after trim loss. Assumes proposed orders arrive on time.</p></div></div>${fc}</section>`+iss;
+}
+function packStr(l){const p=+l.ing.pack||1;return `${l.packs} × ${fmtQ(p,l.ing.unit)}`}
+function docket(o){const i=S._ordersIdx(o);
+  return `<article class="docket"><header><div><div class="eyebrow">${o.status==='late'?`<span class="chip bad">Late · was due ${fmtDate(o.orderDate)}</span>`:`<span class="chip warn">Order today</span>`}</div>
+    <h3 style="margin-top:8px">${esc(o.supplier)}</h3><div class="meta">Delivery ${fmtDate(o.delivery)} · for service ${o.uses.map(fmtDate).join(', ')}</div></div>
+    <button class="btn sm" data-act="copy" data-o="${i}">Copy order</button></header>
+    <ul class="lines">${o.lines.map(l=>`<li><span class="nm">${esc(l.ing.name)}</span><span class="dots"></span><span class="q">${packStr(l)}</span></li>`).join('')}</ul>
+    <footer><span>${o.lines.length} item${o.lines.length>1?'s':''}${o.sup&&o.sup.contact?' · '+esc(o.sup.contact):''}</span><span>Est. <span class="mono">${money(o.cost)}</span></span></footer></article>`}
+S._ordersIdx=o=>(S._orders||[]).indexOf(o);
+
+function renderBookings(){
+  const d=S.data,t=todayISO();
+  const rows=d.bookings.filter(b=>S.showPast||!b.date||b.date>=t).sort((a,b)=>(a.date||'').localeCompare(b.date||'')||(a.service||'').localeCompare(b.service||''));
+  const menus=menuList();
+  return `<section class="panel"><div class="panel-head"><div><h2>Bookings</h2><p class="sub small muted">Covers per date, service and menu. Import a SevenRooms reservation export to fill this in; re-importing replaces the dates in the file.</p></div>
+    <div class="row"><button class="btn primary" data-act="import" data-kind="bookings">Import SevenRooms CSV</button><button class="btn" data-act="addBooking">Add row</button>
+    <button class="btn ghost" data-act="togglePast">${S.showPast?'Hide past dates':'Show past dates'}</button></div></div>
+    <datalist id="menus">${menus.map(m=>`<option value="${esc(m)}">`).join('')}</datalist>
+    ${rows.length?`<div class="tbl-wrap"><table><thead><tr><th>Date</th><th>Service</th><th>Menu</th><th class="num">Covers</th><th></th></tr></thead><tbody>
+    ${rows.map(b=>`<tr class="${b.date&&b.date<t?'past':''}"><td class="edit"><input id="b-${b.id}-date" type="date" value="${esc(b.date)}" data-f="bookings.${b.id}.date" aria-label="Date"></td>
+      <td class="edit"><input id="b-${b.id}-service" value="${esc(b.service)}" data-f="bookings.${b.id}.service" aria-label="Service"></td>
+      <td class="edit"><input id="b-${b.id}-menu" list="menus" value="${esc(b.menu)}" data-f="bookings.${b.id}.menu" aria-label="Menu"></td>
+      <td class="edit"><input id="b-${b.id}-covers" type="number" min="0" step="1" value="${esc(b.covers)}" data-f="bookings.${b.id}.covers" aria-label="Covers"></td>
+      <td><button class="btn ghost sm danger" data-act="del" data-t="bookings" data-id="${b.id}" aria-label="Remove row">Remove</button></td></tr>`).join('')}</tbody></table></div>`
+    :`<div class="empty">No upcoming bookings. Import a SevenRooms export or add a row.</div>`}</section>`;
+}
+function menuList(){return [...new Set(S.data.recipes.filter(r=>r.kind==='dish').map(r=>r.menu).concat(S.data.bookings.map(b=>b.menu)).filter(Boolean))].sort()}
+
+function renderRecipes(){
+  const d=S.data,q=key(S.rq),M=maps();
+  const list=d.recipes.filter(r=>!q||key(r.name).includes(q));
+  let sel=d.recipes.find(r=>r.id===S.selRecipe);if(!sel){sel=list[0]||d.recipes[0];S.selRecipe=sel&&sel.id}
+  const dishMenus=[...new Set(list.filter(r=>r.kind==='dish').map(r=>r.menu||'No menu'))].sort();
+  const item=r=>`<button data-act="selRecipe" data-id="${r.id}" aria-current="${sel&&r.id===sel.id}"><span>${esc(r.name)}</span><span class="sub">${r.kind==='dish'?(r.share!=null&&+r.share!==100?numf(r.share,0)+'%':''):numf(r.yieldQty,2)+' '+esc(r.yieldUnit)}</span></button>`;
+  const left=`<aside class="panel rlist"><div class="field"><label for="rq">Search recipes</label><input id="rq" class="input" value="${esc(S.rq)}" data-ui="rq" placeholder="e.g. dashi"></div>
+    ${dishMenus.map(m=>`<div class="grp"><div class="eyebrow">Menu · ${esc(m)}</div>${list.filter(r=>r.kind==='dish'&&(r.menu||'No menu')===m).map(item).join('')}</div>`).join('')}
+    <div class="grp"><div class="eyebrow">Prep recipes · 仕込み</div>${list.filter(r=>r.kind==='prep').map(item).join('')||'<span class="small muted" style="padding:4px 10px">None yet</span>'}</div>
+    <div class="row"><button class="btn sm" data-act="newRecipe" data-kind="dish">New dish</button><button class="btn sm" data-act="newRecipe" data-kind="prep">New prep</button></div></aside>`;
+  let right='<section class="panel"><div class="empty">No recipes yet. Import from Jelly or create a dish.</div></section>';
+  if(sel){const id=sel.id,isDish=sel.kind==='dish',unitOpts=u=>['g','kg','ml','l','pc','portion'].map(x=>`<option ${normUnit(u)===x?'selected':''}>${x}</option>`).join('');
+    const cpp=costPer(sel.name,M);const conf=S.confirm==='rec:'+id;
+    right=`<section class="panel"><div class="panel-head"><div><div class="eyebrow">${isDish?'Dish':'Prep recipe'}</div><h2 style="margin-top:4px">${esc(sel.name||'Untitled')}</h2>
+      <p class="sub small muted">${isDish?`Food cost ${money(cpp)} per portion`:`Cost ${money(cpp*toBase(1,sel.yieldUnit).q)} per ${esc(sel.yieldUnit)}`}</p></div>
+      <button class="btn ${conf?'primary':'ghost'} sm danger" data-act="delRecipe" data-id="${id}">${conf?'Confirm delete':'Delete'}</button></div>
+      <div class="form-grid">
+        <div class="field"><label for="r-${id}-name">Name</label><input id="r-${id}-name" value="${esc(sel.name)}" data-f="recipes.${id}.name" data-rename="rec" data-rr="1"></div>
+        <div class="field"><label for="r-${id}-kind">Type</label><select id="r-${id}-kind" data-f="recipes.${id}.kind" data-rr="1"><option value="dish" ${isDish?'selected':''}>Dish on a menu</option><option value="prep" ${!isDish?'selected':''}>Prep (仕込み)</option></select></div>
+        ${isDish?`<div class="field"><label for="r-${id}-menu">Menu</label><input id="r-${id}-menu" list="rmenus" value="${esc(sel.menu)}" data-f="recipes.${id}.menu" data-rr="1"><datalist id="rmenus">${menuList().map(m=>`<option value="${esc(m)}">`).join('')}</datalist></div>
+        <div class="field"><label for="r-${id}-share">Share of covers %</label><input id="r-${id}-share" type="number" min="0" max="100" step="1" value="${esc(sel.share)}" data-f="recipes.${id}.share"></div>
+        <div class="field"><label for="r-${id}-yq">Recipe makes (portions)</label><input id="r-${id}-yq" type="number" min="0" step="any" value="${esc(sel.yieldQty)}" data-f="recipes.${id}.yieldQty"></div>`
+        :`<div class="field"><label for="r-${id}-yq">Batch yield</label><input id="r-${id}-yq" type="number" min="0" step="any" value="${esc(sel.yieldQty)}" data-f="recipes.${id}.yieldQty"></div>
+        <div class="field"><label for="r-${id}-yu">Yield unit</label><select id="r-${id}-yu" data-f="recipes.${id}.yieldUnit" data-rr="1">${unitOpts(sel.yieldUnit)}</select></div>
+        <div class="field"><label for="r-${id}-oh">Already prepped (${esc(sel.yieldUnit)})</label><input id="r-${id}-oh" type="number" min="0" step="any" value="${esc(sel.onHand)}" data-f="recipes.${id}.onHand"></div>`}
+      </div>
+      <p class="help" style="margin-top:10px">${isDish?'Share of covers: 100% for a set or tasting menu where every guest gets this dish. For à la carte, use the share of guests who usually order it.':'Batch yield is what one batch makes. Prep lists round up to whole batches, and anything left over is used on the next day.'}</p>
+      <h3 style="margin:18px 0 8px">Ingredients ${isDish?'for '+numf(sel.yieldQty||1,2)+' portion'+((+sel.yieldQty||1)===1?'':'s'):'per batch'}</h3>
+      <datalist id="items">${d.ingredients.map(i=>`<option value="${esc(i.name)}">`).join('')}${d.recipes.filter(r=>r.kind==='prep'&&r.id!==id).map(r=>`<option value="${esc(r.name)}">`).join('')}</datalist>
+      <div class="tbl-wrap"><table><thead><tr><th>Ingredient or prep</th><th class="num">Quantity</th><th>Unit</th><th>Found as</th><th class="num">Cost</th><th></th></tr></thead><tbody>
+      ${(sel.lines||[]).map((l,i)=>{const k=key(l.item),isPrep=M.recBy.get(k)&&M.recBy.get(k).kind==='prep',isIng=M.ingBy.has(k);
+        return `<tr><td class="edit w-name"><input id="l-${id}-${i}-item" list="items" value="${esc(l.item)}" data-f="recipes.${id}.lines.${i}.item" data-rr="1" aria-label="Item"></td>
+        <td class="edit"><input id="l-${id}-${i}-qty" type="number" min="0" step="any" value="${esc(l.qty)}" data-f="recipes.${id}.lines.${i}.qty" data-rr="1" aria-label="Quantity"></td>
+        <td class="edit"><select id="l-${id}-${i}-unit" data-f="recipes.${id}.lines.${i}.unit" data-rr="1" aria-label="Unit">${unitOpts(l.unit)}</select></td>
+        <td>${isPrep?'<span class="chip info">Prep</span>':isIng?'<span class="chip good">Ingredient</span>':`<button class="btn sm" data-act="addIng" data-name="${esc(l.item)}" data-unit="${esc(l.unit)}">Add to ingredients</button>`}</td>
+        <td class="num">${money(toBase(l.qty,l.unit).q*costPer(l.item,M))}</td>
+        <td><button class="btn ghost sm danger" data-act="delLine" data-id="${id}" data-i="${i}" aria-label="Remove line">Remove</button></td></tr>`}).join('')}
+      </tbody></table></div>
+      <div class="row" style="margin-top:10px"><button class="btn" data-act="addLine" data-id="${id}">Add ingredient line</button></div></section>`}
+  return `<section class="panel"><div class="panel-head"><div><h2>Recipes</h2><p class="sub small muted">Dishes use ingredients and prep recipes. Prep recipes can use other prep recipes, like dashi inside chawanmushi custard.</p></div>
+    <button class="btn primary" data-act="import" data-kind="recipes">Import Jelly recipes CSV</button></div></section><div class="rlayout">${left}${right}</div>`;
+}
+
+function renderIngredients(){
+  const d=S.data,q=key(S.iq);
+  const rows=d.ingredients.filter(i=>!q||key(i.name).includes(q)||key(i.supplier).includes(q)).sort((a,b)=>a.name.localeCompare(b.name));
+  const used=new Set();d.recipes.forEach(r=>(r.lines||[]).forEach(l=>used.add(key(l.item))));
+  const sup=`<section class="panel"><div class="panel-head"><div><h2>Suppliers</h2><p class="sub small muted">Lead time is how many days before delivery you must order. Tick the days each supplier delivers.</p></div><button class="btn" data-act="addSupplier">Add supplier</button></div>
+    ${d.suppliers.length?`<div class="tbl-wrap"><table><thead><tr><th>Supplier</th><th class="num">Lead days</th><th>Delivers on</th><th>Contact / how to order</th><th></th></tr></thead><tbody>
+    ${d.suppliers.map(s=>`<tr><td class="edit w-name"><input id="s-${s.id}-name" value="${esc(s.name)}" data-f="suppliers.${s.id}.name" data-rename="sup" aria-label="Supplier name"></td>
+      <td class="edit"><input id="s-${s.id}-lead" type="number" min="0" step="1" value="${esc(s.lead)}" data-f="suppliers.${s.id}.lead" aria-label="Lead days"></td>
+      <td><div class="row" style="gap:4px;flex-wrap:nowrap">${[1,2,3,4,5,6,0].map(n=>`<button class="btn sm ${(s.days||[]).includes(n)?'primary':''}" style="padding:4px 7px" data-act="dayToggle" data-id="${s.id}" data-n="${n}" aria-pressed="${(s.days||[]).includes(n)}">${DOW[n].slice(0,2)}</button>`).join('')}</div></td>
+      <td class="edit w-name"><input id="s-${s.id}-contact" value="${esc(s.contact)}" data-f="suppliers.${s.id}.contact" placeholder="Email, phone or app" aria-label="Contact"></td>
+      <td><button class="btn ghost sm danger" data-act="del" data-t="suppliers" data-id="${s.id}">Remove</button></td></tr>`).join('')}</tbody></table></div>`:'<div class="empty">No suppliers yet.</div>'}</section>`;
+  const ing=`<section class="panel"><div class="panel-head"><div><h2>Ingredients &amp; stock</h2><p class="sub small muted">Update “On hand” after each stock count. Yield % is the usable share after trimming (e.g. fish fillet 92%).</p></div>
+    <div class="row"><input id="iq" class="input" style="width:200px" placeholder="Filter" value="${esc(S.iq)}" data-ui="iq" aria-label="Filter ingredients"><button class="btn primary" data-act="import" data-kind="ingredients">Import Jelly products / stock</button><button class="btn" data-act="addIngredient">Add ingredient</button></div></div>
+    <datalist id="sups">${d.suppliers.map(s=>`<option value="${esc(s.name)}">`).join('')}</datalist>
+    ${rows.length?`<div class="tbl-wrap"><table><thead><tr><th>Ingredient</th><th>Unit</th><th class="num">Yield %</th><th class="num">Pack size</th><th class="num">Pack price</th><th>Supplier</th><th class="num">On hand</th><th class="num">Min stock</th><th></th></tr></thead><tbody>
+    ${rows.map(i=>`<tr><td class="edit w-name"><input id="i-${i.id}-name" value="${esc(i.name)}" data-f="ingredients.${i.id}.name" data-rename="ing" aria-label="Name"></td>
+      <td class="edit"><select id="i-${i.id}-unit" data-f="ingredients.${i.id}.unit" aria-label="Unit">${['g','ml','pc'].map(u=>`<option ${i.unit===u?'selected':''}>${u}</option>`).join('')}</select></td>
+      <td class="edit"><input id="i-${i.id}-yield" type="number" min="1" max="100" step="1" value="${esc(i.yield)}" data-f="ingredients.${i.id}.yield" aria-label="Yield %"></td>
+      <td class="edit"><input id="i-${i.id}-pack" type="number" min="0" step="any" value="${esc(i.pack)}" data-f="ingredients.${i.id}.pack" aria-label="Pack size in ${esc(i.unit)}"></td>
+      <td class="edit"><input id="i-${i.id}-price" type="number" min="0" step="0.01" value="${esc(i.price)}" data-f="ingredients.${i.id}.price" aria-label="Pack price"></td>
+      <td class="edit w-name"><input id="i-${i.id}-sup" list="sups" value="${esc(i.supplier)}" data-f="ingredients.${i.id}.supplier" aria-label="Supplier"></td>
+      <td class="edit"><input id="i-${i.id}-stock" type="number" min="0" step="any" value="${esc(i.stock)}" data-f="ingredients.${i.id}.stock" aria-label="On hand in ${esc(i.unit)}"></td>
+      <td class="edit"><input id="i-${i.id}-min" type="number" min="0" step="any" value="${esc(i.min)}" data-f="ingredients.${i.id}.min" aria-label="Minimum stock"></td>
+      <td><div class="row" style="flex-wrap:nowrap">${i.check?'<span class="chip warn" title="Created from a recipe import">Check pack</span>':''}${used.has(key(i.name))?'':'<span class="chip">Unused</span>'}<button class="btn ghost sm danger" data-act="del" data-t="ingredients" data-id="${i.id}">Remove</button></div></td></tr>`).join('')}</tbody></table></div>
+    <p class="help" style="margin-top:8px">Pack size, on-hand and min stock are in the ingredient's unit (g, ml or pc). A 1 kg bag is 1000.</p>`:'<div class="empty">No ingredients yet.</div>'}</section>`;
+  return sup+ing;
+}
+function renderFooter(){const conf=S.confirm==='wipe';
+  return `<section class="panel footer"><div><div class="eyebrow">Your data</div><p class="small muted" style="margin-top:4px">${db?'Saved to this page\'s shared kitchen database. Everyone you share the page with sees the same data.':'Saved in this browser only. Download a backup to move it to another device.'}</p></div>
+  <div class="row"><button class="btn" data-act="backup">Download backup</button><label class="btn" for="restore">Restore backup</label><input id="restore" type="file" accept=".json,application/json" hidden>
+  <button class="btn ghost danger ${conf?'primary':''}" data-act="wipe">${conf?'Confirm: delete all data':'Delete all data'}</button></div></section>`}
+
+/* ---------- import (column mapper) ---------- */
+function parseCSV(t){const rows=[];let row=[],cell='',q=false;t=String(t).replace(/^﻿/,'');
+  const delim=(()=>{const f=t.split(/\r?\n/)[0]||'';const c=(f.match(/,/g)||[]).length,s=(f.match(/;/g)||[]).length,tb=(f.match(/\t/g)||[]).length;return tb>c&&tb>s?'\t':s>c?';':','})();
+  for(let i=0;i<t.length;i++){const c=t[i];if(c==='"'){if(q&&t[i+1]==='"'){cell+='"';i++}else q=!q}
+    else if(c===delim&&!q){row.push(cell);cell=''}else if((c==='\n'||c==='\r')&&!q){if(c==='\r'&&t[i+1]==='\n')i++;row.push(cell);if(row.some(x=>x.trim()!==''))rows.push(row);row=[];cell=''}else cell+=c}
+  row.push(cell);if(row.some(x=>x.trim()!==''))rows.push(row);return rows}
+const IMPORTS={
+  bookings:{title:'Import SevenRooms reservations',hint:'Export the reservations list from SevenRooms as CSV (one row per reservation). Covers are added up by date, service and menu. Cancelled and no-show reservations are skipped.',
+    fields:[['date','Reservation date',1,['date','reservation date','res date','booking date','visit date','arrival date','day']],['covers','Party size / covers',1,['party size','covers','guests','pax','party','size','guest count','num guests','people','cover count']],['status','Status',0,['status','reservation status','state']],['service','Shift / service',0,['shift','shift name','service','meal period','seating']],['menu','Menu / experience',0,['menu','experience','experience name','package','offer','set menu']]]},
+  recipes:{title:'Import Jelly recipes',hint:'Export recipes from Jelly as CSV with one row per ingredient line. A recipe that is used inside another recipe becomes a prep recipe. Ingredients not yet in your list are added so you can set their pack size and supplier.',
+    fields:[['recipe','Recipe name',1,['recipe name','recipe','dish name','dish','menu item','recipe title']],['item','Ingredient or sub-recipe',1,['ingredient name','ingredient','product name','product','component','sub recipe','item']],['qty','Quantity',1,['quantity','qty','amount','net quantity','weight','gross quantity']],['unit','Unit',0,['unit','uom','units','measure','unit of measure']],['yield','Portions / batch yield',0,['portions','yield','servings','batch yield','recipe yield','yield quantity','batch size']],['yieldUnit','Yield unit',0,['yield unit','portion unit','batch unit']],['type','Recipe type',0,['recipe type','type','kind']],['menu','Menu / category',0,['menu','menu section','category','section']]]},
+  ingredients:{title:'Import Jelly products and stock',hint:'Export your product list or your latest stock count from Jelly as CSV. Rows are matched by product name; existing products are updated.',
+    fields:[['name','Product name',1,['product name','product','ingredient','item name','name','description','item']],['unit','Unit',0,['unit','uom','base unit','unit of measure']],['supplier','Supplier',0,['supplier','supplier name','vendor']],['pack','Pack size',0,['pack size','case size','size','pack','quantity per pack']],['price','Pack price',0,['pack price','price','case price','unit price','cost','last price']],['stock','Stock on hand',0,['stock','on hand','stock level','closing stock','counted','quantity','qty','count']]]}};
+const nh=h=>String(h).toLowerCase().replace(/[^a-z0-9]+/g,' ').trim();
+function guessMap(headers,fields){const H=headers.map(nh),used=new Set(),map={};
+  for(const [f,,,syn] of fields){let idx=-1;for(const s of syn){const i=H.findIndex((h,j)=>h===s&&!used.has(j));if(i>=0){idx=i;break}}
+    if(idx<0)for(const s of syn){const i=H.findIndex((h,j)=>!used.has(j)&&h.includes(s));if(i>=0){idx=i;break}}
+    if(idx>=0)used.add(idx);map[f]=idx}
+  return map}
+let IMP=null;
+function openImport(kind){IMP={kind,rows:null,headers:null,map:{},opts:{dateOrder:'dmy',defMenu:menuList()[0]||'Dinner menu',exclude:'cancel, no show, no-show, noshow, deleted, void, declined'}};drawImport();const dl=$('#dlg');if(!dl.open)dl.showModal()}
+function drawImport(){const I=IMPORTS[IMP.kind],dl=$('#dlg');
+  let body=`<div class="drop"><p><b>Choose a CSV file</b></p><p class="small muted">${esc(I.hint)}</p><label class="btn primary" for="impFile">Choose file</label><input id="impFile" type="file" accept=".csv,.txt,text/csv" hidden></div>`;
+  if(IMP.rows){const opt=IMP.headers.map((h,i)=>`<option value="${i}">${esc(h||'Column '+(i+1))}</option>`).join('');
+    const ready=I.fields.every(([f,,req])=>!req||IMP.map[f]>=0);
+    const prev=IMP.rows.slice(0,5);
+    body=`<p class="small muted"><b>${IMP.rows.length}</b> rows in <b>${esc(IMP.file)}</b>. Check which column holds each value.</p>
+    <div class="map-grid">${I.fields.map(([f,l,req])=>`<div class="field"><label for="m-${f}">${esc(l)}${req?' *':' (optional)'}</label><select id="m-${f}" data-map="${f}"><option value="-1">${req?'Choose a column':'Not in file'}</option>${opt.replace(`value="${IMP.map[f]}"`,`value="${IMP.map[f]}" selected`)}</select></div>`).join('')}</div>
+    ${IMP.kind==='bookings'?`<div class="map-grid">
+      <div class="field"><label for="o-do">Dates like 04/10/2026 mean</label><select id="o-do" data-opt="dateOrder"><option value="dmy" ${IMP.opts.dateOrder==='dmy'?'selected':''}>4 October (UK)</option><option value="mdy" ${IMP.opts.dateOrder==='mdy'?'selected':''}>April 10 (US)</option></select></div>
+      <div class="field"><label for="o-menu">Menu when the file has none</label><input id="o-menu" list="menus2" value="${esc(IMP.opts.defMenu)}" data-opt="defMenu"><datalist id="menus2">${menuList().map(m=>`<option value="${esc(m)}">`).join('')}</datalist></div>
+      <div class="field" style="grid-column:1/-1"><label for="o-ex">Skip reservations whose status contains</label><input id="o-ex" value="${esc(IMP.opts.exclude)}" data-opt="exclude"></div></div>`:''}
+    <div><div class="eyebrow" style="margin-bottom:6px">Preview</div><div class="tbl-wrap"><table><thead><tr>${I.fields.filter(([f])=>IMP.map[f]>=0).map(([,l])=>`<th>${esc(l)}</th>`).join('')}</tr></thead><tbody>
+      ${prev.map(r=>`<tr>${I.fields.filter(([f])=>IMP.map[f]>=0).map(([f])=>`<td class="small">${esc(r[IMP.map[f]])}</td>`).join('')}</tr>`).join('')}</tbody></table></div></div>
+    ${S.data.settings.example?'<p class="small" style="color:var(--warn)">The example kitchen will be cleared when you import, so your data is not mixed with sample rows.</p>':''}
+    <div class="row" style="justify-content:flex-end"><button class="btn ghost" data-act="impReset">Choose another file</button><button class="btn primary" data-act="impGo" ${ready?'':'disabled'}>Import ${IMP.rows.length} rows</button></div>`}
+  dl.innerHTML=`<div class="dlg"><div class="dlg-head"><div><div class="eyebrow">Import CSV</div><h2 id="dlgTitle" style="margin-top:4px">${esc(I.title)}</h2></div><button class="btn ghost" data-act="impClose" aria-label="Close">Close</button></div>${body}</div>`;
+}
+function parseDateStr(s,order){s=String(s??'').trim();let m;
+  if((m=s.match(/^(\d{4})[-\/.](\d{1,2})[-\/.](\d{1,2})/)))return isoOf(new Date(+m[1],+m[2]-1,+m[3]));
+  if((m=s.match(/^(\d{1,2})[\/.\-](\d{1,2})[\/.\-](\d{2,4})/))){let a=+m[1],b=+m[2],y=+m[3];if(y<100)y+=2000;let dd=a,mm=b;if(order==='mdy'){dd=b;mm=a}if(mm>12&&dd<=12){[dd,mm]=[mm,dd]}if(mm<1||mm>12||dd<1||dd>31)return null;return isoOf(new Date(y,mm-1,dd))}
+  const t=Date.parse(s.replace(/(\d)(st|nd|rd|th)\b/,'$1'));return isNaN(t)?null:isoOf(new Date(t))}
+function beginImport(){if(S.data.settings.example){S.data=EMPTY();stored=false}}
+function doImport(){const I=IMP,get=(r,f)=>I.map[f]>=0?String(r[I.map[f]]??'').trim():'';let msg='';
+  if(I.kind==='bookings'){const ex=I.opts.exclude.split(',').map(x=>key(x)).filter(Boolean);let skipped=0,bad=0,res=0;const agg=new Map();
+    for(const r of I.rows){const st=key(get(r,'status'));if(st&&ex.some(x=>st.includes(x))){skipped++;continue}
+      const date=parseDateStr(get(r,'date'),I.opts.dateOrder),c=Math.round(toNum(get(r,'covers')));if(!date||!(c>0)){bad++;continue}
+      const service=get(r,'service')||'Dinner',menu=get(r,'menu')||I.opts.defMenu;const k=date+'|'+key(service)+'|'+key(menu);
+      const a=agg.get(k)||{id:uid(),date,service,menu,covers:0};a.covers+=c;agg.set(k,a);res++}
+    beginImport();const dates=new Set([...agg.values()].map(a=>a.date));
+    S.data.bookings=S.data.bookings.filter(b=>!dates.has(b.date)).concat([...agg.values()]);
+    markDirty('bookings');markDirty('settings');
+    msg=`Imported ${res} reservations into ${agg.size} service rows across ${dates.size} dates.${skipped?` Skipped ${skipped} cancelled or no-show.`:''}${bad?` ${bad} rows had no readable date or party size.`:''}`;
+    S.tab='bookings'}
+  else if(I.kind==='recipes'){const recs=new Map();let lines=0;
+    for(const r of I.rows){const name=get(r,'recipe'),item=get(r,'item');if(!name||!item)continue;
+      let q=toNum(get(r,'qty')),u=get(r,'unit');if(!u){const p=parseQtyUnit(get(r,'qty'));q=p.q;u=p.u||'pc'}
+      const k=key(name);let x=recs.get(k);if(!x){const yq=get(r,'yield');const py=parseQtyUnit(yq);
+        x={name,lines:[],yieldQty:py.q||1,yieldUnit:get(r,'yieldUnit')?normUnit(get(r,'yieldUnit')):(py.u||''),type:key(get(r,'type')),menu:get(r,'menu')};recs.set(k,x)}
+      x.lines.push({item,qty:q,unit:normUnit(u)});lines++}
+    beginImport();const usedAsItem=new Set();recs.forEach(x=>x.lines.forEach(l=>usedAsItem.add(key(l.item))));
+    let added=0,updated=0;
+    for(const [k,x] of recs){const isPrep=/prep|sub|batch|base|component/.test(x.type)||usedAsItem.has(k);
+      let yu=x.yieldUnit;if(isPrep&&!yu){const firstUse=[...recs.values()].flatMap(y=>y.lines).find(l=>key(l.item)===k);yu=firstUse?firstUse.unit:'portion'}
+      const obj={name:x.name,kind:isPrep?'prep':'dish',yieldQty:x.yieldQty,yieldUnit:isPrep?(yu||'portion'):'portion',lines:x.lines};
+      const ex=S.data.recipes.find(r=>key(r.name)===k);
+      if(ex){Object.assign(ex,obj);if(!isPrep&&x.menu)ex.menu=x.menu;updated++}
+      else{S.data.recipes.push(Object.assign({id:uid(),menu:isPrep?'':(x.menu||menuList()[0]||'Dinner menu'),share:100,onHand:0},obj));added++}}
+    const known=new Set(S.data.ingredients.map(i=>key(i.name)).concat(S.data.recipes.map(r=>key(r.name))));let newIng=0;
+    recs.forEach(x=>x.lines.forEach(l=>{const k=key(l.item);if(known.has(k))return;known.add(k);const u=BASE[unitDim(l.unit)];
+      S.data.ingredients.push({id:uid(),name:l.item,unit:u==='portion'?'pc':u,yield:100,pack:u==='pc'||u==='portion'?1:1000,price:0,supplier:'',stock:0,min:0,check:true});newIng++}));
+    markDirty('recipes');markDirty('ingredients');markDirty('settings');
+    msg=`Imported ${recs.size} recipes (${added} new, ${updated} updated, ${lines} lines).${newIng?` Added ${newIng} new ingredients: set their pack size and supplier.`:''}`;
+    S.tab='recipes';S.selRecipe=null}
+  else{let added=0,updated=0;beginImport();
+    for(const r of I.rows){const name=get(r,'name');if(!name)continue;
+      const uRaw=get(r,'unit'),packRaw=get(r,'pack');const pk=parseQtyUnit(packRaw);let u=normUnit(uRaw||pk.u||'pc');const f=UNITS[u]?UNITS[u][1]:1;const base=BASE[unitDim(u)]==='portion'?'pc':BASE[unitDim(u)];
+      let pack=pk.q?(pk.u?toBase(pk.q,pk.u).q:pk.q*f):0;
+      let ex=S.data.ingredients.find(i=>key(i.name)===key(name));if(!ex){ex={id:uid(),name,unit:base,yield:100,pack:pack||(base==='pc'?1:1000),price:0,supplier:'',stock:0,min:0};S.data.ingredients.push(ex);added++}else{updated++;if(uRaw||pk.u)ex.unit=base}
+      if(pack)ex.pack=pack;if(get(r,'price'))ex.price=toNum(get(r,'price'));
+      if(get(r,'stock')){const sp=parseQtyUnit(get(r,'stock'));ex.stock=sp.u?toBase(sp.q,sp.u).q:sp.q*f}
+      const sn=get(r,'supplier');if(sn){ex.supplier=sn;if(!S.data.suppliers.some(s=>key(s.name)===key(sn)))S.data.suppliers.push({id:uid(),name:sn,lead:1,days:[1,2,3,4,5,6],contact:''})}
+      if(pack&&ex.supplier)delete ex.check}
+    markDirty('ingredients');markDirty('suppliers');markDirty('settings');msg=`Imported ${added} new and updated ${updated} ingredients.`;S.tab='ingredients'}
+  $('#dlg').close();IMP=null;location.hash=S.tab;render();toast(msg)}
+
+/* ---------- actions ---------- */
+function toast(m){const t=$('#toast');t.textContent=m;t.hidden=false;clearTimeout(toast.t);toast.t=setTimeout(()=>t.hidden=true,5200)}
+function csvOut(rows){return rows.map(r=>r.map(v=>'"'+String(v??'').replace(/"/g,'""')+'"').join(',')).join('\r\n')}
+async function saveFile(name,text,mime){
+  try{const dl=window.claude&&window.claude.use?await window.claude.use('downloads'):null;
+    if(dl){await dl.save({filename:name,data:text});toast('Saved '+name);return}}
+  catch(e){if(e&&(e.code==='declined'||e.code==='rate_limited'))return}
+  const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([text],{type:mime}));a.download=name;document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(a.href),2000)}
+function orderText(o){const L=o.lines.map(l=>`- ${l.ing.name}: ${packStr(l)}`).join('\n');
+  return `Hello ${o.supplier},\n\nPlease deliver on ${fmtDate(o.delivery)} ${pd(o.delivery).getFullYear()} to ${S.data.settings.restaurant||'the restaurant'}:\n${L}\n\nThank you.`}
+async function copyOrder(o){const txt=orderText(o);
+  try{await navigator.clipboard.writeText(txt);toast(`Order for ${o.supplier} copied. Paste it into your email or supplier app.`)}
+  catch(e){const dl=$('#dlg');dl.innerHTML=`<div class="dlg"><div class="dlg-head"><h2 id="dlgTitle">Order for ${esc(o.supplier)}</h2><button class="btn ghost" data-act="impClose">Close</button></div><p class="small muted">Copying is blocked here. Select the text and copy it.</p><textarea class="copybox" id="copybox" readonly>${esc(txt)}</textarea></div>`;dl.showModal();const ta=$('#copybox');ta.focus();ta.select()}}
+function setPath(path,v){const [t,id,...rest]=path.split('.');
+  if(t==='settings'){S.data.settings[rest[rest.length-1]]=v;markDirty('settings');return}
+  let o=S.data[t].find(r=>r.id===id);if(!o)return;for(let i=0;i<rest.length-1;i++)o=o[/^\d+$/.test(rest[i])?+rest[i]:rest[i]];
+  o[rest[rest.length-1]]=v;if(t==='ingredients'&&['pack','supplier'].includes(rest[0]))delete S.data.ingredients.find(r=>r.id===id).check;markDirty(t)}
+function renameRefs(kind,oldN,newN){const ok=key(oldN);if(!ok||ok===key(newN))return;
+  if(kind==='sup'){S.data.ingredients.forEach(i=>{if(key(i.supplier)===ok)i.supplier=newN});markDirty('ingredients')}
+  else{S.data.recipes.forEach(r=>(r.lines||[]).forEach(l=>{if(key(l.item)===ok)l.item=newN}));markDirty('recipes')}}
+
+document.addEventListener('focusin',e=>{const el=e.target;if(el.dataset&&el.dataset.rename)el.dataset.prev=el.value});
+document.addEventListener('input',e=>{const el=e.target;
+  if(el.dataset.ui==='rq'){S.rq=el.value;renderSoon();return}
+  if(el.dataset.ui==='iq'){S.iq=el.value;renderSoon();return}
+  if(el.dataset.f&&el.tagName!=='SELECT'){setPath(el.dataset.f,el.type==='number'?(el.value===''?'':Number(el.value)):el.value)}});
+document.addEventListener('change',async e=>{const el=e.target;
+  if(el.dataset.ui==='planStart'){if(el.value){S.planStart=el.value;S.selDay=null;render()}return}
+  if(el.dataset.ui==='horizon'){S.horizon=+el.value;render();return}
+  if(el.dataset.map){IMP.map[el.dataset.map]=+el.value;drawImport();return}
+  if(el.dataset.opt){IMP.opts[el.dataset.opt]=el.value;return}
+  if(el.id==='impFile'&&el.files[0]){try{const f=el.files[0],rows=parseCSV(await f.text());if(rows.length<2)throw Error('The file has no data rows.');
+      IMP.headers=rows.shift().map(h=>h.trim());IMP.rows=rows;IMP.file=f.name;IMP.map=guessMap(IMP.headers,IMPORTS[IMP.kind].fields);drawImport()}
+    catch(err){toast('Could not read that file: '+err.message)}return}
+  if(el.id==='restore'&&el.files[0]){try{const v=JSON.parse(await el.files[0].text());if(!v||!Array.isArray(v.recipes)||!Array.isArray(v.ingredients))throw Error('This is not a planner backup.');
+      S.data=Object.assign(EMPTY(),v);stored=false;markDirty('settings');render();toast('Backup restored.')}catch(err){toast('Could not restore: '+err.message)}el.value='';return}
+  if(el.dataset.f){if(el.tagName==='SELECT'){const v=el.value;setPath(el.dataset.f,/^-?\d+(\.\d+)?$/.test(v)&&!el.dataset.f.endsWith('unit')&&!el.dataset.f.endsWith('Unit')?Number(v):v)}
+    if(el.dataset.rename){renameRefs(el.dataset.rename,el.dataset.prev||'',el.value);el.dataset.prev=el.value}
+    if(el.dataset.rr||el.dataset.rename)renderSoon()}});
+document.addEventListener('click',e=>{const b=e.target.closest('[data-act],[data-tab]');if(!b)return;
+  if(b.dataset.tab&&!b.dataset.act){S.tab=b.dataset.tab;S.confirm=null;try{history.replaceState(null,'','#'+S.tab)}catch(_){}render();window.scrollTo({top:0});return}
+  const a=b.dataset.act,d=S.data;
+  if(a!=='delRecipe'&&a!=='wipe')S.confirm=null;
+  switch(a){
+    case 'day':S.selDay=b.dataset.d;render();break;
+    case 'import':openImport(b.dataset.kind);break;
+    case 'impClose':$('#dlg').close();IMP=null;break;
+    case 'impReset':IMP.rows=null;drawImport();break;
+    case 'impGo':doImport();break;
+    case 'copy':copyOrder(S._orders[+b.dataset.o]);break;
+    case 'ordersCsv':{const rows=[['order_by','supplier','delivery','ingredient','packs','pack_size','unit','quantity','est_cost']];
+      (S._orders||[]).forEach(o=>o.lines.forEach(l=>rows.push([o.orderDate,o.supplier,o.delivery,l.ing.name,l.packs,l.ing.pack,l.ing.unit,l.order,(l.cost).toFixed(2)])));
+      saveFile('orders-'+S.planStart+'.csv',csvOut(rows),'text/csv');break}
+    case 'backup':saveFile('kitchen-planner-backup-'+todayISO()+'.json',JSON.stringify(d,null,2),'application/json');break;
+    case 'clearExample':S.data=EMPTY();stored=false;markDirty('settings');render();toast('Example data cleared. Import your exports to begin.');break;
+    case 'wipe':if(S.confirm!=='wipe'){S.confirm='wipe';render();break}S.confirm=null;S.data=EMPTY();stored=false;markDirty('settings');render();toast('All data deleted.');break;
+    case 'togglePast':S.showPast=!S.showPast;render();break;
+    case 'addBooking':d.bookings.push({id:uid(),date:S.planStart,service:'Dinner',menu:menuList()[0]||'',covers:0});markDirty('bookings');render();break;
+    case 'addSupplier':d.suppliers.push({id:uid(),name:'New supplier',lead:1,days:[1,2,3,4,5,6],contact:''});markDirty('suppliers');render();break;
+    case 'addIngredient':d.ingredients.push({id:uid(),name:'New ingredient',unit:'g',yield:100,pack:1000,price:0,supplier:'',stock:0,min:0});S.iq='';markDirty('ingredients');render();break;
+    case 'addIng':{const u=BASE[unitDim(b.dataset.unit)];d.ingredients.push({id:uid(),name:b.dataset.name,unit:u==='portion'?'pc':u,yield:100,pack:u==='pc'?1:1000,price:0,supplier:'',stock:0,min:0,check:true});markDirty('ingredients');render();toast(`Added “${b.dataset.name}”. Set its pack size and supplier in Ingredients.`);break}
+    case 'del':{const t=b.dataset.t;S.data[t]=d[t].filter(r=>r.id!==b.dataset.id);markDirty(t);render();break}
+    case 'dayToggle':{const s=d.suppliers.find(x=>x.id===b.dataset.id),n=+b.dataset.n;s.days=(s.days||[]).includes(n)?s.days.filter(x=>x!==n):[...(s.days||[]),n];markDirty('suppliers');render();break}
+    case 'selRecipe':S.selRecipe=b.dataset.id;render();break;
+    case 'newRecipe':{const r={id:uid(),name:b.dataset.kind==='dish'?'New dish':'New prep',kind:b.dataset.kind,menu:b.dataset.kind==='dish'?(menuList()[0]||''):'',share:100,yieldQty:1,yieldUnit:b.dataset.kind==='dish'?'portion':'l',onHand:0,lines:[]};d.recipes.push(r);S.selRecipe=r.id;S.rq='';markDirty('recipes');render();const n=document.getElementById('r-'+r.id+'-name');if(n){n.focus();n.select()}break}
+    case 'delRecipe':if(S.confirm!=='rec:'+b.dataset.id){S.confirm='rec:'+b.dataset.id;render();break}S.confirm=null;S.data.recipes=d.recipes.filter(r=>r.id!==b.dataset.id);S.selRecipe=null;markDirty('recipes');render();break;
+    case 'addLine':{const r=d.recipes.find(x=>x.id===b.dataset.id);r.lines=r.lines||[];r.lines.push({item:'',qty:0,unit:'g'});markDirty('recipes');render();const n=document.getElementById(`l-${r.id}-${r.lines.length-1}-item`);if(n)n.focus();break}
+    case 'delLine':{const r=d.recipes.find(x=>x.id===b.dataset.id);r.lines.splice(+b.dataset.i,1);markDirty('recipes');render();break}
+  }});
+$('#dlg').addEventListener('close',()=>{IMP=null});
+initStore();
+</script>
+</body></html>
