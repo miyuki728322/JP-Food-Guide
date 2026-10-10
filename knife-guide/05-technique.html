@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>第五章 技法 Technique & Pairing — The Japanese Knife</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=Noto+Serif+JP:wght@300;400;500;600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        .kmuki-row { display: grid; grid-template-columns: minmax(0,1fr) minmax(0,1fr); gap: 32px; align-items: start; }
+        @media (max-width: 700px) { .kmuki-row { grid-template-columns: 1fr; } }
+        .kmuki-video { position: relative; margin: 0 auto; width: 100%; max-width: 320px; aspect-ratio: 9/16; background: var(--rule-light); border: 1px solid var(--rule-light); }
+        .kmuki-video video { width: 100%; height: 100%; display: block; object-fit: contain; background: #000; }
+        .kmuki-video__ph { display: none; position: absolute; inset: 0; align-items: center; justify-content: center; font-size: 15px; letter-spacing: .04em; opacity: .7; }
+        .kmuki-video.is-empty video { visibility: hidden; }
+        .kmuki-video.is-empty .kmuki-video__ph { display: flex; }
+        .grip-row { display: grid; grid-template-columns: 1fr 150px; gap: 26px; align-items: start; padding: 22px 0; border-bottom: 1px solid var(--rule-light); }
+        .grip-row:last-child { border-bottom: none; }
+        .grip-row p { margin: 0; }
+        .grip-row image-slot { width: 150px; height: 130px; }
+        @media (max-width: 700px) { .grip-row { grid-template-columns: 1fr; } .grip-row image-slot { width: 100%; height: 180px; } }
+
+        /* ============ STROKE CARDS w/ MOTION DIAGRAM ============ */
+        .stroke-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 28px; margin: 40px 0; }
+
+        .stroke-card { border: 1px solid var(--rule-light); background: var(--warm-white); padding: 28px 30px; }
+
+        .stroke-card__jp { font-family: var(--font-jp); font-size: 24px; font-weight: 600; color: var(--ink); }
+        .stroke-card__en { font-family: var(--font-sans); font-size: 11px; letter-spacing: 0.25em; text-transform: uppercase; color: var(--accent); margin: 4px 0 18px; }
+
+        .stroke-diagram {
+            height: 110px;
+            background: var(--cream);
+            border: 1px solid var(--rule-light);
+            position: relative;
+            overflow: hidden;
+            margin-bottom: 18px;
+        }
+
+        .stroke-diagram__board { position: absolute; left: 8%; right: 8%; bottom: 18px; height: 6px; background: var(--rule); }
+
+        .stroke-diagram__blade {
+            position: absolute;
+            left: 30%;
+            bottom: 26px;
+            width: 120px;
+            height: 26px;
+            background: linear-gradient(180deg, #D8DEE3, #A8B6BE);
+            clip-path: polygon(0 100%, 100% 78%, 100% 0, 8% 22%);
+        }
+
+        @media (prefers-reduced-motion: no-preference) {
+            .is-visible .stroke-diagram__blade--push { animation: pushCut 2.6s ease-in-out infinite; }
+            .is-visible .stroke-diagram__blade--pull { animation: pullCut 2.6s ease-in-out infinite; }
+            .is-visible .stroke-diagram__blade--tap { animation: tapCut 1.6s ease-in-out infinite; }
+            .is-visible .stroke-diagram__blade--sogi { animation: sogiCut 2.8s ease-in-out infinite; transform: rotate(-18deg); }
+        }
+
+        @keyframes pushCut {
+            0%, 100% { transform: translate(0, -34px); }
+            45%, 60% { transform: translate(34px, 0); }
+        }
+
+        @keyframes pullCut {
+            0%, 100% { transform: translate(26px, -34px); }
+            45%, 60% { transform: translate(-30px, 0); }
+        }
+
+        @keyframes tapCut {
+            0%, 100% { transform: translateY(-26px); }
+            40%, 55% { transform: translateY(0); }
+        }
+
+        @keyframes sogiCut {
+            0%, 100% { transform: rotate(-18deg) translate(20px, -22px); }
+            50%, 62% { transform: rotate(-18deg) translate(-18px, 6px); }
+        }
+
+        .stroke-diagram__label {
+            position: absolute;
+            top: 10px;
+            right: 12px;
+            font-family: var(--font-sans);
+            font-size: 10.5px;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--ink-light);
+        }
+
+        .stroke-card p { font-size: 15.5px; line-height: 1.75; color: var(--ink-mid); }
+        .stroke-card__use { margin-top: 12px; font-family: var(--font-sans); font-size: 12.5px; letter-spacing: 0.06em; color: var(--accent); }
+
+        /* pairing table tweaks */
+        .pairing-note { font-family: var(--font-jp); color: var(--ink); }
+
+        @media (max-width: 900px) {
+            .stroke-grid { grid-template-columns: 1fr; }
+            .table-scroll { overflow-x: auto; }
+        }
+        .table-scroll { overflow-x: auto; }
+    </style>
+</head>
+
+<body data-screen-label="Ch.5 Technique 技法">
+    <div id="site-nav"></div>
+
+    <header class="chapter-hero" data-screen-label="Technique hero">
+        <div class="chapter-hero__media">
+            <image-slot id="technique-hero" shape="rect" placeholder="Photo — chef mid-cut, pinch grip, focused hands"></image-slot>
+        </div>
+        <div class="chapter-hero__scrim"></div>
+        <div class="chapter-hero__content">
+            <p class="chapter-hero__number">第五章 · Chapter Five</p>
+            <h1 class="chapter-hero__title">Technique &amp; Pairing</h1>
+            <p class="chapter-hero__jp">包丁の使い方 — Hōchō no Tsukaikata</p>
+            <p class="chapter-hero__standfirst">Japanese knives are thinner, harder, and keener than
+                what most cooks trained on. The technique adjusts accordingly: less force, more
+                geometry, and the right stroke for the right blade.</p>
+        </div>
+    </header>
+
+    <div class="page-wrapper">
+
+        <section class="section" data-screen-label="The grip">
+            <div class="prose reveal">
+                <p class="section__eyebrow">First Principles · 握り方</p>
+                <h2 class="section__title">The Grip Comes First</h2>
+                <p class="lede">Every stroke in this chapter starts from the same place: a pinch, not
+                    a fist.</p>
+                <div class="grip-row">
+                    <p><strong>The pinch grip:</strong> thumb and the side of the index finger pinch the
+                        blade itself just ahead of the handle; the remaining three fingers wrap the
+                        handle lightly. The hand steers steel directly — the handle is just a counterweight.
+                        Grip pressure is a 3 out of 10; the knife's sharpness does the work, and a tense
+                        fist is what tires and slips.</p>
+                    <image-slot id="grip-pinch" src="assets/photos/grip-pinch.webp" shape="rect" placeholder="Photo — pinch grip"></image-slot>
+                </div>
+                <div class="grip-row">
+                    <p><strong>For single-bevel knives</strong> (柳刃, 薄刃, 出刃), the index finger often
+                        extends along the spine instead — the traditional pointing grip that controls the
+                        long draw of a sashimi cut and keeps the blade tracking straight despite the
+                        one-sided grind.</p>
+                    <image-slot id="grip-pointing" src="assets/photos/grip-pointing.webp" shape="rect" placeholder="Photo — pointing grip"></image-slot>
+                </div>
+                <div class="grip-row">
+                    <p><strong>The free hand</strong> makes the claw: fingertips curled under, first
+                        knuckles vertical, guiding the flat of the blade. The knuckles meter every cut;
+                        the fingertips never face the edge.</p>
+                    <image-slot id="grip-claw" src="assets/photos/grip-claw.webp" shape="rect" placeholder="Photo — claw hand"></image-slot>
+                </div>
+            </div>
+        </section>
+
+        <section class="section section--cream" data-screen-label="The strokes">
+            <div class="prose reveal">
+                <p class="section__eyebrow">The Strokes · 切り方</p>
+                <h2 class="section__title">Five Cuts Cover the Kitchen</h2>
+                <p>Watch the motion in each diagram — the blade's path is the entire lesson. Japanese
+                    cutting is forward-and-down or back-and-down, almost never straight down with
+                    force.</p>
+            </div>
+
+            <div class="stroke-grid">
+                <div class="stroke-card reveal">
+                    <p class="stroke-card__jp">押し切り</p>
+                    <p class="stroke-card__en">Oshigiri · the push cut</p>
+                    <div class="stroke-diagram">
+                        <div class="stroke-diagram__board"></div>
+                        <div class="stroke-diagram__blade stroke-diagram__blade--push"></div>
+                        <span class="stroke-diagram__label">forward + down</span>
+                    </div>
+                    <p>The fundamental Japanese stroke. The blade moves forward and down in one
+                        diagonal motion, slicing as it descends — never crushing straight down. The
+                        tip stays low; the heel finishes the cut as the knife glides forward.</p>
+                    <p class="stroke-card__use">牛刀 · 三徳 — onions, cabbage, most prep</p>
+                </div>
+
+                <div class="stroke-card reveal">
+                    <p class="stroke-card__jp">引き切り</p>
+                    <p class="stroke-card__en">Hikigiri · the draw cut</p>
+                    <div class="stroke-diagram">
+                        <div class="stroke-diagram__board"></div>
+                        <div class="stroke-diagram__blade stroke-diagram__blade--pull"></div>
+                        <span class="stroke-diagram__label">back + down</span>
+                    </div>
+                    <p>The blade draws backward through the food, heel to tip, in one long pull. On
+                        a 300 mm yanagiba this single stroke is the whole technique of sashimi: one
+                        motion, full blade length, never a saw. Also the stroke for tomatoes and
+                        anything with delicate skin.</p>
+                    <p class="stroke-card__use">柳刃 · 筋引き — sashimi, proteins, soft skins</p>
+                </div>
+
+                <div class="stroke-card reveal">
+                    <p class="stroke-card__jp">刻み</p>
+                    <p class="stroke-card__en">Kizami · the tap chop</p>
+                    <div class="stroke-diagram">
+                        <div class="stroke-diagram__board"></div>
+                        <div class="stroke-diagram__blade stroke-diagram__blade--tap"></div>
+                        <span class="stroke-diagram__label">straight down, light</span>
+                    </div>
+                    <p>Rapid, light, vertical strokes with a flat-profiled blade — the full edge
+                        meets the board at once, so nothing escapes. The santoku and usuba excel
+                        here; the rhythm is wrist-light and fast, not forceful.</p>
+                    <p class="stroke-card__use">三徳 · 薄刃 — herbs, scallions, fine mince</p>
+                </div>
+
+                <div class="stroke-card reveal">
+                    <p class="stroke-card__jp">そぎ切り</p>
+                    <p class="stroke-card__en">Sogigiri · the shave slice</p>
+                    <div class="stroke-diagram">
+                        <div class="stroke-diagram__board"></div>
+                        <div class="stroke-diagram__blade stroke-diagram__blade--sogi"></div>
+                        <span class="stroke-diagram__label">angled draw</span>
+                    </div>
+                    <p>The blade lies at a shallow angle and draws through, shaving wide, thin,
+                        diagonal slices — more cut surface, faster marination, more elegant
+                        presentation. The standard cut for chicken breast, white fish, and shiitake.</p>
+                    <p class="stroke-card__use">牛刀 · 柳刃 — proteins, mushrooms, fuki</p>
+                </div>
+            </div>
+
+            <div class="callout reveal">
+                <p class="callout__label">The fifth cut · 桂剥き</p>
+                <div class="kmuki-row"><div><p><strong>Katsuramuki</strong> — the rotary peel — is the usuba's party piece and the
+                    classical test of a Japanese apprentice: the left hand rotates a daikon cylinder
+                    against the stationary blade while the right thumb meters thickness, producing one
+                    continuous translucent sheet. Practice expectation: months. The exercise teaches
+                    everything — edge feel, pressure, patience — which is why it is assigned.</p></div>
+                <div class="kmuki-video" style="width: 331px; height: 377px"><span class="kmuki-video__ph">Video — katsuramuki (rotary peel)</span><img src="assets/katsuramuki-still.webp" alt="Katsuramuki — rotary-peeling a daikon into one continuous sheet" style="width:100%;height:100%;object-fit:cover;display:block"></div></div>
+            </div>
+        </section>
+
+        <section class="section" data-screen-label="Food pairing table">
+            <div class="prose reveal">
+                <p class="section__eyebrow">Pairing · 食材と包丁</p>
+                <h2 class="section__title">Which Blade Meets Which Ingredient</h2>
+                <p>The working matrix. When in doubt: 牛刀. When it matters: the specialist.</p>
+            </div>
+
+            <div class="table-scroll reveal">
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>Ingredient · task</th>
+                            <th>Knife</th>
+                            <th>Stroke</th>
+                            <th>Why</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Sashimi from a block (柵)</td>
+                            <td class="td-name">柳刃<small>yanagiba</small></td>
+                            <td><span class="pairing-note">引き切り</span> one pull</td>
+                            <td>A single full-length draw leaves a light-reflecting cut face; sawing turns it dull</td>
+                        </tr>
+                        <tr>
+                            <td>Whole fish breakdown (三枚おろし)</td>
+                            <td class="td-name">出刃<small>deba</small></td>
+                            <td>Heel chop + filleting pull</td>
+                            <td>Spine mass for the collar and head; keen tip rides the frame</td>
+                        </tr>
+                        <tr>
+                            <td>Onion brunoise, cabbage, volume prep</td>
+                            <td class="td-name">牛刀<small>gyuto</small></td>
+                            <td><span class="pairing-note">押し切り</span> push cut</td>
+                            <td>Belly and length give speed; push cut keeps cells intact, eyes dry-ish</td>
+                        </tr>
+                        <tr>
+                            <td>Herbs, scallions, garlic — fine work</td>
+                            <td class="td-name">三徳<small>santoku</small></td>
+                            <td><span class="pairing-note">刻み</span> tap chop</td>
+                            <td>Flat profile lands the whole edge at once — no bruised escapees</td>
+                        </tr>
+                        <tr>
+                            <td>Daikon sheet, tsuma garnish</td>
+                            <td class="td-name">薄刃<small>usuba</small></td>
+                            <td><span class="pairing-note">桂剥き</span> rotary peel</td>
+                            <td>Single bevel lies flat against the work; nothing else can do this</td>
+                        </tr>
+                        <tr>
+                            <td>Tomatoes, soft-skinned produce</td>
+                            <td class="td-name">牛刀<small>gyuto</small></td>
+                            <td><span class="pairing-note">引き切り</span> draw cut</td>
+                            <td>Drawing lets keenness, not pressure, open the skin</td>
+                        </tr>
+                        <tr>
+                            <td>Roast / protein portioning</td>
+                            <td class="td-name">筋引き<small>sujihiki</small></td>
+                            <td><span class="pairing-note">引き切り</span> long pull</td>
+                            <td>Narrow blade, less drag, single-stroke slices that hold their face</td>
+                        </tr>
+                        <tr>
+                            <td>Poultry off the bone</td>
+                            <td class="td-name">骨スキ<small>honesuki</small></td>
+                            <td>Tip work along joints</td>
+                            <td>Stiff triangular tip tracks cartilage; spares your gyuto's edge</td>
+                        </tr>
+                        <tr>
+                            <td>Chicken breast, white fish — wide slices</td>
+                            <td class="td-name">牛刀<small>gyuto</small></td>
+                            <td><span class="pairing-note">そぎ切り</span> shave slice</td>
+                            <td>Angled draw maximizes surface for sauce and sear</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="pull-quote reveal">
+                <blockquote>"Let the knife fall through the food. Your job is only to aim it."</blockquote>
+                <cite>力ではなく刃で切る — cut with the edge, not with force</cite>
+            </div>
+        </section>
+    </div>
+
+    <div id="chapter-footer"></div>
+
+    <script src="js/image-slot.js"></script>
+    <script src="js/site.js"></script>
+</body>
+
+</html>

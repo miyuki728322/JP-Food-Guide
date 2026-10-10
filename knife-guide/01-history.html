@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>第一章 歴史 History — The Japanese Knife</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=Noto+Serif+JP:wght@300;400;500;600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        /* ============ ERA TIMELINE ============ */
+        .timeline { position: relative; margin: 48px 0; }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 130px;
+            top: 0;
+            bottom: 0;
+            width: 1px;
+            background: var(--rule);
+        }
+
+        .era {
+            position: relative;
+            display: grid;
+            grid-template-columns: 100px 1fr;
+            gap: 64px;
+            padding: 28px 0;
+        }
+
+        .era::before {
+            content: '';
+            position: absolute;
+            left: 126px;
+            top: 42px;
+            width: 9px;
+            height: 9px;
+            border-radius: 50%;
+            background: var(--accent);
+        }
+
+        .era__date {
+            text-align: right;
+            font-family: var(--font-display);
+            font-size: 21px;
+            font-style: italic;
+            color: var(--ink-light);
+            padding-top: 4px;
+            line-height: 1.3;
+        }
+
+        .era__date small { display: block; font-family: var(--font-jp); font-style: normal; font-size: 14px; color: var(--gold); margin-top: 2px; }
+
+        .era__title { font-family: var(--font-display); font-size: 27px; font-weight: 400; color: var(--ink); margin-bottom: 10px; }
+        .era__title .jp { font-family: var(--font-jp); font-size: 17.5px; color: var(--ink-light); margin-left: 12px; }
+
+        .era p { font-size: 16.5px; line-height: 1.8; color: var(--ink-mid); max-width: 600px; }
+
+        /* tatara figure */
+        .tatara-cols { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: center; margin-top: 36px; }
+        .tatara-cols image-slot { width: 100%; height: 340px; }
+
+        @media (max-width: 900px) {
+            .timeline::before { left: 8px; }
+            .era { grid-template-columns: 1fr; gap: 8px; }
+            .era::before { left: 4px; top: 38px; }
+            .era__date { text-align: left; padding-left: 28px; }
+            .era__title, .era p { margin-left: 28px; }
+            .tatara-cols { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+
+<body data-screen-label="Ch.1 History 歴史">
+    <div id="site-nav"></div>
+
+    <header class="chapter-hero" data-screen-label="History hero">
+        <div class="chapter-hero__media">
+            <image-slot id="history-hero" shape="rect" placeholder="Photo — traditional smithy, swordsmith at forge, embers"></image-slot>
+        </div>
+        <div class="chapter-hero__scrim"></div>
+        <div class="chapter-hero__content">
+            <p class="chapter-hero__number">第一章 · Chapter One</p>
+            <h1 class="chapter-hero__title">A Thousand Years<br>of the Blade</h1>
+            <p class="chapter-hero__jp">日本の包丁の歴史</p>
+            <p class="chapter-hero__standfirst">The knife in your roll is the direct descendant of the
+                samurai sword — same steel philosophy, same forging towns, often the same family
+                names, six generations on.</p>
+        </div>
+    </header>
+
+    <div class="page-wrapper">
+
+        <section class="section" data-screen-label="Timeline">
+            <div class="prose reveal">
+                <p class="section__eyebrow">The Long Arc · 千年の歩み</p>
+                <h2 class="section__title">From Tamahagane to the Kitchen</h2>
+                <p class="lede">Five moments explain everything about why Japanese knives are the way
+                    they are — including why the finest ones still rust.</p>
+            </div>
+
+            <div class="timeline reveal">
+                <div class="era">
+                    <div class="era__date">c. 700s<small>飛鳥・奈良</small></div>
+                    <div>
+                        <p class="era__title">Iron arrives, the tatara burns<span class="jp">たたら製鉄</span></p>
+                        <p>Japan's iron sand is poor ore, so smiths developed the <span class="jp-term">たたら</span>
+                            — a clay furnace fed with iron sand and charcoal for three sleepless days
+                            and nights. Its product, <span class="jp-term">玉鋼</span> (tamahagane, "jewel
+                            steel"), was scarce and uneven, which forced a uniquely Japanese habit:
+                            lamination. Precious hard steel for the edge only, cheap soft iron for the
+                            body — the kasumi construction in Chapter Three, born from scarcity.</p>
+                    </div>
+                </div>
+                <div class="era">
+                    <div class="era__date">794 – 1500s<small>平安〜戦国</small></div>
+                    <div>
+                        <p class="era__title">The age of the sword<span class="jp">日本刀の時代</span></p>
+                        <p>Eight centuries of warfare made Japanese swordsmiths the finest steelworkers
+                            on earth. Differential hardening — clay on the spine, bare steel at the
+                            edge, quenched in water — produced a blade hard enough to cut armor and
+                            springy enough not to snap. Every technique in a modern honyaki knife was
+                            perfected here, on weapons.</p>
+                    </div>
+                </div>
+                <div class="era">
+                    <div class="era__date">1574 – 1600s<small>堺の台頭</small></div>
+                    <div>
+                        <p class="era__title">Sakai cuts tobacco<span class="jp">堺打刃物</span></p>
+                        <p>When Portuguese traders brought tobacco, the port town of Sakai began forging
+                            the small, vicious knives that cut it — so well that the shogunate granted
+                            Sakai an official seal of quality and a national monopoly. The town's
+                            smiths split the craft in two: one master forges, another sharpens. That
+                            division of labour persists today and is why Sakai still makes some 90% of
+                            Japan's professional single-bevel knives.</p>
+                    </div>
+                </div>
+                <div class="era">
+                    <div class="era__date">1876<small>廃刀令</small></div>
+                    <div>
+                        <p class="era__title">The sword ban — the great pivot<span class="jp">廃刀令</span></p>
+                        <p>The Meiji government's <span class="jp-term">廃刀令</span> (Haitōrei) banned the
+                            wearing of swords. Overnight, hundreds of sword smiths faced extinction —
+                            and turned their craft to the kitchen. The katana's geometry became the
+                            yanagiba's; the sword polisher's stones became the sharpener's progression.
+                            When you draw a single-bevel blade through a block of tuna, you are using
+                            sword technology, repurposed.</p>
+                    </div>
+                </div>
+                <div class="era">
+                    <div class="era__date">1945 – now<small>戦後〜現代</small></div>
+                    <div>
+                        <p class="era__title">The santoku and the world<span class="jp">三徳と世界へ</span></p>
+                        <p>Postwar home kitchens wanted one knife for everything; the santoku — "three
+                            virtues" — was the answer, a hybrid of the vegetable nakiri and the Western
+                            gyuto. From the 1990s, Western chefs discovered Japanese steel, and towns
+                            like Seki, Takefu, and Sanjo built a global industry: traditional forging
+                            up front, modern metallurgy (VG-10, SG2) behind it.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section section--dark" data-screen-label="Tatara">
+            <div class="tatara-cols reveal">
+                <div>
+                    <p class="section__eyebrow">The Source · 玉鋼</p>
+                    <h2 class="section__title">Three Days of Fire</h2>
+                    <p class="section__jp">たたら製鉄と玉鋼</p>
+                    <div class="prose">
+                        <p>A single tatara run consumed roughly thirteen tonnes of iron sand and as much
+                            charcoal to yield perhaps two and a half tonnes of usable steel — the smelters
+                            judging temperature entirely by the color of the flame. The best fragments,
+                            the tamahagane, went to sword smiths; today the last working tatara runs a
+                            few weeks each winter, almost exclusively for sword restoration.</p>
+                        <p>Modern knife steel comes from Hitachi's Yasugi works — built in tatara
+                            country, in Shimane — which is why the paper steels of Chapter Three (白紙,
+                            青紙) are considered the spiritual descendants of tamahagane: exceptionally
+                            pure, exceptionally keen, and exceptionally willing to rust.</p>
+                    </div>
+                </div>
+                <image-slot id="tatara-photo-v2" src="assets/tatara.webp" shape="rect" placeholder="Photo — tatara furnace firing at night, or tamahagane fragments"></image-slot>
+            </div>
+
+            <div class="pull-quote reveal">
+                <blockquote>"The sword became a knife. The discipline never changed."</blockquote>
+                <cite>刀から包丁へ — on the Haitōrei pivot</cite>
+            </div>
+        </section>
+    </div>
+
+    <div id="chapter-footer"></div>
+
+    <script src="js/image-slot.js"></script>
+    <script src="js/site.js"></script>
+</body>
+
+</html>

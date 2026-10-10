@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>第六章 研ぎ Sharpening — The Japanese Knife</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=Noto+Serif+JP:wght@300;400;500;600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        /* ============ GRIT PROGRESSION ============ */
+        .grit-ladder { margin: 40px 0; }
+
+        .grit-step {
+            display: grid;
+            grid-template-columns: 110px 170px 1fr;
+            gap: 24px;
+            padding: 20px 0;
+            border-bottom: 1px solid var(--rule-light);
+            align-items: baseline;
+        }
+
+        .grit-step__num {
+            font-family: var(--font-display);
+            font-style: italic;
+            font-size: 16.5px;
+            color: var(--gold);
+        }
+
+        .grit-step__grit {
+            font-family: var(--font-display);
+            font-size: 26px;
+            color: var(--ink);
+            line-height: 1.1;
+        }
+
+        .grit-step__grit small { display: block; font-family: var(--font-jp); font-size: 14px; color: var(--ink-light); margin-top: 2px; }
+
+        .grit-step__desc { font-size: 16px; line-height: 1.7; color: var(--ink-mid); max-width: 560px; }
+
+        .grit-step--essential .grit-step__grit { color: var(--accent); }
+
+        /* ============ ANGLE SIMULATOR ============ */
+        .sim {
+            background: var(--ink-2);
+            border: 1px solid var(--rule-dark);
+            margin: 40px 0;
+            display: grid;
+            grid-template-columns: 1fr 320px;
+        }
+
+        .sim__stage {
+            position: relative;
+            min-height: 360px;
+            overflow: hidden;
+            display: flex;
+            align-items: flex-end;
+        }
+
+        .sim__scene {
+            position: relative;
+            width: 100%;
+            height: 300px;
+        }
+
+        /* the stone */
+        .sim__stone {
+            position: absolute;
+            left: 8%;
+            right: 8%;
+            bottom: 48px;
+            height: 34px;
+            background: linear-gradient(180deg, #8A7E6A, #6E6354);
+            border-radius: 2px;
+        }
+
+        .sim__stone::after {
+            content: '#1000 中砥';
+            position: absolute;
+            right: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-family: var(--font-sans);
+            font-size: 10px;
+            letter-spacing: 0.2em;
+            color: rgba(255, 255, 255, 0.4);
+        }
+
+        /* the blade — rotated around its edge point */
+        .sim__blade {
+            position: absolute;
+            left: 22%;
+            bottom: 82px;
+            width: 380px;
+            max-width: 55%;
+            height: 44px;
+            transform-origin: left bottom;
+            transition: transform 0.18s ease-out;
+        }
+
+        .sim__blade-body {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(180deg, #D8DEE3 0%, #B8C4CC 70%, #98A8B2 100%);
+            clip-path: polygon(0 100%, 100% 55%, 100% 0, 6% 30%);
+            box-shadow: 0 2px 14px rgba(0, 0, 0, 0.4);
+        }
+
+        .sim__angle-arc {
+            position: absolute;
+            left: calc(22% - 4px);
+            bottom: 82px;
+            font-family: var(--font-display);
+            font-style: italic;
+            font-size: 16.5px;
+            color: var(--gold);
+            transform: translate(40px, 26px);
+        }
+
+        .sim__edge-glow {
+            position: absolute;
+            left: 22%;
+            bottom: 80px;
+            width: 10px;
+            height: 4px;
+            margin-left: -5px;
+            border-radius: 50%;
+            background: var(--gold);
+            box-shadow: 0 0 12px 3px rgba(196, 168, 130, 0.7);
+        }
+
+        .sim__floor-label {
+            position: absolute;
+            bottom: 14px;
+            left: 8%;
+            font-family: var(--font-sans);
+            font-size: 11px;
+            letter-spacing: 0.25em;
+            text-transform: uppercase;
+            color: rgba(255, 255, 255, 0.3);
+        }
+
+        /* controls panel */
+        .sim__panel {
+            border-left: 1px solid var(--rule-dark);
+            padding: 36px 32px;
+            display: flex;
+            flex-direction: column;
+            gap: 22px;
+        }
+
+        .sim__readout-angle {
+            font-family: var(--font-display);
+            font-size: 64px;
+            font-weight: 300;
+            color: #fff;
+            line-height: 1;
+        }
+
+        .sim__readout-angle small { font-size: 24px; color: var(--gold); }
+
+        .sim__zone {
+            font-family: var(--font-sans);
+            font-size: 12px;
+            font-weight: 600;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            padding: 8px 12px;
+            border: 1px solid;
+            width: fit-content;
+        }
+
+        .sim__zone--low { color: #D98E73; border-color: rgba(217, 142, 115, 0.5); }
+        .sim__zone--ideal { color: #A8C686; border-color: rgba(168, 198, 134, 0.5); }
+        .sim__zone--durable { color: var(--gold); border-color: var(--gold-dim); }
+        .sim__zone--high { color: #D96666; border-color: rgba(217, 102, 102, 0.5); }
+
+        .sim__desc { font-size: 15px; line-height: 1.7; color: rgba(255, 255, 255, 0.7); }
+
+        .sim__coins { font-family: var(--font-jp); font-size: 15px; color: rgba(255, 255, 255, 0.75); }
+        .sim__coins strong { color: var(--gold); font-weight: 600; }
+
+        .sim input[type="range"] {
+            width: 100%;
+            accent-color: #C4A882;
+        }
+
+        .sim__slider-label {
+            font-family: var(--font-sans);
+            font-size: 11px;
+            letter-spacing: 0.25em;
+            text-transform: uppercase;
+            color: rgba(255, 255, 255, 0.4);
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .sim__presets { display: flex; gap: 8px; flex-wrap: wrap; }
+
+        .sim__preset {
+            font-family: var(--font-jp);
+            font-size: 13.5px;
+            color: rgba(255, 255, 255, 0.75);
+            background: none;
+            border: 1px solid var(--rule-dark);
+            padding: 7px 12px;
+            cursor: pointer;
+            transition: border-color 0.2s, color 0.2s;
+        }
+
+        .sim__preset:hover, .sim__preset.is-active { border-color: var(--gold); color: var(--gold); }
+
+        /* ============ STONE TYPES ============ */
+        .stone-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin: 36px 0; }
+        .stone-card { border: 1px solid var(--rule-light); background: var(--warm-white); }
+        .stone-card image-slot { width: 100%; height: auto; aspect-ratio: 1742/903; }
+        .stone-card__body { padding: 22px 24px; }
+        .stone-card__jp { font-family: var(--font-jp); font-size: 19.5px; font-weight: 600; color: var(--ink); }
+        .stone-card__en { font-family: var(--font-sans); font-size: 11px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--accent); margin: 3px 0 12px; }
+        .stone-card p { font-size: 15px; line-height: 1.7; color: var(--ink-mid); }
+
+        /* ============ SEVEN RULES ============ */
+        .rules { counter-reset: rule; max-width: 720px; margin: 36px 0 0; list-style: none; }
+        .rules li {
+            counter-increment: rule;
+            position: relative;
+            padding: 18px 0 18px 64px;
+            border-bottom: 1px solid var(--rule-dark);
+            font-size: 16.5px;
+            line-height: 1.7;
+            color: rgba(255, 255, 255, 0.8);
+        }
+        .rules li::before {
+            content: counter(rule, cjk-ideographic);
+            position: absolute;
+            left: 0;
+            top: 16px;
+            font-family: var(--font-jp);
+            font-size: 24px;
+            color: var(--gold);
+        }
+        .rules li strong { color: #fff; }
+
+        @media (max-width: 1000px) {
+            .sim { grid-template-columns: 1fr; }
+            .sim__panel { border-left: none; border-top: 1px solid var(--rule-dark); }
+            .stone-grid { grid-template-columns: 1fr; }
+        }
+
+        @media (max-width: 700px) {
+            .grit-step { grid-template-columns: 70px 1fr; }
+            .grit-step__desc { grid-column: 1 / -1; }
+        }
+    </style>
+<style>
+
+.sim{grid-template-columns:minmax(0,1fr) 290px;margin-top:28px}.sim__stage{display:block;min-height:490px;background:radial-gradient(ellipse at 50% 35%,#393831 0%,#24241f 45%,#171814 100%)}#knife-scene{width:100%;height:390px;display:block;margin-top:35px}.photo-label{position:absolute;top:24px;left:26px;color:#bfb4a2;font:10px var(--font-sans);letter-spacing:.2em}.photo-label span{margin-left:12px;color:#887e6e}.photo-caption{position:absolute;bottom:20px;left:24px;color:#b1a99d;font:10px var(--font-sans);max-width:190px;line-height:1.5}.angle-detail{position:absolute;right:20px;bottom:16px;width:210px;background:#11140fd9;border:1px solid #ffffff14;border-radius:4px;padding:10px 12px 0}.angle-detail>span{font:8px var(--font-sans);letter-spacing:.18em;color:#b9ad98}.angle-detail svg{display:block;width:100%}.sim__panel{padding:30px 24px;gap:19px}.sim__zone{font-size:10px;letter-spacing:.09em;margin-top:12px}.width-label{font:11px var(--font-sans);line-height:1.7;color:#c2b5a2;display:flex;flex-wrap:wrap;gap:8px;justify-content:space-between}.width-label input{width:52px;background:#292824;border:1px solid #655a49;color:#fff;padding:5px;border-radius:3px}input[type=range]{width:100%;accent-color:#c4a882;cursor:pointer}.sim__coins{font:13px var(--font-sans);color:#cbbda8}.sim__coins strong{color:white;font-size:19px}.sim__desc{font-size:14px;line-height:1.65}button:focus-visible,input:focus-visible{outline:2px solid #dfbf8a;outline-offset:4px}.sim__preset{min-height:40px}
+@media(max-width:850px){.sim{grid-template-columns:1fr}.sim__panel{border-left:0;border-top:1px solid var(--rule-dark)}.sim__stage{min-height:400px}#knife-scene{height:310px;margin-top:25px}.angle-detail{width:175px}.photo-caption{max-width:135px;font-size:9px}}
+
+</style>
+</head>
+
+<body data-screen-label="Ch.6 Sharpening 研ぎ">
+    <div id="site-nav"></div>
+
+    <!-- ============ HERO ============ -->
+    <header class="chapter-hero" data-screen-label="Sharpening hero">
+        <div class="chapter-hero__media">
+            <image-slot id="sharpen-hero" shape="rect" placeholder="Photo — hands sharpening blade on whetstone, water and slurry"></image-slot>
+        </div>
+        <div class="chapter-hero__scrim"></div>
+        <div class="chapter-hero__content">
+            <p class="chapter-hero__number">第六章 · Chapter Six</p>
+            <h1 class="chapter-hero__title">Sharpening</h1>
+            <p class="chapter-hero__jp">研ぎ — Togi</p>
+            <p class="chapter-hero__standfirst">A Japanese knife is sold sharp but becomes yours on the
+                stones. Angle, pressure, and patience — the whole craft reduces to three variables, and
+                the angle is the one you can learn tonight.</p>
+        </div>
+    </header>
+
+    <div class="page-wrapper">
+
+        <!-- ============ ANGLE SIMULATOR ============ -->
+        <section class="section" data-screen-label="Angle simulator">
+            <div class="prose reveal">
+                <p class="section__eyebrow">Interactive · 角度シミュレーター</p>
+                <h2 class="section__title">Find Your Angle</h2>
+                <p>Hold the blade against the stone and lift the spine. How far you lift is the entire
+                    secret. Drag the slider and watch the spine rise while the edge stays on the stone. Explore the angle you'll get.</p>
+            </div>
+
+            <div class="sim reveal">
+                <div class="sim__stage">
+                    <div class="photo-label">FRONT VIEW <span>角度</span></div>
+                    <canvas id="knife-scene" role="img" aria-label="Photorealistic knife on a stone with adjustable sharpening angle"></canvas>
+                    <div class="photo-caption">Photorealistic AI assets · front perspective</div>
+                    <div class="angle-detail"><span>TRUE SIDE VIEW</span><svg id="detail" viewBox="0 0 240 92" aria-label="Exact angle cross-section"><path d="M20 68H220" stroke="#8f8576"/><path id="angle-wedge" fill="#c4a88222" stroke="#c4a882"/><path id="angle-line" stroke="#e3e7e9" stroke-width="3"/><text id="angle-text" fill="#e3ccaa" font-size="15" font-family="sans-serif"/></svg></div>
+                </div>
+                <div class="sim__panel">
+                    <div>
+                        <p class="sim__readout-angle"><span id="sim-angle">15</span><small>°</small></p>
+                        <p class="sim__zone sim__zone--ideal" id="sim-zone">理想 — Ideal for double bevel</p>
+                    </div>
+                    <p class="sim__coins" id="sim-coins">≈ 10円玉 <strong>2枚</strong> under the spine</p>
+                    <div>
+                        <p class="sim__slider-label"><span>5°</span><span>Lift the spine</span><span>30°</span></p>
+                        <input type="range" aria-label="Sharpening angle in degrees" id="sim-slider" min="5" max="30" step="0.5" value="15">
+                    </div>
+                    <div class="sim__presets">
+<button class="sim__preset" data-angle="10">10°</button><button class="sim__preset is-active" data-angle="15">15°</button><button class="sim__preset" data-angle="20">20°</button><button class="sim__preset" data-angle="25">25°</button></div>
+<label class="width-label" for="blade-width">Blade width, edge to spine <span><input id="blade-width" type="number" min="20" max="80" step="1" value="45"> mm</span></label>
+                    <p class="sim__desc" id="sim-desc"></p>
+                </div>
+            </div>
+
+            <div class="callout reveal"><p class="callout__label">Understand the lift · 背の高さ</p><p>Spine height = blade width × sin(angle). A 45 mm blade at 15° needs approximately <strong>11.6 mm</strong> of lift. Two 1.5 mm coins provide only 3 mm of lift — about 3.8°, not 15°. This simplified model measures from the cutting edge to the spine and excludes blade thickness.</p><p style="margin-top:12px">The angle is shown for one side. Follow your knife maker’s guidance; single-bevel knives should follow their existing bevel rather than a generic preset.</p></div>
+        </section>
+
+        <!-- ============ GRIT PROGRESSION ============ -->
+        <section class="section section--cream" data-screen-label="Whetstone progression">
+            <div class="prose reveal">
+                <p class="section__eyebrow">The Whetstone Progression · 砥石の番手</p>
+                <h2 class="section__title">From Repair to Mirror</h2>
+                <p>Grit numbers run from violent to gentle. You do not need all seven stages — a
+                    working chef lives at #1000 and visits #3000 weekly. The red stages are the
+                    essential pair.</p>
+            </div>
+
+            <div class="grit-ladder reveal">
+                <div class="grit-step">
+                    <span class="grit-step__num">Stage 1</span>
+                    <span class="grit-step__grit">#120–220<small>荒砥 — arato</small></span>
+                    <span class="grit-step__desc">Repair territory. Chips, broken tips, and profile
+                        changes. Removes steel fast enough to ruin a blade in careless hands — count
+                        your strokes and check constantly.</span>
+                </div>
+                <div class="grit-step">
+                    <span class="grit-step__num">Stage 2</span>
+                    <span class="grit-step__grit">#400–600<small>荒砥 — coarse</small></span>
+                    <span class="grit-step__desc">Heavy reshaping after repair, or rescuing a truly
+                        neglected edge. Leaves deep scratches the next stones must erase.</span>
+                </div>
+                <div class="grit-step grit-step--essential">
+                    <span class="grit-step__num">Stage 3 ●</span>
+                    <span class="grit-step__grit">#800–1200<small>中砥 — nakato</small></span>
+                    <span class="grit-step__desc"><strong>The home base.</strong> The #1000 stone is
+                        where 90% of all sharpening happens — it raises a complete, keen, working edge
+                        on its own. If you own one stone, it is this one.</span>
+                </div>
+                <div class="grit-step">
+                    <span class="grit-step__num">Stage 4</span>
+                    <span class="grit-step__grit">#2000<small>中砥 — fine middle</small></span>
+                    <span class="grit-step__desc">A refining bridge. Erases #1000 scratches and tightens
+                        the edge before polish. Optional but pleasant.</span>
+                </div>
+                <div class="grit-step grit-step--essential">
+                    <span class="grit-step__num">Stage 5 ●</span>
+                    <span class="grit-step__grit">#3000–4000<small>仕上砥 — shiageto</small></span>
+                    <span class="grit-step__desc"><strong>The professional finish.</strong> The edge
+                        stops feeling toothy and starts feeling silent. For most line work, stopping
+                        here gives the best balance of bite and polish.</span>
+                </div>
+                <div class="grit-step">
+                    <span class="grit-step__num">Stage 6</span>
+                    <span class="grit-step__grit">#6000–8000<small>仕上砥 — fine finish</small></span>
+                    <span class="grit-step__desc">For single-bevel work: sashimi and katsuramuki edges
+                        that must leave a gleaming cut surface. A 柳刃 lives here.</span>
+                </div>
+                <div class="grit-step">
+                    <span class="grit-step__num">Stage 7</span>
+                    <span class="grit-step__grit">#10000+<small>鏡面 — mirror</small></span>
+                    <span class="grit-step__desc">Ceremony and showmanship — plus genuinely less
+                        cell damage on raw fish. Beyond #8000, gains are about pride as much as
+                        performance. 天然砥石 (natural stones) play here.</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- ============ STONE TYPES ============ -->
+        <section class="section" data-screen-label="Stone types">
+            <div class="prose reveal">
+                <p class="section__eyebrow">Know Your Stone · 砥石の種類</p>
+                <h2 class="section__title">Three Kinds of Stone</h2>
+            </div>
+
+            <div class="stone-grid reveal">
+                <div class="stone-card">
+                    <image-slot id="stone-soak" src="assets/stone-soak.webp" shape="rect" placeholder="Photo — water stone soaking in tub, bubbles rising"></image-slot>
+                    <div class="stone-card__body">
+                        <p class="stone-card__jp">吸水砥石</p>
+                        <p class="stone-card__en">Soaking water stones</p>
+                        <p>The classic. Soak 5–10 minutes until the bubbles stop, then sharpen on the
+                            slurry that forms. Soft, fast-cutting, wears hollow — flatten regularly
+                            with a lapping plate. King and Suehiro are the canonical brands.</p>
+                    </div>
+                </div>
+                <div class="stone-card">
+                    <image-slot id="stone-splash" src="assets/stone-splash.webp" shape="rect" placeholder="Photo — splash-and-go ceramic stone, water sprayed"></image-slot>
+                    <div class="stone-card__body">
+                        <p class="stone-card__jp">不吸水砥石</p>
+                        <p class="stone-card__en">Splash-and-go</p>
+                        <p>Hard ceramic bonds that need only a wet surface — no soak, ready in seconds
+                            mid-service. Cut slower but stay flat far longer. Shapton Glass is the
+                            professional default. Best for hard powder steels like SG2.</p>
+                    </div>
+                </div>
+                <div class="stone-card">
+                    <image-slot id="stone-natural" src="assets/stone-natural.webp" shape="rect" placeholder="Photo — natural Kyoto awasedo stone, layered texture"></image-slot>
+                    <div class="stone-card__body">
+                        <p class="stone-card__jp">天然砥石</p>
+                        <p class="stone-card__en">Natural stones</p>
+                        <p>Quarried, mostly around Kyoto; no two identical. Their irregular particles
+                            leave a hazy kasumi finish and a uniquely toothy-yet-fine edge prized for
+                            single-bevel knives. Expensive, subtle, and a lifetime rabbit hole.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ============ SEVEN RULES ============ -->
+        <section class="section section--dark" data-screen-label="Seven rules">
+            <div class="prose reveal">
+                <p class="section__eyebrow">Discipline · 研ぎの七則</p>
+                <h2 class="section__title">The Seven Rules</h2>
+            </div>
+            <ol class="rules reveal">
+                <li><strong>Soak soaking stones 5–10 minutes;</strong> splash-and-go stones need only a
+                    wet surface. A dry stone glazes and burns the edge.</li>
+                <li><strong>Keep the angle; vary nothing.</strong> A wobbling wrist rounds the edge. Lock
+                    your elbow to your hip and move from the shoulders.</li>
+                <li><strong>Pressure on the push, feather on the return.</strong> Two fingers of the free
+                    hand ride the blade above the section being ground.</li>
+                <li><strong>Work in zones.</strong> Heel, belly, tip — ten strokes each, then check. The
+                    burr (かえり, <em>kaeri</em>) forming on the far side tells you the zone is done.</li>
+                <li><strong>Chase the burr, then remove it.</strong> Sharpen until a burr runs the full
+                    edge, flip and repeat, then strip it with light alternating strokes or on newspaper.</li>
+                <li><strong>Flatten your stones.</strong> A dished stone makes a convex lie out of every
+                    angle you hold. Lap with a diamond plate before every session.</li>
+                <li><strong>Finish single-bevels on the 裏 (back) with the blade dead flat</strong> — two
+                    or three strokes only. The urasuki is sacred; grinding it ruins the knife.</li>
+            </ol>
+
+            <div class="pull-quote reveal">
+                <blockquote>"The stone does not sharpen the knife. The stone sharpens the sharpener."</blockquote>
+                <cite>研ぎは人を磨く — sharpening proverb</cite>
+            </div>
+        </section>
+    </div>
+
+    <div id="chapter-footer"></div>
+
+    <script src="js/image-slot.js"></script>
+    <script src="js/site.js"></script>
+    <script>
+(()=>{'use strict';
+const $=id=>document.getElementById(id), canvas=$('knife-scene'),ctx=canvas.getContext('2d'),knife=new Image(),stone=new Image();
+let angle=15;
+knife.src='assets/angle-knife.webp';stone.src='assets/angle-stone.webp';
+const project=(x,y,z)=>[285+x+z*.10,218-z*.65-y*.94];
+function face(img,p,w,h,shade=0){let a=p[0],b=p[1],d=p[3];ctx.save();ctx.setTransform(ctx.getTransform());ctx.transform((b[0]-a[0])/w,(b[1]-a[1])/w,(d[0]-a[0])/h,(d[1]-a[1])/h,a[0],a[1]);ctx.drawImage(img,0,0,w,h);if(shade){ctx.fillStyle=`rgba(0,0,0,${shade})`;ctx.fillRect(0,0,w,h)}ctx.restore()}
+function draw(){if(!knife.complete||!stone.complete||!knife.naturalWidth||!stone.naturalWidth)return;
+let w=canvas.clientWidth,h=canvas.clientHeight,dpr=Math.min(devicePixelRatio||1,2);canvas.width=w*dpr;canvas.height=h*dpr;ctx.setTransform(dpr*w/570,0,0,dpr*h/390,0,0);ctx.clearRect(0,0,570,390);let bg=ctx.createLinearGradient(0,0,0,390);bg.addColorStop(0,'#35352f');bg.addColorStop(.42,'#777263');bg.addColorStop(1,'#c2b69c');ctx.fillStyle=bg;ctx.fillRect(0,0,570,390);
+ctx.save();ctx.filter='blur(13px)';ctx.fillStyle='#0008';ctx.beginPath();ctx.ellipse(298,294,133,46,0,0,Math.PI*2);ctx.fill();ctx.restore();
+const P=project;
+function solid(points,color){ctx.fillStyle=color;ctx.beginPath();points.forEach((p,i)=>i?ctx.lineTo(...p):ctx.moveTo(...p));ctx.closePath();ctx.fill()}
+// Long stone, viewed from its short end; a low rubber holder supports it.
+solid([P(-97,-31,181),P(97,-31,181),P(97,-31,-127),P(-97,-31,-127)],'#272a29');
+solid([P(-97,-31,-127),P(97,-31,-127),P(97,-48,-127),P(-97,-48,-127)],'#111515');
+solid([P(97,-31,181),P(97,-31,-127),P(97,-48,-127),P(97,-48,181)],'#171c1c');
+face(stone,[P(-82,0,-104),P(82,0,-104),P(82,-33,-104),P(-82,-33,-104)],900,220,.30);
+face(stone,[P(82,0,-104),P(82,0,164),P(82,-33,164),P(82,-33,-104)],700,160,.43);
+face(stone,[P(-82,0,164),P(82,0,164),P(82,0,-104),P(-82,0,-104)],600,1000,.08);
+// Rotate the photographic knife around its straight cutting-edge section.
+// Source heel edge is at y=470 of the 2048 x 682 photo; the photo is never cropped.
+const a=angle*Math.PI/180,k=420/2048;
+const point=(u,v)=>{let t=(470-v)*k,along=-223+u*k,phi=28*Math.PI/180;return P(along*Math.cos(phi)+t*Math.cos(a)*Math.sin(phi),t*Math.sin(a),35-along*Math.sin(phi)+t*Math.cos(a)*Math.cos(phi))};
+face(knife,[point(0,0),point(2048,0),point(2048,682),point(0,682)],knife.naturalWidth,knife.naturalHeight);
+// Mark the heel contact point, which remains fixed for every setting.
+let c=point(810,470);ctx.fillStyle='#dcc5a2';ctx.beginPath();ctx.arc(c[0],c[1],2.5,0,Math.PI*2);ctx.fill();
+ctx.strokeStyle='#c4a88266';ctx.lineWidth=1;ctx.beginPath();ctx.moveTo(c[0],c[1]+7);ctx.lineTo(c[0]-50,c[1]+90);ctx.lineTo(c[0]-125,c[1]+90);ctx.stroke();ctx.fillStyle='#b9ac98';ctx.font='10px sans-serif';ctx.fillText('EDGE CONTACT',c[0]-125,c[1]+106);
+}
+function update(){angle=Number($('sim-slider').value);let width=Number($('blade-width').value);width=Number.isFinite(width)&&width>=20&&width<=80?width:45;
+$('sim-angle').textContent=angle;$('sim-slider').setAttribute('aria-valuetext',angle+' degrees');$('sim-coins').innerHTML='Spine lift <strong>'+ (width*Math.sin(angle*Math.PI/180)).toFixed(1)+' mm</strong>';
+let label=angle<12?'Low angle':angle<=17?'Medium angle':angle<=22?'Higher angle':'Steep angle';$('sim-zone').textContent=label+' · per side';$('sim-zone').className='sim__zone sim__zone--ideal';
+$('sim-desc').textContent='Raise the spine while keeping the cutting edge in contact. The small side view shows the true angle; the main scene shows it in perspective. Presets are examples, not knife-specific recommendations.';
+document.querySelectorAll('.sim__preset').forEach(b=>{let active=Number(b.dataset.angle)===angle;b.classList.toggle('is-active',active);b.setAttribute('aria-pressed',active)});
+let a=angle*Math.PI/180,x=20+185*Math.cos(a),y=68-185*Math.sin(a);$('angle-line').setAttribute('d',`M20 68L${x} ${y}`);let ax=20+70*Math.cos(a),ay=68-70*Math.sin(a);$('angle-wedge').setAttribute('d',`M20 68L90 68A70 70 0 0 0 ${ax} ${ay}Z`);$('angle-text').setAttribute('x',115);$('angle-text').setAttribute('y',57);$('angle-text').textContent=angle+'°';canvas.setAttribute('aria-label',`Photorealistic gyuto on a whetstone at ${angle} degrees, spine lifted ${(width*Math.sin(a)).toFixed(1)} millimetres for a ${width} millimetre blade`);draw()}
+$('sim-slider').addEventListener('input',update);$('blade-width').addEventListener('input',update);$('blade-width').addEventListener('change',()=>{let v=Number($('blade-width').value);$('blade-width').value=Math.min(80,Math.max(20,v||45));update()});document.querySelectorAll('.sim__preset').forEach(b=>b.addEventListener('click',()=>{$('sim-slider').value=b.dataset.angle;update()}));knife.onload=draw;stone.onload=draw;new ResizeObserver(draw).observe(canvas);update();
+})();
+</script>
+</body>
+
+</html>

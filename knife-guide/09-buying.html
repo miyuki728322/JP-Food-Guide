@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>第九章 購入ガイド Buying Guide — The Japanese Knife</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=Noto+Serif+JP:wght@300;400;500;600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        /* ============ CHOOSER ============ */
+        .chooser {
+            background: var(--ink-2);
+            border: 1px solid var(--rule-dark);
+            margin: 40px 0;
+            padding: 36px 36px 40px;
+        }
+
+        .chooser__filters { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 28px; margin-bottom: 32px; }
+
+        .chooser__group-label {
+            font-family: var(--font-sans);
+            font-size: 11px;
+            font-weight: 600;
+            letter-spacing: 0.3em;
+            text-transform: uppercase;
+            color: var(--gold);
+            margin-bottom: 10px;
+        }
+
+        .chooser__opts { display: flex; flex-wrap: wrap; gap: 8px; }
+
+        .chooser__opt {
+            font-family: var(--font-jp);
+            font-size: 14px;
+            color: rgba(255, 255, 255, 0.75);
+            background: none;
+            border: 1px solid var(--rule-dark);
+            padding: 8px 14px;
+            cursor: pointer;
+            transition: border-color 0.2s, color 0.2s, background 0.2s;
+        }
+
+        .chooser__opt:hover { border-color: rgba(196, 168, 130, 0.5); }
+        .chooser__opt.is-active { border-color: var(--gold); color: var(--gold); background: rgba(196, 168, 130, 0.1); }
+
+        .chooser__count {
+            font-family: var(--font-sans);
+            font-size: 12px;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: rgba(255, 255, 255, 0.4);
+            border-top: 1px solid var(--rule-dark);
+            padding-top: 22px;
+            margin-bottom: 20px;
+        }
+
+        .chooser__results { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+
+        .rec__photo { grid-column: 1 / -1; margin: -24px -26px 16px; height: 130px; background: var(--warm-white, #f7f4ee); border-bottom: 1px solid var(--rule-dark); }
+        .rec__photo image-slot { width: 100%; height: 100%; }
+
+        .rec {
+            border: 1px solid var(--rule-dark);
+            background: var(--ink);
+            padding: 24px 26px;
+            display: grid;
+            grid-template-columns: 1fr auto;
+            gap: 4px 16px;
+        }
+
+        .rec__name { font-family: var(--font-jp); font-size: 21px; font-weight: 600; color: #fff; }
+        .rec__name small { font-family: var(--font-display); font-style: italic; font-weight: 300; font-size: 16px; color: var(--gold); margin-left: 8px; }
+
+        .rec__price {
+            font-family: var(--font-display);
+            font-size: 17.5px;
+            font-style: italic;
+            color: var(--gold);
+            text-align: right;
+            white-space: nowrap;
+        }
+
+        .rec__spec {
+            grid-column: 1 / -1;
+            font-family: var(--font-sans);
+            font-size: 11.5px;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: rgba(255, 255, 255, 0.45);
+            margin-bottom: 6px;
+        }
+
+        .rec__why { grid-column: 1 / -1; font-size: 15px; line-height: 1.65; color: rgba(255, 255, 255, 0.7); }
+
+        .chooser__empty {
+            grid-column: 1 / -1;
+            text-align: center;
+            padding: 40px;
+            font-family: var(--font-serif);
+            font-style: italic;
+            font-size: 16.5px;
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        /* budget tiers */
+        .tier-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin: 36px 0; }
+        .tier { border: 1px solid var(--rule-light); padding: 28px; background: var(--warm-white); }
+        .tier__price { font-family: var(--font-display); font-size: 28px; color: var(--ink); }
+        .tier__label { font-family: var(--font-sans); font-size: 11px; letter-spacing: 0.25em; text-transform: uppercase; color: var(--accent); margin: 4px 0 14px; }
+        .tier p { font-size: 15.5px; line-height: 1.7; color: var(--ink-mid); }
+
+        /* checklist */
+        .check-list { max-width: 720px; margin: 32px 0 0; list-style: none; }
+        .check-list li {
+            position: relative;
+            padding: 16px 0 16px 44px;
+            border-bottom: 1px solid var(--rule-light);
+            font-size: 16px;
+            line-height: 1.7;
+            color: var(--ink-mid);
+        }
+        .check-list li::before {
+            content: '✓';
+            position: absolute;
+            left: 8px;
+            top: 15px;
+            font-family: var(--font-display);
+            font-size: 19.5px;
+            color: var(--gold);
+        }
+        .check-list li strong { color: var(--ink); }
+
+        @media (max-width: 1000px) {
+            .chooser__filters { grid-template-columns: 1fr; }
+            .chooser__results { grid-template-columns: 1fr; }
+            .tier-grid { grid-template-columns: 1fr; }
+        }
+    .rec__photo{overflow:hidden}.rec__photo image-slot{background:#fffef9}
+</style>
+</head>
+
+<body data-screen-label="Ch.9 Buying 購入ガイド">
+    <div id="site-nav"></div>
+
+    <header class="chapter-hero" data-screen-label="Buying hero">
+        <div class="chapter-hero__media">
+            <image-slot id="buying-hero" shape="rect" placeholder="Photo — knife shop wall, blades in glass cases, Kappabashi"></image-slot>
+        </div>
+        <div class="chapter-hero__scrim"></div>
+        <div class="chapter-hero__content">
+            <p class="chapter-hero__number">第九章 · Chapter Nine</p>
+            <h1 class="chapter-hero__title">The Buying Guide</h1>
+            <p class="chapter-hero__jp">包丁の選び方 — Hōchō no Erabikata</p>
+            <p class="chapter-hero__standfirst">Everything in the previous eight chapters, compressed
+                into a decision. Tell the chooser your task, your steel temperament, and your budget —
+                it will tell you what to ask for at the counter.</p>
+        </div>
+    </header>
+
+    <div class="page-wrapper">
+
+        <!-- ============ CHOOSER ============ -->
+        <section class="section" data-screen-label="Knife chooser (interactive)">
+            <div class="prose reveal">
+                <p class="section__eyebrow">Interactive · 包丁チューザー</p>
+                <h2 class="section__title">Find Your Knife</h2>
+                <p style="font:12px var(--font-sans);color:var(--ink-light);margin-top:14px">AI-generated representative images · not photographs of specific products.</p>
+            </div>
+
+            <div class="chooser reveal">
+                <div class="chooser__filters">
+                    <div>
+                        <p class="chooser__group-label">Task · 用途</p>
+                        <div class="chooser__opts" data-filter="task">
+                            <button class="chooser__opt is-active" data-value="all">すべて All</button>
+                            <button class="chooser__opt" data-value="allround">万能 All-round prep</button>
+                            <button class="chooser__opt" data-value="fish">魚 Fish butchery</button>
+                            <button class="chooser__opt" data-value="sashimi">刺身 Sashimi</button>
+                            <button class="chooser__opt" data-value="veg">野菜 Vegetables</button>
+                            <button class="chooser__opt" data-value="protein">肉 Protein slicing</button>
+                            <button class="chooser__opt" data-value="staff">育成 Staff training</button>
+                        </div>
+                    </div>
+                    <div>
+                        <p class="chooser__group-label">Steel temperament · 鋼材</p>
+                        <div class="chooser__opts" data-filter="steel">
+                            <button class="chooser__opt is-active" data-value="all">すべて All</button>
+                            <button class="chooser__opt" data-value="carbon">炭素鋼 Carbon — I'll do the ritual</button>
+                            <button class="chooser__opt" data-value="stainless">ステンレス Stainless — low maintenance</button>
+                        </div>
+                    </div>
+                    <div>
+                        <p class="chooser__group-label">Budget · 予算</p>
+                        <div class="chooser__opts" data-filter="budget">
+                            <button class="chooser__opt is-active" data-value="all">すべて All</button>
+                            <button class="chooser__opt" data-value="entry">〜¥15,000</button>
+                            <button class="chooser__opt" data-value="mid">¥15,000–40,000</button>
+                            <button class="chooser__opt" data-value="high">¥40,000+</button>
+                        </div>
+                    </div>
+                </div>
+
+                <p class="chooser__count" id="chooser-count"></p>
+                <div class="chooser__results" id="chooser-results"></div>
+            </div>
+        </section>
+
+        <!-- ============ BUDGET REALITY ============ -->
+        <section class="section section--cream" data-screen-label="Budget tiers">
+            <div class="prose reveal">
+                <p class="section__eyebrow">Budget Reality · 価格帯</p>
+                <h2 class="section__title">What Money Actually Buys</h2>
+                <p>Past ¥15,000, you are no longer buying sharpness — every knife here gets terrifyingly
+                    sharp. You are buying edge retention, thinner geometry, and the hands that made it.</p>
+            </div>
+            <div class="tier-grid reveal">
+                <div class="tier">
+                    <p class="tier__price">〜¥15,000</p>
+                    <p class="tier__label">Entry · 入門</p>
+                    <p>Factory-made モリブデン or entry VG-10 from Seki or Tojiro. Honest geometry,
+                        excellent heat treatment, zero romance. This tier outperforms premium Western
+                        knives and is the correct place for a first Japanese knife or a whole staff
+                        kit.</p>
+                </div>
+                <div class="tier">
+                    <p class="tier__price">¥15,000–40,000</p>
+                    <p class="tier__label">Professional · 実用本格</p>
+                    <p>The sweet spot. Hand-finished VG-10, 銀三, and 青紙 from Tosa, Sanjo, and
+                        Echizen; real Sakai single bevels begin here. Thinner grinds, better balance,
+                        a smith's name on the blade. Most working chefs never need to leave this
+                        tier.</p>
+                </div>
+                <div class="tier">
+                    <p class="tier__price">¥40,000+</p>
+                    <p class="tier__label">Craft · 名品</p>
+                    <p>Aogami Super and SG2 from named smiths, full Sakai 本霞 single bevels, and —
+                        from ¥100,000 up — honyaki. Diminishing returns for the line, real returns
+                        for the sashimi station, and heirlooms either way.</p>
+                </div>
+            </div>
+            <div class="callout reveal">
+                <p class="callout__label">Left-handed? · 左利き</p>
+                <p>Double-bevel knives work as-is. Single-bevel knives (出刃, 柳刃, 薄刃) must be
+                    ordered as 左用 (left-handed) — a mirror-image grind, usually made to order at a
+                    30–50% premium. Never buy a right-handed single bevel hoping to adapt; the blade
+                    will steer against you on every cut.</p>
+            </div>
+        </section>
+
+        <!-- ============ AT THE COUNTER ============ -->
+        <section class="section" data-screen-label="Shop checklist">
+            <div class="prose reveal">
+                <p class="section__eyebrow">At the Counter · 店頭で</p>
+                <h2 class="section__title">Six Checks Before You Pay</h2>
+                <p>A good shop (Sakai's showrooms, Kappabashi in Tokyo, or any serious dealer) will
+                    let you handle the knife and will sharpen it before it leaves. Check:</p>
+            </div>
+            <ul class="check-list reveal">
+                <li><strong>Sight down the spine</strong> from the handle — the blade must be dead
+                    straight, the edge centered (or correctly offset on a single bevel).</li>
+                <li><strong>Check the grind symmetry</strong> against the light: the bevel line
+                    (刃境) should sweep evenly from heel to tip with no waves.</li>
+                <li><strong>Fit of the ferrule:</strong> no gap, no glue smear where 桂 meets blade —
+                    that seam is where a wa-handle fails.</li>
+                <li><strong>Balance it in your pinch grip.</strong> The point of balance should fall
+                    within a finger of where you actually hold it.</li>
+                <li><strong>Ask what steel, exactly.</strong> "ステンレス" is not an answer — you want
+                    the name: VG-10, 銀三, 青紙二号. If the shop can't say, walk.</li>
+                <li><strong>Ask who sharpens it later.</strong> A real dealer offers re-sharpening
+                    service (研ぎ直し) — the relationship matters more than the receipt.</li>
+            </ul>
+
+            <div class="pull-quote reveal">
+                <blockquote>"Buy the second knife with your head. The first one, buy with your hands."</blockquote>
+                <cite>手に合う包丁が良い包丁 — the knife that fits the hand is the good knife</cite>
+            </div>
+        </section>
+    </div>
+
+    <div id="chapter-footer"></div>
+
+    <script src="js/image-slot.js"></script>
+    <script src="js/site.js"></script>
+    <script>
+        (function () {
+            var KNIVES = [
+                { img: 'assets/cards/knife-gyuto-entry.webp', slot: 'knife-gyuto-entry', name: '牛刀 240mm', romaji: 'Gyuto', task: ['allround', 'protein'], steel: 'stainless', budget: 'entry', spec: 'モリブデン or entry VG-10 · 関 Seki · 両刃', price: '¥8–15k', why: 'The correct first Japanese knife. Forgiving stainless, professional length, and it does 80% of every prep list.' },
+                { img: 'assets/cards/knife-gyuto-mid.webp', slot: 'knife-gyuto-mid', name: '牛刀 240mm', romaji: 'Gyuto', task: ['allround', 'protein'], steel: 'stainless', budget: 'mid', spec: 'VG-10 or 銀三 · 越前 Echizen / 三条 Sanjo · 両刃', price: '¥20–35k', why: 'Hand-finished, dramatically thinner behind the edge — the knife most chefs settle on for a decade.' },
+                { img: 'assets/cards/knife-gyuto-kurouchi-mid.webp', slot: 'knife-gyuto-kurouchi-mid', name: '牛刀 240mm', romaji: 'Gyuto', task: ['allround', 'protein'], steel: 'carbon', budget: 'mid', spec: '青紙2号 kurouchi · 土佐 Tosa · 両刃', price: '¥18–30k', why: 'Carbon keenness at a working price; the kurouchi finish wears its scars beautifully.' },
+                { img: 'assets/cards/knife-gyuto-carbon-high.webp', slot: 'knife-gyuto-carbon-high', name: '牛刀 240mm', romaji: 'Gyuto', task: ['allround', 'protein'], steel: 'carbon', budget: 'high', spec: '青紙スーパー or 白紙2号 · named smith · 両刃', price: '¥45k+', why: 'A smith-signed carbon gyuto: maximum sharpness, maximum retention, an edge that rewards your stones for life.' },
+                { img: 'assets/cards/knife-santoku-entry.webp', slot: 'knife-santoku-entry', name: '三徳 180mm', romaji: 'Santoku', task: ['allround', 'staff', 'veg'], steel: 'stainless', budget: 'entry', spec: 'モリブデン · 関 Seki · 両刃', price: '¥6–12k', why: 'Short, flat, controllable — the safest knife to put in an inexperienced hand, and quick to resharpen weekly.' },
+                { img: 'assets/cards/knife-petty-entry.webp', slot: 'knife-petty-entry', name: 'ペティ 135mm', romaji: 'Petty', task: ['allround', 'staff'], steel: 'stainless', budget: 'entry', spec: 'VG-10 · 関 Seki / 越前 Echizen · 両刃', price: '¥8–14k', why: 'The gyuto\'s small partner for in-hand work — the second knife every station ends up needing.' },
+                { img: 'assets/cards/knife-deba-mid.webp', slot: 'knife-deba-mid', name: '出刃 165mm', romaji: 'Deba', task: ['fish'], steel: 'carbon', budget: 'mid', spec: '白紙2号 本霞 · 堺 Sakai · 片刃', price: '¥20–40k', why: 'The standard size for whole-fish work. A Sakai kasumi deba is the benchmark — specify right- or left-handed.' },
+                { img: 'assets/cards/knife-deba-ginsan-mid.webp', slot: 'knife-deba-ginsan-mid', name: '出刃 165mm', romaji: 'Deba', task: ['fish'], steel: 'stainless', budget: 'mid', spec: '銀三 · 堺 Sakai · 片刃', price: '¥30–45k', why: 'Single-bevel fish butchery without the rust watch — 銀三 was practically invented for this.' },
+                { img: 'assets/cards/knife-yanagiba-high.webp', slot: 'knife-yanagiba-high', name: '柳刃 300mm', romaji: 'Yanagiba', task: ['sashimi'], steel: 'carbon', budget: 'high', spec: '白紙2号 or 青紙 本霞 · 堺 Sakai · 片刃', price: '¥40k+', why: 'The sushi counter standard. 300mm finishes a block of maguro in one draw; Sakai kasumi is where serious begins.' },
+                { img: 'assets/cards/knife-yanagiba-ginsan-mid.webp', slot: 'knife-yanagiba-ginsan-mid', name: '柳刃 270mm', romaji: 'Yanagiba', task: ['sashimi'], steel: 'stainless', budget: 'mid', spec: '銀三 · 堺 Sakai · 片刃', price: '¥30–45k', why: 'The modern itamae\'s compromise: true single-bevel sashimi performance, no 3 a.m. rust anxiety.' },
+                { img: 'assets/cards/knife-usuba-high.webp', slot: 'knife-usuba-high', name: '薄刃 210mm', romaji: 'Usuba', task: ['veg'], steel: 'carbon', budget: 'high', spec: '白紙2号 本霞 · 堺 Sakai · 片刃 · 江戸型/鎌型', price: '¥35k+', why: 'For katsuramuki and kaiseki vegetable work there is no substitute. Choose Edo (square) or Kamagata (sickle) tip by lineage.' },
+                { img: 'assets/cards/knife-nakiri-entry.webp', slot: 'knife-nakiri-entry', name: '菜切り 165mm', romaji: 'Nakiri', task: ['veg', 'staff'], steel: 'stainless', budget: 'entry', spec: 'VG-10 or モリブデン · 三条 Sanjo / 関 Seki · 両刃', price: '¥8–15k', why: 'Usuba speed with a double-bevel learning curve of zero. The vegetable workhorse for any station.' },
+                { img: 'assets/cards/knife-sujihiki-mid.webp', slot: 'knife-sujihiki-mid', name: '筋引き 270mm', romaji: 'Sujihiki', task: ['protein'], steel: 'stainless', budget: 'mid', spec: 'VG-10 or SG2 · 越前 Echizen · 両刃', price: '¥20–40k', why: 'Long single-stroke slices off roasts and cured fish; SG2 keeps it keen through a banquet service.' },
+                { img: 'assets/cards/knife-honesuki-entry.webp', slot: 'knife-honesuki-entry', name: '骨スキ 150mm', romaji: 'Honesuki', task: ['protein', 'fish'], steel: 'stainless', budget: 'entry', spec: 'モリブデン or VG-10 · 関 Seki · 両刃気味', price: '¥9–16k', why: 'Poultry off the bone without risking your gyuto\'s edge. Stiff, pointed, expendable by design.' }
+            ];
+
+            var state = { task: 'all', steel: 'all', budget: 'all' };
+            var results = document.getElementById('chooser-results');
+            var count = document.getElementById('chooser-count');
+
+            function render() {
+                var list = KNIVES.filter(function (k) {
+                    return (state.task === 'all' || k.task.indexOf(state.task) !== -1) &&
+                        (state.steel === 'all' || k.steel === state.steel) &&
+                        (state.budget === 'all' || k.budget === state.budget);
+                });
+                count.textContent = list.length + ' recommendation' + (list.length === 1 ? '' : 's');
+                if (!list.length) {
+                    results.innerHTML = '<p class="chooser__empty">No knife fits all three filters — in practice this combination is not made. Relax the budget or the steel.</p>';
+                    return;
+                }
+                results.innerHTML = list.map(function (k) {
+                    return '<div class="rec">' +
+                        '<div class="rec__photo">' +
+                        '<image-slot id="' + k.slot + '" shape="rect" fit="contain"' +
+                        (k.img ? ' src="' + k.img + '"' : '') +
+                        ' placeholder="Photo — ' + k.romaji + ' ' + k.name.replace(/[^0-9]/g, '') + 'mm, side profile"></image-slot>' +
+                        '</div>' +
+                        '<p class="rec__name">' + k.name + '<small>' + k.romaji + '</small></p>' +
+                        '<p class="rec__price">' + k.price + '</p>' +
+                        '<p class="rec__spec">' + k.spec + '</p>' +
+                        '<p class="rec__why">' + k.why + '</p>' +
+                        '</div>';
+                }).join('');
+            }
+
+            document.querySelectorAll('.chooser__opts').forEach(function (group) {
+                var key = group.getAttribute('data-filter');
+                group.querySelectorAll('.chooser__opt').forEach(function (btn) {
+                    btn.addEventListener('click', function () {
+                        group.querySelectorAll('.chooser__opt').forEach(function (b) { b.classList.remove('is-active'); });
+                        btn.classList.add('is-active');
+                        state[key] = btn.getAttribute('data-value');
+                        render();
+                    });
+                });
+            });
+
+            render();
+        })();
+    </script>
+</body>
+
+</html>
