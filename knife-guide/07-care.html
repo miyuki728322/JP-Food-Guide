@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>第七章 手入れ Care, Rust & Storage — The Japanese Knife</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=Noto+Serif+JP:wght@300;400;500;600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        /* ============ RITUAL TIMELINE ============ */
+        .ritual { margin: 44px 0; position: relative; max-width: 760px; }
+
+        .ritual::before {
+            content: '';
+            position: absolute;
+            left: 27px;
+            top: 12px;
+            bottom: 12px;
+            width: 1px;
+            background: var(--rule);
+        }
+
+        .ritual-step {
+            position: relative;
+            padding: 0 0 36px 88px;
+        }
+
+        .ritual-step:last-child { padding-bottom: 0; }
+
+        .ritual-step__marker {
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 55px;
+            height: 55px;
+            border-radius: 50%;
+            background: var(--ink);
+            color: var(--gold);
+            font-family: var(--font-jp);
+            font-size: 19.5px;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .ritual-step__time {
+            font-family: var(--font-sans);
+            font-size: 11px;
+            font-weight: 600;
+            letter-spacing: 0.25em;
+            text-transform: uppercase;
+            color: var(--accent);
+            margin-bottom: 6px;
+        }
+
+        .ritual-step__title { font-family: var(--font-display); font-size: 24px; color: var(--ink); margin-bottom: 8px; }
+        .ritual-step__title .jp { font-family: var(--font-jp); font-size: 16.5px; color: var(--ink-light); margin-left: 10px; }
+
+        .ritual-step p { font-size: 16px; line-height: 1.75; color: var(--ink-mid); max-width: 560px; }
+
+        /* ============ DON'TS GRID ============ */
+        .donts { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--rule-dark); border: 1px solid var(--rule-dark); margin: 40px 0; }
+
+        .dont { background: var(--ink-2); padding: 26px 26px 30px; }
+
+        .dont__mark {
+            font-family: var(--font-display);
+            font-size: 28px;
+            color: var(--accent-bright);
+            line-height: 1;
+            margin-bottom: 14px;
+        }
+
+        .dont__title { font-family: var(--font-jp); font-size: 17px; font-weight: 600; color: #fff; margin-bottom: 8px; }
+        .dont p { font-size: 14.5px; line-height: 1.65; color: rgba(255, 255, 255, 0.6); }
+
+        /* ============ STORAGE OPTIONS ============ */
+        .storage-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin: 36px 0; }
+        .storage-card { border: 1px solid var(--rule-light); background: var(--warm-white); }
+        .storage-card image-slot { width: 100%; height: auto; aspect-ratio: 1691/930; }
+        .storage-card__body { padding: 22px 24px; }
+        .storage-card__jp { font-family: var(--font-jp); font-size: 19.5px; font-weight: 600; color: var(--ink); }
+        .storage-card__en { font-family: var(--font-sans); font-size: 11px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--accent); margin: 3px 0 12px; }
+        .storage-card p { font-size: 15px; line-height: 1.7; color: var(--ink-mid); }
+        .storage-card__verdict { font-family: var(--font-sans); font-size: 11.5px; font-weight: 600; letter-spacing: 0.15em; text-transform: uppercase; margin-top: 12px; }
+        .storage-card__verdict--best { color: #3A7D44; }
+        .storage-card__verdict--ok { color: #8A6D3B; }
+
+        /* ============ ETIQUETTE ============ */
+        .etiquette { max-width: 720px; margin: 36px 0 0; list-style: none; }
+        .etiquette li {
+            position: relative;
+            padding: 18px 0 18px 48px;
+            border-bottom: 1px solid var(--rule-light);
+            font-size: 16.5px;
+            line-height: 1.7;
+            color: var(--ink-mid);
+        }
+        .etiquette li::before {
+            content: '作法';
+            position: absolute;
+            left: 0;
+            top: 21px;
+            font-family: var(--font-jp);
+            font-size: 12px;
+            color: var(--gold);
+            writing-mode: vertical-rl;
+            letter-spacing: 0.2em;
+        }
+        .etiquette li strong { color: var(--ink); }
+
+        @media (max-width: 900px) {
+            .donts, .storage-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+
+<body data-screen-label="Ch.7 Care 手入れ">
+    <div id="site-nav"></div>
+
+    <!-- ============ HERO ============ -->
+    <header class="chapter-hero" data-screen-label="Care hero">
+        <div class="chapter-hero__media">
+            <image-slot id="care-hero" shape="rect" placeholder="Photo — blade being wiped dry with white cloth, low light"></image-slot>
+        </div>
+        <div class="chapter-hero__scrim"></div>
+        <div class="chapter-hero__content">
+            <p class="chapter-hero__number">第七章 · Chapter Seven</p>
+            <h1 class="chapter-hero__title">Care, Rust &amp; Storage</h1>
+            <p class="chapter-hero__jp">手入れと保管 — Teire to Hokan</p>
+            <p class="chapter-hero__standfirst">A Japanese knife is not bought, it is kept. Five minutes
+                of ritual a day is the entire price of a blade that outlives your career.</p>
+        </div>
+    </header>
+
+    <div class="page-wrapper">
+
+        <!-- ============ THE DAILY RITUAL ============ -->
+        <section class="section" data-screen-label="Daily ritual">
+            <div class="prose reveal">
+                <p class="section__eyebrow">The Daily Ritual · 毎日の手入れ</p>
+                <h2 class="section__title">Five Minutes That Decide Everything</h2>
+                <p class="lede">Carbon steel (白紙, 青紙) begins to react with water within the hour.
+                    The routine below is non-negotiable for carbon and simply good practice for
+                    stainless.</p>
+            </div>
+
+            <div class="ritual reveal">
+                <div class="ritual-step">
+                    <div class="ritual-step__marker">一</div>
+                    <p class="ritual-step__time">During service · continuously</p>
+                    <p class="ritual-step__title">Wipe between tasks<span class="jp">拭き取り</span></p>
+                    <p>A damp side towel lives next to your board. After acid (citrus, tomato, onion)
+                        or protein, wipe the blade clean — both faces, spine to edge, edge away from
+                        your hand. A carbon blade left coated in lemon juice etches visibly in ten
+                        minutes.</p>
+                </div>
+                <div class="ritual-step">
+                    <div class="ritual-step__marker">二</div>
+                    <p class="ritual-step__time">End of service · immediately</p>
+                    <p class="ritual-step__title">Wash by hand, alone<span class="jp">手洗い</span></p>
+                    <p>Warm water, mild detergent, soft sponge, thirty seconds. Never in the sink
+                        with other tools — edges meet steel pans and chip. Never the dishwasher: the
+                        heat cycle dulls the edge, the detergent attacks the steel, and wa-handle
+                        wood cracks.</p>
+                </div>
+                <div class="ritual-step">
+                    <div class="ritual-step__marker">三</div>
+                    <p class="ritual-step__time">Within one minute of washing</p>
+                    <p class="ritual-step__title">Dry completely — every time<span class="jp">完全乾燥</span></p>
+                    <p>The single most important habit in this guide. A dry cloth over both faces,
+                        the spine, the handle, and especially the machi where blade meets handle —
+                        water pools there invisibly. 白紙 left damp overnight will greet you with
+                        orange rust at breakfast.</p>
+                </div>
+                <div class="ritual-step">
+                    <div class="ritual-step__marker">四</div>
+                    <p class="ritual-step__time">Carbon steel · before storage</p>
+                    <p class="ritual-step__title">A whisper of camellia oil<span class="jp">椿油</span></p>
+                    <p>Three drops of 椿油 (tsubaki oil) on a cloth, drawn once down each face. It is
+                        food-safe, flavourless, and forms the overnight barrier chromium would have
+                        provided. Going on holiday? Oil generously and wrap the blade in newspaper —
+                        the ink's compounds inhibit rust.</p>
+                    <p><strong>Why camellia?</strong> Pressed from the seeds of <em>Camellia japonica</em>, it is
+                        mostly oleic acid, a non-drying oil — so unlike linseed or olive oil it never turns
+                        sticky or rancid on the blade. It is thin enough to creep into the microscopic
+                        pores of the steel and seal out moisture and oxygen, and harmless if a trace
+                        reaches food. Swordsmiths have used it for centuries for the same reason; it is
+                        also kind to the wooden handle.</p>
+                </div>
+                <div class="ritual-step">
+                    <div class="ritual-step__marker">五</div>
+                    <p class="ritual-step__time">Weekly · ten minutes</p>
+                    <p class="ritual-step__title">Touch up the edge<span class="jp">研ぎ直し</span></p>
+                    <p>Ten light strokes per side on a #1000–3000 stone before the edge actually
+                        feels dull. Maintaining sharpness weekly is effortless; resurrecting a dead
+                        edge monthly is an hour of work. Chapter Six has the full method.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- ============ THE DON'TS ============ -->
+        <section class="section section--dark" data-screen-label="Never do this">
+            <div class="prose reveal">
+                <p class="section__eyebrow">Never · 禁忌</p>
+                <h2 class="section__title">Six Ways to Kill a Knife</h2>
+            </div>
+            <div class="donts reveal">
+                <div class="dont">
+                    <p class="dont__mark">✕</p>
+                    <p class="dont__title">食洗機 — The dishwasher</p>
+                    <p>Heat, detergent, and collision in one box. Voids most makers' warranties and
+                        ruins wa-handles outright.</p>
+                </div>
+                <div class="dont">
+                    <p class="dont__mark">✕</p>
+                    <p class="dont__title">ガラス・大理石まな板 — Glass or stone boards</p>
+                    <p>Harder than the blade. One session on glass undoes a sharpening. Wood
+                        (ideally hinoki) or soft composite only.</p>
+                </div>
+                <div class="dont">
+                    <p class="dont__mark">✕</p>
+                    <p class="dont__title">冷凍食品 — Frozen food</p>
+                    <p>At HRC 60+ the edge is hard but brittle — frozen blocks chip it like
+                        glass. Thaw first, or use a Western beater knife.</p>
+                </div>
+                <div class="dont">
+                    <p class="dont__mark">✕</p>
+                    <p class="dont__title">骨・殻 — Bones and shells</p>
+                    <p>Only the deba's heel is built for (fish) bone. Poultry and meat bones, crab
+                        shells, squash stems — wrong knife, chipped edge.</p>
+                </div>
+                <div class="dont">
+                    <p class="dont__mark">✕</p>
+                    <p class="dont__title">こじる — Twisting and prying</p>
+                    <p>Avocado pits, frozen lids, opening cans. A thin Japanese edge fails sideways
+                        — it cuts, it does not lever.</p>
+                </div>
+                <div class="dont">
+                    <p class="dont__mark">✕</p>
+                    <p class="dont__title">濡れたまま放置 — Left wet</p>
+                    <p>The quiet killer. Not abuse — neglect. A blade in a wet sink overnight loses
+                        more life than a year of service.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- ============ RUST RESPONSE ============ -->
+        <section class="section section--cream" data-screen-label="Rust response">
+            <div class="prose reveal">
+                <p class="section__eyebrow">When It Happens Anyway · 錆びたら</p>
+                <h2 class="section__title">Rust Triage</h2>
+                <p class="lede">You will rust a carbon blade eventually. Everyone does. Speed is
+                    everything — surface rust is a five-minute fix; pitting is forever.</p>
+                <p><strong>Surface bloom (orange dust):</strong> rub it away with a rust eraser
+                    (サビトール), a wine cork dipped in stone slurry, or a paste of baking soda. Work
+                    along the blade, never across the edge. Wash, dry, oil. Done.</p>
+                <p><strong>Established spots (rough to the fingernail):</strong> raise mud on a #1000
+                    stone and scrub the spots with the slurry and a cork. The spot will leave a pale
+                    scar in the patina — cosmetic only.</p>
+                <p><strong>Pitting on the edge line:</strong> pits become chips. The edge must be
+                    sharpened back past the deepest pit on a coarse stone — or sent to a professional
+                    sharpener (研ぎ屋) if that is more steel than you've removed before.</p>
+            </div>
+            <div class="callout reveal">
+                <p class="callout__label">Remember · 黒錆は味方</p>
+                <p>The blue-grey patina (黒錆) that builds on a working carbon blade is not damage —
+                    it is armor. Only orange-red rust (赤錆) is the enemy. Chapter Three shows the two
+                    side by side.</p>
+            </div>
+        </section>
+
+        <!-- ============ STORAGE ============ -->
+        <section class="section" data-screen-label="Storage">
+            <div class="prose reveal">
+                <p class="section__eyebrow">Storage · 保管</p>
+                <h2 class="section__title">Where the Knife Sleeps</h2>
+            </div>
+            <div class="storage-grid reveal">
+                <div class="storage-card">
+                    <image-slot id="storage-saya" src="assets/storage-saya.webp" shape="rect" placeholder="Photo — knife in wooden saya sheath on shelf"></image-slot>
+                    <div class="storage-card__body">
+                        <p class="storage-card__jp">鞘 — Saya</p>
+                        <p class="storage-card__en">Wooden sheath</p>
+                        <p>A fitted ho-wood sheath, pinned shut. Protects the edge, wicks residual
+                            moisture, travels safely in a knife roll. Buy one fitted to each blade
+                            you own.</p>
+                        <p class="storage-card__verdict storage-card__verdict--best">● The standard</p>
+                    </div>
+                </div>
+                <div class="storage-card">
+                    <image-slot id="storage-rack" src="assets/storage-rack.webp" shape="rect" placeholder="Photo — wooden knife stand / in-drawer tray"></image-slot>
+                    <div class="storage-card__body">
+                        <p class="storage-card__jp">包丁差し — Knife stand</p>
+                        <p class="storage-card__en">Stand or in-drawer tray</p>
+                        <p>Good when knives live at one station. Wood stands must stay dry inside —
+                            wash the slots' dust out monthly. In drawers, blades need a slotted tray;
+                            loose knives in a drawer are chipped knives.</p>
+                        <p class="storage-card__verdict storage-card__verdict--best">● Excellent in place</p>
+                    </div>
+                </div>
+                <div class="storage-card">
+                    <image-slot id="storage-magnet" src="assets/storage-magnet.webp" shape="rect" placeholder="Photo — knives on wooden magnetic wall strip"></image-slot>
+                    <div class="storage-card__body">
+                        <p class="storage-card__jp">マグネット — Magnetic strip</p>
+                        <p class="storage-card__en">Wall magnet</p>
+                        <p>Fast and visible — but place blades spine-first and peel them off
+                            edge-last, or the magnet itself micro-chips the edge. Wood-faced magnets
+                            only; bare steel strips are sandpaper.</p>
+                        <p class="storage-card__verdict storage-card__verdict--ok">● Fine, with technique</p>
+                    </div>
+                </div>
+            </div>
+            <div class="callout reveal">
+                <p class="callout__label">Long-term · 長期保管</p>
+                <p>For storage beyond a month: sharpen first (a clean edge resists rust better than a
+                    fatigued one), oil generously, wrap in newspaper, then in a dry cloth, and box it
+                    away from humidity. Check carbon blades monthly.</p>
+            </div>
+        </section>
+
+        <!-- ============ ETIQUETTE ============ -->
+        <section class="section section--dim" data-screen-label="Etiquette">
+            <div class="prose reveal">
+                <p class="section__eyebrow">Kitchen Etiquette · 包丁の作法</p>
+                <h2 class="section__title">The Unwritten Rules</h2>
+                <p>In a Japanese kitchen the knife is personal property and a professional boundary.
+                    These rules are taught on day one — usually the hard way.</p>
+            </div>
+            <ul class="etiquette reveal">
+                <li><strong>Never touch another chef's knife</strong> without explicit permission. A
+                    borrowed knife is re-sharpened to a stranger's angle — you are not borrowing a
+                    tool, you are erasing months of someone's edge work.</li>
+                <li><strong>Pass handle-first, edge up and visible,</strong> announced ("knife!").
+                    Set it down before the other person picks it up if you can — knives change hands
+                    on the board, not in the air.</li>
+                <li><strong>The knife never points at a person</strong> on the board — edge faces you
+                    or the board's far rail when resting. Walking, blade rides point-down at your
+                    side, never on a cutting board carried flat.</li>
+                <li><strong>Sharpening is done on your own time.</strong> The end-of-day stones are a
+                    ritual of reflection on the day's work — many itamae credit the habit for their
+                    consistency more than any recipe.</li>
+                <li><strong>A dirty knife is a verdict.</strong> In traditional kitchens the head chef
+                    can read a cook's discipline from the state of their blade alone. The knife is
+                    your knife; its condition is your reputation.</li>
+            </ul>
+
+            <div class="pull-quote reveal">
+                <blockquote>"Show me your knife and I will tell you what kind of cook you are."</blockquote>
+                <cite>板前の言い伝え — itamae saying</cite>
+            </div>
+        </section>
+    </div>
+
+    <div id="chapter-footer"></div>
+
+    <script src="js/image-slot.js"></script>
+    <script src="js/site.js"></script>
+</body>
+
+</html>

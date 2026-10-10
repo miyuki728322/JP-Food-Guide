@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>第八章 産地 Regions & Makers — The Japanese Knife</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=Noto+Serif+JP:wght@300;400;500;600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        .region {
+            display: grid;
+            grid-template-columns: 1fr 380px;
+            gap: 48px;
+            padding: 56px 0;
+            align-items: start;
+        }
+
+        .region + .region { border-top: 1px solid var(--rule-light); }
+        .region:nth-child(even) { grid-template-columns: 380px 1fr; }
+        .region:nth-child(even) .region__media { order: -1; }
+
+        .region__kanji {
+            font-family: var(--font-jp);
+            font-size: 52px;
+            font-weight: 600;
+            line-height: 1.1;
+            color: var(--ink);
+        }
+
+        .region__meta {
+            display: flex;
+            gap: 16px;
+            align-items: baseline;
+            margin: 6px 0 20px;
+        }
+
+        .region__romaji { font-family: var(--font-display); font-style: italic; font-size: 24px; color: var(--accent); }
+        .region__pref { font-family: var(--font-sans); font-size: 11.5px; letter-spacing: 0.25em; text-transform: uppercase; color: var(--ink-light); }
+
+        .region p { font-size: 16.5px; line-height: 1.8; color: var(--ink-mid); margin-bottom: 14px; max-width: 580px; }
+
+        .region__media image-slot { width: 100%; height: 260px; }
+
+        .region__signature {
+            border: 1px solid var(--rule-light);
+            border-top: 2px solid var(--gold);
+            padding: 16px 20px;
+            margin-top: 16px;
+        }
+
+        .region__signature-label { font-family: var(--font-sans); font-size: 10.5px; font-weight: 600; letter-spacing: 0.25em; text-transform: uppercase; color: var(--ink-light); margin-bottom: 6px; }
+        .region__signature p { font-size: 15px !important; line-height: 1.65 !important; margin: 0 !important; }
+
+        .region__makers { margin-top: 14px; display: flex; flex-wrap: wrap; gap: 8px; }
+        .maker-tag {
+            font-family: var(--font-jp);
+            font-size: 13.5px;
+            color: var(--ink-mid);
+            border: 1px solid var(--rule);
+            padding: 5px 11px;
+            white-space: nowrap;
+        }
+
+        @media (max-width: 900px) {
+            .region, .region:nth-child(even) { grid-template-columns: 1fr; }
+            .region:nth-child(even) .region__media { order: 0; }
+        }
+    </style>
+</head>
+
+<body data-screen-label="Ch.8 Regions 産地">
+    <div id="site-nav"></div>
+
+    <header class="chapter-hero" data-screen-label="Regions hero">
+        <div class="chapter-hero__media">
+            <image-slot id="regions-hero" shape="rect" placeholder="Photo — forging town street or smith's workshop exterior"></image-slot>
+        </div>
+        <div class="chapter-hero__scrim"></div>
+        <div class="chapter-hero__content">
+            <p class="chapter-hero__number">第八章 · Chapter Eight</p>
+            <h1 class="chapter-hero__title">Regions &amp; Makers</h1>
+            <p class="chapter-hero__jp">産地と作り手 — Sanchi to Tsukurite</p>
+            <p class="chapter-hero__standfirst">Steel has terroir. Five towns make most of Japan's
+                knives, and each forges to a different philosophy — knowing the town tells you half
+                of what's in the box.</p>
+        </div>
+    </header>
+
+    <div class="page-wrapper">
+        <section class="section" data-screen-label="The five towns">
+            <div class="prose reveal">
+                <p class="section__eyebrow">The Forging Towns · 刃物の町</p>
+                <h2 class="section__title">Five Towns, Five Philosophies</h2>
+            </div>
+
+            <!-- 堺 -->
+            <div class="region reveal" id="sakai">
+                <div>
+                    <p class="region__kanji">堺</p>
+                    <div class="region__meta">
+                        <span class="region__romaji">Sakai</span>
+                        <span class="region__pref">大阪府 · Osaka</span>
+                    </div>
+                    <p>The capital of the professional single bevel. Sakai's six-century-old guild
+                        system divides the craft absolutely: a forger (鍛冶屋) shapes and hardens the
+                        blade, a separate sharpener (刃付け屋) grinds the geometry, and a third
+                        craftsman fits the handle. Each is a master of one thing only — and the
+                        result is why roughly nine of ten professional 柳刃 and 薄刃 in Japan carry a
+                        Sakai pedigree.</p>
+                    <p>Sakai blades are overwhelmingly carbon steel (白紙, 青紙), traditional, and
+                        made to order. If you apprentice at a serious washoku or sushi kitchen, your
+                        first real knife will almost certainly come from here.</p>
+                    <div class="region__signature">
+                        <p class="region__signature-label">Signature</p>
+                        <p>Single-bevel mastery · carbon steel · division of labour · made-to-order</p>
+                    </div>
+                    <div class="region__makers">
+                        <span class="maker-tag">堺孝行 Sakai Takayuki</span>
+                        <span class="maker-tag">正本 Masamoto</span>
+                        <span class="maker-tag">水野鍛錬所 Mizuno Tanrenjo</span>
+                        <span class="maker-tag">菊守 Kikumori</span>
+                    </div>
+                </div>
+                <div class="region__media">
+                    <image-slot id="sakai-photo" shape="rect" fit="contain" src="assets/sakai-map.webp" placeholder="Map — Sakai, Osaka"></image-slot>
+                </div>
+            </div>
+
+            <!-- 関 -->
+            <div class="region reveal" id="seki">
+                <div>
+                    <p class="region__kanji">関</p>
+                    <div class="region__meta">
+                        <span class="region__romaji">Seki</span>
+                        <span class="region__pref">岐阜県 · Gifu</span>
+                    </div>
+                    <p>Seven centuries ago Seki's water, charcoal, and clay drew the Mino school of
+                        swordsmiths; today the same town is Japan's largest blade-manufacturing city —
+                        the place where tradition industrialized without losing its head. Seki
+                        specializes in precision-made double-bevel stainless: VG-10 gyuto, laser-cut
+                        santoku, the knives that introduced the world to Japanese steel.</p>
+                    <p>If Sakai is a tailor's atelier, Seki is a great fashion house: consistent,
+                        available, superbly engineered.</p>
+                    <div class="region__signature">
+                        <p class="region__signature-label">Signature</p>
+                        <p>Stainless double bevels · factory precision · global brands · consistency</p>
+                    </div>
+                    <div class="region__makers">
+                        <span class="maker-tag">旬 Shun (貝印 Kai)</span>
+                        <span class="maker-tag">ミソノ Misono</span>
+                        <span class="maker-tag">志津刃物 Shizu Hamono</span>
+                        <span class="maker-tag">三星刃物 Mitsuboshi</span>
+                    </div>
+                </div>
+                <div class="region__media">
+                    <image-slot id="seki-photo" src="assets/photos/seki-photo.webp" shape="rect" placeholder="Photo — Seki factory floor or knife museum"></image-slot>
+                </div>
+            </div>
+
+            <!-- 越前 -->
+            <div class="region reveal" id="echizen">
+                <div>
+                    <p class="region__kanji">越前</p>
+                    <div class="region__meta">
+                        <span class="region__romaji">Echizen</span>
+                        <span class="region__pref">福井県 · Fukui</span>
+                    </div>
+                    <p>Seven hundred years of blade-making concentrated today in Takefu Knife
+                        Village — a cooperative where independent smiths share a roof, a forge, and a
+                        habit of radical experiment. Echizen is also home to Takefu Special Steel,
+                        the maker of VG-10 itself, so the town's smiths work the steel they helped
+                        invent.</p>
+                    <p>Expect adventurous grinds, Damascus cladding, nashiji finishes, and some of
+                        the thinnest "laser" gyuto made anywhere.</p>
+                    <div class="region__signature">
+                        <p class="region__signature-label">Signature</p>
+                        <p>VG-10's birthplace · thin "laser" grinds · smith cooperatives · modern design</p>
+                    </div>
+                    <div class="region__makers">
+                        <span class="maker-tag">高村刃物 Takamura</span>
+                        <span class="maker-tag">龍泉刃物 Ryusen</span>
+                        <span class="maker-tag">黒崎 Kurosaki</span>
+                        <span class="maker-tag">佐治武士 Saji</span>
+                    </div>
+                </div>
+                <div class="region__media">
+                    <image-slot id="echizen-photo" src="assets/photos/echizen-photo.webp" shape="rect" placeholder="Photo — Takefu Knife Village forge, smith at work"></image-slot>
+                </div>
+            </div>
+
+            <!-- 土佐 -->
+            <div class="region reveal" id="tosa">
+                <div>
+                    <p class="region__kanji">土佐</p>
+                    <div class="region__meta">
+                        <span class="region__romaji">Tosa</span>
+                        <span class="region__pref">高知県 · Kōchi</span>
+                    </div>
+                    <p>Shikoku's forestry-and-fishing coast bred a blunt, practical forging culture:
+                        <span class="jp-term">自由鍛造</span> (free forging), hammer-finished blades, and
+                        the black <span class="jp-term">黒打ち</span> (kurouchi) scale finish left
+                        deliberately on the blade as honest, rust-shielding workwear. The steel is
+                        usually 青紙 — Tosa smiths buy it well and price it kindly.</p>
+                    <p>Tosa knives are the working chef's secret: the best performance-per-yen in
+                        carbon steel, with looks that improve as they wear.</p>
+                    <div class="region__signature">
+                        <p class="region__signature-label">Signature</p>
+                        <p>Kurouchi rustic finish · 青紙 carbon · free forging · honest prices</p>
+                    </div>
+                    <div class="region__makers">
+                        <span class="maker-tag">土佐打刃物 Tosa Uchihamono</span>
+                        <span class="maker-tag">田中打刃物 Tanaka</span>
+                        <span class="maker-tag">山下刃物 Yamashita</span>
+                    </div>
+                </div>
+                <div class="region__media">
+                    <image-slot id="tosa-photo" src="assets/photos/tosa-photo.webp" shape="rect" placeholder="Photo — kurouchi blade close-up, hammer-textured black finish"></image-slot>
+                </div>
+            </div>
+
+            <!-- 三条 -->
+            <div class="region reveal" id="sanjo">
+                <div>
+                    <p class="region__kanji">三条</p>
+                    <div class="region__meta">
+                        <span class="region__romaji">Sanjō</span>
+                        <span class="region__pref">新潟県 · Niigata</span>
+                    </div>
+                    <p>In the Tsubame-Sanjo metalworking belt, knife makers do something unusual in
+                        Japan: everything under one roof. Companies like Tadafusa and Yoshikane
+                        forge, grind, sharpen, and handle in-house, which breeds coherent,
+                        ground-up design — distinctive profiles, supremely even thin grinds, and a
+                        willingness to pair traditional kurouchi looks with modern stainless-clad
+                        construction.</p>
+                    <p>Sanjo gyuto and santoku are favorites of chefs who want one maker's intent
+                        in the whole knife.</p>
+                    <div class="region__signature">
+                        <p class="region__signature-label">Signature</p>
+                        <p>Integrated makers · stainless-clad carbon · refined thin grinds · design coherence</p>
+                    </div>
+                    <div class="region__makers">
+                        <span class="maker-tag">庖丁工房タダフサ Tadafusa</span>
+                        <span class="maker-tag">吉金 Yoshikane</span>
+                        <span class="maker-tag">藤次郎 Tojiro</span>
+                    </div>
+                </div>
+                <div class="region__media">
+                    <image-slot id="sanjo-photo" src="assets/photos/sanjo-photo.webp" shape="rect" placeholder="Photo — Sanjo workshop, stainless-clad blade grinding"></image-slot>
+                </div>
+            </div>
+        </section>
+
+        <section class="section section--dark" data-screen-label="Buying by region">
+            <div class="prose reveal">
+                <p class="section__eyebrow">Cheat Sheet · 早見表</p>
+                <h2 class="section__title">Which Town for Which Knife</h2>
+                <p>Single-bevel for the sushi station → <strong style="color:#fff;">堺 Sakai</strong>.
+                    Dependable stainless gyuto for the line → <strong style="color:#fff;">関 Seki</strong>.
+                    The thinnest modern grinds → <strong style="color:#fff;">越前 Echizen</strong>.
+                    Carbon steel on a budget → <strong style="color:#fff;">土佐 Tosa</strong>.
+                    A maker's complete vision → <strong style="color:#fff;">三条 Sanjō</strong>.</p>
+            </div>
+            <div class="pull-quote reveal">
+                <blockquote>"Ask where a knife was born before you ask what it costs."</blockquote>
+                <cite>産地を聞け — buyer's proverb</cite>
+            </div>
+        </section>
+    </div>
+
+    <div id="chapter-footer"></div>
+
+    <script src="js/image-slot.js"></script>
+    <script src="js/site.js"></script>
+</body>
+
+</html>

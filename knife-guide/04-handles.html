@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>第四章 柄 Handles — The Japanese Knife</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=Noto+Serif+JP:wght@300;400;500;600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        .wa-yo { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; margin: 40px 0; }
+
+        .handle-card { border: 1px solid var(--rule-light); background: var(--warm-white); }
+        .handle-card image-slot { width: 100%; height: 240px; }
+        .handle-card__body { padding: 28px 30px; }
+        .handle-card__jp { font-family: var(--font-jp); font-size: 26px; font-weight: 600; color: var(--ink); }
+        .handle-card__en { font-family: var(--font-sans); font-size: 11px; letter-spacing: 0.25em; text-transform: uppercase; color: var(--accent); margin: 4px 0 16px; }
+        .handle-card p { font-size: 16px; line-height: 1.75; color: var(--ink-mid); margin-bottom: 12px; }
+        .handle-card p:last-child { margin-bottom: 0; }
+
+        .handle-traits { border-top: 1px solid var(--rule-light); margin-top: 18px; padding-top: 14px; display: grid; gap: 8px; }
+        .handle-trait { display: grid; grid-template-columns: 110px 1fr; gap: 12px; font-size: 14.5px; }
+        .handle-trait b { font-family: var(--font-sans); font-size: 11px; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; color: var(--ink-light); padding-top: 2px; }
+        .handle-trait span { color: var(--ink-mid); }
+
+        /* cross-section shapes */
+        .shape-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; margin: 40px 0 8px; }
+        .shape { text-align: center; padding: 28px 16px; border: 1px solid var(--rule-dark); background: var(--ink-2); }
+        .shape svg { display: block; margin: 0 auto 16px; }
+        .shape__jp { font-family: var(--font-jp); font-size: 16.5px; font-weight: 600; color: #fff; }
+        .shape__en { font-family: var(--font-sans); font-size: 10.5px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); margin-top: 3px; }
+        .shape p { font-size: 14px; line-height: 1.6; color: rgba(255, 255, 255, 0.6); margin-top: 10px; }
+
+        /* woods table */
+        .wood-list { margin: 32px 0; max-width: 760px; }
+        .wood { display: grid; grid-template-columns: 170px 120px 1fr; gap: 24px; align-items: start; padding: 18px 0; border-bottom: 1px solid var(--rule-light); }
+        .wood__name { font-family: var(--font-jp); font-size: 18.5px; font-weight: 600; color: var(--ink); }
+        .wood__name small { display: block; font-family: var(--font-sans); font-weight: 400; font-size: 11px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--ink-light); margin-top: 3px; }
+        .wood image-slot { width: 120px; height: 112px; }
+        .wood p { font-size: 15.5px; line-height: 1.7; color: var(--ink-mid); }
+
+        @media (max-width: 900px) {
+            .wa-yo { grid-template-columns: 1fr; }
+            .shape-row { grid-template-columns: repeat(2, 1fr); }
+            .wood { grid-template-columns: 1fr; gap: 6px; }
+        }
+    </style>
+</head>
+
+<body data-screen-label="Ch.4 Handles 柄">
+    <div id="site-nav"></div>
+
+    <header class="chapter-hero" data-screen-label="Handles hero">
+        <div class="chapter-hero__media">
+            <image-slot id="handles-hero" shape="rect" placeholder="Photo — row of wa-handles, octagonal ebony & horn ferrules"></image-slot>
+        </div>
+        <div class="chapter-hero__scrim"></div>
+        <div class="chapter-hero__content">
+            <p class="chapter-hero__number">第四章 · Chapter Four</p>
+            <h1 class="chapter-hero__title">Handles</h1>
+            <p class="chapter-hero__jp">柄 — E</p>
+            <p class="chapter-hero__standfirst">The handle decides where the knife balances, how it
+                steers, and how your hand feels at hour ten of a twelve-hour shift. East and West
+                answer the question differently.</p>
+        </div>
+    </header>
+
+    <div class="page-wrapper">
+
+        <section class="section" data-screen-label="Wa vs Yo">
+            <div class="prose reveal">
+                <p class="section__eyebrow">Two Philosophies · 和柄と洋柄</p>
+                <h2 class="section__title">Wa and Yō</h2>
+                <p class="lede">Every Japanese knife ships one of two ways: the traditional wooden
+                    wa-handle, or the Western riveted yō-handle. Neither is better. They balance
+                    differently, age differently, and suit different hands.</p>
+            </div>
+
+            <div class="wa-yo reveal">
+                <div class="handle-card">
+                    <image-slot id="wa-photo" src="assets/photos/wa-photo.webp" shape="rect" placeholder="Photo — wa-handle close-up, ho wood + buffalo horn ferrule"></image-slot>
+                    <div class="handle-card__body">
+                        <p class="handle-card__jp">和柄 — Wa</p>
+                        <p class="handle-card__en">Traditional Japanese</p>
+                        <p>A light wooden grip friction-fitted over a hidden tang that is burned in,
+                            not riveted. The lightness shifts the balance point forward onto the
+                            blade — the knife feels eager, blade-heavy, alive at the tip. Preferred
+                            for single-bevel knives and precision work.</p>
+                        <p>Because the fit is friction, a wa-handle is a consumable: any knife shop
+                            swaps one in minutes. A century-old blade on its fifth handle is normal
+                            and honorable.</p>
+                        <div class="handle-traits">
+                            <div class="handle-trait"><b>Balance</b><span>Forward — on the blade</span></div>
+                            <div class="handle-trait"><b>Weight</b><span>Very light</span></div>
+                            <div class="handle-trait"><b>Care</b><span>Keep dry; oil occasionally; never dishwasher</span></div>
+                            <div class="handle-trait"><b>Repair</b><span>Replaceable in minutes, cheaply</span></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="handle-card">
+                    <image-slot id="yo-photo" src="assets/photos/yo-photo.webp" shape="rect" placeholder="Photo — yo-handle close-up, riveted pakkawood, full tang"></image-slot>
+                    <div class="handle-card__body">
+                        <p class="handle-card__jp">洋柄 — Yō</p>
+                        <p class="handle-card__en">Western style</p>
+                        <p>A full tang sandwiched between riveted scales of pakkawood or micarta —
+                            the construction of a German chef's knife carrying a Japanese blade. The
+                            extra rear weight moves balance back to the pinch point, giving a planted,
+                            durable, familiar feel for cooks trained on Western knives.</p>
+                        <p>Effectively waterproof and indestructible on the line, at the cost of
+                            nimbleness — and when it finally does wear out, it cannot be replaced,
+                            only re-scaled by a specialist.</p>
+                        <div class="handle-traits">
+                            <div class="handle-trait"><b>Balance</b><span>Neutral to rear — at the pinch</span></div>
+                            <div class="handle-trait"><b>Weight</b><span>Moderate to heavy</span></div>
+                            <div class="handle-trait"><b>Care</b><span>Nearly none — wipe and go</span></div>
+                            <div class="handle-trait"><b>Repair</b><span>Specialist job; rarely worth it</span></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section section--dark" data-screen-label="Handle shapes">
+            <div class="prose reveal">
+                <p class="section__eyebrow">Cross-sections · 柄の形状</p>
+                <h2 class="section__title">The Shape in Your Palm</h2>
+                <p>Wa-handles come in four classic cross-sections. The differences sound small and
+                    feel enormous by the end of a prep list.</p>
+            </div>
+            <div class="shape-row reveal">
+                <div class="shape">
+                    <svg width="64" height="48" viewBox="0 0 64 48"><ellipse cx="32" cy="24" rx="22" ry="15" fill="none" stroke="#C4A882" stroke-width="1.5"></ellipse></svg>
+                    <p class="shape__jp">小判型</p>
+                    <p class="shape__en">Oval</p>
+                    <p>The default. Comfortable in every grip, no hot spots — but gives the hand no
+                        index of where the edge points.</p>
+                </div>
+                <div class="shape">
+                    <svg width="64" height="48" viewBox="0 0 64 48"><polygon points="20,8 44,8 56,18 56,30 44,40 20,40 8,30 8,18" fill="none" stroke="#C4A882" stroke-width="1.5"></polygon></svg>
+                    <p class="shape__jp">八角型</p>
+                    <p class="shape__en">Octagonal</p>
+                    <p>The professional favourite. Facets lock the blade's orientation into your palm
+                        — you feel the edge's direction blind.</p>
+                </div>
+                <div class="shape">
+                    <svg width="64" height="48" viewBox="0 0 64 48"><path d="M14 8 L50 8 Q58 24 50 40 L14 40 Q6 24 14 8 Z" fill="none" stroke="#C4A882" stroke-width="1.5"></path><line x1="14" y1="8" x2="14" y2="40" stroke="#C4A882" stroke-width="1.5"></line></svg>
+                    <p class="shape__jp">栗型</p>
+                    <p class="shape__en">Chestnut / D-shape</p>
+                    <p>A ridge nests into the fingers — superbly secure, but handed: a right-hand D
+                        fights a left hand.</p>
+                </div>
+                <div class="shape">
+                    <svg width="64" height="48" viewBox="0 0 64 48"><rect x="10" y="10" width="44" height="28" rx="4" fill="none" stroke="#C4A882" stroke-width="1.5"></rect></svg>
+                    <p class="shape__jp">角型</p>
+                    <p class="shape__en">Squared</p>
+                    <p>Seen on heavy deba — maximum purchase for wet, forceful work where the grip
+                        must not roll.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="section section--cream" data-screen-label="Woods">
+            <div class="prose reveal">
+                <p class="section__eyebrow">Materials · 柄の素材</p>
+                <h2 class="section__title">Woods and the Ferrule</h2>
+                <p>The collar where handle meets blade is the <span class="jp-term">桂</span>
+                    (katsura, ferrule) — traditionally water-buffalo horn, dense enough to seal the
+                    joint against water, the handle's one weak point.</p>
+            </div>
+            <div class="wood-list reveal">
+                <div class="wood">
+                    <p class="wood__name">朴 — Hō<small>Magnolia · the standard</small></p>
+                    <image-slot id="wood-ho" src="assets/photos/wood-ho.webp" shape="rect" placeholder="朴"></image-slot>
+                    <p>Feather-light, faintly antibacterial, and cheap to replace — the white wood on
+                        90% of wa-handles. It darkens and wears with use; replacing it every few years
+                        is part of the knife's life.</p>
+                </div>
+                <div class="wood">
+                    <p class="wood__name">栗 — Kuri<small>Chestnut · workmanlike</small></p>
+                    <image-slot id="wood-kuri" src="assets/photos/wood-kuri.webp" shape="rect" placeholder="栗"></image-slot>
+                    <p>Harder and more water-tolerant than hō, with visible grain. Common on Tosa
+                        kurouchi knives and rustic single-bevels.</p>
+                </div>
+                <div class="wood">
+                    <p class="wood__name">黒檀 — Kokutan<small>Ebony · the upgrade</small></p>
+                    <image-slot id="wood-kokutan" src="assets/photos/wood-kokutan.webp" shape="rect" placeholder="黒檀"></image-slot>
+                    <p>Dense, near-black, takes a glassy polish and shrugs off water. Adds weight that
+                        shifts balance slightly rearward — some prefer exactly that. The classic
+                        pairing with a buffalo-horn ferrule on presentation-grade knives.</p>
+                </div>
+                <div class="wood">
+                    <p class="wood__name">紫檀 — Shitan<small>Rosewood · the middle path</small></p>
+                    <image-slot id="wood-shitan" src="assets/photos/wood-shitan.webp" shape="rect" placeholder="紫檀"></image-slot>
+                    <p>Warm-toned, durable, moderately priced — the most common step up from hō wood
+                        on mid-range knives.</p>
+                </div>
+            </div>
+            <div class="callout reveal">
+                <p class="callout__label">Fit check · 目安</p>
+                <p>Whatever the wood: the ferrule must sit flush with no gap at the blade (water
+                    enters there), the handle should reach to the heel of your palm in a pinch grip,
+                    and the knife should balance within a finger's width of the place you actually
+                    hold it.</p>
+            </div>
+        </section>
+    </div>
+
+    <div id="chapter-footer"></div>
+
+    <script src="js/image-slot.js"></script>
+    <script src="js/site.js"></script>
+</body>
+
+</html>

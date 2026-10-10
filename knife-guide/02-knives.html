@@ -1,0 +1,822 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>第二章 包丁の種類 The Five Knives — The Japanese Knife</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=Noto+Serif+JP:wght@300;400;500;600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        /* ============ ANATOMY (interactive) ============ */
+        .anatomy {
+            background: var(--ink-2);
+            border: 1px solid var(--rule-dark);
+            margin: 40px 0;
+            display: grid;
+            grid-template-columns: 320px 1fr;
+        }
+
+        .anatomy__stage {
+            position: relative;
+            padding: 64px 40px;
+            display: flex;
+            align-items: center;
+        }
+
+        .anatomy__svg-wrap { position: relative; width: 100%; }
+        .anatomy__svg-wrap svg { width: 100%; height: auto; display: block; }
+        .anatomy__photo {
+            width: 100%;
+            height: auto;
+            display: block;
+            filter: drop-shadow(0 18px 28px rgba(0, 0, 0, 0.55));
+        }
+
+        .anatomy__dot {
+            position: absolute;
+            width: 30px;
+            height: 26px;
+            margin: -13px 0 0 -13px;
+            border-radius: 50%;
+            border: 1px solid var(--gold);
+            background: rgba(196, 168, 130, 0.15);
+            color: var(--gold);
+            font-family: var(--font-sans);
+            font-size: 12px;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.2s, transform 0.2s;
+        }
+
+        .anatomy__dot:hover { background: rgba(196, 168, 130, 0.35); transform: scale(1.15); }
+
+        .anatomy__dot.is-active {
+            background: var(--gold);
+            color: var(--ink);
+        }
+
+        @media (prefers-reduced-motion: no-preference) {
+            .anatomy__dot::after {
+                content: '';
+                position: absolute;
+                inset: -1px;
+                border-radius: 50%;
+                border: 1px solid var(--gold);
+                animation: dotPulse 2.4s ease-out infinite;
+                opacity: 0;
+            }
+            .anatomy__dot.is-active::after { animation: none; }
+            @keyframes dotPulse {
+                0% { transform: scale(1); opacity: 0.7; }
+                70% { transform: scale(1.9); opacity: 0; }
+                100% { opacity: 0; }
+            }
+        }
+
+        .anatomy__panel {
+            border-right: 1px solid var(--rule-dark);
+            padding: 40px 32px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            min-height: 320px;
+        }
+
+        .anatomy__panel-kanji {
+            font-family: var(--font-jp);
+            font-size: 42px;
+            font-weight: 600;
+            color: #fff;
+            line-height: 1.1;
+        }
+
+        .anatomy__panel-romaji {
+            font-family: var(--font-display);
+            font-style: italic;
+            font-size: 21px;
+            color: var(--gold);
+            margin: 4px 0 18px;
+        }
+
+        .anatomy__panel-desc {
+            font-size: 16.5px;
+            line-height: 1.75;
+            color: rgba(255, 255, 255, 0.75);
+        }
+
+        .anatomy__hint {
+            font-family: var(--font-sans);
+            font-size: 11px;
+            letter-spacing: 0.25em;
+            text-transform: uppercase;
+            color: #E5574A;
+            margin-top: 24px;
+        }
+
+        /* ============ BEVEL DIAGRAM ============ */
+        .bevel-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; margin: 40px 0; }
+
+        .bevel-card { border: 1px solid var(--rule-light); padding: 32px; background: var(--warm-white); }
+
+        .bevel-card__title { font-family: var(--font-jp); font-size: 21px; font-weight: 600; color: var(--ink); }
+        .bevel-card__sub { font-family: var(--font-sans); font-size: 11px; letter-spacing: 0.25em; text-transform: uppercase; color: var(--accent); margin: 4px 0 24px; }
+
+        .bevel-card svg { width: 100%; height: auto; display: block; }
+
+        .bevel-card p { font-size: 15.5px; line-height: 1.75; color: var(--ink-mid); }
+
+.bevel-card svg{max-width:360px;margin:0 auto}.bevel-card svg text{font-size:12px;font-family:'Inter','Noto Serif JP',serif;font-weight:500;fill:#514b42}.bevel-card .section-caption{font:11px var(--font-sans);text-align:center;letter-spacing:.06em;color:#806747;margin:10px 0}.bevel-key{font-family:var(--font-serif);text-align:center;font-size:23px;font-weight:400;margin:16px 0;color:var(--ink)}.bevel-footnote{font:12px/1.6 var(--font-sans);text-align:center;color:var(--ink-light);margin:-16px 0 40px}
+        /* ============ CROSS-SECTION LABELS ============ */
+        .xsvg text.k { font-family: var(--font-jp); font-weight: 500; }
+        .xsvg text.r { font-family: var(--font-sans); }
+
+        /* ============ AWASE / HONYAKI BUILD ============ */
+        .build { margin: 8px 0 0; }
+
+        .build__legend {
+            display: flex;
+            gap: 28px;
+            flex-wrap: wrap;
+            margin: 28px 0 32px;
+            font-family: var(--font-sans);
+            font-size: 13px;
+            color: var(--ink-mid);
+        }
+        .build__legend span { display: inline-flex; align-items: center; gap: 9px; }
+        .build__legend i { width: 18px; height: 18px; border: 1px solid #6B7C8A; flex-shrink: 0; }
+
+        .build__pair { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; }
+        .build__card { border: 1px solid var(--rule-light); padding: 32px 28px; background: var(--warm-white); }
+        .build__card svg { width: 100%; max-width: 280px; height: auto; display: block; margin: 0 auto 22px; }
+        .build__title { font-family: var(--font-jp); font-size: 22px; font-weight: 600; color: var(--ink); }
+        .build__sub { font-family: var(--font-sans); font-size: 11px; letter-spacing: 0.25em; text-transform: uppercase; color: var(--accent); margin: 5px 0 2px; }
+        .build__lit { font-family: var(--font-display); font-style: italic; font-size: 17px; color: var(--ink-light); margin-bottom: 18px; }
+        .build__card p { font-size: 15.5px; line-height: 1.75; color: var(--ink-mid); }
+
+        .methods { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--rule-light); border: 1px solid var(--rule-light); margin-top: 32px; }
+        .method { background: var(--warm-white); padding: 30px 22px; }
+        .method svg { width: 100%; max-width: 96px; height: auto; display: block; margin: 0 auto 20px; }
+        .method__jp { font-family: var(--font-jp); font-size: 19px; font-weight: 600; color: var(--ink); text-align: center; }
+        .method__romaji { font-family: var(--font-sans); font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--accent); margin: 3px 0 8px; text-align: center; }
+        .method__bevel { font-family: var(--font-jp); font-size: 13px; color: var(--gold); text-align: center; margin-bottom: 14px; }
+        .method p { font-size: 14px; line-height: 1.65; color: var(--ink-mid); }
+
+        @media (max-width: 900px) {
+            .build__pair { grid-template-columns: 1fr; }
+            .methods { grid-template-columns: 1fr; }
+        }
+
+        /* ============ KNIFE PROFILES ============ */
+        .knife-block { padding: 64px 0; }
+        .knife-block + .knife-block { border-top: 1px solid var(--rule-light); }
+
+        .knife-block__head {
+            display: flex;
+            align-items: baseline;
+            gap: 24px;
+            flex-wrap: wrap;
+            margin-bottom: 12px;
+        }
+
+        .knife-block__kanji {
+            font-family: var(--font-jp);
+            font-size: 64px;
+            font-weight: 600;
+            line-height: 1;
+            color: var(--ink);
+        }
+
+        .knife-block__names { display: flex; flex-direction: column; }
+
+        .knife-block__romaji {
+            font-family: var(--font-display);
+            font-style: italic;
+            font-size: 30px;
+            font-weight: 300;
+            color: var(--accent);
+            line-height: 1.1;
+        }
+
+        .knife-block__literal {
+            font-family: var(--font-sans);
+            font-size: 12px;
+            letter-spacing: 0.25em;
+            text-transform: uppercase;
+            color: var(--ink-light);
+            margin-top: 6px;
+        }
+
+        .knife-block__role {
+            margin-left: auto;
+            font-family: var(--font-sans);
+            font-size: 11px;
+            font-weight: 600;
+            letter-spacing: 0.25em;
+            text-transform: uppercase;
+            color: var(--gold);
+            border: 1px solid var(--gold-dim);
+            padding: 8px 14px;
+            white-space: nowrap;
+        }
+
+        .knife-block__silhouette { margin: 28px 0; }
+        .knife-block__silhouette svg { width: 100%; max-width: 620px; height: auto; }
+
+        .knife-block__cols {
+            display: grid;
+            grid-template-columns: 1fr 340px;
+            gap: 48px;
+            align-items: start;
+        }
+
+        .knife-block__text p { font-size: 17px; line-height: 1.8; color: var(--ink-mid); margin-bottom: 16px; max-width: 620px; }
+
+        .knife-block__side image-slot { width: 100%; height: 230px; }
+
+        .knife-specs { border: 1px solid var(--rule-light); margin-top: 20px; }
+        .knife-spec { display: grid; grid-template-columns: 120px 1fr; gap: 12px; padding: 12px 16px; }
+        .knife-spec + .knife-spec { border-top: 1px solid var(--rule-light); }
+        .knife-spec__label { font-family: var(--font-sans); font-size: 11px; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase; color: var(--ink-light); padding-top: 3px; }
+        .knife-spec__value { font-size: 15.5px; color: var(--ink); line-height: 1.5; }
+
+        /* honorable mentions */
+        .mention-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px; background: var(--rule-dark); border: 1px solid var(--rule-dark); margin-top: 40px; }
+        .mention { background: var(--ink-2); padding: 26px 24px; }
+        .mention__jp { font-family: var(--font-jp); font-size: 24px; font-weight: 600; color: #fff; }
+        .mention__romaji { font-family: var(--font-sans); font-size: 11px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--gold); margin: 3px 0 12px; }
+        .mention p { font-size: 14.5px; line-height: 1.65; color: rgba(255, 255, 255, 0.6); }
+
+        @media (max-width: 1000px) {
+            .anatomy { grid-template-columns: 1fr; }
+            .anatomy__stage { order: -1; }
+            .anatomy__panel { border-right: none; border-bottom: 1px solid var(--rule-dark); min-height: 0; }
+            .mention-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+
+        @media (max-width: 900px) {
+            .knife-block__cols { grid-template-columns: 1fr; }
+            .bevel-grid { grid-template-columns: 1fr; }
+            .knife-block__role { margin-left: 0; }
+        }
+    </style>
+</head>
+
+<body data-screen-label="Ch.2 The Knives 包丁の種類">
+    <div id="site-nav"></div>
+
+    <!-- ============ HERO ============ -->
+    <header class="chapter-hero" data-screen-label="Knives hero">
+        <div class="chapter-hero__media">
+            <image-slot id="knives-hero" shape="rect" placeholder="Photo — knife roll opened on dark wood, five blades fanned out"></image-slot>
+        </div>
+        <div class="chapter-hero__scrim"></div>
+        <div class="chapter-hero__content">
+            <p class="chapter-hero__number">第二章 · Chapter Two</p>
+            <h1 class="chapter-hero__title">The Five Knives</h1>
+            <p class="chapter-hero__jp">包丁の種類 — Hōchō no Shurui</p>
+            <p class="chapter-hero__standfirst">Where the West asks one knife to do everything, Japan
+                forged a blade for every task. Five knives cover the whole professional kitchen —
+                master their differences and you will never reach for the wrong one.</p>
+        </div>
+    </header>
+
+    <div class="page-wrapper">
+
+        <!-- ============ ANATOMY ============ -->
+        <section class="section" data-screen-label="Blade anatomy (interactive)">
+            <div class="prose reveal">
+                <p class="section__eyebrow">First, the Vocabulary · 包丁の各部名称</p>
+                <h2 class="section__title">Anatomy of the Blade</h2>
+                <p>Every part of a Japanese knife has a name, and the names matter — a sharpener will
+                    ask about your <span class="jp-term">切先</span>, a maker will quote you a price per
+                    <span class="jp-term">寸</span> of blade. The knife below is a <span class="jp-term">柳刃</span>
+                    (<em>yanagiba</em>), the single-bevel sashimi slicer, with a magnolia wa-handle and
+                    water-buffalo horn ferrule. Tap each point to learn the part.</p>
+            </div>
+
+            <div class="anatomy reveal">
+                <div class="anatomy__panel">
+                    <p class="anatomy__panel-kanji" id="anatomy-kanji">切先</p>
+                    <p class="anatomy__panel-romaji" id="anatomy-romaji">Kissaki — the tip</p>
+                    <p class="anatomy__panel-desc" id="anatomy-desc">The first few centimetres of the
+                        blade. Used for scoring squid, opening fish bellies, and fine tip work. On a
+                        gyuto the kissaki is fragile — never twist it, never let it strike the board
+                        point-first.</p>
+                    <p class="anatomy__hint">① – ⑥ Tap a numbered point</p>
+                </div>
+                <div class="anatomy__stage">
+                    <div class="anatomy__svg-wrap">
+                        <img src="assets/yanagiba-anatomy.webp" alt="Yanagiba single-bevel knife, side profile, isolated from its background" class="anatomy__photo">
+                        <button class="anatomy__dot" style="left: 1.5%; top: 56%;" data-part="kissaki" aria-label="Kissaki — tip">1</button>
+                        <button class="anatomy__dot" style="left: 36%; top: 80%;" data-part="ha" aria-label="Ha — edge">2</button>
+                        <button class="anatomy__dot" style="left: 36%; top: 18%;" data-part="mine" aria-label="Mine — spine">3</button>
+                        <button class="anatomy__dot" style="left: 67%; top: 96%;" data-part="ago" aria-label="Ago — heel">4</button>
+                        <button class="anatomy__dot" style="left: 69.5%; top: 22%;" data-part="machi" aria-label="Machi — neck">5</button>
+                        <button class="anatomy__dot" style="left: 88%; top: 30%;" data-part="e" aria-label="E — handle">6</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ============ SINGLE VS DOUBLE BEVEL ============ -->
+        <section class="section section--cream" data-screen-label="Single vs double bevel">
+            <div class="prose reveal">
+                <p class="section__eyebrow">The Great Divide · 片刃と両刃</p>
+                <h2 class="section__title">Single Bevel, Double Bevel</h2>
+                <p class="lede">Before the five knives, one distinction rules them all: is the blade
+                    ground on one side, or both?</p>
+            </div>
+
+            <div class="bevel-grid reveal">
+<div class="bevel-card">
+<p class="bevel-card__title">両刃 — Ryōba</p>
+<p class="bevel-card__sub">Double bevel · 牛刀 · 三徳</p>
+<svg class="bevel-knife" viewBox="0 0 320 106" role="img" aria-label="Gyuto side profile with a marked cross-section through the middle of the blade">
+<defs><linearGradient id="steel-a" x2="0" y2="1"><stop stop-color="#9ca7ac"/><stop offset=".4" stop-color="#e6e9e7"/><stop offset=".8" stop-color="#bbc5c8"/><stop offset="1" stop-color="#eef0ed"/></linearGradient></defs>
+<path d="M86 31L194 30Q250 30 306 64Q235 83 96 75L87 63Z" fill="url(#steel-a)" stroke="#8b9599"/>
+<path d="M12 32Q7 46 12 61L81 62L87 55L87 34Z" fill="#59402e"/><path d="M80 33L91 32L94 64L81 62Z" fill="#383936"/>
+<path d="M191 18V89" stroke="#a44d38" stroke-width="1.5" stroke-dasharray="4 3"/><text x="191" y="103" text-anchor="middle">Section A–A</text>
+</svg>
+<p class="section-caption">ENLARGED CROSS-SECTION · 断面</p>
+<svg class="bevel-section" viewBox="0 0 320 302" role="img" aria-label="Symmetric double bevel cross-section. Two highlighted bevels meet at the centred cutting edge.">
+<path d="M132 31L188 31L178 222L160 270L142 222Z" fill="#ced5d6" stroke="#829195" stroke-width="1.5"/>
+<path d="M142 222L160 270L178 222Z" fill="#d5a782"/>
+<path d="M142 222L160 270L178 222" fill="none" stroke="#a44d38" stroke-width="3"/>
+<path d="M160 39V260" stroke="#829195" stroke-dasharray="4 5"/>
+<text x="160" y="19" text-anchor="middle">Spine · 峰</text>
+<path d="M81 198L139 235M239 198L181 235" fill="none" stroke="#a39784"/>
+<text x="75" y="177" text-anchor="middle">Bevel</text><text x="75" y="193" text-anchor="middle">刃付け</text>
+<text x="245" y="177" text-anchor="middle">Bevel</text><text x="245" y="193" text-anchor="middle">刃付け</text>
+<text x="160" y="295" text-anchor="middle">Cutting edge · 刃先</text>
+</svg>
+<h2 class="bevel-key">Bevels on both sides</h2>
+<p>Bevels on <em>both</em> sides meet at the cutting edge. A symmetric example is shown here; some double-bevel knives have asymmetric grinds. Gyuto and santoku are versatile choices for everyday slicing, dicing and general prep.</p>
+</div>
+<div class="bevel-card">
+<p class="bevel-card__title">片刃 — Kataba</p>
+<p class="bevel-card__sub">Single bevel · 出刃 · 柳刃 · 薄刃</p>
+<svg class="bevel-knife" viewBox="0 0 320 106" role="img" aria-label="Yanagiba side profile with a marked cross-section through the middle of the blade">
+<defs><linearGradient id="steel-b" x2="0" y2="1"><stop stop-color="#a5afb1"/><stop offset=".6" stop-color="#e8eae5"/><stop offset=".65" stop-color="#a7b5ba"/><stop offset="1" stop-color="#e4e9e6"/></linearGradient></defs>
+<path d="M84 38L244 38Q279 39 307 59L297 65L90 69Z" fill="url(#steel-b)" stroke="#8b9599"/>
+<path d="M10 38L71 37L79 42L78 57L71 62L10 60Z" fill="#b99360"/><path d="M72 37L87 38L89 61L73 62Z" fill="#383936"/>
+<path d="M191 18V89" stroke="#a44d38" stroke-width="1.5" stroke-dasharray="4 3"/><text x="191" y="103" text-anchor="middle">Section A–A</text>
+</svg>
+<p class="section-caption">ENLARGED CROSS-SECTION · 断面</p>
+<svg class="bevel-section" viewBox="0 0 320 302" role="img" aria-label="Single bevel cross-section with hollow back on the left and wide front bevel on the right. Shinogi marks the transition from the upper front face to the bevel.">
+<path d="M132 31L188 31L183 188L132 270L132 250Q153 144 132 49Z" fill="#ced5d6" stroke="#829195" stroke-width="1.5"/>
+<path d="M183 188L132 270L140 188Z" fill="#d5a782"/>
+<path d="M183 188L132 270" stroke="#a44d38" stroke-width="3"/>
+<text x="160" y="19" text-anchor="middle">Spine · 峰</text>
+<path d="M95 119L142 139" stroke="#a39784"/><text x="12" y="96">Hollow back</text><text x="12" y="113">裏すき</text>
+<path d="M186 188L228 162" stroke="#a39784"/><circle cx="183" cy="188" r="3" fill="#806747"/><text x="231" y="151">Shinogi</text><text x="231" y="167">しのぎ</text>
+<path d="M167 218L224 234" stroke="#a39784"/><text x="227" y="233">Wide bevel</text><text x="227" y="249">切刃</text>
+<text x="132" y="295" text-anchor="middle">Cutting edge · 刃先</text>
+</svg>
+<h2 class="bevel-key">Wide bevel on one side</h2>
+<p>The wide front bevel (切刃, <em>kireha</em>) meets the upper blade face at the しのぎ (<em>shinogi</em>) line. The back has a shallow hollow (裏すき, <em>urasuki</em>) bordered by narrow flat lands. The bevel and back meet at the cutting edge. This asymmetric geometry can steer in the cut and requires practice. Right- and left-handed versions differ.</p>
+</div>
+</div>
+<p class="bevel-footnote">Schematic illustrations · Thickness and hollow exaggerated for clarity · Individual knife grinds vary</p>
+            <div class="callout reveal">
+                <p class="callout__label">Why it matters daily</p>
+                <p>Single-bevel knives sharpen differently (Chapter Six), cut differently (Chapter
+                    Five), and cost more — the urasuki must be forged, not machined. A brigade kitchen
+                    runs on double bevels; the sashimi station runs on single. Most chefs eventually
+                    own both.</p>
+            </div>
+        </section>
+
+        <!-- ============ AWASE vs HONYAKI ============ -->
+        <section class="section" data-screen-label="Awase vs Honyaki — how the blade is built">
+            <div class="prose reveal">
+                <p class="section__eyebrow">How the Blade Is Built · 合わせと本焼き</p>
+                <h2 class="section__title">Awase &amp; Honyaki</h2>
+                <p class="lede">Bevel is the geometry of the edge. Construction is what the blade is
+                    made of — and on this the whole Japanese knife world splits in two.</p>
+                <p>Almost every knife you will ever buy is <span class="jp-term">合わせ</span>
+                    (<em>awase</em>) — <strong>laminated</strong>. A small piece of very hard, brittle
+                    edge steel (<span class="jp-term">鋼</span>, <em>hagane</em>) is forge-welded onto
+                    or into a body of soft, springy iron (<span class="jp-term">地金</span>,
+                    <em>jigane</em>). The hard steel takes the keen edge; the soft iron absorbs shock,
+                    resists warping, and is easy to sharpen. You get the best of both — at lower cost
+                    and far higher forgiveness.</p>
+                <p>The rarer, costlier <span class="jp-term">本焼き</span> (<em>honyaki</em>) is the
+                    opposite: a single bar of high-carbon steel — <span class="jp-term">全鋼</span>
+                    (<em>zenkō</em>, "whole steel") — differentially water-quenched like a samurai
+                    sword. There is no soft iron to forgive a mistake. It holds an edge longer and
+                    polishes to a visible temper line (<span class="jp-term">刃文</span>,
+                    <em>hamon</em>), but it can crack in the quench, warps if mistreated, costs several
+                    times more, and is unforgiving to sharpen. It is the master's blade.</p>
+            </div>
+
+            <div class="build reveal">
+                <div class="build__legend">
+                    <span><i style="background:#CBD3D8;"></i> 地金 Jigane — soft iron body</span>
+                    <span><i style="background:#5A6B78;"></i> 鋼 Hagane — hard edge steel</span>
+                    <span><i style="background:linear-gradient(90deg,#8FA0AC,#D6DEE3,#8FA0AC);"></i> 全鋼 Mono-steel</span>
+                </div>
+
+                <div class="build__pair">
+                    <div class="build__card">
+                        <p class="build__title">合わせ（付け鋼）</p>
+                        <p class="build__sub">Laminated · the everyday blade</p>
+                        <p class="build__lit">Awase — hagane forge-welded onto jigane</p>
+                        <svg class="xsvg" viewBox="0 0 300 350" aria-label="Awase cross-section: hard hagane edge steel welded onto a soft jigane body">
+                            <path d="M140 30 L186 30 L176 215 L146 320 L143 250 Z" fill="#CBD3D8" stroke="#6B7C8A" stroke-width="1.2"></path>
+                            <path d="M182 102 L176 215 L146 320 L151 276 L172 210 L178 106 Z" fill="#5A6B78" stroke="#46535E" stroke-width="0.6"></path>
+                            <circle cx="176" cy="215" r="2.6" fill="#C4A882"></circle>
+                            <line x1="162" y1="92" x2="214" y2="78" stroke="#B0A99C" stroke-width="0.8"></line>
+                            <text class="k" x="218" y="74" font-size="13" fill="#131210">地金（軟鉄）</text>
+                            <text class="r" x="218" y="88" font-size="9" fill="#6B6B6B">Jigane — soft iron</text>
+                            <line x1="151" y1="300" x2="104" y2="316" stroke="#B0A99C" stroke-width="0.8"></line>
+                            <text class="k" x="74" y="320" font-size="13" fill="#131210">鋼</text>
+                            <text class="r" x="74" y="334" font-size="9" fill="#6B6B6B">Hagane</text>
+                            <line x1="180" y1="160" x2="206" y2="160" stroke="#B0A99C" stroke-width="0.8"></line>
+                            <text class="k" x="210" y="157" font-size="13" fill="#131210">表</text>
+                            <text class="r" x="224" y="157" font-size="9" fill="#6B6B6B">Front</text>
+                            <line x1="143" y1="160" x2="116" y2="160" stroke="#B0A99C" stroke-width="0.8"></line>
+                            <text class="k" x="100" y="157" font-size="13" fill="#131210">裏</text>
+                            <text class="r" x="70" y="157" font-size="9" fill="#6B6B6B">Back</text>
+                            <line x1="176" y1="215" x2="208" y2="222" stroke="#B0A99C" stroke-width="0.8"></line>
+                            <text class="k" x="212" y="219" font-size="12" fill="#131210">しのぎ</text>
+                            <text class="r" x="212" y="232" font-size="9" fill="#6B6B6B">Shinogi line</text>
+                            <line x1="160" y1="268" x2="208" y2="262" stroke="#B0A99C" stroke-width="0.8"></line>
+                            <text class="k" x="212" y="259" font-size="12" fill="#131210">切刃</text>
+                            <text class="r" x="212" y="272" font-size="9" fill="#6B6B6B">Kireha</text>
+                        </svg>
+                        <p>Two metals, forge-welded. The hard edge steel is supported by a tough iron
+                            body — cheaper to make, easy to sharpen, and almost impossible to ruin.
+                            This is what nearly every deba, yanagiba, and gyuto is.</p>
+                    </div>
+
+                    <div class="build__card">
+                        <p class="build__title">本焼き（全鋼）</p>
+                        <p class="build__sub">Mono-steel · the master's blade</p>
+                        <p class="build__lit">Honyaki — one bar of hardened steel</p>
+                        <svg class="xsvg" viewBox="0 0 300 350" aria-label="Honyaki cross-section: a single bar of high-carbon mono-steel">
+                            <defs>
+                                <linearGradient id="honyakiSteel" x1="0" y1="0" x2="1" y2="0">
+                                    <stop offset="0" stop-color="#7E8F9B"></stop>
+                                    <stop offset="0.45" stop-color="#DCE3E8"></stop>
+                                    <stop offset="0.7" stop-color="#A9B6BF"></stop>
+                                    <stop offset="1" stop-color="#73828E"></stop>
+                                </linearGradient>
+                            </defs>
+                            <path d="M140 30 L186 30 L176 215 L146 320 L143 250 Z" fill="url(#honyakiSteel)" stroke="#6B7C8A" stroke-width="1.2"></path>
+                            <path d="M150 250 Q160 268 152 300" stroke="#EEF3F6" stroke-width="1" fill="none" opacity="0.8"></path>
+                            <circle cx="176" cy="215" r="2.6" fill="#C4A882"></circle>
+                            <line x1="180" y1="160" x2="206" y2="160" stroke="#B0A99C" stroke-width="0.8"></line>
+                            <text class="k" x="210" y="157" font-size="13" fill="#131210">表</text>
+                            <text class="r" x="224" y="157" font-size="9" fill="#6B6B6B">Front</text>
+                            <line x1="143" y1="160" x2="116" y2="160" stroke="#B0A99C" stroke-width="0.8"></line>
+                            <text class="k" x="100" y="157" font-size="13" fill="#131210">裏</text>
+                            <text class="r" x="70" y="157" font-size="9" fill="#6B6B6B">Back</text>
+                            <line x1="176" y1="215" x2="208" y2="222" stroke="#B0A99C" stroke-width="0.8"></line>
+                            <text class="k" x="212" y="219" font-size="12" fill="#131210">しのぎ</text>
+                            <text class="r" x="212" y="232" font-size="9" fill="#6B6B6B">Shinogi line</text>
+                            <line x1="160" y1="268" x2="208" y2="262" stroke="#B0A99C" stroke-width="0.8"></line>
+                            <text class="k" x="212" y="259" font-size="12" fill="#131210">切刃</text>
+                            <text class="r" x="212" y="272" font-size="9" fill="#6B6B6B">Kireha</text>
+                        </svg>
+                        <p>One steel, hardened throughout — no soft body to lean on. Longer edge
+                            retention and a visible <span class="jp-term">刃文</span> (hamon), but it
+                            warps, can crack in the quench, and forgives nothing. Priced for the chef
+                            who has earned it.</p>
+                    </div>
+                </div>
+
+                <p class="prose" style="margin: 40px 0 0; max-width: var(--prose-width); font-family: var(--font-serif); font-size: 15px; line-height: 1.8; color: var(--ink-mid);">
+                    Within <strong>awase</strong>, three forge-welding patterns cover almost every
+                    knife made. The first two are for double-bevel (<span class="jp-term">もろ刃</span>)
+                    blades; the last is the classic single-bevel (<span class="jp-term">片刃</span>)
+                    construction.</p>
+
+                <div class="methods reveal">
+                    <div class="method">
+                        <svg class="xsvg" viewBox="0 0 120 300" aria-label="Sanmai-uchi: hard steel core clad between two layers of soft iron">
+                            <path d="M40 20 L80 20 L70 235 L60 285 L50 235 Z" fill="#CBD3D8" stroke="#6B7C8A" stroke-width="1.4"></path>
+                            <path d="M54 20 L66 20 L64 235 L60 285 L56 235 Z" fill="#5A6B78" stroke="#46535E" stroke-width="0.5"></path>
+                        </svg>
+                        <p class="method__jp">三枚打ち</p>
+                        <p class="method__romaji">Sanmai-uchi</p>
+                        <p class="method__bevel">もろ刃 · Double bevel</p>
+                        <p>Hard steel core sandwiched between two layers of soft iron — "three-sheet"
+                            forging. The most common everyday construction.</p>
+                    </div>
+                    <div class="method">
+                        <svg class="xsvg" viewBox="0 0 120 300" aria-label="Warikomi: hard steel inserted into a split in the soft iron">
+                            <path d="M40 20 L80 20 L70 235 L60 285 L50 235 Z" fill="#CBD3D8" stroke="#6B7C8A" stroke-width="1.4"></path>
+                            <path d="M55 58 Q60 48 65 58 L64 235 L60 285 L56 235 Z" fill="#5A6B78" stroke="#46535E" stroke-width="0.5"></path>
+                        </svg>
+                        <p class="method__jp">割り込み</p>
+                        <p class="method__romaji">Warikomi</p>
+                        <p class="method__bevel">もろ刃 · Double bevel</p>
+                        <p>The iron is split and the hard steel driven into the cleft, fully wrapped
+                            except at the edge. A tougher, well-protected core.</p>
+                    </div>
+                    <div class="method">
+                        <svg class="xsvg" viewBox="0 0 120 300" aria-label="Tsukehagane: hard steel welded to one face for a single-bevel blade">
+                            <path d="M40 20 L80 20 L72 175 L58 285 L48 205 Z" fill="#CBD3D8" stroke="#6B7C8A" stroke-width="1.4"></path>
+                            <path d="M76 75 L72 175 L58 285 L62 248 L70 170 L74 80 Z" fill="#5A6B78" stroke="#46535E" stroke-width="0.5"></path>
+                        </svg>
+                        <p class="method__jp">付け鋼</p>
+                        <p class="method__romaji">Tsukehagane</p>
+                        <p class="method__bevel">片刃 · Single bevel</p>
+                        <p>Hard steel welded to one face only — the construction behind the
+                            single-bevel deba, yanagiba, and usuba.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ============ THE FIVE ============ -->
+        <section class="section" data-screen-label="The five knives — profiles">
+            <div class="prose reveal" style="margin-bottom: 8px;">
+                <p class="section__eyebrow">The Essential Five · 基本の五本</p>
+                <h2 class="section__title">Five Blades, the Whole Kitchen</h2>
+                <p>Two double-bevel generalists, three single-bevel specialists. Together they cover
+                    meat, fish, and vegetables from rough prep to final presentation.</p>
+            </div>
+
+            <!-- 牛刀 -->
+            <div class="knife-block reveal" id="gyuto">
+                <div class="knife-block__head">
+                    <span class="knife-block__kanji">牛刀</span>
+                    <span class="knife-block__names">
+                        <span class="knife-block__romaji">Gyūtō</span>
+                        <span class="knife-block__literal">"Beef sword" · the workhorse</span>
+                    </span>
+                    <span class="knife-block__role">両刃 Double bevel · All-purpose</span>
+                </div>
+                <div class="knife-block__silhouette">
+                    <img src="assets/gyuto-trace.webp" alt="牛刀 — 刃先左向き" style="width: 100%; max-width: 620px; height: auto;">
+                </div>
+                <p style="font-size: 17px">The workhorse of the professional kitchen — Japan's answer to the French
+                    chef's knife, but thinner, lighter, and ground to a far keener edge. The
+                    gentle belly allows a rocking cut, yet the profile stays flat enough for
+                    the push-cut that dominates Japanese technique. If you own one Japanese
+                    knife, it is this one.</p>
+                <div class="knife-block__cols">
+                    <div class="knife-block__text">
+                        <p>Sizing is about your station, not your hand: 210&nbsp;mm for a crowded line,
+                            240&nbsp;mm as the all-round professional standard, 270&nbsp;mm for
+                            butchery and volume prep. A longer blade cuts with fewer strokes — fewer
+                            strokes, cleaner food.</p>
+                        <p><strong>In steel:</strong> gyuto exist in every steel in Chapter Three.
+                            青紙 or 白紙 for the sharpening devotee; VG-10 or SG2 for the working line.</p>
+                    </div>
+                    <div class="knife-block__side">
+                        <image-slot id="gyuto-photo" src="assets/photos/gyuto-photo.webp" shape="rect" fit="contain" placeholder="Photo — gyuto mid-cut, brunoise on dark board"></image-slot>
+                        <div class="knife-specs">
+                            <div class="knife-spec"><span class="knife-spec__label">Length</span><span class="knife-spec__value">180–300 mm · <strong>240 mm standard</strong></span></div>
+                            <div class="knife-spec"><span class="knife-spec__label">Grind</span><span class="knife-spec__value">両刃 double bevel, 50/50 or 70/30</span></div>
+                            <div class="knife-spec"><span class="knife-spec__label">Skill</span><span class="knife-spec__value">All levels</span></div>
+                            <div class="knife-spec"><span class="knife-spec__label">Strokes</span><span class="knife-spec__value">Push cut, rock chop, slicing</span></div>
+                            <div class="knife-spec"><span class="knife-spec__label">Targets</span><span class="knife-spec__value">Meat · fish · vegetables — everything</span></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 三徳 -->
+            <div class="knife-block reveal" id="santoku">
+                <div class="knife-block__head">
+                    <span class="knife-block__kanji">三徳</span>
+                    <span class="knife-block__names">
+                        <span class="knife-block__romaji">Santoku</span>
+                        <span class="knife-block__literal">"Three virtues" · the agile generalist</span>
+                    </span>
+                    <span class="knife-block__role">両刃 Double bevel · All-purpose</span>
+                </div>
+                <div class="knife-block__silhouette">
+                    <img src="assets/santoku-trace.webp" alt="三徳 — 柄は左、切っ先は右向き" style="width: 100%; max-width: 460px; height: auto;">
+                </div>
+                <div class="knife-block__cols">
+                    <div class="knife-block__text">
+                        <p>Named for its three virtues — equally at home on meat, fish, and vegetables.
+                            Shorter and flatter than the gyuto, with a dropped sheep's-foot tip that
+                            keeps the point safely out of the way. The flat profile makes full board
+                            contact on every stroke, which is why it excels at straight up-and-down
+                            tap-chopping.</p>
+                        <p>In professional settings the santoku is the prep-station sprinter: garlic,
+                            herbs, shallots, mushrooms — high-repetition small work where its agility
+                            beats the gyuto's reach. Often ground with Granton (hollow) dimples to
+                            release sticky slices.</p>
+                        <p><strong>For staff training</strong> it is the safest first knife: short,
+                            controllable, forgiving geometry.</p>
+                    </div>
+                    <div class="knife-block__side">
+                        <image-slot id="santoku-photo" shape="rect" src="assets/santoku-chopping.webp" placeholder="Photo — santoku with herbs / scallions mid-chop"></image-slot>
+                        <div class="knife-specs">
+                            <div class="knife-spec"><span class="knife-spec__label">Length</span><span class="knife-spec__value">160–200 mm · <strong>180 mm standard</strong></span></div>
+                            <div class="knife-spec"><span class="knife-spec__label">Grind</span><span class="knife-spec__value">両刃 double bevel, 50/50</span></div>
+                            <div class="knife-spec"><span class="knife-spec__label">Skill</span><span class="knife-spec__value">Beginner → intermediate</span></div>
+                            <div class="knife-spec"><span class="knife-spec__label">Strokes</span><span class="knife-spec__value">Push cut, tap chop</span></div>
+                            <div class="knife-spec"><span class="knife-spec__label">Targets</span><span class="knife-spec__value">Daily prep, herbs, small produce</span></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 出刃 -->
+            <div class="knife-block reveal" id="deba">
+                <div class="knife-block__head">
+                    <span class="knife-block__kanji">出刃</span>
+                    <span class="knife-block__names">
+                        <span class="knife-block__romaji">Deba</span>
+                        <span class="knife-block__literal">The fish butcher</span>
+                    </span>
+                    <span class="knife-block__role">片刃 Single bevel · Fish butchery</span>
+                </div>
+                <div class="knife-block__silhouette">
+                    <img src="assets/deba-trace.webp" alt="出刃 — 柄は左、切っ先は右向き" style="width: 100%; max-width: 500px; height: auto;">
+                </div>
+                <div class="knife-block__cols">
+                    <div class="knife-block__text">
+                        <p>A specialist built for one job done perfectly: breaking down whole fish. The
+                            spine is dramatically thick — up to 9&nbsp;mm at the handle — giving the
+                            blade the mass to sever collarbones and fish heads with a controlled chop
+                            from the heel, while the keen single-bevel edge near the tip glides along
+                            the spine frame to lift fillets without tearing.</p>
+                        <p>The cardinal rule: the deba chops <em>through</em> fish bone with the heel
+                            using controlled weight — it is never twisted, and it is not a cleaver for
+                            poultry or meat bones, which will chip the hard edge. A skilled
+                            <span class="jp-term">板前</span> breaks down a whole snapper in under two
+                            minutes — sanmai-oroshi, three clean pieces.</p>
+                        <p><strong>Sizing:</strong> match the fish — 105–135&nbsp;mm for aji and
+                            mackerel, 165–180&nbsp;mm as the standard, 210&nbsp;mm for salmon and
+                            large snapper.</p>
+                    </div>
+                    <div class="knife-block__side">
+                        <image-slot id="deba-photo" src="assets/photos/deba-photo.webp" shape="rect" placeholder="Photo — deba filleting whole fish, sanmai-oroshi"></image-slot>
+                        <div class="knife-specs">
+                            <div class="knife-spec"><span class="knife-spec__label">Length</span><span class="knife-spec__value">105–210 mm · <strong>165–180 mm standard</strong></span></div>
+                            <div class="knife-spec"><span class="knife-spec__label">Grind</span><span class="knife-spec__value">片刃 single bevel · thick spine</span></div>
+                            <div class="knife-spec"><span class="knife-spec__label">Skill</span><span class="knife-spec__value">Advanced</span></div>
+                            <div class="knife-spec"><span class="knife-spec__label">Strokes</span><span class="knife-spec__value">Heel chop, filleting pull</span></div>
+                            <div class="knife-spec"><span class="knife-spec__label">Targets</span><span class="knife-spec__value">Whole fish — head, frame, fillet</span></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 柳刃 -->
+            <div class="knife-block reveal" id="yanagiba">
+                <div class="knife-block__head">
+                    <span class="knife-block__kanji">柳刃</span>
+                    <span class="knife-block__names">
+                        <span class="knife-block__romaji">Yanagiba</span>
+                        <span class="knife-block__literal">"Willow blade" · the sashimi knife</span>
+                    </span>
+                    <span class="knife-block__role">片刃 Single bevel · Sashimi</span>
+                </div>
+                <div class="knife-block__silhouette">
+                    <img src="assets/yanagiba-trace.webp" alt="柳刃 — 写真からのトレース" style="width: 100%; max-width: 620px; height: auto;">
+                </div>
+                <div class="knife-block__cols">
+                    <div class="knife-block__text">
+                        <p>The signature blade of the sushi counter — long, narrow, and willow-leaf
+                            slender. Its single-bevel edge and mirror-polished 裏 (back face) part the
+                            flesh of raw fish with almost no cell damage, which is the entire point:
+                            a cleanly cut surface reflects light, holds its sheen, and tastes
+                            different. A sawed cut turns sashimi dull and weeping.</p>
+                        <p>The stroke is everything: place the heel at the far corner of the block and
+                            draw the full length of the blade through in one long pull —
+                            <span class="jp-term">引き切り</span> (<em>hikigiri</em>) — never push, never
+                            saw. Length matters because a 300&nbsp;mm blade finishes a block of maguro
+                            in a single stroke.</p>
+                        <p><strong>The photo at the front of this guide</strong> is a yanagiba resting
+                            on its kiri-wood box — the classic presentation of a Sakai-forged blade.</p>
+                    </div>
+                    <div class="knife-block__side">
+                        <image-slot id="yanagiba-photo" src="assets/photos/yanagiba-photo.webp" shape="rect" placeholder="Photo — yanagiba slicing sashimi, single pull"></image-slot>
+                        <div class="knife-specs">
+                            <div class="knife-spec"><span class="knife-spec__label">Length</span><span class="knife-spec__value">240–360 mm · <strong>300 mm standard</strong></span></div>
+                            <div class="knife-spec"><span class="knife-spec__label">Grind</span><span class="knife-spec__value">片刃 single bevel · urasuki back</span></div>
+                            <div class="knife-spec"><span class="knife-spec__label">Skill</span><span class="knife-spec__value">Advanced</span></div>
+                            <div class="knife-spec"><span class="knife-spec__label">Strokes</span><span class="knife-spec__value">引き切り — one long pull</span></div>
+                            <div class="knife-spec"><span class="knife-spec__label">Targets</span><span class="knife-spec__value">Sashimi, sushi neta, crudo</span></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 薄刃 -->
+            <div class="knife-block reveal" id="usuba">
+                <div class="knife-block__head">
+                    <span class="knife-block__kanji">薄刃</span>
+                    <span class="knife-block__names">
+                        <span class="knife-block__romaji">Usuba</span>
+                        <span class="knife-block__literal">"Thin blade" · the vegetable master</span>
+                    </span>
+                    <span class="knife-block__role">片刃 Single bevel · Vegetables</span>
+                </div>
+                <div class="knife-block__silhouette">
+                    <img src="assets/usuba-clean.webp" alt="薄刃 — 写真からのトレース" style="width: 100%; max-width: 500px; height: auto;">
+                </div>
+                <div class="knife-block__cols">
+                    <div class="knife-block__text">
+                        <p>The vegetable knife of the washoku specialist. Unlike the home-kitchen
+                            nakiri, the usuba is single-bevel — the flat back face can be laid against
+                            the work, which is what makes <span class="jp-term">桂剥き</span>
+                            (<em>katsuramuki</em>) possible: rotating a daikon against the stationary
+                            edge to peel a continuous, translucent sheet thinner than paper.</p>
+                        <p>Edge geometry this thin is honest about your technique. The blade chips if
+                            twisted, wedges if forced, and rewards a relaxed grip with cuts so clean
+                            that vegetable surfaces stay bright for hours — the visible difference in
+                            a kaiseki tsuma garnish.</p>
+                        <p><strong>Two regional shapes:</strong> the square-tipped 江戸型 (Edo/Kanto)
+                            and the rounded sickle-tip 鎌型 (Kamagata/Kansai). Function is identical;
+                            lineage is not.</p>
+                    </div>
+                    <div class="knife-block__side">
+                        <image-slot id="usuba-photo" src="assets/photos/usuba-photo.webp" shape="rect" placeholder="Photo — katsuramuki, daikon sheet peeling"></image-slot>
+                        <div class="knife-specs">
+                            <div class="knife-spec"><span class="knife-spec__label">Length</span><span class="knife-spec__value">180–240 mm · <strong>210 mm standard</strong></span></div>
+                            <div class="knife-spec"><span class="knife-spec__label">Grind</span><span class="knife-spec__value">片刃 single bevel · flat back</span></div>
+                            <div class="knife-spec"><span class="knife-spec__label">Skill</span><span class="knife-spec__value">Expert</span></div>
+                            <div class="knife-spec"><span class="knife-spec__label">Strokes</span><span class="knife-spec__value">桂剥き, fine julienne, sasagaki</span></div>
+                            <div class="knife-spec"><span class="knife-spec__label">Targets</span><span class="knife-spec__value">Vegetables only — kaiseki precision</span></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ============ HONORABLE MENTIONS ============ -->
+        <section class="section section--dark" data-screen-label="Beyond the five">
+            <div class="prose reveal">
+                <p class="section__eyebrow">Beyond the Five · その他の包丁</p>
+                <h2 class="section__title">When the Station Demands More</h2>
+                <p>The five cover everything — but four more blades earn their place in specific
+                    kitchens. Meet them in the Buying Guide when your menu calls.</p>
+            </div>
+            <div class="mention-grid reveal">
+                <div class="mention">
+                    <p class="mention__jp">菜切り</p>
+                    <p class="mention__romaji">Nakiri</p>
+                    <p>The usuba's double-bevel sibling — all the flat-blade vegetable speed, none of
+                        the single-bevel learning curve.</p>
+                </div>
+                <div class="mention">
+                    <p class="mention__jp">筋引き</p>
+                    <p class="mention__romaji">Sujihiki</p>
+                    <p>The "sinew puller" — a long, narrow double-bevel slicer for roasts, cured fish,
+                        and portioning proteins.</p>
+                </div>
+                <div class="mention">
+                    <p class="mention__jp">ペティ</p>
+                    <p class="mention__romaji">Petty</p>
+                    <p>120–150 mm utility knife for in-hand work: shallots, fruit, silver skin,
+                        garnish. The gyuto's pocket-sized partner.</p>
+                </div>
+                <div class="mention">
+                    <p class="mention__jp">骨スキ</p>
+                    <p class="mention__romaji">Honesuki</p>
+                    <p>The triangular poultry boner — stiff, pointed, made to ride along joints and
+                        cartilage, never through bone.</p>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <div id="chapter-footer"></div>
+
+    <script src="js/image-slot.js"></script>
+    <script src="js/site.js"></script>
+    <script>
+        (function () {
+            var PARTS = {
+                kissaki: { kanji: '切先', romaji: 'Kissaki — the tip', desc: 'The pointed front of the blade. On a yanagiba like the one pictured, the long, fine kissaki finishes each pull-cut of sashimi and does the delicate tip work — scoring squid, lifting skin. It is the most fragile point on the knife: never twist it, never let it strike the board point-first.' },
+                ha: { kanji: '刃', romaji: 'Ha — the cutting edge', desc: 'The working edge, from heel to tip. On a Japanese blade it is ground far more acutely than Western steel — typically 10–15° per side — which is why it must never meet glass, ceramic, or bone it was not designed for.' },
+                mine: { kanji: '峰', romaji: 'Mine — the spine', desc: 'The unsharpened back of the blade. Its thickness sets the knife\'s character: a 2 mm gyuto spine glides, a 9 mm deba spine drives through fish bone. The spine is also the safe surface for scraping the board — never the edge.' },
+                ago: { kanji: '顎', romaji: 'Ago — the heel', desc: 'The rear corner of the edge, closest to the handle. The strongest part of the blade — used for hard chopping and for cuts needing maximum leverage. On a deba, the heel does the bone work.' },
+                machi: { kanji: 'マチ', romaji: 'Machi — the neck', desc: 'The short gap between the blade shoulder and the handle on traditional wa-construction. It sets the blade slightly forward of the grip, giving knuckle clearance and the characteristic forward balance of a wa-handled knife.' },
+                e: { kanji: '柄', romaji: 'E — the handle', desc: 'The pale magnolia (ho-wood) wa-handle seen here, capped with a dark water-buffalo horn ferrule (桂, katsura). Light and grippy even when wet. The tang is burned in, not riveted — replaceable in minutes by any knife shop, which is why a wa-handle is considered a consumable. More in Chapter Four.' }
+            };
+            var dots = document.querySelectorAll('.anatomy__dot');
+            var k = document.getElementById('anatomy-kanji');
+            var r = document.getElementById('anatomy-romaji');
+            var d = document.getElementById('anatomy-desc');
+            dots.forEach(function (dot) {
+                dot.addEventListener('click', function () {
+                    dots.forEach(function (x) { x.classList.remove('is-active'); });
+                    dot.classList.add('is-active');
+                    var p = PARTS[dot.getAttribute('data-part')];
+                    k.textContent = p.kanji;
+                    r.textContent = p.romaji;
+                    d.textContent = p.desc;
+                });
+            });
+            dots[0].classList.add('is-active');
+        })();
+    </script>
+</body>
+
+</html>

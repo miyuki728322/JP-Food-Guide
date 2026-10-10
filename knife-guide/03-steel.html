@@ -1,0 +1,692 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>第三章 鋼材 Steel — The Japanese Knife</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=Noto+Serif+JP:wght@300;400;500;600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        /* === trade-off meter intro === */
+        .tradeoff-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1px;
+            background: var(--rule-light);
+            border: 1px solid var(--rule-light);
+            margin: 40px 0 8px;
+        }
+
+        .tradeoff {
+            background: var(--warm-white);
+            padding: 26px 24px;
+        }
+
+        .tradeoff__jp { font-family: var(--font-jp); font-size: 22px; font-weight: 600; color: var(--ink); }
+        .tradeoff__en { font-family: var(--font-sans); font-size: 11px; letter-spacing: 0.25em; text-transform: uppercase; color: var(--accent); margin: 4px 0 12px; }
+        .tradeoff p { font-size: 15px; line-height: 1.7; color: var(--ink-mid); }
+
+        /* === steel profile blocks === */
+        .steel-profile {
+            display: grid;
+            grid-template-columns: 300px 1fr;
+            gap: 48px;
+            padding: 56px 0;
+        }
+
+        .steel-profile + .steel-profile { border-top: 1px solid var(--rule-light); }
+
+        .steel-profile__id { position: sticky; top: 80px; align-self: start; }
+
+        .steel-profile__family {
+            font-family: var(--font-sans);
+            font-size: 11px;
+            font-weight: 600;
+            letter-spacing: 0.3em;
+            text-transform: uppercase;
+            margin-bottom: 14px;
+        }
+
+        .steel-profile__family--carbon { color: var(--accent); }
+        .steel-profile__family--stainless { color: var(--steel-blue); }
+        .steel-profile__family--semi { color: #8A6D3B; }
+
+        .steel-profile__jp {
+            font-family: var(--font-jp);
+            font-size: 44px;
+            font-weight: 600;
+            line-height: 1.15;
+            color: var(--ink);
+        }
+
+        .steel-profile__romaji {
+            font-family: var(--font-display);
+            font-style: italic;
+            font-size: 22px;
+            color: var(--ink-light);
+            margin: 4px 0 20px;
+        }
+
+        .steel-profile__hrc {
+            display: inline-block;
+            border: 1px solid var(--rule);
+            padding: 10px 16px;
+        }
+
+        .steel-profile__hrc-label { font-family: var(--font-sans); font-size: 10px; letter-spacing: 0.25em; text-transform: uppercase; color: var(--ink-light); }
+        .steel-profile__hrc-value { font-family: var(--font-display); font-size: 26px; color: var(--ink); line-height: 1.1; }
+
+        .steel-profile__body p { font-size: 17px; line-height: 1.8; color: var(--ink-mid); margin-bottom: 16px; max-width: 640px; }
+
+        /* rating rows */
+        .ratings { margin: 24px 0; max-width: 460px; }
+
+        .rating-row {
+            display: grid;
+            grid-template-columns: 150px 1fr;
+            align-items: center;
+            gap: 16px;
+            padding: 8px 0;
+            border-bottom: 1px solid var(--rule-light);
+        }
+
+        .rating-row__label { font-family: var(--font-jp); font-size: 14.5px; color: var(--ink-mid); }
+        .rating-row__label small { font-family: var(--font-sans); font-size: 11px; letter-spacing: 0.1em; color: var(--ink-light); display: block; }
+
+        .rating-bar { height: 5px; background: var(--rule-light); position: relative; }
+        .rating-bar i {
+            position: absolute; inset: 0 auto 0 0;
+            background: var(--accent);
+            width: 0;
+        }
+        .is-visible .rating-bar i, .no-reveal .rating-bar i { width: var(--w); }
+        @media (prefers-reduced-motion: no-preference) {
+            .rating-bar i { transition: width 1s cubic-bezier(0.22, 0.61, 0.36, 1) 0.2s; }
+        }
+
+        .steel-profile--stainless .rating-bar i { background: var(--steel-blue); }
+        .steel-profile--semi .rating-bar i { background: #8A6D3B; }
+
+        /* care note */
+        .care-note {
+            border: 1px solid var(--rule);
+            border-top: 2px solid var(--accent);
+            padding: 20px 24px;
+            margin-top: 24px;
+            max-width: 640px;
+            background: var(--cream);
+        }
+
+        .care-note__label {
+            font-family: var(--font-sans);
+            font-size: 11px;
+            font-weight: 600;
+            letter-spacing: 0.3em;
+            text-transform: uppercase;
+            color: var(--accent);
+            margin-bottom: 8px;
+        }
+
+        .care-note p { font-size: 15.5px !important; line-height: 1.75 !important; margin-bottom: 0 !important; }
+
+        /* === lamination diagram === */
+        .lam-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; margin: 40px 0; }
+
+        .lam-card { border: 1px solid var(--rule-dark); padding: 32px; background: var(--ink-3); }
+
+        .lam-card__title { font-family: var(--font-jp); font-size: 22px; font-weight: 600; color: #fff; }
+        .lam-card__sub { font-family: var(--font-sans); font-size: 11px; letter-spacing: 0.25em; text-transform: uppercase; color: var(--gold); margin: 4px 0 24px; }
+
+        .lam-diagram { display: flex; flex-direction: column; gap: 0; margin-bottom: 20px; }
+
+        .lam-layer {
+            height: 26px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: var(--font-sans);
+            font-size: 11px;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+        }
+
+        .lam-layer--jigane { background: #5A646E; color: rgba(255,255,255,0.8); }
+        .lam-layer--hagane { background: #D8DEE3; color: #1A1A1A; height: 34px; font-weight: 600; }
+
+        .lam-card p { font-size: 15.5px; line-height: 1.75; color: rgba(255, 255, 255, 0.7); }
+
+        /* patina vs rust */
+        .versus-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin: 36px 0; }
+
+        .versus-card { border: 1px solid var(--rule-light); }
+        .versus-card image-slot { width: 100%; height: 220px; }
+        .versus-card__body { padding: 22px 24px; }
+        .versus-card__title { font-family: var(--font-jp); font-size: 19.5px; font-weight: 600; }
+        .versus-card__verdict { font-family: var(--font-sans); font-size: 11px; letter-spacing: 0.25em; text-transform: uppercase; margin: 4px 0 12px; }
+        .versus-card__verdict--good { color: #3A7D44; }
+        .versus-card__verdict--bad { color: var(--accent); }
+        .versus-card p { font-size: 15.5px; line-height: 1.7; color: var(--ink-mid); }
+
+        @media (max-width: 900px) {
+            .tradeoff-grid { grid-template-columns: 1fr 1fr; }
+            .steel-profile { grid-template-columns: 1fr; gap: 24px; }
+            .steel-profile__id { position: static; }
+            .lam-grid, .versus-grid { grid-template-columns: 1fr; }
+            .table-scroll { overflow-x: auto; }
+        }
+        .table-scroll { overflow-x: auto; }
+    </style>
+</head>
+
+<body data-screen-label="Ch.3 Steel 鋼材">
+    <div id="site-nav"></div>
+
+    <!-- ============ HERO ============ -->
+    <header class="chapter-hero" data-screen-label="Steel hero">
+        <div class="chapter-hero__media">
+            <image-slot id="steel-hero" shape="rect" placeholder="Forge photo — glowing billet being hammered, sparks, dark smithy"></image-slot>
+        </div>
+        <div class="chapter-hero__scrim"></div>
+        <div class="chapter-hero__content">
+            <p class="chapter-hero__number">第三章 · Chapter Three</p>
+            <h1 class="chapter-hero__title">Steel</h1>
+            <p class="chapter-hero__jp">鋼材 — Kōzai</p>
+            <p class="chapter-hero__standfirst">Every blade begins as a choice between four virtues that
+                can never all be had at once. Understand the trade, and every knife catalogue in the
+                world becomes legible.</p>
+        </div>
+    </header>
+
+    <div class="page-wrapper">
+
+        <!-- ============ THE FOUR TRADE-OFFS ============ -->
+        <section class="section" data-screen-label="The four virtues">
+            <div class="prose reveal">
+                <p class="section__eyebrow">The Honest Trade · 四つの徳</p>
+                <h2 class="section__title">Four Virtues, Never All at Once</h2>
+                <p class="lede">Forget chemistry for a moment. As a chef, a steel is exactly four
+                    questions: how sharp does it get, how long does it stay sharp, how easily can I
+                    bring it back, and will it rust on me?</p>
+                <p>Every steel on the market is a different answer to those four questions — and no
+                    steel answers yes to all of them. Harder steel holds an edge longer but takes longer
+                    on the stones. Pure carbon steel takes the keenest edge of all but will rust during
+                    a single busy service if you ignore it. Stainless forgives neglect but never feels
+                    quite as alive on the stone. There is no best steel. There is only the right steel
+                    for your station, your habits, and your patience.</p>
+            </div>
+
+            <div class="tradeoff-grid reveal">
+                <div class="tradeoff">
+                    <p class="tradeoff__jp">切れ味</p>
+                    <p class="tradeoff__en">Kireaji · Sharpness</p>
+                    <p>The keenness of the edge at its best — how cleanly it parts a tomato skin or a
+                        block of tuna without pressure.</p>
+                </div>
+                <div class="tradeoff">
+                    <p class="tradeoff__jp">永切れ</p>
+                    <p class="tradeoff__en">Nagagire · Edge retention</p>
+                    <p>How many services that keenness survives. Driven mostly by hardness (HRC) and
+                        carbide content.</p>
+                </div>
+                <div class="tradeoff">
+                    <p class="tradeoff__jp">研ぎ易さ</p>
+                    <p class="tradeoff__en">Togiyasusa · Ease of sharpening</p>
+                    <p>How quickly the stones raise a fresh edge. Soft, simple steels sharpen in
+                        minutes; hard powder steels make you earn it.</p>
+                </div>
+                <div class="tradeoff">
+                    <p class="tradeoff__jp">耐錆性</p>
+                    <p class="tradeoff__en">Taiseisei · Rust resistance</p>
+                    <p>Chromium above ~13% makes a steel stainless. Below that, water and acid will
+                        find it — sometimes within the hour.</p>
+                </div>
+            </div>
+
+            <div class="callout reveal">
+                <p class="callout__label">How to read HRC · 硬度</p>
+                <p>Rockwell hardness (HRC) is the number you will see on every spec sheet. German
+                    kitchen knives sit around 56–58. Japanese knives run 60–66. Harder steel holds a
+                    thinner, more acute edge for longer — but it is also more brittle: it chips rather
+                    than rolls, and it demands whetstones, never pull-through sharpeners.</p>
+            </div>
+        </section>
+
+        <!-- ============ TWO FAMILIES ============ -->
+        <section class="section section--dark" data-screen-label="Carbon vs stainless">
+            <div class="prose reveal">
+                <p class="section__eyebrow">Two Families · 鋼とステンレス</p>
+                <h2 class="section__title">Carbon, Stainless, and the Space Between</h2>
+                <p class="lede">Every steel in this chapter belongs to one of three camps.</p>
+                <p><strong style="color:#fff;">炭素鋼 — Carbon steel</strong> (白紙, 青紙) is iron and carbon
+                    with almost nothing else. It takes the finest edge physics allows and sharpens like
+                    a dream, but it reacts with everything: water, lemon, onion, fish. It demands the
+                    daily ritual described in Chapter Seven.</p>
+                <p><strong style="color:#fff;">ステンレス鋼 — Stainless steel</strong> (VG-10, モリブデン鋼, SG2)
+                    adds chromium to form a passive shield against rust. Modern Japanese stainless is
+                    superb — but the chromium carbides make the edge feel slightly "harder won" on the
+                    stones.</p>
+                <p><strong style="color:#fff;">半ステンレス — The space between</strong> (銀三) is the chef's
+                    compromise: stainless chemistry tuned to behave like carbon on the stone. Many
+                    professional sushi chefs who once swore by 白紙 now carry 銀三 for exactly this
+                    reason.</p>
+            </div>
+
+            <!-- lamination -->
+            <div class="lam-grid reveal">
+                <div class="lam-card">
+                    <p class="lam-card__title">霞 — Kasumi / 合わせ</p>
+                    <p class="lam-card__sub">Laminated construction · most knives</p>
+                    <div class="lam-diagram">
+                        <div class="lam-layer lam-layer--jigane">地金 Jigane — soft iron</div>
+                        <div class="lam-layer lam-layer--hagane">鋼 Hagane — hard cutting steel</div>
+                    </div>
+                    <p>A thin plate of hard steel (the edge) is forge-welded to soft iron (the body).
+                        The soft jigane absorbs shock, makes sharpening faster, and lets the smith use
+                        expensive steel only where it cuts. The cloudy mist-like finish where the two
+                        metals meet gives kasumi its name.</p>
+                </div>
+                <div class="lam-card">
+                    <p class="lam-card__title">本焼 — Honyaki</p>
+                    <p class="lam-card__sub">Single steel, differentially hardened · masterwork</p>
+                    <div class="lam-diagram">
+                        <div class="lam-layer lam-layer--hagane" style="height:60px;">鋼 Hagane — one solid piece</div>
+                    </div>
+                    <p>One bar of pure cutting steel, clay-coated and quenched like a katana so the
+                        spine stays springy while the edge turns glass-hard. Harder to forge, harder to
+                        sharpen, easy to crack in unskilled hands — and priced accordingly. A honyaki
+                        is a lifetime instrument, not a starter knife.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- ============ STEEL PROFILES ============ -->
+        <section class="section section--cream" data-screen-label="Steel profiles">
+            <div class="prose reveal" style="margin-bottom: 8px;">
+                <p class="section__eyebrow">The Steels · 鋼材図鑑</p>
+                <h2 class="section__title">A Working Chef's Steel Compendium</h2>
+                <p>Six steels cover almost everything you will meet in a knife shop. For each: what it
+                    feels like to use, who it suits, and the care it demands.</p>
+            </div>
+
+            <!-- 白紙 -->
+            <div class="steel-profile reveal" id="shirogami">
+                <div class="steel-profile__id">
+                    <p class="steel-profile__family steel-profile__family--carbon">炭素鋼 · Carbon</p>
+                    <p class="steel-profile__jp">白紙</p>
+                    <p class="steel-profile__romaji">Shirogami · "White Paper Steel"</p>
+                    <div class="steel-profile__hrc">
+                        <p class="steel-profile__hrc-label">Hardness</p>
+                        <p class="steel-profile__hrc-value">60–64 <small style="font-size:13px;">HRC</small></p>
+                    </div>
+                </div>
+                <div class="steel-profile__body">
+                    <p>The purest knife steel made — iron, carbon, and almost nothing else, named for
+                        the white paper Hitachi wraps the raw bars in. Because there are no stubborn
+                        carbides in the way, 白紙 takes the single keenest edge of any steel in this
+                        chapter, and it comes back to life on the stones faster than anything else.
+                        This is the steel of the traditional sushi counter: most fine 柳刃 and 薄刃 are
+                        白紙二号 (No. 2); 白紙一号 (No. 1) carries more carbon — harder, keener, and a
+                        touch more brittle.</p>
+                    <p>The price of that purity is fragility against the world: no chromium means no
+                        defense. Wipe-downs between tasks are not optional. Cut a lemon, walk away for
+                        ten minutes, and you will find a shadow etched on the blade.</p>
+                    <div class="ratings">
+                        <div class="rating-row"><span class="rating-row__label">切れ味<small>sharpness</small></span><div class="rating-bar"><i style="--w:100%"></i></div></div>
+                        <div class="rating-row"><span class="rating-row__label">永切れ<small>retention</small></span><div class="rating-bar"><i style="--w:60%"></i></div></div>
+                        <div class="rating-row"><span class="rating-row__label">研ぎ易さ<small>ease of sharpening</small></span><div class="rating-bar"><i style="--w:100%"></i></div></div>
+                        <div class="rating-row"><span class="rating-row__label">耐錆性<small>rust resistance</small></span><div class="rating-bar"><i style="--w:15%"></i></div></div>
+                    </div>
+                    <div class="care-note">
+                        <p class="care-note__label">手入れ · Care — strict</p>
+                        <p>Rinse and <strong>dry completely after every use</strong> — a damp 白紙 blade
+                            left in the sink can show orange rust within the hour. Wipe with a dry cloth
+                            between ingredients during service. Before any storage longer than overnight,
+                            coat lightly with 椿油 (camellia oil). Never leave it wet, never leave it
+                            dirty, never put it in a dishwasher.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 青紙 -->
+            <div class="steel-profile reveal" id="aogami">
+                <div class="steel-profile__id">
+                    <p class="steel-profile__family steel-profile__family--carbon">炭素鋼 · Carbon</p>
+                    <p class="steel-profile__jp">青紙</p>
+                    <p class="steel-profile__romaji">Aogami · "Blue Paper Steel"</p>
+                    <div class="steel-profile__hrc">
+                        <p class="steel-profile__hrc-label">Hardness</p>
+                        <p class="steel-profile__hrc-value">61–65 <small style="font-size:13px;">HRC</small></p>
+                    </div>
+                </div>
+                <div class="steel-profile__body">
+                    <p>Take 白紙, add a measure of tungsten and chromium, and you get 青紙 — wrapped in
+                        blue paper. The additions form tough carbides that let the edge survive far
+                        longer between sharpenings, at the cost of a little of 白紙's effortless feel on
+                        the stone. 青紙二号 is the workhorse of high-end gyuto; 青紙一号 trades more
+                        toughness for keenness.</p>
+                    <p><span class="jp-term">青紙スーパー</span> (Aogami Super) pushes everything further —
+                        more carbon, more tungsten, added vanadium and molybdenum — reaching HRC 63–65
+                        with edge retention that approaches powder steels while still sharpening like a
+                        carbon steel. For many professionals it is the finest all-round carbon steel made.</p>
+                    <div class="ratings">
+                        <div class="rating-row"><span class="rating-row__label">切れ味<small>sharpness</small></span><div class="rating-bar"><i style="--w:95%"></i></div></div>
+                        <div class="rating-row"><span class="rating-row__label">永切れ<small>retention</small></span><div class="rating-bar"><i style="--w:85%"></i></div></div>
+                        <div class="rating-row"><span class="rating-row__label">研ぎ易さ<small>ease of sharpening</small></span><div class="rating-bar"><i style="--w:75%"></i></div></div>
+                        <div class="rating-row"><span class="rating-row__label">耐錆性<small>rust resistance</small></span><div class="rating-bar"><i style="--w:22%"></i></div></div>
+                    </div>
+                    <div class="care-note">
+                        <p class="care-note__label">手入れ · Care — strict</p>
+                        <p>Marginally more forgiving than 白紙 thanks to its trace chromium, but treat it
+                            identically: wash, <strong>dry every time</strong>, oil before storage. The
+                            tungsten carbides also mean chips are harder to grind out — avoid bones,
+                            frozen food, and glass boards absolutely.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 銀三 -->
+            <div class="steel-profile reveal" id="ginsan">
+                <div class="steel-profile__id">
+                    <p class="steel-profile__family steel-profile__family--semi">半ステンレス気質 · Stainless</p>
+                    <p class="steel-profile__jp">銀三</p>
+                    <p class="steel-profile__romaji">Ginsan / Gin-3 · "Silver Paper No. 3"</p>
+                    <div class="steel-profile__hrc">
+                        <p class="steel-profile__hrc-label">Hardness</p>
+                        <p class="steel-profile__hrc-value">60–62 <small style="font-size:13px;">HRC</small></p>
+                    </div>
+                </div>
+                <div class="steel-profile__body">
+                    <p>Hitachi's answer to a famous question: <em>can a stainless steel feel like
+                        carbon?</em> 銀三 keeps the fine, simple grain of the paper steels but carries
+                        just enough chromium (≈13–14%) to shrug off rust. On the stones it is the
+                        closest thing to 白紙 in the stainless world — fast to raise an edge, with that
+                        same clean, glassy bite.</p>
+                    <p>It has become the modern sushi chef's steel: traditional single-bevel knives in
+                        銀三 deliver 90% of the carbon experience with none of the 3 a.m. rust anxiety.
+                        If you love the idea of carbon but work a brutal, wet station, start here.</p>
+                    <div class="ratings">
+                        <div class="rating-row"><span class="rating-row__label">切れ味<small>sharpness</small></span><div class="rating-bar"><i style="--w:85%"></i></div></div>
+                        <div class="rating-row"><span class="rating-row__label">永切れ<small>retention</small></span><div class="rating-bar"><i style="--w:68%"></i></div></div>
+                        <div class="rating-row"><span class="rating-row__label">研ぎ易さ<small>ease of sharpening</small></span><div class="rating-bar"><i style="--w:82%"></i></div></div>
+                        <div class="rating-row"><span class="rating-row__label">耐錆性<small>rust resistance</small></span><div class="rating-bar"><i style="--w:80%"></i></div></div>
+                    </div>
+                    <div class="care-note">
+                        <p class="care-note__label">手入れ · Care — relaxed</p>
+                        <p>Wash and dry like any good knife. It can sit damp through a service without
+                            drama, but salt and citrus left overnight can still pit the edge. Dry before
+                            storage and it will stay flawless for years.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- VG-10 -->
+            <div class="steel-profile reveal steel-profile--stainless" id="vg10">
+                <div class="steel-profile__id">
+                    <p class="steel-profile__family steel-profile__family--stainless">ステンレス鋼 · Stainless</p>
+                    <p class="steel-profile__jp">VG-10</p>
+                    <p class="steel-profile__romaji">V-Gold 10 · Takefu Steel</p>
+                    <div class="steel-profile__hrc">
+                        <p class="steel-profile__hrc-label">Hardness</p>
+                        <p class="steel-profile__hrc-value">60–61 <small style="font-size:13px;">HRC</small></p>
+                    </div>
+                </div>
+                <div class="steel-profile__body">
+                    <p>The most widespread premium stainless in Japanese knives, made by Takefu in
+                        Echizen. Cobalt and vanadium let VG-10 hold a serious edge at a true 60+ HRC
+                        while staying fully stainless — this is the steel inside most of the famous
+                        Damascus-clad gyuto sold worldwide.</p>
+                    <p>In hand it is the dependable professional: sharp enough for fine work, tough
+                        enough for the line, indifferent to a wet board. Its one quirk — the edge can
+                        develop a fine, toothy burr on the stones that takes practice to deburr
+                        cleanly. Strop carefully and it rewards you.</p>
+                    <div class="ratings">
+                        <div class="rating-row"><span class="rating-row__label">切れ味<small>sharpness</small></span><div class="rating-bar"><i style="--w:78%"></i></div></div>
+                        <div class="rating-row"><span class="rating-row__label">永切れ<small>retention</small></span><div class="rating-bar"><i style="--w:78%"></i></div></div>
+                        <div class="rating-row"><span class="rating-row__label">研ぎ易さ<small>ease of sharpening</small></span><div class="rating-bar"><i style="--w:58%"></i></div></div>
+                        <div class="rating-row"><span class="rating-row__label">耐錆性<small>rust resistance</small></span><div class="rating-bar"><i style="--w:88%"></i></div></div>
+                    </div>
+                    <div class="care-note">
+                        <p class="care-note__label">手入れ · Care — easy</p>
+                        <p>Normal professional hygiene is enough: wash, dry, store. Still no dishwasher —
+                            the heat cycles and detergent dull and discolor any fine edge — and still
+                            whetstones only.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- SG2 -->
+            <div class="steel-profile reveal steel-profile--stainless" id="sg2">
+                <div class="steel-profile__id">
+                    <p class="steel-profile__family steel-profile__family--stainless">粉末鋼 · Powder stainless</p>
+                    <p class="steel-profile__jp">SG2 / R2</p>
+                    <p class="steel-profile__romaji">Super Gold 2 · powder metallurgy</p>
+                    <div class="steel-profile__hrc">
+                        <p class="steel-profile__hrc-label">Hardness</p>
+                        <p class="steel-profile__hrc-value">62–64 <small style="font-size:13px;">HRC</small></p>
+                    </div>
+                </div>
+                <div class="steel-profile__body">
+                    <p>Powder metallurgy atomizes molten steel into a fine dust, then presses it back
+                        together — producing a grain so uniform that very high hardness arrives without
+                        the brittleness it would normally bring. SG2 holds a working edge two to three
+                        times longer than VG-10 and laughs at rust.</p>
+                    <p>The trade: sharpening sessions are slower and demand quality stones (diamond or
+                        hard ceramic helps), and the price is the highest of any steel here. For a chef
+                        who wants maximum time cooking and minimum time at the stones, it is worth
+                        every yen.</p>
+                    <div class="ratings">
+                        <div class="rating-row"><span class="rating-row__label">切れ味<small>sharpness</small></span><div class="rating-bar"><i style="--w:82%"></i></div></div>
+                        <div class="rating-row"><span class="rating-row__label">永切れ<small>retention</small></span><div class="rating-bar"><i style="--w:100%"></i></div></div>
+                        <div class="rating-row"><span class="rating-row__label">研ぎ易さ<small>ease of sharpening</small></span><div class="rating-bar"><i style="--w:38%"></i></div></div>
+                        <div class="rating-row"><span class="rating-row__label">耐錆性<small>rust resistance</small></span><div class="rating-bar"><i style="--w:90%"></i></div></div>
+                    </div>
+                    <div class="care-note">
+                        <p class="care-note__label">手入れ · Care — easy, but…</p>
+                        <p>Rust care is trivial — but at HRC 63 the edge is unforgiving of abuse.
+                            No twisting, no bones, no frozen food, soft cutting boards only. A chip in
+                            SG2 means a long, expensive repair session.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- モリブデン -->
+            <div class="steel-profile reveal steel-profile--stainless" id="molybdenum">
+                <div class="steel-profile__id">
+                    <p class="steel-profile__family steel-profile__family--stainless">ステンレス鋼 · Stainless</p>
+                    <p class="steel-profile__jp">モリブデン鋼</p>
+                    <p class="steel-profile__romaji">Molybdenum steel · AUS-8, MV steel</p>
+                    <div class="steel-profile__hrc">
+                        <p class="steel-profile__hrc-label">Hardness</p>
+                        <p class="steel-profile__hrc-value">56–59 <small style="font-size:13px;">HRC</small></p>
+                    </div>
+                </div>
+                <div class="steel-profile__body">
+                    <p>The honest workhorse — the molybdenum-vanadium stainless family (AUS-8 and
+                        kin) found in culinary-school knives, staff knives, and the prep kitchens of
+                        half the restaurants in Japan. It will not hold a 白紙 edge and was never meant
+                        to: it is soft enough to sharpen in five minutes on any stone, tough enough to
+                        survive being borrowed, and completely rustproof in daily use.</p>
+                    <p>Do not dismiss it. A モリブデン gyuto touched up weekly outcuts a neglected
+                        premium knife every single time — and for staff training (Chapter Five) it is
+                        exactly what you want under inexperienced hands.</p>
+                    <div class="ratings">
+                        <div class="rating-row"><span class="rating-row__label">切れ味<small>sharpness</small></span><div class="rating-bar"><i style="--w:55%"></i></div></div>
+                        <div class="rating-row"><span class="rating-row__label">永切れ<small>retention</small></span><div class="rating-bar"><i style="--w:35%"></i></div></div>
+                        <div class="rating-row"><span class="rating-row__label">研ぎ易さ<small>ease of sharpening</small></span><div class="rating-bar"><i style="--w:90%"></i></div></div>
+                        <div class="rating-row"><span class="rating-row__label">耐錆性<small>rust resistance</small></span><div class="rating-bar"><i style="--w:100%"></i></div></div>
+                    </div>
+                    <div class="care-note">
+                        <p class="care-note__label">手入れ · Care — minimal</p>
+                        <p>Wash, dry, done. The only discipline it demands is frequent touch-ups: the
+                            edge fades gently rather than staying crisp, so a weekly visit to a #1000
+                            stone keeps it honest.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ============ COMPARISON TABLE ============ -->
+        <section class="section" data-screen-label="Steel comparison table">
+            <div class="prose reveal">
+                <p class="section__eyebrow">Side by Side · 比較表</p>
+                <h2 class="section__title">The Steel Chart</h2>
+                <p>Click any column heading to sort. Ratings are out of 5, calibrated against each
+                    other — a 3 here is still better than most Western kitchen steel.</p>
+            </div>
+
+            <div class="table-scroll reveal">
+                <table class="data-table js-sortable">
+                    <thead>
+                        <tr>
+                            <th class="sortable">鋼材 · Steel</th>
+                            <th class="sortable">Family</th>
+                            <th class="sortable">HRC</th>
+                            <th class="sortable">切れ味<br>Sharpness</th>
+                            <th class="sortable">永切れ<br>Retention</th>
+                            <th class="sortable">研ぎ易さ<br>Ease</th>
+                            <th class="sortable">耐錆性<br>Rust resist</th>
+                            <th class="sortable">価格<br>Price</th>
+                            <th>Best for</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="td-name" data-sort="Shirogami">白紙<small>Shirogami 1 / 2</small></td>
+                            <td>Carbon</td>
+                            <td data-sort="62">60–64</td>
+                            <td data-sort="5"><span class="dots"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i></span></td>
+                            <td data-sort="3"><span class="dots"><i class="on"></i><i class="on"></i><i class="on"></i><i></i><i></i></span></td>
+                            <td data-sort="5"><span class="dots"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i></span></td>
+                            <td data-sort="1"><span class="dots"><i class="on"></i><i></i><i></i><i></i><i></i></span></td>
+                            <td data-sort="3">¥¥¥</td>
+                            <td>Single-bevel work, sushi counter, sharpening purists</td>
+                        </tr>
+                        <tr>
+                            <td class="td-name" data-sort="Aogami">青紙<small>Aogami 1 / 2</small></td>
+                            <td>Carbon</td>
+                            <td data-sort="63">61–64</td>
+                            <td data-sort="5"><span class="dots"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i></span></td>
+                            <td data-sort="4"><span class="dots"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i></i></span></td>
+                            <td data-sort="4"><span class="dots"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i></i></span></td>
+                            <td data-sort="1"><span class="dots"><i class="on"></i><i></i><i></i><i></i><i></i></span></td>
+                            <td data-sort="4">¥¥¥¥</td>
+                            <td>Premium gyuto, working chefs who sharpen often</td>
+                        </tr>
+                        <tr>
+                            <td class="td-name" data-sort="Aogami Super">青紙スーパー<small>Aogami Super</small></td>
+                            <td>Carbon</td>
+                            <td data-sort="64">63–65</td>
+                            <td data-sort="5"><span class="dots"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i></span></td>
+                            <td data-sort="5"><span class="dots"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i></span></td>
+                            <td data-sort="3"><span class="dots"><i class="on"></i><i class="on"></i><i class="on"></i><i></i><i></i></span></td>
+                            <td data-sort="2"><span class="dots"><i class="on"></i><i class="on"></i><i></i><i></i><i></i></span></td>
+                            <td data-sort="4">¥¥¥¥</td>
+                            <td>The carbon maximalist's all-rounder</td>
+                        </tr>
+                        <tr>
+                            <td class="td-name" data-sort="Ginsan">銀三<small>Ginsan / Gin-3</small></td>
+                            <td>Stainless</td>
+                            <td data-sort="61">60–62</td>
+                            <td data-sort="4"><span class="dots"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i></i></span></td>
+                            <td data-sort="3.5"><span class="dots"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i></i></span></td>
+                            <td data-sort="4"><span class="dots"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i></i></span></td>
+                            <td data-sort="4"><span class="dots"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i></i></span></td>
+                            <td data-sort="3">¥¥¥</td>
+                            <td>Carbon feel without rust — modern sushi chefs</td>
+                        </tr>
+                        <tr>
+                            <td class="td-name" data-sort="VG-10">VG-10<small>V-Gold 10</small></td>
+                            <td>Stainless</td>
+                            <td data-sort="60">60–61</td>
+                            <td data-sort="4"><span class="dots"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i></i></span></td>
+                            <td data-sort="4"><span class="dots"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i></i></span></td>
+                            <td data-sort="3"><span class="dots"><i class="on"></i><i class="on"></i><i class="on"></i><i></i><i></i></span></td>
+                            <td data-sort="4.5"><span class="dots"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i></span></td>
+                            <td data-sort="3">¥¥¥</td>
+                            <td>The dependable professional default</td>
+                        </tr>
+                        <tr>
+                            <td class="td-name" data-sort="SG2">SG2 / R2<small>Super Gold 2</small></td>
+                            <td>Powder</td>
+                            <td data-sort="63">62–64</td>
+                            <td data-sort="4"><span class="dots"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i></i></span></td>
+                            <td data-sort="5"><span class="dots"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i></span></td>
+                            <td data-sort="2"><span class="dots"><i class="on"></i><i class="on"></i><i></i><i></i><i></i></span></td>
+                            <td data-sort="4.5"><span class="dots"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i></span></td>
+                            <td data-sort="5">¥¥¥¥¥</td>
+                            <td>Maximum retention, minimum maintenance time</td>
+                        </tr>
+                        <tr>
+                            <td class="td-name" data-sort="Molybdenum">モリブデン鋼<small>AUS-8 / MV steel</small></td>
+                            <td>Stainless</td>
+                            <td data-sort="57">56–59</td>
+                            <td data-sort="3"><span class="dots"><i class="on"></i><i class="on"></i><i class="on"></i><i></i><i></i></span></td>
+                            <td data-sort="2"><span class="dots"><i class="on"></i><i class="on"></i><i></i><i></i><i></i></span></td>
+                            <td data-sort="4.5"><span class="dots"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i></span></td>
+                            <td data-sort="5"><span class="dots"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i></span></td>
+                            <td data-sort="1">¥</td>
+                            <td>Staff knives, training, brutal wet stations</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="callout reveal">
+                <p class="callout__label">Rule of thumb · 目安</p>
+                <p>Love sharpening → 白紙. Want the best carbon all-rounder → 青紙スーパー. Want carbon
+                    feel without rust → 銀三. Want to never think about it → VG-10. Hate sharpening →
+                    SG2. Equipping a whole kitchen → モリブデン鋼.</p>
+            </div>
+        </section>
+
+        <!-- ============ PATINA VS RUST ============ -->
+        <section class="section section--dim" data-screen-label="Patina vs rust">
+            <div class="prose reveal">
+                <p class="section__eyebrow">Know the Difference · 錆と黒錆</p>
+                <h2 class="section__title">Patina Is Not Rust</h2>
+                <p>New carbon-steel owners panic at the first discoloration. Don't. There are two
+                    oxides, and one of them is on your side.</p>
+            </div>
+
+            <div class="versus-grid reveal">
+                <div class="versus-card">
+                    <image-slot id="patina-photo" src="assets/photos/patina-photo.webp" shape="rect" placeholder="Close-up — blue-grey patina on a carbon gyuto blade"></image-slot>
+                    <div class="versus-card__body">
+                        <p class="versus-card__title">黒錆 — Patina</p>
+                        <p class="versus-card__verdict versus-card__verdict--good">Protective · leave it</p>
+                        <p>A stable blue-grey-to-charcoal film that forms as carbon steel meets food
+                            acids. It actually <em>shields</em> the blade from red rust. Most carbon
+                            users deliberately build one by cutting onions or wiping the blade with
+                            mustard. A patinated blade is a used, loved blade.</p>
+                    </div>
+                </div>
+                <div class="versus-card">
+                    <image-slot id="rust-photo" src="assets/photos/rust-photo.webp" shape="rect" placeholder="Close-up — orange rust spots on a neglected blade edge"></image-slot>
+                    <div class="versus-card__body">
+                        <p class="versus-card__title">赤錆 — Red rust</p>
+                        <p class="versus-card__verdict versus-card__verdict--bad">Destructive · remove now</p>
+                        <p>Orange, powdery, and it digs pits into the steel — on the edge, pits become
+                            chips. Caused by water left on the blade. Remove early with a rust eraser
+                            (サビトール) or #1000 stone mud, then re-oil. Deep pitting near the edge may
+                            need professional regrinding.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pull-quote reveal">
+                <blockquote>"A carbon blade remembers everything you do to it — and everything you fail to do."</blockquote>
+                <cite>第七章 手入れ — see Chapter Seven for the full care ritual</cite>
+            </div>
+        </section>
+    </div>
+
+    <div id="chapter-footer"></div>
+
+    <script src="js/image-slot.js"></script>
+    <script src="js/site.js"></script>
+</body>
+
+</html>
